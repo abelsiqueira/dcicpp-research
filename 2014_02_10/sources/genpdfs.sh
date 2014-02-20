@@ -8,7 +8,7 @@ cat > perprof.args << EOF
 EOF
 
 # 2014.02.10
-dates="2014.02.10 2014.02.12"
+dates="2014.02.10 2014.02.12a 2014.02.12b 2014.02.12c"
 for date in $dates
 do
   dir=compare.$date
