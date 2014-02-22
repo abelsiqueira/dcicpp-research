@@ -7,6 +7,7 @@ cat > perprof.args << EOF
 --free-format
 EOF
 
+cmd="perprof @perprof.args"
 dates="2014.02.20"
 for date in $dates
 do
@@ -16,7 +17,7 @@ do
   name=all
   outname=$(echo $name.$date | tr . _).pdf
 
-  perprof @perprof.args $dir/cute* -o /tmp/$dir/$name $* \
+  $cmd $dir/cute* -o /tmp/$dir/$name $* \
     --success "Optimal,Converged" 
   cp /tmp/$dir/$name.pdf ../$outname
   for list in $(ls $dir/lists/*.list)
@@ -25,8 +26,30 @@ do
     name=${name/.list/}
     outname=$(echo $name.$date | tr . _).pdf
 
-    perprof @perprof.args $dir/cute* -o /tmp/$dir/$name $* \
+    $cmd $dir/cute* -o /tmp/$dir/$name $* \
       --success "Optimal,Converged" --subset $list
     cp /tmp/$dir/$name.pdf ../$outname
+  done
+
+
+  types="in exec setup"
+  for t in $types
+  do
+    name=all.$t
+    outname=$(echo $name.$date | tr . _).pdf
+
+    $cmd $dir/cute*.$t -o /tmp/$dir/$name $* \
+      --success "Optimal,Converged" 
+    cp /tmp/$dir/$name.pdf ../$outname
+    for list in $(ls $dir/lists/*.list)
+    do
+      name=${list/$dir\/lists\//}.$t
+      name=${name/.list/}
+      outname=$(echo $name.$date | tr . _).pdf
+
+      $cmd $dir/cute*.$t -o /tmp/$dir/$name $* \
+        --success "Optimal,Converged" --subset $list
+      cp /tmp/$dir/$name.pdf ../$outname
+    done
   done
 done
