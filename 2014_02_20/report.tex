@@ -10,162 +10,170 @@
 
 \section{Atualização do trabalho}
 
-Os objetivos das últimas duas semanas eram: instalar os softwares \verb+algencan+ e
-\verb+ipopt+ com o CUTEst, fazer novos testes com estes dois pacotes e o
-\verb+dcicpp+, e separar os problemas por dimensões.
-Infelizmente, descobrimos que o IPOPT ainda não tem uma versão com o CUTEst.
-Dessa maneira, fizemos a separação dos problemas, e utilizamos para fazer a
-comparação da versão antiga dos testes.
-Os resultados estão a seguir
+Repetimos os testes utilizando agora todos os problemas do \$MASTSIF sem
+variáveis fixas. No total, 874 problemas.
 
-Separamos, inicialmente, os números de variáveis e restrições em 3 categorias:
+Separamos novamente os problemas em categorias de acordo com o tamanho, e
+refizemos os mesmo gráficos de antes. No entanto, consideramos três casos para a
+medição de tempo:
 \begin{itemize}
-  \item $[0,10^2]$,
-  \item $(10^2,10^4]$,
-  \item $(10^4,10^6]$.
+  \item A medição de tempo feita pelo próprio algoritmo.
+  \item A medição de tempo feita pelo CUTEst para a execução do algoritmo
+  \item A medição de tempo feita pelo CUTEst para a execução e preparação do
+    algoritmo.
 \end{itemize}
-Combinando essas categorias, temos 9 possibilidades. Essas possibilidades são
-suficientes para todos os problemas do CUTEst.
+Vamos referenciar estas três situações por medição interna, medição do CUTEst
+simples e medição do CUTEst composta, respectivamente.
 
-Para facilitar a descrição, e como as categorias são diferentes, vamos denominar
-por $nvar$ o número de variáveis e $ncon$ o número de restrições, e
-redefinir os intervalos como
-\begin{itemize}
-  \item $[0,10^2] \rightarrow \leq 10^2$,
-  \item $(10^2,10^4]$,
-  \item $(10^4,10^6] \rightarrow > 10^4$.
-\end{itemize}
+Em adição a essa mudança, consideramos um limite de tempo muito menor: 10
+minutos. Descobrimos, analisando os testes anteriores, que 97.8\% dos problemas
+que convergem (para o DCICPP), convergem nos primeiros 10 minutos.
+Não somente, 81.1\% converge em menos de um segundo.
 
-A tabela a seguir mostra a quantidade de problemas para cada categoria:
-\begin{center}
-\begin{tabular}{|l|c|c|c|} \hline
-& $ncon \leq 10^2$ & $ncon \in (10^2,10^4]$ & $ncon > 10^4$ \\ \hline
-$nvar \leq 10^2$       & 479 &  38 &  2 \\ \hline
-$nvar \in (10^2,10^4]$ & 187 & 329 &  0 \\ \hline
-$nvar > 10^4$          &  14 &  25 & 74 \\ \hline
-\end{tabular}
-\end{center}
-Mas temos que levar em conta que os testes iniciais só rodavam em 767 problemas.
-Muitos dos problemas acima não são rodados. Os valores Com essa retrição são
-\begin{center}
-\begin{tabular}{|l|c|c|c|} \hline
-& $ncon \leq 10^2$ & $ncon \in (10^2,10^4]$ & $ncon > 10^4$ \\ \hline
-$nvar \leq 10^2$       & 432 &  31 &  1 \\ \hline
-$nvar \in (10^2,10^4]$ & 124 & 146 &  0 \\ \hline
-$nvar > 10^4$          &   9 &  16 &  8 \\ \hline
-\end{tabular}
-\end{center}
+Apresentamos agora os testes, no mesmo formato de antes.
 
-As Figuras \ref{fig:nvar_small}-\ref{fig:nvar_big} mostram os perfis de
-desempenho para cada linha dessa tabela.
+\subsection{Medição interna}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_2014_02_10.pdf}
-\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_2014_02_10.pdf}
-\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_2014_02_10.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_in_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_in_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_in_2014_02_20.pdf}
 \caption{ $nvar \leq 10^2$. }
 \label{fig:nvar_small}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_2014_02_10.pdf}
-\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_2014_02_10.pdf}
-\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_2014_02_10.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_in_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_in_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_in_2014_02_20.pdf}
 \caption{ $nvar \in (10^2,10^4]$. }
 \label{fig:nvar_medium}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_2014_02_10.pdf}
-\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_2014_02_10.pdf}
-\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_2014_02_10.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_in_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_in_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_in_2014_02_20.pdf}
 \caption{ $nvar > 10^4$. }
 \label{fig:nvar_big}
 \end{figure}
 
-Vemos que o \verb+dcicpp+ se destaca para problemas médios. Então vale a pena
-investigar nessa vizinhança.
-
-A Figura \ref{fig:both_medium_and_big} mostra o perfil de desempenho para os
-problemas com número de variáveis e de restrições maiores que 100.
-A Figura \ref{fig:nvar_medium_and_big} mostra o perfil de desempenho para os
-problemas com número de variáveis maiores que 100, e qualquer quantidade de
-restrições.
-A Figura \ref{fig:nvar_medium_and_big_not_unc} mostra o perfil de desempenho
-para os problemas com número de variáveis maiores que 100, e ao menos uma
-restrição.
-
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{vargt1e2_congt1e2_2014_02_10.pdf}
+\includegraphics[width=0.7\textwidth]{vargt1e2_congt1e2_in_2014_02_20.pdf}
 \caption{ $nvar > 10^2$ e $ncon > 10^2$ }
 \label{fig:both_medium_and_big}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{vargt1e2_conany_2014_02_10.pdf}
+\includegraphics[width=0.7\textwidth]{vargt1e2_conany_in_2014_02_20.pdf}
 \caption{ $nvar > 10^2$ }
 \label{fig:nvar_medium_and_big}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{vargt1e2_notunc_2014_02_10.pdf}
+\includegraphics[width=0.7\textwidth]{vargt1e2_notunc_in_2014_02_20.pdf}
 \caption{ $nvar > 10^2$ e apenas problemas com restrições }
 \label{fig:nvar_medium_and_big_not_unc}
 \end{figure}
 
-\subsection {CUTEst}
-
-Novos testes usando o CUTEst. Infelizmente o IPOPT não tem versão com CUTEst
-ainda.
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.7\textwidth]{all_2014_02_12.pdf}
-  \caption{ Todos small (767 problemas) }
-\end{figure}
+\subsection{Medição do CUTEst simples}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_2014_02_12.pdf}
-\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_2014_02_12.pdf}
-\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_2014_02_12.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_exec_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_exec_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_exec_2014_02_20.pdf}
 \caption{ $nvar \leq 10^2$. }
+\label{fig:nvar_small}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_2014_02_12.pdf}
-\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_2014_02_12.pdf}
-\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_2014_02_12.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_exec_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_exec_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_exec_2014_02_20.pdf}
 \caption{ $nvar \in (10^2,10^4]$. }
+\label{fig:nvar_medium}
 \end{figure}
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_2014_02_12.pdf}
-\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_2014_02_12.pdf}
-\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_2014_02_12.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_exec_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_exec_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_exec_2014_02_20.pdf}
 \caption{ $nvar > 10^4$. }
+\label{fig:nvar_big}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{vargt1e2_congt1e2_2014_02_12.pdf}
+\includegraphics[width=0.7\textwidth]{vargt1e2_congt1e2_exec_2014_02_20.pdf}
 \caption{ $nvar > 10^2$ e $ncon > 10^2$ }
+\label{fig:both_medium_and_big}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{vargt1e2_conany_2014_02_12.pdf}
+\includegraphics[width=0.7\textwidth]{vargt1e2_conany_exec_2014_02_20.pdf}
 \caption{ $nvar > 10^2$ }
+\label{fig:nvar_medium_and_big}
 \end{figure}
 
-\begin{figure}[!ht]
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{vargt1e2_notunc_2014_02_12.pdf}
+\includegraphics[width=0.7\textwidth]{vargt1e2_notunc_exec_2014_02_20.pdf}
 \caption{ $nvar > 10^2$ e apenas problemas com restrições }
+\label{fig:nvar_medium_and_big_not_unc}
+\end{figure}
+
+\subsection{Medição do CUTEst composta}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_setup_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_setup_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_setup_2014_02_20.pdf}
+\caption{ $nvar \leq 10^2$. }
+\label{fig:nvar_small}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_setup_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_setup_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_setup_2014_02_20.pdf}
+\caption{ $nvar \in (10^2,10^4]$. }
+\label{fig:nvar_medium}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_setup_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_setup_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_setup_2014_02_20.pdf}
+\caption{ $nvar > 10^4$. }
+\label{fig:nvar_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{vargt1e2_congt1e2_setup_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e $ncon > 10^2$ }
+\label{fig:both_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{vargt1e2_conany_setup_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ }
+\label{fig:nvar_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{vargt1e2_notunc_setup_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e apenas problemas com restrições }
+\label{fig:nvar_medium_and_big_not_unc}
 \end{figure}
 
 \end{document}

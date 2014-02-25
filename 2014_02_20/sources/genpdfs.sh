@@ -8,6 +8,7 @@ cat > perprof.args << EOF
 EOF
 
 dates="2014.02.20"
+types="in exec setup"
 for date in $dates
 do
   dir=compare.$date
@@ -28,5 +29,25 @@ do
     perprof @perprof.args $dir/cute* -o /tmp/$dir/$name $* \
       --success "Optimal,Converged" --subset $list
     cp /tmp/$dir/$name.pdf ../$outname
+  done
+
+  for t in $types
+  do
+    name=all.$t
+    outname=$(echo $name.$date | tr . _).pdf
+
+    perprof @perprof.args $dir/cute*.$t -o /tmp/$dir/$name $* \
+      --success "Optimal,Converged" 
+    cp /tmp/$dir/$name.pdf ../$outname
+    for list in $(ls $dir/lists/*.list)
+    do
+      name=${list/$dir\/lists\//}
+      name=${name/.list/}.$t
+      outname=$(echo $name.$date | tr . _).pdf
+
+      perprof @perprof.args $dir/cute*.$t -o /tmp/$dir/$name $* \
+        --success "Optimal,Converged" --subset $list
+      cp /tmp/$dir/$name.pdf ../$outname
+    done
   done
 done
