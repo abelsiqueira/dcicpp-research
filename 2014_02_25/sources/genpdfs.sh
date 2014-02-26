@@ -8,7 +8,7 @@ cat > perprof.args << EOF
 EOF
 
 cat > empty.tex << EOF
-\\documentclass{standalone}
+\\documentclass[border={0 0.5cm 0cm 0.5cm}]{standalone}
 \\usepackage[utf8]{inputenc}
 \\usepackage[T1]{fontenc}
 
