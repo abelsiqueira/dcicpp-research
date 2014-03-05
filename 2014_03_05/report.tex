@@ -1,0 +1,323 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 03 - 05}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+Seguindo o discutido na reunião, atualizei os testes separando aqueles que não
+falham com Cholesky, e com categorias incluindo as variáveis de folga.
+O total de problemas considerado foi 873 (todos os problemas sem variáveis
+fixas).
+Os problemas que tiveram falha de Cholesky foram 172.
+Os problemas que não tiveram falha de Cholesky foram 701.
+
+Outra coisa que fizemos para estes testes foi estabelecer um {\bf tempo
+mínimo}. O algoritmo ALGENCAN usa duas casas decimais de precisão, de modo que
+
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{all_2014_02_20.pdf}
+  \caption{Todos os problemas utilizados (Sem variáveis fixas) }
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{cholfail_2014_02_20.pdf}
+  \caption{Falha de Cholesky}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{cholok_2014_02_20.pdf}
+  \caption{Sem as falhas de Cholesky}
+\end{figure}
+
+\newpage
+\subsection{Resumo}
+
+Como tem muita coisa pra ver, e muitos gráficos para considerar, vamos colocar
+um resumo com o gráfico mais importante de cada categoria.
+O gráfico mostrado é para o caso em que o número de variáveis é maior que 100 e
+para qualquer quantidade \emph{positiva} de restrições, isto é, os problemas com
+restrição. A maneira de se medir o número de variáveis pode ser a maneira
+normal, ou utilizando as variáveis de folga, isto é, o número de variável é na
+verdade o número de variáveis mais as restrições de desigualdade.
+
+Separamos oe problemas em \emph{com} e \emph{sem} variáveis de folga, e
+considerando os problemas em que Cholesky funciona separadamente.
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{vargt1e2_notunc_slackfalse_2014_02_20.pdf}
+    \caption{Sem variáveis de folga}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{cholok_vargt1e2_notunc_slackfalse_2014_02_20.pdf}
+    \caption{Sem variáveis de folga e Cholesky funciona}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{vargt1e2_notunc_slacktrue_2014_02_20.pdf}
+    \caption{Com variáveis de folga}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{cholok_vargt1e2_notunc_slacktrue_2014_02_20.pdf}
+    \caption{Com variáveis de folga e Cholesky funciona}
+  \end{subfigure}
+\end{figure}
+
+Mais detalhes nas subseções a seguir.
+
+\newpage
+\subsection{Sem variáveis de folga}
+
+Da maneira tradicionais, separamos os problemas por número de variáveis e de
+restrições. A separação, ainda sem utilizar variáveis de folga dá a tabela
+\begin{center}
+\begin{tabular}{|l|c|c|c|} \hline
+& $ncon \leq 10^2$ & $ncon \in (10^2,10^4]$ & $ncon > 10^4$ \\ \hline
+$nvar \leq 10^2$       & 445 &  36 &  2 \\ \hline
+$nvar \in (10^2,10^4]$ & 139 & 200 &  0 \\ \hline
+$nvar > 10^4$          &  14 &  19 & 18 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_slackfalse_2014_02_20.pdf}
+\caption{ $nvar \leq 10^2$. }
+\label{fig:nvar_small}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_slackfalse_2014_02_20.pdf}
+\caption{ $nvar \in (10^2,10^4]$. }
+\label{fig:nvar_medium}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^4$. }
+\label{fig:nvar_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{vargt1e2_congt1e2_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e $ncon > 10^2$ }
+\label{fig:both_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{vargt1e2_conany_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ }
+\label{fig:nvar_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{vargt1e2_notunc_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e apenas problemas com restrições }
+\label{fig:nvar_medium_and_big_not_unc}
+\end{figure}
+
+\newpage
+\subsection{Sem variáveis de folga. Sem falhas de cholesky}
+
+Ainda separando da maneira tradicional, mas agora removendo os problemas que
+falharam o Cholesky.
+\begin{center}
+\begin{tabular}{|l|c|c|c|} \hline
+& $ncon \leq 10^2$ & $ncon \in (10^2,10^4]$ & $ncon > 10^4$ \\ \hline
+$nvar \leq 10^2$       & 401 &  23 &  1 \\ \hline
+$nvar \in (10^2,10^4]$ & 134 & 100 &  0 \\ \hline
+$nvar > 10^4$          &  14 &  19 &  9 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{cholok_var1e0-1e2_con1e0-1e2_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e0-1e2_con1e2-1e4_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e0-1e2_con1e4-1e6_slackfalse_2014_02_20.pdf}
+\caption{ $nvar \leq 10^2$. }
+\label{fig:nvar_small}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{cholok_var1e2-1e4_con1e0-1e2_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e2-1e4_con1e2-1e4_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e2-1e4_con1e4-1e6_slackfalse_2014_02_20.pdf}
+\caption{ $nvar \in (10^2,10^4]$. }
+\label{fig:nvar_medium}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{cholok_var1e4-1e6_con1e0-1e2_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e4-1e6_con1e2-1e4_slackfalse_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e4-1e6_con1e4-1e6_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^4$. }
+\label{fig:nvar_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{cholok_vargt1e2_congt1e2_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e $ncon > 10^2$ }
+\label{fig:both_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{cholok_vargt1e2_conany_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ }
+\label{fig:nvar_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{cholok_vargt1e2_notunc_slackfalse_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e apenas problemas com restrições }
+\label{fig:nvar_medium_and_big_not_unc}
+\end{figure}
+
+\newpage
+\subsection{Com variáveis de folga}
+
+Agora separando todos os problemas sem variáveis fixas utilizando as variáveis
+de folga, isto é, $nvar$ é na verdade $nvar+ncon_I$.
+\begin{center}
+\begin{tabular}{|l|c|c|c|} \hline
+& $ncon \leq 10^2$ & $ncon \in (10^2,10^4]$ & $ncon > 10^4$ \\ \hline
+$nvar \leq 10^2$       & 438 &   1 &  0 \\ \hline
+$nvar \in (10^2,10^4]$ & 142 & 221 &  0 \\ \hline
+$nvar > 10^4$          &  18 &  33 & 20 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e0-1e2_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e2-1e4_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e0-1e2_con1e4-1e6_slacktrue_2014_02_20.pdf}
+\caption{ $nvar \leq 10^2$. }
+\label{fig:nvar_small}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e0-1e2_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e2-1e4_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e2-1e4_con1e4-1e6_slacktrue_2014_02_20.pdf}
+\caption{ $nvar \in (10^2,10^4]$. }
+\label{fig:nvar_medium}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e0-1e2_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e2-1e4_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{var1e4-1e6_con1e4-1e6_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^4$. }
+\label{fig:nvar_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{vargt1e2_congt1e2_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e $ncon > 10^2$ }
+\label{fig:both_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{vargt1e2_conany_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ }
+\label{fig:nvar_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{vargt1e2_notunc_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e apenas problemas com restrições }
+\label{fig:nvar_medium_and_big_not_unc}
+\end{figure}
+
+\newpage
+\subsection{Com variáveis de folga. Sem falhas de cholesky}
+
+Agora apenas os problemas em que Cholesky funciona, utilizando as variáveis de
+folga.
+\begin{center}
+\begin{tabular}{|l|c|c|c|} \hline
+& $ncon \leq 10^2$ & $ncon \in (10^2,10^4]$ & $ncon > 10^4$ \\ \hline
+$nvar \leq 10^2$       & 396 &   0 &  0 \\ \hline
+$nvar \in (10^2,10^4]$ & 135 & 109 &  0 \\ \hline
+$nvar > 10^4$          &  18 &  33 & 10 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{cholok_var1e0-1e2_con1e0-1e2_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e0-1e2_con1e2-1e4_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e0-1e2_con1e4-1e6_slacktrue_2014_02_20.pdf}
+\caption{ $nvar \leq 10^2$. }
+\label{fig:nvar_small}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{cholok_var1e2-1e4_con1e0-1e2_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e2-1e4_con1e2-1e4_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e2-1e4_con1e4-1e6_slacktrue_2014_02_20.pdf}
+\caption{ $nvar \in (10^2,10^4]$. }
+\label{fig:nvar_medium}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{cholok_var1e4-1e6_con1e0-1e2_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e4-1e6_con1e2-1e4_slacktrue_2014_02_20.pdf}
+\includegraphics[width=0.3\textwidth]{cholok_var1e4-1e6_con1e4-1e6_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^4$. }
+\label{fig:nvar_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{cholok_vargt1e2_congt1e2_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e $ncon > 10^2$ }
+\label{fig:both_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{cholok_vargt1e2_conany_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ }
+\label{fig:nvar_medium_and_big}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[height=0.44\textheight]{cholok_vargt1e2_notunc_slacktrue_2014_02_20.pdf}
+\caption{ $nvar > 10^2$ e apenas problemas com restrições }
+\label{fig:nvar_medium_and_big_not_unc}
+\end{figure}
+
+\end{document}
