@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepackage{fluxdef}
+
+\begin{document}
+  \begin{tikzpicture}
+    \node[block] (delta) {Find $\delta_t$ from (TS)};
+    \node[decision,right of=delta,aspect=2,text width=11em, node distance=12em] (feasible) {$z^k_c +
+      \delta_t\in\mathcal{C}(2\rho)$ and is there sufficient decrease?};
+    \node[block,right of=feasible,node distance=13em,text width=7em] (soc)
+      {Optionally compute $\delta_{soc}$};
+    \node[block,below of=soc,node distance=8em,text width=6em] (accept) {$z^k =
+    z^k_c + \Lambda_c(\delta_t + \delta_{soc})$};
+    \node[block,below of=feasible,node distance=8em,text width=8em] (reduce) {
+    Reduce the trust region};
+    \algstart{delta}
+
+    \path[line] (delta) -- (feasible);
+    \path[line] (feasible) -- node[right] {no} (reduce);
+    \path[line] (feasible) -- node[above] {yes} (soc);
+    \path[line] (soc) -- (accept);
+    \path[line] (reduce) -| (delta);
+  \end{tikzpicture}
+\end{document}

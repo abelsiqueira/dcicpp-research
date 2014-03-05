@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{ae}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+
+\begin{document}
+  \begin{tikzpicture}
+    \begin{axis}[domain=-1.3:1.3, domain y=-1:1, view={0}{90},
+        axis lines=none]
+    \addplot3[contour gnuplot={number=30, labels=false},
+      colormap={bw}{gray(0cm)=(0.5);gray(1cm)=(1)}]
+      { ( (x - 1)^2 + (y + 1)^2 ) };
+    \end{axis}
+    \begin{axis}[domain=-1.3:1.3, view={0}{90}, xmin=-1.3, xmax=1.3, ymin=-1,
+      axis lines=none, ymax=1]
+      \addplot+[color=black,thick,mark=none] { 0.25*x*(x^2-1) }
+      node[pos=0.0, below right] {$h(z) = 0$};
+      \legend{$h(z) = 0$};
+      %\addplot+[color=red,dashed,mark=none] { 0.3+0.25*x*(x^2-1) };
+      %\addplot+[color=red,dashed,mark=none] {-0.3+0.25*x*(x^2-1) };
+      %\addplot+[color=red,dotted,thick,mark=none] { 0.6+0.25*x*(x^2-1) };
+      %\addplot+[color=red,dotted,thick,mark=none] {-0.6+0.25*x*(x^2-1) };
+    \end{axis}
+    \begin{axis}[domain=-1.3:1.3, view={0}{90}, xmin=-1.3, xmax=1.3, ymin=-1,
+      axis lines=none, ymax=1]
+      \node (x0) at (axis cs:-0.50,0.60) {};
+      \node (xc) at (axis cs:-0.51,0.20) {}; 
+      \node (x1) at (axis cs: 0.84,0.12) {};
+      \addplot[blue,->,mark=*, only marks] plot coordinates { 
+        (-0.50,0.60) (-0.51,0.20) (0.84,0.12) }
+        node[pos=0.0, above right] { $z^{k-1}$ }
+        node[pos=0.5, above right] { $z_c^{k}$ }
+        node[pos=1.0, above right] { $z^{k}$ };
+      \draw[blue,->] (x0) -- (xc);
+      \draw[blue,->] (xc) -- (x1);
+    \end{axis}
+  \end{tikzpicture}
+
+\end{document}

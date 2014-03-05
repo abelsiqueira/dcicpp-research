@@ -1,0 +1,816 @@
+\documentclass[compress,10 pt]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\newif\ifpt
+%\pttrue
+\ifpt
+\usepackage[portuguese]{babel}
+\else
+\usepackage[english]{babel}
+\fi
+\usepackage{ulem}
+\usepackage{ae}
+\newcommand{\epsmu}{\varepsilon_{\mu}}
+\newcommand{\lls}{\lambda_{LS}}
+\newcommand{\suja}{\iflanguage{portuguese}{suj. a}{s. t.}}
+\usepackage{slidesdef}
+
+\newcommand{\pten}[2]{\iflanguage{portuguese}{#1}{#2}}
+
+\newcommand{\mytitle}{
+  \iflanguage{portuguese}{
+    Controle Dinâmico de Inviabilidade para Programação Não Linear
+  }{
+    Dynamic Control of Infeasibility for Nonlinear Programming
+  } 
+}
+\newcommand{\myshorttitle}{
+  \iflanguage{portuguese}{
+    CDI para PNL
+  }{
+    DCI for NP
+  }
+}
+\newcommand{\myauthor}{ Abel Soares Siqueira \\ Francisco A. M. Gomes}
+\newcommand{\myshortauthor}{ Abel S. Siqueira \quad Francisco A. M. Gomes}
+
+\newcommand{\mydate}{
+\iflanguage{portuguese}{
+  17 de Março de 2014
+}{
+  March, 17, 2014
+}
+}
+
+\title{\myshorttitle}
+\author{\myshortauthor}
+\date{\mydate}
+
+\begin{document}
+
+\begin{frame}
+  \begin{center}
+  \begin{beamercolorbox}[center,rounded=true,shadow=true]{mybox}
+    \bf \Large \mytitle
+  \end{beamercolorbox}
+
+  \vspace{0.5cm}
+
+  \begin{beamercolorbox}[center,rounded=true,shadow=true]{mybox}
+    \bf \myauthor
+  \end{beamercolorbox}
+  \mydate
+
+  \vspace{0.5cm}
+  \begin{center}
+    {\color{mydarkcolor} \small 
+\iflanguage{portuguese}{
+  Universidade Estadual de Campinas \\
+    Campinas - São Paulo - Brasil
+  }
+  {
+    State University of Campinas \\
+    Campinas - São Paulo - Brazil
+  }
+  }
+  \end{center}
+  \vspace{0.3cm}
+
+  \begin{center}
+    {\color{mydarkcolor} 
+    {\scriptsize 
+      \iflanguage{portuguese}{
+        Apoio financeiro \\
+        CNPq (desde 12/2013) \\
+        Fapesp (2009-2013). Processo 2009/17273-4
+      }{
+        Financial support \\
+        CNPq (since 12/2013) \\
+        Fapesp (2009-2013). Reference 2009/17273-4
+      }
+    }
+  }
+  \end{center}
+  \end{center}
+\end{frame}
+
+\makesection{Introdução}{Introduction}
+
+\makesubsection{Objetivos}{Objectives}
+
+\myframe{
+\iflanguage{portuguese}{
+  \begin{itemize}
+    \item Objetivos:
+    \begin{itemize}
+      \item Estender o Controle Dinâmico de Inviabilidade proposto por
+        \citet*{bib:chico} para problemas de igualdades para tratar das
+        desigualdades;
+      \item Implementar um software C++ com interface CUTEr, disponível online;
+    \end{itemize}
+  \end{itemize}
+}{
+  \begin{itemize}
+    \item Objectives:
+    \begin{itemize}
+      \item Extend the Dynamic Control of Infeasibility method proposed by
+        \citet*{bib:chico} for equality problems to handle inequalities;
+      \item Implement a C++ software with {\color{red}\sout{CUTEr}} CUTEst
+        interface, available online;
+    \end{itemize}
+  \end{itemize}
+}
+}
+
+\makesubsection{Problema}{Problem}
+
+\myframetop{
+  \ctr{}
+    \begin{equation}\visiblelbl{prob:geral}\tag{P}
+    \begin{array}{rrcl}
+    \min & f(x) \\
+  \iflanguage{portuguese}{ \mbox{suj. a}}{\mbox{s.t.} }
+    & c_E(x) &   =  & 0, \\
+                  & c_I(x) & \geq & 0,
+    \end{array}
+    \end{equation}
+}
+
+\myframetop{
+\iflanguage{portuguese}{
+  \ctr{Introduzindo variáveis de folga}
+}{
+  \ctr{Introducing slack variables}
+}
+ \begin{equation*}\visiblelbl{prob:igual}
+ \begin{array}{rrcl}
+  \min & f(x) \\
+   \iflanguage{portuguese}{\mbox{suj. a}}{\mbox{s.t.} }
+  & c_E(x) & =  & 0, \\
+	      & c_I(x) - s & = & 0, \\
+             & s   & \geq & 0.
+ \end{array}
+ \end{equation*}
+ \pause
+  \vspace{0.5 cm}
+  $$ z = \vetor{x}{s} \qquad h(z) = \vetor{c_E(x)}{c_I(x) - s} $$
+
+  \vspace{0.5 cm}
+  $$ \beta(z) \mbox{ 
+  \iflanguage{portuguese}{barreira da fronteira}{boundary barrier}} $$
+  \pause
+  $$ \beta(z) = -\sum_{i=1}^{m_I} \ln(s_i) $$
+}
+
+\myframetop{
+\iflanguage{portuguese}{
+  \ctr{ Problema de restrição de igualdade com barreira logarítmica }
+}{
+  \ctr{ Equality contrained problem with logarithmic barrier }
+}
+  \begin{equation*}
+  \begin{array}{rl}
+  \min & \varphi(z,\mu) = f(x) + \mu\beta(z) \\
+  \mbox{s.t.} & h(z) = 0,
+  \end{array}
+  \end{equation*}
+  \pause
+  \vspace{0.5cm}
+\iflanguage{portuguese}{
+  \ctr{ Função Lagrangiana }
+}{
+  \ctr{ Lagrangian function }
+}
+  $$L(z,\lambda,\mu) = \varphi(z,\mu) + \sum_{i=1}^mh_i(z)\lambda_i$$
+}
+
+\makesubsection{ Passos Compostos }{Composite Steps}
+
+\myframe{
+\iflanguage{portuguese}{
+  \ctr{Passos Compostos}
+  \begin{itemize}
+    \item Passo Normal $\longrightarrow$ Factibilidade Primal
+    \item Passo Tangente $\longrightarrow$ Factibilidade Dual
+  \end{itemize}
+}{
+  \ctr{Composite Steps}
+  \begin{itemize}
+    \item Normal Step $\longrightarrow$ Primal Feasibility
+    \item Tangent Step $\longrightarrow$ Dual Feasibility
+  \end{itemize}
+}
+}
+
+\myframe{
+  \begin{center}
+    \includegraphics[height=\textheight]{plots/contour.pdf}
+  \end{center}
+}
+
+\makesubsection{ Passo Normal }{Normal Step}
+
+\myframetop {
+  \iflanguage{portuguese}{
+    \ctr{ Passo Normal }
+  }{
+    \ctr{ Normal Step }
+  }
+  \begin{eqnarray*}
+    \min & \meio \norma{h(z)}^2 \\
+    \mbox{s.t.} & s \geq 0
+  \end{eqnarray*}
+}
+
+\makesubsection{ Passo Tangente}{Tangent Step}
+
+\myframetop {
+  \iflanguage{portuguese}{
+    \ctr{ Passo Tangente \only<2>{Escalado} }
+  }{
+    \ctr{ \onslide<2>{Scaled} Tangent Step }
+  }
+  \begin{eqnarray*}
+    \min_d & & L(z_c + 
+    \only<2>{ {\color{red} \Lambda_c } }
+    d, \lambda, \mu) \\
+    \mbox{\suja} & & h(z_c + 
+    \only<2>{ {\color{red} \Lambda_c } }
+    d) = h(z_c)
+  \end{eqnarray*}
+}
+
+
+\makesubsection{Definições}{Definitions}
+
+\myframe{
+  \ctr{ 
+    \iflanguage{portuguese}{
+      Matriz de escalamento 
+    }{
+      Scaling Matrix
+    }
+  $\Lambda(z) = \matriz{I}{0}{0}{S} $ }
+\pause
+\begin{align*}
+  g(z,\mu) & = \Lambda(z)\nabla\varphi(z,\mu) \\
+  A(z) & = \nabla h(z) \Lambda(z),\\
+  \Gamma(z,\mu) & = \Lambda(z)\nabla^2\varphi(z,\mu)\Lambda(z) \\
+  W(z,\lambda,\mu) & = \Lambda(z)\nabla_{zz}^2 L(z,\lambda,\mu)\Lambda(z)
+\end{align*}
+}
+
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Multiplicadores de Lagrange }
+  }{
+    \ctr{ Lagrange Multipliers }
+  }
+ $$\lls(z,\mu) = \arg\min_{\lambda}\bigg\{\meio\norma{g(z,\mu) + A(z)^T\lambda}^2\bigg\}$$
+ \vspace{0.3 cm}
+ $$\lambda^k_i = \left\{
+\begin{array}{lll}
+ \lls(z_c^k,\mu^k)_i, & \mbox{se } i \in E \\
+ \min\{\lls(z_c^k,\mu^k)_i, \alpha(\mu^k)^n\}, & \mbox{se } i \in I
+\end{array}
+\right.$$
+}
+
+\myframe {
+  \iflanguage{portuguese}{
+    \ctr{ Gradiente Projetado }
+  }{
+    \ctr{ Projected Gradient }
+  }
+ \begin{align*}
+   g_p(z,\mu) & = g(z,\mu) + A(z)^T\lls(z,\mu). \\
+   g_p^k & = g(z_c^k,\mu^k) + A(z_c^k)^T\lambda^k
+ \end{align*}
+}
+
+\myframe {
+  \iflanguage{portuguese}{
+    \ctr{ Cilindro de Confiança }
+  }{
+    \ctr{ Trust Cylinder }
+  }
+  $$\mathcal{C}(\rho) = \{z \in \Rn{N}:\norma{h(z)}\leq\rho\}$$
+  $$\rho^k = \bigo(\norma{g_p^k})$$
+  \begin{center}
+  \begin{tikzpicture}[domain=0:9,scale=0.8]
+    %\draw[fill,gray] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1}) -- 
+    %plot (9-\x,{0.5*(9-\x)*(-\x-1)*sin(9-\x)-1}) -- cycle;
+    \draw[black] plot (\x,{0.5*\x*(\x-10)*sin(\x)}) node[right] {$h(z) = 0$};
+    \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1});
+    \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)-1});
+    \draw[<->] (4,-12*0.07) -- node[right] {$\rho$} (4,-12*0.07+1);
+    \draw[<->] (5,-12.5*0.087) -- node[right] {$\rho$} (5,-12.5*0.087-1);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\makesection{Método}{Method}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Passo Normal }
+  }{
+    \ctr{ Normal Step }
+  }
+  \begin{center}
+    \iflanguage{portuguese}{
+      \includegraphics{plots/flux-normal-pt.pdf}
+    }{
+      \includegraphics{plots/flux-normal-en.pdf}
+    }
+  \end{center}
+}
+
+\myframetop{
+  \iflanguage{portuguese}{
+    \ctr{ Passo Normal Interno }
+    $$ \mbox{Como encontrar } z_c \in \mathcal{C}(\rho)? $$
+    \pause
+    \begin{center}
+    Método proposto por \citet{bib:francisco}.
+  }{
+    \ctr{ Internal Normal Step }
+    $$ \mbox{How do we find} z_c \in \mathcal{C}(\rho)? $$
+    \pause
+    \begin{center}
+    Method proposed by \citet{bib:francisco}.
+  }
+  \begin{tikzpicture}
+    \begin{axis}[view={0}{90}, axis lines=none, xmin=-2,xmax=5, ymin=-4,ymax=3,
+      height=6cm, width=10cm]
+      \addplot[mark=none,green,dashed] plot coordinates {
+        (-2,-2) (-2,2) (2,2) (2,-2) (-2,-2)
+      };
+      \only<2>{
+        \addplot[->] plot coordinates { (0,0) (3,-1) }
+        node[pos=1, pin=30: $d_{cp}$] {};
+      }
+      \only<3->{
+        \addplot[dashed,->] plot coordinates { (0,0) (3,-1) }
+        node[pos=1, pin=30: $d_{cp}$] {};
+        \addplot[->] plot coordinates { (0,0) (3*0.63, -1*0.63) }
+        node[pos=1, pin=30: $P(d_{cp})$] {};
+      }
+      \only<4>{
+        \addplot[->] plot coordinates { (0,0) (-0.2,-3) }
+        node[pos=1, pin=150: $d_N$] {};
+      }
+      \only<5->{
+        \addplot[->,dashed] plot coordinates { (0,0) (-0.2,-3) }
+        node[pos=1, pin=150: $d_N$] {};
+        \addplot[->] plot coordinates { (0,0) (-0.2*0.63,-3*0.63) }
+        node[pos=1, pin=150: $P(d_N)$] {};
+      }
+      \only<6->{
+        \addplot[->,blue] plot coordinates { (1.89, -0.63) (-0.126,-1.89) }
+        node[pos=1, pin=-30: $v$] {};
+      }
+      \only<7->{
+        \addplot[->,red] plot coordinates { (0,0) (0.882,-1.26) };
+        \addplot[->,blue] plot coordinates { (1.89, -0.63) (0.882,-1.26) }
+        node[pos=1, pin=-30: $tv$] {};
+      }
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+  \uncover<8->{
+  $$ \psi(t) = \frac{ m(P(d_{cp}) + tv) - m(0) }{ m(P(d_{cp})) - m(0) } $$}
+}
+
+\makesubsection{ Passo Tangente }{Tangent Step}
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Passo Tangente }
+  }{
+    \ctr{ Tangent Step }
+  }
+  \begin{equation}\visiblelbl{prob:tangent}
+    \tag{TS}
+    \begin{array}{rl}
+    \min & q_k(\delta) = \meio \delta^TB^k\delta + 
+    \delta^Tg_p(z_c^k,\mu^k), \\
+    \mbox{\suja} & A(z_c^k)\delta = 0 \\
+     & \tilde{l} \leq \delta \leq \tilde{u}, 
+    \end{array}
+  \end{equation}
+  \pause
+  \iflanguage{portuguese}{
+    Resolvido por uma modificação do método de Steihaug
+    \cite{bib:steihaug}.
+  }{
+    Solved with a modification of Steihaug's method
+    \cite{bib:steihaug}.
+  }
+}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Passo Tangente }
+    \includegraphics{plots/flux-tangent-pt.pdf}
+  }{
+    \ctr{ Tangent Step }
+    \includegraphics{plots/flux-tangent-en.pdf}
+  }
+}
+
+\makesubsection{Esboço}{Outline}
+
+\myframe {
+  \iflanguage{portuguese}{
+    \ctr{Esboço}
+    \begin{center}
+      \includegraphics{plots/flux-outline-pt.pdf}
+    \end{center}
+  }{
+    \ctr{Outline}
+    \begin{center}
+      \includegraphics{plots/flux-outline-en.pdf}
+    \end{center}
+  }
+}
+
+\makesubsection{Exemplo}{Example}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{Exemplo}
+  }{
+    \ctr{Example}
+  }
+\begin{eqnarray*}
+ \min & f(x) = \meio(x_1^2 + x_2^2) \\
+ \mbox{\suja} & x_2 = x_1^2 + 1
+\end{eqnarray*}
+ \vspace{1 cm}
+ $$x^0 = \vetor{2}{3}$$
+}
+
+\myframe{
+  \begin{center}
+    \begin{tikzpicture}[yscale=1.1]
+    \begin{axis}[colormap={bw}{gray(0cm)=(0.8);gray(1cm)=(1)}, domain=-1:3,
+        domain y=-0.5:3.5, view={0}{90}, mark=none]
+    \addplot3[contour gnuplot={number=40,labels=false}] {0.5*(x^2+y^2)};
+    \end{axis}
+    \begin{axis}[domain=-1:3, xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot+[color=black, thick, mark=none] {x^2 + 1};
+      \only<1-2>{
+      \addplot+[color=red, dashed, mark=none] {x^2 + 1 + 1.13};
+      \addplot+[color=red, dashed, mark=none] {x^2 + 1 - 1.13};
+      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 + 2*1.13};
+      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 - 2*1.13};
+      }
+      \only<3-6>{
+      \addplot+[color=red, dashed, mark=none] {x^2 + 1 + 0.57};
+      \addplot+[color=red, dashed, mark=none] {x^2 + 1 - 0.57};
+      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 + 2*0.57};
+      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 - 2*0.57};
+      }
+    \end{axis}
+    \only<1>{
+    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot[blue,mark=*,only marks] plot coordinates {
+      (2,3) }
+      node[pos=0, pin=300: {$x^0$}] {};
+    \end{axis}
+    }
+    \only<2>{
+    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot[blue,mark=*,only marks] plot coordinates {
+      (2,3) (1.53,3.12) }
+      node[pos=0, pin=300: {$x^0$}] {}
+      node[pos=1, pin=300: {$x_c$}] {};
+      \node (a) at (axis cs:2,3) {};
+      \node (b) at (axis cs:1.53,3.12) {};
+      \draw[blue,->] (a) -- (b);
+    \end{axis}
+    }
+    \only<3>{
+    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot[blue,mark=*,only marks] plot coordinates {
+      (1.53,3.12) }
+      node[pos=0, pin=300: {$x_c^1$}] {};
+    \end{axis}
+    }
+    \only<4>{
+    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot[blue,mark=*,only marks] plot coordinates {
+      (1.53,3.12) (0.43,-0.25) }
+      node[pos=0, pin=300: {$x_c^1$}] {}
+      node[pos=1, pin=30: {$x^+$}] {};
+      \node (a) at (axis cs:1.53,3.12) {};
+      \node (b) at (axis cs:0.43,-0.25) {};
+      \draw[blue,->] (a) -- (b);
+    \end{axis}
+    }
+    \only<5>{
+    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot[blue,mark=*,only marks] plot coordinates {
+      (1.53,3.12) (0.70,0.59) }
+      node[pos=0, pin=300: {$x_c^1$}] {}
+      node[pos=1, pin=30: {$x^+$}] {};
+      \node (a) at (axis cs:1.53,3.12) {};
+      \node (b) at (axis cs:0.70,0.59) {};
+      \draw[blue,->] (a) -- (b);
+      \addplot[green,dashed] plot coordinates {
+        (-2,0.59) (4,0.59)
+      };
+    \end{axis}
+    }
+    \only<6>{
+    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
+      \addplot[blue,mark=*,only marks] plot coordinates {
+      (0.70,0.59) }
+      node[pos=0, pin=30: {$x^1$}] {};
+    \end{axis}
+    }
+  \end{tikzpicture}
+  \end{center}
+}
+
+\makesection{Convergência}{Convergence}
+
+\makesubsection{ Convergência Global }{Global Convergence}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Hipóteses para Convergência Global }
+    \begin{enumerate}
+      \item[H1] $f$, $c_E$ e $c_I$ são $C^2$.
+      \item[H2] As sequências $\{z_c^{k}\}$ e $\{z^k\}$, 
+        as aproximações $B^k$ e os multiplicadores $\{\lambda^k\}$ permanecem
+        uniformemente limitados.
+      \item[H3] A restauração nunca falha e $\mathcal{Z} =\{z_c^k\}$ permanece
+        longe do conjunto singular de $h$, i.e., $h$ é regular no fecho da
+        $\mathcal{Z}$. Além disso, se a sequência gerada 
+        $\{z_c^k\}$ é infinita, então
+      \begin{equation}\visiblelbl{nvert}
+      \norma{z_c^{k+1}-z^k} = \bigo(\norma{h(z^k)})  
+      \end{equation}
+      \item[H4] $\norma{\delta_{soc}^k} = \bigo(\norma{\delta_t^k}^2)$
+    \end{enumerate}
+  }{
+    \ctr{ Hypothesis for Global Convergence }
+    \begin{enumerate}
+      \item[H1] $f$, $c_E$ and $c_I$ are $C^2$.
+      \item[H2] The sequences $\{z_c^{k}\}$ and $\{z^k\}$, 
+        the approximations $B^k$ and the multipliers $\{\lambda^k\}$ remain
+        uniformly bounded.
+      \item[H3] The restoration never fails and $\mathcal{Z} =\{z_c^k\}$ remains
+        away from the singular set of $h$, i.e., $h$ is regular in the closure
+        of $\mathcal{Z}$. Furthermore, if the sequence 
+        $\{z_c^k\}$ is infinite, then
+      \begin{equation}\visiblelbl{nvert}
+      \norma{z_c^{k+1}-z^k} = \bigo(\norma{h(z^k)})  
+      \end{equation}
+      \item[H4] $\norma{\delta_{soc}^k} = \bigo(\norma{\delta_t^k}^2)$
+    \end{enumerate}
+  }
+}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{Teorema: Convergência Global }
+    {\it Sob as hipóteses H1-H4, DCI para em um ponto estacionário de
+      \eqref{prob:geral} em um número finito de iterações, ou gera uma sequência
+      com pontos estacionários em seu conjunto de acumulação. Além disso, se as
+      condições
+    \begin{enumerate}
+      \item[C1] $\norma{z^k - z_c^k} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
+      \item[C2] $\norma{\lambda^k - \lls(z_c^k, \mu_c^k)} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
+      \item[C3] $(\lambda_I^{k+1})^T(s_c^{k+1} - s^k) = 
+        \bigo(\norma{g_p(z_c^k,\mu_c^k)}\rho^k)$
+    \end{enumerate}
+    são satisfeitas, então todo ponto de acumulação de $z_c^k$ é estacionário
+    para
+      \eqref{prob:geral}. }
+  }{
+    \ctr{Theorem: Global Convergence }
+    {\it Under the assumptions H1-H4, DCI stops at a stationary point for
+      \eqref{prob:geral} in a finite number of iterations, or generates an
+      sequence with stationary points in its accumulation set.
+      In addition, if the conditions
+    \begin{enumerate}
+      \item[C1] $\norma{z^k - z_c^k} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
+      \item[C2] $\norma{\lambda^k - \lls(z_c^k, \mu_c^k)} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
+      \item[C3] $(\lambda_I^{k+1})^T(s_c^{k+1} - s^k) = 
+        \bigo(\norma{g_p(z_c^k,\mu_c^k)}\rho^k)$
+    \end{enumerate}
+    are satisfied, then every accumulation point of $\{z_c^k\}$ is stationary
+    for \eqref{prob:geral}. }
+  }
+}
+
+\makesubsection{Convergência Local}{Local Convergence}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Hipóteses de Convergência Local }
+    Para convergência local consideramos apenas as restrições ativas na solução
+    e hipóteses sobre
+    \begin{itemize}
+      \item o ponto estacionário sendo um ``bom minimizador'';
+      \item limitantes nas aproximações dos multiplicadores de Lagrange;
+      \item a positividade das aproximações para a Lagrangiana da Hessiana;
+      \item a equivalência das condições de otimalidade nas restrições ativas;
+      \item a forma dos passos normal e tangente perto da solução.
+    \end{itemize}
+  }{
+    \ctr{ Hypothesis for Local Convergence }
+    For the local convergence we consider only the active constraints in the
+    solution, and hypothesis about
+    \begin{itemize}
+      \item the stationary point being a ``good minimizer'';
+      \item bounds on the approximations to the Lagrangian multipliers;
+      \item positivity of the approximations for the Hessian of the Lagrangian;
+      \item equivalence between the optimality conditions at the active
+        constraints;
+      \item form of the normal and tangent steps near the solution.
+    \end{itemize}
+  }
+}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{Teorema: Convergência Local}
+    {\it Sob as hipóteses H1-H4 e A1-A5, $x^k$ e $x_c^k$ são superlinearmente
+      convergentes em 2 passos para $x^*$. Se uma restauração é feita a cada
+    $x^k$, então $\{x^k\}$ converge superlinearmente para $x^*$.  }
+  }{
+    \ctr{Theorem: Local Convergence}
+    {\it Under hypothesis H1-H4 and A1-A5, $\{x^k\}$ and $\{x_c^k\}$ are
+      superlinearly convergent in 2 steps to $x^*$. If a restoration is made
+      every iteration, then $\{x^k\}$ is superlinearly convergent to $x^*$.
+    }
+  }
+}
+
+\makesubsection{Problemas Infactíveis}{Infeasible Problems}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Hipóteses para Convergência Infactível }
+    \begin{enumerate}
+      \item[I1] A sequência gerada pelo algoritmo do passo normal é limitada.
+      \item[I2] Seja $L$ um conjunto convexo, limitado e aberto contendo todos
+        os pontos tentados pelo algoritmo do passo normal. Para todo $x,y \in
+        L$, temos
+      $$\norma{\nabla h(x) - \nabla h(y)} \leq 2\gamma_0\norma{x-y}.$$
+    \end{enumerate}
+  }{
+    \ctr{Hypothesis for Infeasibility Convergence}
+    \begin{enumerate}
+      \item[I1] The sequence generated by the algorithm of the normal step is
+        limited.
+      \item[I2] Let $L$ se a convex set, limited and open, containing every
+        point tried by the algorithm of the normal step. For each $x, y \in L$,
+        we have
+      $$\norma{\nabla h(x) - \nabla h(y)} \leq 2\gamma_0\norma{x-y}.$$
+    \end{enumerate}
+  }
+}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{Teorema: Convergência Infactível}
+    Sob as hipóteses H1-H4, I1, I2, se o algoritmo para o passo normal gera uma
+    sequência infinita, então todo ponto limite desta sequência é estacionária
+    para o problema
+  }{
+    \ctr{Theorem: Infeasibility Convergence}
+    Under hypothesis H1-H4, I1 and I2, if the algorithm for the normal step
+    generates an infinite sequence, then every limit point of this sequence is a
+    stationary point for the problem
+  }
+  \begin{equation*}
+   \min \norma{c_E(x)}^2 + \norma{c_I^-(x)}^2.
+  \end{equation*}
+}
+
+\makesection{ Experimentos Numéricos }{Numerical Experiments}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{ Implementação do Algoritmo }
+    \begin{itemize}
+      \item Uma implementação C++ do método, chamada DCICPP, foi criada.
+      \item DCICPP foi construída sobre a biblioteca de Cholesky.
+      \item Disponível online no Github, sob a licença GPL.
+      \item Usou as seguintes bibliotecas
+      \begin{itemize}
+        \item CHOLMOD \cite{bib:cholmod5} (Cholesky);
+        \item METIS \cite{bib:metis} (biblioteca de permutações para Cholesky);
+        \item GotoBLAS2 \cite{bib:gotoblas}, OpenBLAS \cite{bib:openblas};
+        \item base\_matrices (embrulho C++ para Cholesky);
+        \item CUTEr \cite{bib:cuter} (teste);
+      \end{itemize}
+    \end{itemize}
+  }{
+    \ctr{Algorithm Implementation}
+    \begin{itemize}
+      \item A C++ implementation was created, called DCICPP.
+      \item DCICPP was built over a Cholesky library.
+      \item Available online on GitHub, under the GPL.
+      \item We used
+        \begin{itemize}
+          \item CHOLMOD \cite{bib:cholmod5} (Cholesky);
+          \item METIS \cite{bib:metis} (permutation library used by CHOLMOD);
+          \item OpenBLAS \cite{bib:openblas};
+          \item base\_matries (C++ wrapper for Cholesky);
+          \item CUTEst \cite{bib:cutest} (testing);
+          \item perprof-py \cite{bib:perprof} (a performance profile tool).
+        \end{itemize}
+    \end{itemize}
+  }
+}
+
+\myframe {
+  \ctr{ Experimentos Numéricos }
+  \begin{itemize}
+    \item 767 problemas do CUTEr (variáveis $\leq 100001$ e
+      restrições $\leq 125025$).
+    \item Problemas com variáveis fixas foram removidos.
+  \end{itemize}
+}
+
+\myframe {
+  \begin{table}[!ht]
+  \centering
+  \begin{tabular}{|c||c|c|} \hline
+    \multirow{2}{*}{\bf ExitFlag} &
+    \multicolumn{2}{|c|}{\bf Total} \\ \cline{2-3}
+    & {\bf N$^\circ$} & {\bf \%}
+    \\ \hline
+    {\bf  Convergiu  } 
+    & 689  &  89.60   \\ \hline
+    {\bf  Máximo de Iterações  } 
+    &   3  &   0.39   \\ \hline
+    {\bf  Máximo de Restaurações } 
+    &  16  &   2.08   \\ \hline
+    {\bf  $\rho_{\max}$ pequeno  } 
+    &  23  &   2.99   \\ \hline
+    {\bf  Limite de Tempo  } 
+    &  14  &   1.82   \\ \hline
+    {\bf  Estacionário da Inviabilidade  } 
+    &   9  &   1.17   \\ \hline
+    {\bf  Ilimitado  } 
+    &   3  &   0.39   \\ \hline
+    {\bf  Falha  } 
+    &  12  &   1.56   \\ \hline
+    {\bf  Total  } 
+    & 767  & 100.00   \\ \hline
+  \end{tabular}
+  \caption{Resumo dos resultados} 
+  \label{tab:summary}
+  \end{table}
+}
+
+\subsection{ Perfil de Desempenho }
+
+\myframe {
+  \begin{center}
+    \ctr{ \pten{Perfil de Desempenho}{Performance Profile} }
+    \includegraphics{cuter_all.pdf}
+  \end{center}
+}
+
+\makesection{ Próximos Passos }{Next Steps}
+
+\myframe{
+  \ctr{ \pten{Próximos Passos}{Next Steps} }
+  \begin{itemize}
+    \item \pten{Implementar suporte para variáveis fixas;}{Implement support for
+      fixed variables;}
+    \item \pten{Investigar cada problema com falha procurando por um possível solução
+      geral;}{Investigate each failing problem for a possible general solution;}
+    \item \pten{Melhorar estratégia para Jacobianas singulares;}{Improve
+      strategies for singular Jacobians;}
+    \item \pten{Investigar como torná-lo mais eficiente.}{Improve efficiency
+      overall.}
+  \end{itemize}
+}
+
+\makesection{Referências}{References}
+
+\begin{frame}[allowframebreaks]
+ \small
+ \bibliographystyle{plainnat}
+ \bibliography{relbib}
+ \end{frame}
+
+\myframe {
+  %\fcolorbox{mydarkestcolor}{mydarkcolor} 
+  \begin{center}
+  \begin{beamercolorbox}[center,rounded=true,shadow=true]{mybox}
+    \bf \Huge \pten{Obrigado}{Thank you}
+  \end{beamercolorbox}
+  \end{center}
+}
+
+\end{document}

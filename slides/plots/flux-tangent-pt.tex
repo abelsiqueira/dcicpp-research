@@ -1,0 +1,31 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepackage{fluxdef}
+
+\begin{document}
+  \begin{tikzpicture}
+    \node[block] (delta) {Encontre $\delta_t$ através de (TS)};
+    \node[decision,right of=delta,aspect=2,text width=11em, node distance=12em] (feasible) {$z^k_c +
+      \delta_t\in\mathcal{C}(2\rho)$ e obtém decréscimo suficiente?};
+    %\node[decision,right of=delta] (feasible) {$z^k_c + \delta_t\in\mathcal{C}(2\rho)$?};
+    %\node[decision,right of=feasible] (decrease) {Decréscimo suficiente?};
+    \node[block,right of=feasible,node distance=13em,text width=7em] (soc)
+      {Opcionalmente calcule $\delta_{soc}$};
+    \node[block,below of=soc,node distance=8em,text width=6em] (accept) {$z^k =
+    z^k_c + \Lambda_c(\delta_t + \delta_{soc})$};
+    \node[block,below of=feasible,node distance=8em,text width=8em] (reduce) { Reduza a região
+    de confiança };
+    \algstart{delta}
+
+    \path[line] (delta) -- (feasible);
+    %\path[line] (feasible) -- node[above] {sim} (decrease);
+    \path[line] (feasible) -- node[right] {não} (reduce);
+    \path[line] (feasible) -- node[above] {sim} (soc);
+    \path[line] (soc) -- (accept);
+    %\path[line] (feasible) |- node[right,near start] {não} (reduce);
+    \path[line] (reduce) -| (delta);
+  \end{tikzpicture}
+\end{document}

@@ -3,3 +3,12 @@
 *.log
 *.fdb_latexmk
 *.aux
+*tmp[0-9]*.table
+*tmp[0-9]*.dat
+*tmp[0-9]*.script
+*.bbl
+*.blg
+*.nav
+*.out
+*.snm
+*.toc

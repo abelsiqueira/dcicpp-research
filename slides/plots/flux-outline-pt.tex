@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepackage{fluxdef}
+
+\begin{document}
+  \begin{tikzpicture}
+    \node[block] (normal) {Obtenha $z_c^k$ do {\bf Passo Normal}};
+    \node[decision,right of=normal,text width=5.5em,node distance=10em] (opt) 
+      {$\norma{h(z_c^k)}\leq\varepsilon$
+      \& $\norma{g_p^k}<\varepsilon$};
+    \node[block,below of=opt,text width=6.5em,node distance=8em] (tangent)
+    {Obtenha $z^k$ do {\bf Passo Tangente }};
+    \node[block,right of=opt,node distance=10em] (end) {FIM com $z^*=z_c^k$};
+    \node[block,left of=tangent,node distance=10em] (upk) {$k=k+1$};
+    \algstart{normal}
+
+    \path[line] (normal) -- (opt);
+    \path[line] (opt) -- node[above] {sim} (end);
+    \path[line] (opt) -- node[right] {não} (tangent);
+    \path[line] (tangent) -- (upk);
+    \path[line] (upk) -- (normal);
+  \end{tikzpicture}
+
+\end{document}

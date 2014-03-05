@@ -1,0 +1,13 @@
+\usetikzlibrary{shapes,arrows}
+\usepackage{colordef}
+\usepackage{abel}
+
+\tikzstyle{decision} = [diamond, draw, fill=mybacklightcolor, 
+  text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=mybacklightcolor, 
+  text width=5em, text centered, minimum height=4em]
+\tikzstyle{start} = [rectangle, draw, rounded corners, fill=mybacklightcolor]
+\tikzstyle{line} = [draw, -latex']
+\newcommand{\algstart}[1]{
+\node[start,above of=#1,node distance=5em] (start) {Start};
+\path[line] (start) -- (#1);}

@@ -1,0 +1,27 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usepackage{fluxdef}
+
+\begin{document}
+
+  \begin{tikzpicture}
+    \node[block] (update) {Update $\lambda$, $g_p$};
+    \node[block,right of=update,text width=6em,node distance=10em] (updaterho)
+    {Update \\ $\rho = \bigo(\norma{g_p})$};
+    \node[decision,below of=updaterho,node distance=8em] (feasible) {$z_c \in \mathcal{C}(\rho)$?};
+    \node[block,left of=feasible,node distance=10 em] (find) {Find $z_c \in \mathcal{C}(\rho)$};
+    \node[block,right of=feasible,node distance=10 em] (end) {Leave the {\bf
+    Normal Step}};
+    \algstart{update}
+
+    \path[line] (find) -- (update);
+    \path[line] (update) -- (updaterho);
+    \path[line] (updaterho) -- (feasible);
+    \path[line] (feasible) -- node[above,near start] {yes} (end);
+    \path[line] (feasible) -- node[above,near start] {no}  (find);
+  \end{tikzpicture}
+
+\end{document}
