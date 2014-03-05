@@ -1,0 +1,810 @@
+\chapter{Tabela de Resultados do CUTEr}
+\visiblelbl{chap:results}
+A seguir os resultados do método DCICPP nos problemas do CUTEr.
+As colunas são
+\begin{itemize}
+  \item {\bf Nome:} Nome do problema;
+  \item {\bf N:} Número de Variáveis;
+  \item {\bf ME:} Número de Restrições de Igualdade;
+  \item {\bf MI:} Número de Restrições de Desigualdade;
+  \item {\bf ExitFlag:} Saída do Algoritmo, podendo ser
+  \begin{itemize}
+    \item {\bf Convergiu:} Algoritmo convergiu para um ponto estacionário;
+    \item {\bf Infactível:} Algoritmo convergiu para um ponto estacionário da
+             infactibilidade;
+    \item {\bf MaxIter:} Algoritmo chegou ao máximo de iterações;
+    \item {\bf MaxRest:} Algoritmo chegou ao máximo de restaurações;
+    \item {\bf Ilimitado:} Algoritmo encontrou um ponto de norma muito grande;
+    \item {\bf MaxTempo:} Algoritmo chegou ao máximo de tempo de execução;
+    \item {\bf Falha:} Aconteceu alguma falha não reconhecida;
+    \item {\bf Rhomax:} $\rhomax$ ficou muito pequeno;
+  \end{itemize}
+  \item {\bf $f(x)$:} Valor de função encontrado;
+  \item {\bf $R_p$:} Resíduo primal;
+  \item {\bf $R_d$:} Resíduo dual;
+  \item {\bf Iter:} Número de iterações feitas;
+  \item {\bf Tempo:} Tempo gasto pelo algoritmo.
+\end{itemize}
+\scriptsize
+\begin{center}
+\begin{longtable}{|l|r|r|r|c|r|r|r|r|r|} \hline
+\multicolumn{1}{|c}{\bf Nome} &
+\multicolumn{1}{|c}{\bf N} &
+\multicolumn{1}{|c}{\bf ME} &
+\multicolumn{1}{|c}{\bf MI} &
+\multicolumn{1}{|c}{\bf ExitFlag} &
+\multicolumn{1}{|c}{\bf $f(x)$} &
+\multicolumn{1}{|c}{\bf $R_p$} &
+\multicolumn{1}{|c}{\bf $R_d$} &
+\multicolumn{1}{|c}{\bf Iter} &
+\multicolumn{1}{|c|}{\bf Tempo} \\ \hline
+     3PK &     30 &      0 &      0 & Convergiu  &     1.72012 &              0 & 7.47015e-08 &     26 &    0.00 \\ \hline
+     AGG &    163 &     36 &    452 & Rhomax     & -3.29627e+07 &    9.64169e-08 & 8.53428e-06 &   2524 &   10.93 \\ \hline
+ AIRPORT &     84 &      0 &     42 & Convergiu  &     47952.7 &    2.42671e-07 & 7.67234e-08 &     56 &    0.09 \\ \hline
+   AKIVA &      2 &      0 &      0 & Convergiu  &     6.16604 &              0 & 9.42582e-07 &      6 &    0.00 \\ \hline
+ALJAZZAF &   1000 &      1 &      0 & Convergiu  &     37438.8 &    1.23769e-11 & 2.64274e-13 &      4 &    4.01 \\ \hline
+ALLINITU &      4 &      0 &      0 & Convergiu  &     5.74438 &              0 & 3.54415e-07 &      7 &    0.00 \\ \hline
+ALSOTAME &      2 &      1 &      0 & Convergiu  &    0.082085 &    1.27764e-12 & 1.77032e-12 &     14 &    0.00 \\ \hline
+ ANTWERP &     27 &      8 &      2 & Convergiu  &     28170.7 &    1.80476e-08 & 9.70558e-07 &   9843 &    0.71 \\ \hline
+ ARGAUSS &      3 &     15 &      0 & Infactível &           0 &     0.00197183 &           0 &      1 &    1.79 \\ \hline
+ ARGLALE &    200 &    400 &      0 & MaxTempo   &           0 &        14.1422 &           0 &      1 & 7200.11 \\ \hline
+ ARGLBLE &    200 &    400 &      0 & Ilimitado  &           0 &    2.17035e+12 &           0 &      1 & 7200.20 \\ \hline
+ ARGLCLE &    200 &    399 &      0 & Ilimitado  &          -1 &    3.62138e+13 &           0 &      1 & 7200.12 \\ \hline
+ ARGLINA &    200 &      0 &      0 & Convergiu  &         200 &              0 & 5.06185e-16 &      2 &    0.00 \\ \hline
+ ARGLINB &    200 &      0 &      0 & Convergiu  &     99.6255 &              0 &  7.4591e-07 &      2 &    0.00 \\ \hline
+ ARGLINC &    200 &      0 &      0 & Convergiu  &     101.125 &              0 & 3.64665e-07 &      2 &    0.00 \\ \hline
+ ARGTRIG &    200 &    200 &      0 & Convergiu  &           0 &    8.15175e-10 &           0 &      1 &    0.12 \\ \hline
+ ARWHDNE &    500 &    998 &      0 & MaxTempo   &           0 &         11.808 &           0 &      1 & 7200.01 \\ \hline
+ ARWHEAD &   5000 &      0 &      0 & Convergiu  &    3.33e-12 &              0 & 7.90532e-09 &      6 &    0.02 \\ \hline
+   AUG2D &  20200 &  10000 &      0 & Convergiu  & 1.68741e+06 &    1.22434e-10 & 9.47406e-08 &      3 &    0.14 \\ \hline
+  AUG2DC &  20200 &  10000 &      0 & Convergiu  & 1.81837e+06 &    5.82405e-11 & 8.10897e-15 &      2 &    0.09 \\ \hline
+AUG2DCQP &  20200 &  10000 &      0 & Convergiu  & 6.50218e+06 &    9.45931e-07 & 8.60115e-07 &    275 &   99.75 \\ \hline
+ AUG2DQP &  20200 &  10000 &      0 & Convergiu  & 6.23889e+06 &    3.55031e-07 & 1.79443e-07 &    626 &  536.43 \\ \hline
+   AUG3D &  27543 &   8000 &      0 & Convergiu  &     24561.5 &     1.1489e-11 & 4.38324e-08 &      3 &    1.08 \\ \hline
+  AUG3DC &  27543 &   8000 &      0 & Convergiu  &     27654.1 &    6.56442e-12 &   4.841e-16 &      2 &    0.83 \\ \hline
+AUG3DCQP &  27543 &   8000 &      0 & Convergiu  &     61608.6 &    8.51406e-10 & 8.52752e-07 &     19 &   13.24 \\ \hline
+ AUG3DQP &  27543 &   8000 &      0 & Convergiu  &       54273 &    5.87076e-10 & 1.07354e-07 &     18 &   13.14 \\ \hline
+  AVGASA &      8 &      0 &     10 & Convergiu  &    -4.63193 &    1.52915e-14 & 9.99058e-08 &     24 &    0.00 \\ \hline
+  AVGASB &      8 &      0 &     10 & Convergiu  &    -4.48322 &    2.59849e-14 & 3.09419e-09 &     12 &    0.00 \\ \hline
+  AVION2 &     49 &     15 &      0 & Convergiu  &           0 &    1.18293e-12 &           0 &      2 &    0.02 \\ \hline
+    BARD &      3 &      0 &      0 & Convergiu  &  0.00821488 &              0 &  6.3605e-07 &     10 &    0.00 \\ \hline
+   BATCH &     48 &     12 &     61 & Convergiu  &      259180 &    3.89541e-09 &  5.6016e-07 &     17 &    0.01 \\ \hline
+   BDEXP &   5000 &      0 &      0 & Convergiu  &           0 &              0 &           0 &      2 &    0.01 \\ \hline
+ BDQRTIC &   5000 &      0 &      0 & Convergiu  &     20006.3 &              0 & 4.28262e-07 &      8 &    0.04 \\ \hline
+   BEALE &      2 &      0 &      0 & Convergiu  & 2.59247e-14 &              0 & 2.90499e-08 &      8 &    0.00 \\ \hline
+  BIGGS6 &      6 &      0 &      0 & Convergiu  &  0.00565565 &              0 & 2.81316e-08 &     19 &    0.00 \\ \hline
+ BIGGSB1 &   5000 &      0 &      0 & Convergiu  &   0.0678635 &              0 & 4.18146e-07 &      5 &    0.13 \\ \hline
+ BIGGSC4 &      4 &      0 &      7 & Convergiu  &       -3.25 &    1.79171e-13 & 2.48228e-09 &      7 &    0.00 \\ \hline
+BLOCKQP1 &  10010 &   5000 &      1 & Convergiu  &      4.9998 &    8.13442e-07 & 8.04389e-09 &      3 &  111.61 \\ \hline
+BLOCKQP2 &  10010 &   5000 &      1 & Convergiu  &    -4993.79 &    4.44306e-10 & 9.69997e-07 &     11 &  336.94 \\ \hline
+BLOCKQP3 &  10010 &   5000 &      1 & Convergiu  &      4.9997 &    3.08062e-07 & 1.13731e-08 &      3 &  111.32 \\ \hline
+BLOCKQP4 &  10010 &   5000 &      1 & Convergiu  &    -2495.54 &    6.84957e-07 &  5.7999e-07 &     16 &  512.76 \\ \hline
+BLOCKQP5 &  10010 &   5000 &      1 & Convergiu  &     4.99982 &    2.36273e-11 & 1.18307e-10 &      3 &  114.33 \\ \hline
+ BLOWEYA &   4002 &   2002 &      0 & Convergiu  & -4.46248e-05 &    5.57239e-09 & 4.44569e-09 &      2 &    0.03 \\ \hline
+ BLOWEYB &   4002 &   2002 &      0 & Convergiu  & -2.22029e-05 &    4.36871e-09 & 5.36171e-09 &      2 &    0.03 \\ \hline
+ BLOWEYC &   4002 &   2002 &      0 & Convergiu  & -9.5326e-05 &    6.63104e-09 & 4.58556e-09 &      2 &    0.01 \\ \hline
+   BOOTH &      2 &      2 &      0 & Convergiu  &           0 &    9.93014e-16 &           0 &      1 &    0.00 \\ \hline
+     BOX &  10000 &      0 &      0 & Convergiu  &    -1864.54 &              0 & 3.70035e-09 &      7 &    0.07 \\ \hline
+    BOX3 &      3 &      0 &      0 & Convergiu  & 7.30022e-15 &              0 & 7.59708e-09 &      9 &    0.00 \\ \hline
+ BQP1VAR &      1 &      0 &      0 & Convergiu  &     2.5e-07 &              0 & 1.56776e-07 &      2 &    0.00 \\ \hline
+BQPGASIM &     50 &      0 &      0 & Convergiu  & -2.35317e-05 &              0 & 5.27892e-08 &      5 &    0.00 \\ \hline
+ BRITGAS &    450 &    360 &      0 & Convergiu  & 0.000214303 &    3.30636e-07 & 4.50111e-07 &     13 &    0.05 \\ \hline
+  BRKMCC &      2 &      0 &      0 & Convergiu  &    0.169043 &              0 & 2.52555e-07 &      3 &    0.00 \\ \hline
+ BROWNAL &    200 &      0 &      0 & Convergiu  & 2.03747e-08 &              0 & 2.77564e-08 &      2 &    0.00 \\ \hline
+BROWNALE &    200 &    200 &      0 & Convergiu  &           0 &     2.5776e-08 &           0 &      1 &    0.78 \\ \hline
+ BROWNBS &      2 &      0 &      0 & Convergiu  &           0 &              0 &           0 &      5 &    0.00 \\ \hline
+BROWNDEN &      4 &      0 &      0 & Convergiu  &     85822.2 &              0 & 3.92735e-09 &      8 &    0.00 \\ \hline
+BROYDN3D &   5000 &   5000 &      0 & Convergiu  &           0 &    1.07411e-09 &           0 &      1 &    0.02 \\ \hline
+BROYDN7D &   5000 &      0 &      0 & Convergiu  &     1865.52 &              0 & 9.17946e-07 &    733 &    8.97 \\ \hline
+BROYDNBD &   5000 &   5000 &      0 & Convergiu  &           0 &    2.54219e-11 &           0 &      1 &    0.05 \\ \hline
+  BRYBND &   5000 &      0 &      0 & Convergiu  & 0.000218773 &              0 & 6.88962e-07 &     18 &    0.52 \\ \hline
+    BT10 &      2 &      2 &      0 & Convergiu  &          -1 &     4.4039e-09 &  7.4476e-16 &      1 &    0.00 \\ \hline
+    BT11 &      5 &      3 &      0 & Convergiu  &    0.824892 &    7.90019e-08 & 1.24242e-08 &     13 &    0.00 \\ \hline
+     BT1 &      2 &      1 &      0 & Convergiu  &   -0.999998 &    2.22344e-08 & 2.58906e-08 &      5 &    0.00 \\ \hline
+    BT12 &      5 &      3 &      0 & Convergiu  &     6.18812 &    9.16573e-13 & 5.50411e-07 &      5 &    0.00 \\ \hline
+    BT13 &      5 &      1 &      0 & Convergiu  & 3.05714e-08 &    9.61006e-07 & 1.34085e-10 &      3 &    0.00 \\ \hline
+     BT2 &      3 &      1 &      0 & Convergiu  &   0.0325682 &    1.30145e-11 & 2.73113e-07 &     25 &    0.00 \\ \hline
+     BT3 &      5 &      3 &      0 & Convergiu  &     4.09302 &    1.86425e-14 & 1.35749e-18 &      2 &    0.00 \\ \hline
+     BT4 &      3 &      2 &      0 & Convergiu  &    -45.5106 &     3.0731e-13 & 7.26911e-09 &      5 &    0.00 \\ \hline
+     BT5 &      3 &      2 &      0 & Convergiu  &     961.715 &    9.83436e-10 & 1.36569e-08 &      3 &    0.00 \\ \hline
+     BT6 &      5 &      2 &      0 & Convergiu  &    0.277045 &    6.78825e-07 & 3.01513e-10 &     12 &    0.00 \\ \hline
+     BT7 &      5 &      3 &      0 & Convergiu  &       306.5 &    3.05572e-11 & 2.18911e-15 &      9 &    0.00 \\ \hline
+     BT8 &      5 &      2 &      0 & Convergiu  &           1 &    3.37175e-07 & 3.64327e-14 &      2 &    0.00 \\ \hline
+     BT9 &      4 &      2 &      0 & Convergiu  &          -1 &    1.02804e-10 & 1.62574e-13 &      6 &    0.00 \\ \hline
+BURKEHAN &      1 &      0 &      1 & Infactível & -5.22839e-08 &         1.0108 &     1.41421 &      4 &    0.00 \\ \hline
+BYRDSPHR &      3 &      2 &      0 & Convergiu  &     -4.6833 &    7.41398e-07 & 2.54384e-16 &      3 &    0.00 \\ \hline
+  CAMEL6 &      2 &      0 &      0 & Convergiu  &   -0.215464 &              0 & 8.52108e-08 &      7 &    0.00 \\ \hline
+CAMSHAPE &    800 &      0 &   1603 & Convergiu  &    -4.18365 &    7.39148e-07 & 4.04416e-07 &     50 &    0.67 \\ \hline
+CANTILVR &      5 &      0 &      1 & Convergiu  &     1.33996 &    1.13365e-08 & 5.81822e-08 &     10 &    0.00 \\ \hline
+     CB2 &      3 &      0 &      3 & Convergiu  &     1.95222 &    5.38438e-09 & 2.58908e-11 &    255 &    0.01 \\ \hline
+     CB3 &      3 &      0 &      3 & Convergiu  &           2 &    2.87239e-09 & 1.39058e-10 &     39 &    0.00 \\ \hline
+CHACONN1 &      3 &      0 &      3 & Convergiu  &     1.95222 &    7.93682e-09 & 9.69263e-07 &    165 &    0.00 \\ \hline
+CHACONN2 &      3 &      0 &      3 & Convergiu  &           2 &    4.09756e-09 & 1.44774e-10 &     29 &    0.00 \\ \hline
+CHAINWOO &   4000 &      0 &      0 & Convergiu  &     15747.2 &              0 & 7.96126e-07 &      9 &    0.28 \\ \hline
+CHANDHEQ &    100 &    100 &      0 & Convergiu  &           0 &    7.97667e-07 &           0 &      1 &    0.04 \\ \hline
+CHANDHEU &    500 &    500 &      0 & Convergiu  &           0 &    4.46812e-07 &           0 &      1 &    3.61 \\ \hline
+CHARDIS0 & - & - & - & Falha & - & - & - & - & - \\ \hline
+CHEBYQAD &    100 &      0 &      0 & Convergiu  &  0.00947023 &              0 & 7.57772e-07 &     38 &    7.83 \\ \hline
+CHEMRCTA &   5000 &   5000 &      0 & Convergiu  &           0 &    7.39325e-11 &           0 &      2 &    0.14 \\ \hline
+CHEMRCTB &   5000 &   5000 &      0 & Convergiu  &           0 &    1.53873e-09 &           0 &      2 &    0.13 \\ \hline
+CHENHARK &   5000 &      0 &      0 & Convergiu  &   -0.861093 &              0 &  9.3214e-07 &     98 &    2.70 \\ \hline
+CHNROSNB &     50 &      0 &      0 & Convergiu  & 1.35768e-08 &              0 & 7.79588e-08 &     64 &    0.01 \\ \hline
+CHNRSBNE &     50 &     98 &      0 & Convergiu  &           0 &    3.50382e-10 &           0 &      1 &    0.00 \\ \hline
+   CLIFF &      2 &      0 &      0 & Convergiu  &    0.208512 &              0 &  9.1839e-07 &     24 &    0.00 \\ \hline
+ CLUSTER &      2 &      2 &      0 & Convergiu  &           0 &    7.74787e-08 &           0 &      1 &    0.00 \\ \hline
+  CONCON &     15 &     11 &      0 & Convergiu  &     -6230.8 &    3.27104e-08 &   7.807e-08 &      2 &    0.00 \\ \hline
+CONGIGMZ &      3 &      0 &      5 & Convergiu  &          28 &    7.30173e-09 & 1.62452e-09 &      8 &    0.00 \\ \hline
+CONT6-QQ &  20002 &  10197 &      0 & MaxTempo   &    -4.29323 &    9.72718e-05 & 1.49656e-07 &      2 & 7200.14 \\ \hline
+COOLHANS &      9 &      9 &      0 & Convergiu  &           0 &    8.24414e-07 &           0 &      1 &    0.00 \\ \hline
+   CORE1 &     65 &     41 &     18 & Convergiu  &     91.0564 &    1.59896e-07 & 6.56849e-07 &     15 &    0.02 \\ \hline
+   CORE2 &    157 &    108 &     26 & Convergiu  &     99.0305 &    4.42547e-08 & 2.23971e-07 &     11 &    1.65 \\ \hline
+ COSHFUN &   6001 &      0 &   2000 & Convergiu  &   -0.748945 &    3.95537e-09 & 9.32375e-07 &     92 &  398.84 \\ \hline
+  COSINE &  10000 &      0 &      0 & Rhomax     &       -9999 &              0 &     0.70056 &     65 &    1.43 \\ \hline
+CRAGGLVY &   5000 &      0 &      0 & Convergiu  &     1688.22 &              0 & 7.32934e-08 &     12 &    0.37 \\ \hline
+C-RELOAD &    342 &    200 &     84 & Convergiu  &    -1.00835 &    8.37865e-08 & 9.79576e-07 &    157 &    0.77 \\ \hline
+CRESC100 &      6 &      0 &    200 & MaxRest    & 0.000737793 &        19171.1 &    0.835911 &      2 &  745.21 \\ \hline
+  CRESC4 &      6 &      0 &      8 & Convergiu  &     1.95248 &    2.94112e-07 & 9.57998e-07 &   2114 &    0.27 \\ \hline
+ CRESC50 &      6 &      0 &    100 & Convergiu  &    0.898068 &    6.19618e-08 & 8.17944e-07 &      7 &    1.29 \\ \hline
+   CSFI1 &      5 &      2 &      2 & Convergiu  &    -49.0752 &    1.49067e-07 & 7.01527e-08 &     52 &    0.00 \\ \hline
+   CSFI2 &      5 &      2 &      2 & Convergiu  &     55.0176 &     1.0204e-16 & 2.68015e-07 &      4 &    0.00 \\ \hline
+    CUBE &      2 &      0 &      0 & Convergiu  &  4.3085e-09 &              0 & 4.60956e-07 &     29 &    0.00 \\ \hline
+  CUBENE &      2 &      2 &      0 & Convergiu  &           0 &    1.99951e-14 &           0 &      1 &    0.00 \\ \hline
+ CURLY10 &  10000 &      0 &      0 & Convergiu  & -1.00316e+06 &              0 & 9.57488e-07 &     11 &   76.66 \\ \hline
+ CURLY20 &  10000 &      0 &      0 & Convergiu  & -1.00316e+06 &              0 & 9.85965e-08 &     12 &  143.99 \\ \hline
+ CURLY30 &  10000 &      0 &      0 & Convergiu  & -1.00316e+06 &              0 & 1.30077e-07 &     14 &  223.68 \\ \hline
+ CVXBQP1 &  10000 &      0 &      0 & Convergiu  & 2.25027e+06 &              0 & 5.79522e-07 &     20 &    0.24 \\ \hline
+  CVXQP1 &  10000 &   5000 &      0 & Convergiu  & 1.08705e+08 &    6.25783e-07 & 1.63064e-07 &     38 &   49.64 \\ \hline
+  CVXQP2 &  10000 &   2500 &      0 & Convergiu  & 8.18429e+07 &    2.57441e-07 & 2.51514e-07 &     51 &   15.80 \\ \hline
+  CVXQP3 &  10000 &   7500 &      0 & Rhomax     & 1.15711e+08 &    9.63131e-07 & 2.94122e-06 &    423 &   44.29 \\ \hline
+ DALLASM &    196 &    151 &      0 & Convergiu  &     86384.3 &    2.31423e-08 & 4.32915e-07 &     40 &    0.16 \\ \hline
+ DALLASS &     46 &     31 &      0 & Convergiu  &    -18636.7 &    2.38363e-11 & 5.31335e-07 &     13 &    0.00 \\ \hline
+ DECONVB &     63 &      0 &      0 & Convergiu  &      6.9413 &              0 & 2.61823e-07 &     23 &    0.01 \\ \hline
+DECONVNE &     63 &     40 &      0 & Convergiu  &           0 &    4.39703e-10 &           0 &      1 &    0.00 \\ \hline
+ DECONVU &     63 &      0 &      0 & Convergiu  & 5.37634e-07 &              0 & 2.67869e-07 &     18 &    0.01 \\ \hline
+ DEGDIAG & 100001 &      0 &      0 & Convergiu  &     16683.7 &              0 & 3.20593e-07 &     18 &    2.45 \\ \hline
+DEGENLPA &     20 &     15 &      0 & Convergiu  &     15.4177 &    2.05379e-07 & 2.95175e-07 &      3 &    0.00 \\ \hline
+DEGENLPB &     20 &     15 &      0 & Convergiu  &    -15.4177 &    5.14207e-07 & 3.50071e-07 &      9 &    0.01 \\ \hline
+DEGENQP & - & - & - & Falha & - & - & - & - & - \\ \hline
+ DEGTRID & 100001 &      0 &      0 & Convergiu  &    -99999.5 &              0 & 9.12763e-08 &     14 &    3.27 \\ \hline
+DEGTRID2 & 100001 &      0 &      0 & Convergiu  &    -99999.5 &              0 & 7.17255e-08 &     17 &    2.61 \\ \hline
+DEGTRIDL & 100001 &      1 &      0 & Convergiu  &     0.50035 &    1.05133e-08 & 7.39698e-08 &      2 &    0.31 \\ \hline
+  DEMBO7 &     16 &      0 &     20 & Convergiu  &     174.911 &    8.90608e-07 & 2.05621e-07 &     13 &    0.00 \\ \hline
+DEMYMALO &      3 &      0 &      3 & Convergiu  &          -3 &    6.68809e-10 & 5.07627e-07 &     30 &    0.00 \\ \hline
+DENSCHNA &      2 &      0 &      0 & Convergiu  & 2.21391e-12 &              0 & 1.90769e-07 &      6 &    0.00 \\ \hline
+DENSCHNB &      2 &      0 &      0 & Convergiu  & 1.69695e-17 &              0 & 1.61392e-09 &      6 &    0.00 \\ \hline
+DENSCHNC &      2 &      0 &      0 & Convergiu  & 5.33959e-11 &              0 & 2.55961e-08 &     10 &    0.00 \\ \hline
+DENSCHND &      3 &      0 &      0 & Convergiu  &   0.0380005 &              0 & 5.37204e-07 &     16 &    0.00 \\ \hline
+DENSCHNE &      3 &      0 &      0 & Convergiu  & 2.78336e-09 &              0 & 6.27921e-07 &     16 &    0.00 \\ \hline
+DENSCHNF &      2 &      0 &      0 & Convergiu  & 2.31489e-10 &              0 & 4.06836e-07 &      6 &    0.00 \\ \hline
+ DIPIGRI &      7 &      0 &      4 & Convergiu  &      680.63 &    3.07506e-10 & 1.17343e-08 &     63 &    0.00 \\ \hline
+   DISC2 &     29 &     17 &      6 & Convergiu  &     1.56251 &    1.63914e-07 &  1.6942e-07 &     23 &    0.00 \\ \hline
+ DITTERT &   1133 &   1034 &      0 & Convergiu  &    -1.99939 &    2.14571e-10 & 3.51962e-07 &      2 &    0.33 \\ \hline
+DIXCHLNG &     10 &      5 &      0 & Convergiu  &      2471.9 &     9.6767e-13 & 9.09042e-07 &      8 &    0.00 \\ \hline
+DIXCHLNV &   1000 &    500 &      0 & Convergiu  &  3.3036e-06 &    1.80813e-10 & 9.57353e-08 &     45 &   19.31 \\ \hline
+DIXMAANA &   3000 &      0 &      0 & Convergiu  &     1.00001 &              0 & 2.55892e-07 &      6 &    0.03 \\ \hline
+DIXMAANB &   3000 &      0 &      0 & Convergiu  &           1 &              0 & 6.29257e-09 &      7 &    0.04 \\ \hline
+DIXMAANC &   3000 &      0 &      0 & Convergiu  &     1.00001 &              0 &  5.7961e-08 &      8 &    0.05 \\ \hline
+DIXMAAND &   3000 &      0 &      0 & Convergiu  &     1.00003 &              0 & 6.53423e-08 &     14 &    0.06 \\ \hline
+DIXMAANE &   3000 &      0 &      0 & Convergiu  &     1.00011 &              0 & 9.60072e-08 &      9 &    0.12 \\ \hline
+DIXMAANF &   3000 &      0 &      0 & Convergiu  &     1.00058 &              0 & 1.99383e-07 &     18 &    0.15 \\ \hline
+DIXMAANG &   3000 &      0 &      0 & Convergiu  &     1.00912 &              0 & 7.18725e-07 &     20 &    0.13 \\ \hline
+DIXMAANH &   3000 &      0 &      0 & Convergiu  &     1.07279 &              0 & 5.62317e-07 &     21 &    0.12 \\ \hline
+DIXMAANI &   3000 &      0 &      0 & Convergiu  &     1.00154 &              0 & 4.94732e-07 &     10 &    0.27 \\ \hline
+DIXMAANJ &   3000 &      0 &      0 & Convergiu  &      1.0019 &              0 & 3.18754e-07 &     17 &    0.12 \\ \hline
+DIXMAANK &     15 &      0 &      0 & Convergiu  &           1 &              0 & 3.01402e-07 &     14 &    0.00 \\ \hline
+DIXMAANL &   3000 &      0 &      0 & Convergiu  &     1.00246 &              0 & 1.23297e-07 &     18 &    0.12 \\ \hline
+DIXON3DQ &  10000 &      0 &      0 & Convergiu  &  1.0959e-23 &              0 & 1.65085e-12 &      3 &   11.02 \\ \hline
+    DJTL &      2 &      0 &      0 & Convergiu  &    -8951.54 &              0 & 1.89061e-08 &    215 &    0.00 \\ \hline
+ DQDRTIC &   5000 &      0 &      0 & Convergiu  & 8.13283e-06 &              0 & 7.98881e-08 &      3 &    0.01 \\ \hline
+  DQRTIC &   5000 &      0 &      0 & Convergiu  &     1.55456 &              0 & 8.30609e-07 &     26 &    0.21 \\ \hline
+  DUALC1 &      9 &      1 &    214 & Convergiu  &      138572 &    4.09234e-09 & 4.79998e-07 &     25 &    0.20 \\ \hline
+  DUALC2 &      7 &      1 &    228 & Convergiu  &     4713.61 &    9.06246e-09 & 8.00111e-09 &      7 &    0.05 \\ \hline
+  DUALC5 &      8 &      1 &    277 & Convergiu  &     545.732 &    3.58037e-09 &  4.6539e-08 &      5 &    0.08 \\ \hline
+ EDENSCH &   2000 &      0 &      0 & Convergiu  &     12003.3 &              0 & 4.43123e-08 &     11 &    0.03 \\ \hline
+     EG1 &      3 &      0 &      0 & Convergiu  &     -1.1328 &              0 & 2.91704e-10 &      9 &    0.00 \\ \hline
+     EG2 &   1000 &      0 &      0 & Convergiu  &    -998.947 &              0 & 7.08856e-12 &      4 &    0.01 \\ \hline
+     EG3 &  10001 &      1 &  19999 & MaxTempo   &     0.13898 &        51.0774 & 0.000775257 &      4 & 7585.55 \\ \hline
+ EIGENA2 &   2550 &   1275 &      0 & Convergiu  & 1.93468e-28 &              0 & 6.88152e-19 &      2 &    0.47 \\ \hline
+  EIGENA &   2550 &   2550 &      0 & MaxTempo   &           0 &        12.8285 &           0 &      1 & 7201.59 \\ \hline
+EIGENACO &   2550 &   1275 &      0 & Convergiu  & 1.93468e-28 &              0 & 6.88152e-19 &      2 &    0.51 \\ \hline
+EIGENALS &   2550 &      0 &      0 & Convergiu  & 0.000246933 &              0 & 5.34279e-07 &     45 &   16.38 \\ \hline
+ EIGENAU &   2550 &   2550 &      0 & Convergiu  &           0 &    7.51688e-09 &           0 &      1 &   10.20 \\ \hline
+ EIGENB2 &   2550 &   1275 &      0 & Convergiu  &          98 &              0 & 4.24349e-17 &      2 &    0.47 \\ \hline
+  EIGENB &   2550 &   2550 &      0 & Convergiu  &           0 &    9.40057e-09 &           0 &      1 & 2393.77 \\ \hline
+EIGENBCO &   2550 &   1275 &      0 & Convergiu  &          49 &              0 & 2.53752e-16 &      2 &    0.51 \\ \hline
+EIGENBLS &   2550 &      0 &      0 & Convergiu  &  2.9471e-06 &              0 & 6.73327e-07 &    708 &  627.13 \\ \hline
+ EIGENC2 &   2652 &   1326 &      0 & Convergiu  & 1.84538e-08 &    2.54323e-11 & 1.09805e-07 &     22 &   10.47 \\ \hline
+  EIGENC &   2652 &   2652 &      0 & Convergiu  &           0 &    1.18561e-08 &           0 &      1 &   45.25 \\ \hline
+EIGENCCO &   2652 &   1326 &      0 & Convergiu  &   3.226e-08 &    1.57914e-12 & 9.24406e-08 &     27 &   19.23 \\ \hline
+EIGENCLS &   2652 &      0 &      0 & Convergiu  & 0.000169345 &              0 & 9.73472e-07 &    650 &  490.00 \\ \hline
+ EIGMAXA &    101 &    101 &      0 & Convergiu  &          -1 &     4.6008e-14 & 5.32907e-15 &      1 &    0.06 \\ \hline
+ EIGMAXB &    101 &    101 &      0 & Convergiu  & -0.000967435 &    8.40409e-13 & 6.48761e-14 &      1 &    0.01 \\ \hline
+ EIGMINA &    101 &    101 &      0 & Convergiu  &           1 &     4.6008e-14 & 5.32907e-15 &      1 &    0.06 \\ \hline
+ EIGMINB &    101 &    101 &      0 & Convergiu  & 0.000967435 &    8.40409e-13 & 6.48761e-14 &      1 &    0.01 \\ \hline
+ ELATTAR &      7 &      0 &    102 & MaxRest    &     23.5772 &    7.35117e+20 & 2.70266e+28 &      6 &  299.45 \\ \hline
+    ELEC &    600 &    200 &      0 & Convergiu  &       18439 &    1.98034e-12 & 1.23196e-07 &     73 &    2.26 \\ \hline
+ ENGVAL1 &   5000 &      0 &      0 & Convergiu  &     5548.67 &              0 & 9.25934e-08 &      7 &    0.03 \\ \hline
+ ENGVAL2 &      3 &      0 &      0 & Convergiu  & 2.44766e-10 &              0 & 2.78161e-08 &     17 &    0.00 \\ \hline
+ERRINBAR & - & - & - & Falha & - & - & - & - & - \\ \hline
+ERRINROS &     50 &      0 &      0 & Convergiu  &     39.9172 &              0 & 2.59588e-07 &     48 &    0.01 \\ \hline
+  EXPFIT &      2 &      0 &      0 & Convergiu  &    0.240511 &              0 & 5.19063e-07 &      9 &    0.00 \\ \hline
+ EXPFITA &      5 &      0 &     22 & Convergiu  &     3.42369 &    1.60804e-07 & 5.11335e-08 &     13 &    0.00 \\ \hline
+ EXPFITB &      5 &      0 &    102 & Convergiu  &     6.65391 &    2.89754e-09 & 4.99106e-07 &     14 &    0.01 \\ \hline
+ EXPFITC &      5 &      0 &    502 & Convergiu  &     0.18191 &    5.74089e-09 & 8.75649e-08 &      6 &    0.32 \\ \hline
+  EXPLIN &   1200 &      0 &      0 & Convergiu  & -7.19255e+07 &              0 & 7.59461e-08 &     35 &    0.07 \\ \hline
+ EXPLIN2 &   1200 &      0 &      0 & Convergiu  & -7.19988e+07 &              0 & 4.27183e-07 &     24 &    0.05 \\ \hline
+ EXPQUAD &   1200 &      0 &      0 & Convergiu  & -3.68494e+09 &              0 & 1.03545e-07 &     67 &    0.16 \\ \hline
+EXTRASIM &      2 &      1 &      0 & Convergiu  &           1 &    2.22045e-16 & 2.74307e-08 &     12 &    0.00 \\ \hline
+EXTROSNB &   1000 &      0 &      0 & Convergiu  &   0.0341727 &              0 & 5.47772e-07 &     17 &    0.02 \\ \hline
+    FCCU &     19 &      8 &      0 & Convergiu  &     11.1491 &    1.02346e-12 & 2.16899e-07 &      4 &    0.00 \\ \hline
+FLETCBV2 &   5000 &      0 &      0 & Convergiu  &   -0.500286 &              0 & 1.00047e-07 &      2 &   12.36 \\ \hline
+FLETCBV3 &   5000 &      0 &      0 & Ilimitado  & -2.40715e+13 &              0 & 0.000101962 &    481 &    4.02 \\ \hline
+FLETCHBV &   5000 &      0 &      0 & MaxTempo   &      -1e+20 &              0 &     3756.95 &  80745 & 7200.00 \\ \hline
+FLETCHCR &   1000 &      0 &      0 & Convergiu  & 2.46758e-11 &              0 & 8.15005e-08 &   1790 &    4.90 \\ \hline
+FLETCHER &      4 &      1 &      3 & Convergiu  &     11.6569 &    1.47127e-08 & 8.55298e-07 &    226 &    0.01 \\ \hline
+     FLT &      2 &      2 &      0 & Convergiu  &           0 &    5.92902e-07 &           0 &      2 &    0.00 \\ \hline
+FMINSRF2 &   5625 &      0 &      0 & Convergiu  &           1 &              0 & 9.71486e-08 &    240 &    9.76 \\ \hline
+FMINSURF &   5625 &      0 &      0 & Convergiu  &           1 &              0 & 9.73079e-07 &    245 &    9.79 \\ \hline
+FREUROTH &   5000 &      0 &      0 & Convergiu  &      608159 &              0 & 1.65219e-07 &      9 &    0.06 \\ \hline
+ GENHS28 &     10 &      8 &      0 & Convergiu  &    0.927174 &    2.67895e-15 & 7.12346e-17 &      2 &    0.00 \\ \hline
+GENHUMPS &   5000 &      0 &      0 & Convergiu  &     1.49076 &              0 & 6.94188e-07 &   6126 &  157.34 \\ \hline
+ GENROSE &    500 &      0 &      0 & Convergiu  &           1 &              0 & 7.23641e-08 &    680 &    0.53 \\ \hline
+GIGOMEZ1 &      3 &      0 &      3 & Convergiu  &          -3 &    3.17968e-13 & 2.74221e-09 &      8 &    0.00 \\ \hline
+GIGOMEZ2 &      3 &      0 &      3 & Convergiu  &           2 &    4.32117e-07 & 1.94208e-08 &      5 &    0.00 \\ \hline
+GIGOMEZ3 &      3 &      0 &      3 & Convergiu  &           2 &    3.63637e-09 & 1.39273e-10 &     31 &    0.00 \\ \hline
+ GILBERT &   5000 &      1 &      0 & Convergiu  &     2459.47 &    6.29585e-12 & 2.21761e-08 &     14 &    0.09 \\ \hline
+  GOFFIN &     51 &      0 &     50 & Convergiu  & 0.000160864 &    2.95864e-09 & 7.84438e-07 &      9 &    0.03 \\ \hline
+  GOTTFR &      2 &      2 &      0 & Convergiu  &           0 &    1.13922e-09 &           0 &      1 &    0.00 \\ \hline
+GOULDQP1 &     32 &     17 &      0 & Convergiu  &    -2896.43 &    3.05713e-08 & 2.55159e-07 &     16 &    0.00 \\ \hline
+GOULDQP2 &  19999 &   9999 &      0 & Convergiu  & 1.59629e-12 &    4.04535e-07 & 4.77942e-19 &      2 &    0.54 \\ \hline
+GOULDQP3 &  19999 &   9999 &      0 & Convergiu  & 4.71247e-05 &    4.04535e-07 & 7.86191e-14 &      2 &    0.48 \\ \hline
+     GPP &   1000 &      0 &   1998 & Convergiu  &      231925 &    6.77779e-14 & 8.67987e-07 &   1529 &  894.16 \\ \hline
+GRIDNETB &   7564 &   3844 &      0 & Convergiu  &     127.615 &    1.40172e-09 & 1.64077e-07 &      4 &    0.16 \\ \hline
+GRIDNETC &   7564 &   3844 &      0 & Convergiu  &      164.49 &      1.262e-07 & 9.19613e-07 &     44 &    1.41 \\ \hline
+GRIDNETE &   7564 &   3844 &      0 & Convergiu  &     206.481 &    2.16051e-09 & 9.62923e-08 &      4 &    0.16 \\ \hline
+GRIDNETF &   7564 &   3844 &      0 & Convergiu  &      246.22 &    1.60644e-07 & 5.72643e-07 &     45 &    2.37 \\ \hline
+GRIDNETH &   7564 &   3844 &      0 & Convergiu  &     206.481 &    3.29249e-09 & 9.26979e-08 &      4 &    0.18 \\ \hline
+GRIDNETI &   7564 &   3844 &      0 & Convergiu  &      246.22 &    1.48247e-07 & 5.09299e-07 &     45 &    2.35 \\ \hline
+GROUPING &    100 &    125 &      0 & Convergiu  &     13.8504 &    5.62944e-08 & 1.09884e-09 &      1 &    0.00 \\ \hline
+  GROWTH &      3 &     12 &      0 & Infactível &           0 &        293.194 &           0 &      1 &    0.00 \\ \hline
+GROWTHLS &      3 &      0 &      0 & Convergiu  &     12.4524 &              0 & 9.35396e-08 &      9 &    0.00 \\ \hline
+    GULF &      3 &      0 &      0 & Convergiu  & 2.51439e-09 &              0 & 2.41146e-08 &     20 &    0.01 \\ \hline
+HADAMARD &    401 &    210 &    800 & Convergiu  &     1.20154 &    3.10007e-09 & 9.47253e-07 &     50 &   20.97 \\ \hline
+  HAIFAS &     13 &      0 &      9 & Convergiu  &       -0.45 &     1.1403e-07 & 3.95627e-08 &     13 &    0.00 \\ \hline
+   HAIRY &      2 &      0 &      0 & Convergiu  &          20 &              0 & 6.56523e-17 &     31 &    0.00 \\ \hline
+HALDMADS &      6 &      0 &     42 & Convergiu  &      2.5065 &              0 & 4.48333e-07 &     39 &    0.03 \\ \hline
+   HART6 &      6 &      0 &      0 & Convergiu  &    -3.11018 &              0 & 5.91952e-07 &     10 &    0.00 \\ \hline
+ HATFLDA &      4 &      0 &      0 & Convergiu  & 2.07455e-12 &              0 & 2.55734e-07 &      6 &    0.00 \\ \hline
+ HATFLDB &      4 &      0 &      0 & Convergiu  &  0.00557285 &              0 & 8.27961e-07 &      6 &    0.00 \\ \hline
+ HATFLDC &     25 &      0 &      0 & Convergiu  & 1.27452e-14 &              0 & 6.01891e-08 &      5 &    0.00 \\ \hline
+ HATFLDD &      3 &      0 &      0 & Convergiu  & 6.61827e-08 &              0 & 9.27485e-07 &     18 &    0.00 \\ \hline
+ HATFLDE &      3 &      0 &      0 & Convergiu  & 5.12048e-07 &              0 & 3.34931e-07 &     17 &    0.00 \\ \hline
+ HATFLDF &      3 &      3 &      0 & Convergiu  &           0 &    2.28154e-10 &           0 &      1 &    0.00 \\ \hline
+HATFLDFL &      3 &      0 &      0 & Convergiu  & 6.24417e-05 &              0 & 9.83927e-07 &     57 &    0.00 \\ \hline
+ HATFLDG &     25 &     25 &      0 & Convergiu  &           0 &    5.57428e-08 &           0 &      1 &    0.00 \\ \hline
+ HATFLDH &      4 &      0 &      7 & Convergiu  &       -24.5 &     3.2073e-14 & 5.18443e-07 &      8 &    0.00 \\ \hline
+  HEART6 &      6 &      6 &      0 & Convergiu  &           0 &    3.97541e-13 &           0 &      1 &    0.00 \\ \hline
+HEART6LS &      6 &      0 &      0 & Convergiu  &  3.5753e-05 &              0 & 7.03648e-07 &   1255 &    0.02 \\ \hline
+  HEART8 &      8 &      8 &      0 & Convergiu  &           0 &    3.10148e-07 &           0 &      1 &    0.00 \\ \hline
+HEART8LS &      8 &      0 &      0 & Convergiu  & 3.93455e-11 &              0 & 3.13574e-08 &    111 &    0.00 \\ \hline
+   HELIX &      3 &      0 &      0 & Convergiu  & 1.38783e-09 &              0 & 1.30069e-07 &     12 &    0.00 \\ \hline
+   HET-Z &      2 &      0 &   1002 & Convergiu  &      1.0001 &    1.05768e-11 & 1.85582e-08 &      8 &    1.72 \\ \hline
+HILBERTA &      2 &      0 &      0 & Convergiu  &  1.7092e-30 &              0 & 1.83275e-16 &      2 &    0.00 \\ \hline
+HILBERTB &     10 &      0 &      0 & Convergiu  & 1.11466e-10 &              0 & 9.86962e-08 &      3 &    0.00 \\ \hline
+HIMMELBA &      2 &      2 &      0 & Convergiu  &           0 &              0 &           0 &      1 &    0.00 \\ \hline
+HIMMELBB &      2 &      0 &      0 & Convergiu  &  9.7388e-09 &              0 & 6.34651e-08 &      6 &    0.00 \\ \hline
+HIMMELBC &      2 &      2 &      0 & Convergiu  &           0 &    6.47625e-08 &           0 &      1 &    0.00 \\ \hline
+HIMMELBD &      2 &      2 &      0 & MaxRest    &           0 &    4.91214e+13 &           0 &      1 &    1.75 \\ \hline
+HIMMELBE &      3 &      3 &      0 & Convergiu  &           0 &    2.22045e-16 &           0 &      1 &    0.00 \\ \hline
+HIMMELBF &      4 &      0 &      0 & Convergiu  &      318.58 &              0 & 3.16466e-08 &     21 &    0.00 \\ \hline
+HIMMELBG &      2 &      0 &      0 & Convergiu  & 3.54091e-24 &              0 & 6.02437e-12 &      7 &    0.00 \\ \hline
+HIMMELBH &      2 &      0 &      0 & Convergiu  &          -1 &              0 & 3.32554e-13 &      5 &    0.00 \\ \hline
+HIMMELBI &    100 &      0 &     12 & Convergiu  &     -1729.7 &    3.83133e-07 & 9.43326e-08 &     31 &    0.02 \\ \hline
+HIMMELBK &     24 &     14 &      0 & Convergiu  &   0.0518153 &    7.81048e-15 & 2.67679e-07 &     16 &    0.01 \\ \hline
+HIMMELP1 &      2 &      0 &      0 & Convergiu  &    -62.0539 &              0 & 7.93138e-09 &      8 &    0.00 \\ \hline
+HIMMELP2 &      2 &      0 &      1 & Convergiu  &    -59.6189 &              0 & 1.75223e-09 &      6 &    0.00 \\ \hline
+HIMMELP3 &      2 &      0 &      2 & Convergiu  &    -59.0132 &    1.34712e-07 & 4.46792e-11 &      6 &    0.00 \\ \hline
+HIMMELP4 &      2 &      0 &      3 & Convergiu  &    -59.0132 &    1.42153e-13 & 2.83094e-09 &     24 &    0.00 \\ \hline
+HIMMELP5 &      2 &      0 &      3 & Convergiu  &    -59.0132 &    9.44808e-13 & 1.78837e-09 &     32 &    0.00 \\ \hline
+HIMMELP6 &      2 &      0 &      5 & Convergiu  &    -59.0132 &    3.13345e-12 & 3.73227e-08 &     30 &    0.00 \\ \hline
+    HONG &      4 &      1 &      0 & Convergiu  &     22.5711 &    1.66533e-16 & 7.92868e-08 &      6 &    0.00 \\ \hline
+   HS100 &      7 &      0 &      4 & Convergiu  &      680.63 &    3.07509e-10 & 1.17343e-08 &     63 &    0.00 \\ \hline
+HS100LNP &      7 &      2 &      0 & Convergiu  &      680.63 &    1.90614e-10 & 9.04126e-08 &      8 &    0.00 \\ \hline
+HS100MOD &      7 &      0 &      4 & Convergiu  &      678.68 &    5.78074e-08 & 5.02626e-07 &     41 &    0.00 \\ \hline
+   HS101 &      7 &      0 &      5 & Convergiu  &     1809.76 &    3.95783e-07 & 1.86682e-10 &     44 &    0.01 \\ \hline
+    HS10 &      2 &      0 &      1 & Convergiu  &          -1 &    1.50833e-10 & 9.72385e-07 &     13 &    0.00 \\ \hline
+   HS102 &      7 &      0 &      5 & Convergiu  &     911.881 &    2.56959e-07 & 8.62221e-08 &     34 &    0.01 \\ \hline
+   HS103 &      7 &      0 &      5 & Convergiu  &     543.668 &              0 & 4.26751e-07 &     34 &    0.01 \\ \hline
+   HS104 &      8 &      0 &      5 & Convergiu  &     3.95116 &    8.16427e-07 &  5.2906e-08 &    130 &    0.01 \\ \hline
+   HS105 &      8 &      0 &      1 & Convergiu  &     1062.05 &    2.22045e-16 & 2.25846e-08 &     10 &    0.01 \\ \hline
+   HS106 &      8 &      0 &      6 & Convergiu  &     7049.25 &    1.32619e-10 & 3.93518e-08 &     13 &    0.00 \\ \hline
+   HS107 &      9 &      6 &      0 & Convergiu  &     5055.01 &    3.09508e-07 &  7.9106e-07 &      7 &    0.00 \\ \hline
+   HS108 &      9 &      0 &     13 & Convergiu  &   -0.866013 &    2.76436e-07 & 5.44944e-07 &     41 &    0.00 \\ \hline
+   HS109 &      9 &      6 &      4 & Convergiu  &     5362.07 &    7.75417e-07 & 9.95822e-07 &  21222 &    3.17 \\ \hline
+   HS110 &     10 &      0 &      0 & Convergiu  &    -45.7785 &              0 & 6.18504e-07 &     14 &    0.00 \\ \hline
+   HS111 &     10 &      3 &      0 & Convergiu  &    -47.7611 &     2.8688e-09 & 2.69516e-08 &     16 &    0.00 \\ \hline
+HS111LNP &     10 &      3 &      0 & Convergiu  &    -47.7611 &    9.59317e-07 & 6.57811e-08 &     11 &    0.00 \\ \hline
+    HS11 &      2 &      0 &      1 & Convergiu  &    -8.49846 &    1.45319e-12 & 3.61689e-07 &      7 &    0.00 \\ \hline
+   HS112 &     10 &      3 &      0 & Convergiu  &     -47.759 &    1.10593e-12 & 1.04315e-07 &     17 &    0.00 \\ \hline
+   HS113 &     10 &      0 &      8 & Convergiu  &     24.3063 &    9.84009e-11 &  8.9986e-08 &     43 &    0.00 \\ \hline
+   HS114 &     10 &      3 &      8 & Convergiu  &    -1768.81 &    1.43206e-07 & 9.15358e-07 &     58 &    0.00 \\ \hline
+   HS116 &     13 &      0 &     14 & Convergiu  &         250 &              0 & 1.30411e-10 &     21 &    0.00 \\ \hline
+   HS117 &     15 &      0 &      5 & Convergiu  &     34.2509 &    7.13192e-10 & 5.09409e-07 &     23 &    0.00 \\ \hline
+   HS118 &     15 &      0 &     17 & Convergiu  &     664.822 &     8.5875e-10 & 8.90219e-07 &     17 &    0.00 \\ \hline
+   HS119 &     16 &      8 &      0 & Convergiu  &     2863.46 &    1.14068e-12 &  2.5524e-07 &      7 &    0.00 \\ \hline
+     HS1 &      2 &      0 &      0 & Convergiu  & 1.60361e-10 &              0 &   3.157e-08 &     44 &    0.00 \\ \hline
+    HS12 &      2 &      0 &      1 & Convergiu  &         -30 &    1.01252e-13 & 3.20523e-08 &     10 &    0.00 \\ \hline
+    HS13 &      2 &      0 &      1 & Convergiu  &    0.980653 &    9.18533e-07 & 1.14964e-10 &     24 &    0.00 \\ \hline
+    HS14 &      2 &      1 &      1 & Convergiu  &     1.39346 &    1.68611e-08 & 8.74464e-16 &      4 &    0.00 \\ \hline
+    HS15 &      2 &      0 &      2 & Convergiu  &     306.501 &              0 & 5.79749e-07 &      2 &    0.00 \\ \hline
+    HS16 &      2 &      0 &      2 & Convergiu  &     23.1447 &    1.75991e-10 & 1.37359e-10 &      6 &    0.00 \\ \hline
+    HS17 &      2 &      0 &      2 & Convergiu  &     1.00004 &    4.63128e-07 & 3.02066e-07 &     41 &    0.00 \\ \hline
+    HS18 &      2 &      0 &      2 & Convergiu  &           5 &    8.44355e-08 & 1.50423e-10 &     15 &    0.00 \\ \hline
+    HS19 &      2 &      0 &      2 & Convergiu  &    -6961.81 &    1.45945e-11 & 1.06645e-11 &     16 &    0.00 \\ \hline
+    HS20 &      2 &      0 &      3 & Convergiu  &     38.1987 &    1.21993e-08 & 1.84987e-09 &     57 &    0.00 \\ \hline
+    HS21 &      2 &      0 &      1 & Convergiu  &      -99.96 &    6.03961e-14 & 6.78522e-12 &      5 &    0.00 \\ \hline
+ HS21MOD &      7 &      0 &      1 & Convergiu  &      -95.96 &    5.39835e-12 & 4.06667e-07 &      5 &    0.00 \\ \hline
+     HS2 &      2 &      0 &      0 & Convergiu  &     4.94123 &              0 & 8.55095e-10 &     21 &    0.00 \\ \hline
+    HS22 &      2 &      0 &      2 & Convergiu  &           1 &     2.5011e-08 & 2.92819e-11 &     20 &    0.00 \\ \hline
+    HS23 &      2 &      0 &      5 & Convergiu  &           2 &    3.46433e-07 & 5.42615e-08 &     34 &    0.00 \\ \hline
+    HS24 &      2 &      0 &      3 & Convergiu  &   -0.999999 &    2.39232e-14 & 2.49168e-07 &      4 &    0.00 \\ \hline
+    HS25 &      3 &      0 &      0 & Convergiu  &  0.00224932 &              0 & 1.03958e-08 &     18 &    0.00 \\ \hline
+    HS26 &      3 &      1 &      0 & Convergiu  & 4.23607e-08 &    6.31689e-07 & 7.46995e-07 &     13 &    0.00 \\ \hline
+   HS268 &      5 &      0 &      5 & Convergiu  & 6.14818e-10 &    3.28146e-14 & 1.99183e-07 &     11 &    0.00 \\ \hline
+    HS27 &      3 &      1 &      0 & Convergiu  &        0.04 &    6.94562e-11 & 2.27828e-09 &     17 &    0.00 \\ \hline
+    HS28 &      3 &      1 &      0 & Convergiu  & 1.93887e-29 &    4.44089e-15 & 5.38486e-16 &      2 &    0.00 \\ \hline
+    HS29 &      3 &      0 &      1 & Convergiu  &    -22.6274 &    6.68434e-07 & 3.81858e-09 &     13 &    0.00 \\ \hline
+    HS30 &      3 &      0 &      1 & Convergiu  &           1 &    9.88046e-07 & 2.15317e-09 &     12 &    0.00 \\ \hline
+    HS31 &      3 &      0 &      1 & Convergiu  &           6 &    9.88739e-10 & 1.40676e-10 &      9 &    0.00 \\ \hline
+     HS3 &      2 &      0 &      0 & Convergiu  & 7.30644e-13 &              0 & 3.85998e-09 &     16 &    0.00 \\ \hline
+    HS32 &      3 &      1 &      1 & Convergiu  &     1.24259 &    3.96818e-09 & 7.58387e-10 &      4 &    0.00 \\ \hline
+    HS33 &      3 &      0 &      2 & Convergiu  &           2 &    4.97982e-09 &  4.0532e-07 &     35 &    0.00 \\ \hline
+    HS34 &      3 &      0 &      2 & Convergiu  &   -0.834032 &    8.96297e-09 & 4.95357e-09 &      4 &    0.00 \\ \hline
+    HS35 &      3 &      0 &      1 & Convergiu  &    0.111111 &    1.17126e-16 & 2.74039e-08 &      4 &    0.00 \\ \hline
+   HS35I &      3 &      0 &      1 & Convergiu  &    0.111111 &    1.17126e-16 & 2.74039e-08 &      4 &    0.00 \\ \hline
+    HS36 &      3 &      0 &      1 & Convergiu  &       -3300 &    1.60316e-13 & 6.56049e-07 &      5 &    0.00 \\ \hline
+    HS37 &      3 &      0 &      2 & Convergiu  &       -3456 &     5.5738e-10 & 1.14358e-07 &      7 &    0.00 \\ \hline
+    HS38 &      4 &      0 &      0 & Convergiu  &     605.964 &              0 & 1.37436e-07 &     11 &    0.00 \\ \hline
+    HS39 &      4 &      2 &      0 & Convergiu  &          -1 &    1.02804e-10 & 1.62574e-13 &      6 &    0.00 \\ \hline
+  HS3MOD &      2 &      0 &      0 & Convergiu  & 9.99999e-07 &              0 & 1.21951e-08 &      5 &    0.00 \\ \hline
+    HS40 &      4 &      3 &      0 & Convergiu  &       -0.25 &    2.06992e-08 & 1.22036e-10 &      4 &    0.00 \\ \hline
+    HS41 &      4 &      1 &      0 & Convergiu  &     1.92593 &    8.88178e-16 & 2.17775e-08 &     12 &    0.00 \\ \hline
+     HS4 &      2 &      0 &      0 & Convergiu  &     2.66667 &              0 & 1.91881e-08 &     12 &    0.00 \\ \hline
+    HS42 &      4 &      2 &      0 & Convergiu  &     13.8579 &    5.63923e-09 &  8.4671e-17 &      3 &    0.00 \\ \hline
+    HS43 &      4 &      0 &      3 & Convergiu  &         -44 &    2.76642e-09 & 6.61708e-08 &     27 &    0.00 \\ \hline
+    HS44 &      4 &      0 &      6 & Convergiu  &         -15 &     1.0057e-07 & 4.23737e-08 &      9 &    0.00 \\ \hline
+ HS44NEW &      4 &      0 &      6 & Convergiu  &         -15 &    2.42289e-13 &  5.5479e-07 &      9 &    0.00 \\ \hline
+    HS45 &      5 &      0 &      0 & Convergiu  &           1 &              0 & 3.24613e-08 &     18 &    0.00 \\ \hline
+    HS46 &      5 &      2 &      0 & Convergiu  & 9.00726e-09 &    1.91555e-07 & 4.39807e-07 &     14 &    0.00 \\ \hline
+    HS47 &      5 &      3 &      0 & Convergiu  & 1.78578e-08 &    9.35321e-09 & 2.93071e-07 &     13 &    0.00 \\ \hline
+    HS48 &      5 &      2 &      0 & Convergiu  &  2.5638e-30 &    2.70129e-15 & 5.33356e-17 &      2 &    0.00 \\ \hline
+    HS49 &      5 &      2 &      0 & Convergiu  & 4.57325e-06 &     8.0428e-15 & 5.87717e-07 &     12 &    0.00 \\ \hline
+    HS50 &      5 &      3 &      0 & Convergiu  & 6.38372e-13 &    8.77602e-14 & 2.20001e-10 &      9 &    0.00 \\ \hline
+    HS51 &      5 &      3 &      0 & Convergiu  & 4.93038e-32 &    9.15513e-16 & 5.79615e-17 &      2 &    0.00 \\ \hline
+     HS5 &      2 &      0 &      0 & Convergiu  &    -1.91322 &              0 & 5.67285e-11 &      5 &    0.00 \\ \hline
+    HS52 &      5 &      3 &      0 & Convergiu  &     5.32665 &    1.06962e-14 & 1.32567e-16 &      3 &    0.00 \\ \hline
+    HS53 &      5 &      3 &      0 & Convergiu  &     4.09302 &    2.27257e-15 & 2.67852e-15 &      4 &    0.00 \\ \hline
+    HS54 &      6 &      1 &      0 & Convergiu  &   -0.908075 &    2.00089e-11 & 9.97907e-07 &  38964 &    0.65 \\ \hline
+    HS55 &      6 &      6 &      0 & Convergiu  &     6.33333 &    1.09693e-11 & 1.24163e-08 &      3 &    0.00 \\ \hline
+    HS56 &      7 &      4 &      0 & Convergiu  &      -3.456 &    2.16202e-09 & 2.80973e-10 &     15 &    0.00 \\ \hline
+    HS57 &      2 &      0 &      1 & Convergiu  &   0.0284598 &    3.56131e-07 & 4.83835e-08 &      6 &    0.00 \\ \hline
+    HS59 &      2 &      0 &      3 & Convergiu  &     -6.7495 &    1.14511e-07 & 8.57884e-10 &     19 &    0.00 \\ \hline
+    HS60 &      3 &      1 &      0 & Convergiu  &   0.0325682 &    7.23536e-10 & 4.76216e-11 &     10 &    0.00 \\ \hline
+    HS61 &      3 &      2 &      0 & Convergiu  &    -143.646 &    3.31806e-10 & 1.92724e-07 &      5 &    0.00 \\ \hline
+     HS6 &      2 &      1 &      0 & Convergiu  & 3.87589e-20 &    2.77417e-09 & 3.63819e-11 &      8 &    0.00 \\ \hline
+    HS62 &      3 &      1 &      0 & Convergiu  &    -26272.5 &    1.11022e-15 &  1.3873e-09 &     13 &    0.00 \\ \hline
+    HS63 &      3 &      2 &      0 & Convergiu  &     961.715 &    1.06159e-07 & 1.40133e-07 &      4 &    0.00 \\ \hline
+    HS64 &      3 &      0 &      1 & Convergiu  &     6299.84 &    7.31742e-09 & 8.82829e-08 &     10 &    0.00 \\ \hline
+    HS65 &      3 &      0 &      1 & Convergiu  &    0.953529 &    1.40982e-07 & 8.20298e-07 &     10 &    0.00 \\ \hline
+    HS66 &      3 &      0 &      2 & Convergiu  &     1.33277 &    8.77967e-09 & 3.75862e-09 &      4 &    0.00 \\ \hline
+    HS67 &      3 &      0 &     14 & Convergiu  &    -1162.12 &    7.44048e-07 & 1.56773e-09 &     17 &    0.00 \\ \hline
+    HS68 &      4 &      2 &      0 & Convergiu  &   -0.920425 &    3.79407e-10 &  6.7363e-10 &     29 &    0.00 \\ \hline
+    HS69 &      4 &      2 &      0 & Convergiu  &    -956.713 &    6.28644e-07 & 1.03603e-08 &     27 &    0.00 \\ \hline
+    HS70 &      4 &      0 &      1 & Convergiu  &    0.269057 &    4.40536e-13 & 5.94737e-07 &      9 &    0.00 \\ \hline
+    HS71 &      4 &      1 &      1 & Convergiu  &      17.014 &    3.53026e-09 & 4.57295e-09 &      9 &    0.00 \\ \hline
+     HS7 &      2 &      1 &      0 & Convergiu  &    -1.73205 &    8.43769e-14 & 3.41242e-10 &      4 &    0.00 \\ \hline
+    HS72 &      4 &      0 &      2 & Convergiu  &     727.679 &    1.44158e-10 &  2.1058e-10 &     12 &    0.00 \\ \hline
+    HS73 &      4 &      1 &      2 & Convergiu  &     29.8944 &    6.93889e-18 & 2.77363e-07 &     15 &    0.00 \\ \hline
+    HS74 &      4 &      3 &      2 & Convergiu  &      5126.5 &    8.94002e-12 & 6.41766e-07 &      9 &    0.00 \\ \hline
+    HS75 &      4 &      3 &      2 & Convergiu  &     5174.41 &    4.25901e-08 & 5.00088e-11 &     13 &    0.00 \\ \hline
+    HS76 &      4 &      0 &      3 & Convergiu  &    -4.68182 &    2.40989e-14 & 3.44932e-07 &      5 &    0.00 \\ \hline
+   HS76I &      4 &      0 &      3 & Convergiu  &    -4.68182 &    2.40989e-14 & 3.44932e-07 &      5 &    0.00 \\ \hline
+    HS77 &      5 &      2 &      0 & Convergiu  &    0.241505 &     6.7502e-13 & 1.15085e-08 &     13 &    0.00 \\ \hline
+    HS78 &      5 &      3 &      0 & Convergiu  &     -2.9197 &    4.90327e-12 & 8.23085e-08 &      3 &    0.00 \\ \hline
+    HS79 &      5 &      3 &      0 & Convergiu  &   0.0787768 &    1.02519e-08 & 1.86795e-10 &      8 &    0.00 \\ \hline
+    HS80 &      5 &      3 &      0 & Convergiu  &   0.0539498 &    3.25837e-07 & 4.38778e-10 &      7 &    0.00 \\ \hline
+    HS81 &      5 &      3 &      0 & Convergiu  &   0.0539498 &    3.14811e-07 & 3.84186e-11 &      7 &    0.00 \\ \hline
+     HS8 &      2 &      2 &      0 & Convergiu  &          -1 &    1.39447e-10 &           0 &      1 &    0.00 \\ \hline
+    HS83 &      5 &      0 &      3 & Convergiu  &    -30665.5 &    4.76376e-07 & 7.33506e-07 &     30 &    0.00 \\ \hline
+    HS84 &      5 &      0 &      3 & Convergiu  & -5.28033e+06 &    1.81899e-09 & 6.51661e-07 &     62 &    0.00 \\ \hline
+    HS85 &      5 &      0 &     21 & Convergiu  &    -2.21548 &     3.7254e-09 & 7.61626e-07 &    405 &    0.10 \\ \hline
+    HS86 &      5 &      0 &     10 & Convergiu  &    -32.3487 &    2.45176e-12 & 2.74731e-08 &      8 &    0.00 \\ \hline
+    HS87 &      6 &      4 &      0 & MaxIter    &     8996.98 &    1.10702e-07 & 0.000158334 & 200001 &    7.98 \\ \hline
+    HS88 &      2 &      0 &      1 & Convergiu  &     1.36261 &    4.10832e-08 & 7.04305e-11 &     12 &    0.01 \\ \hline
+    HS89 &      3 &      0 &      1 & Infactível & 4.53674e-05 &       0.873647 &  0.00145834 &      4 &    0.01 \\ \hline
+    HS90 &      4 &      0 &      1 & Convergiu  &     1.36262 &    3.31208e-08 & 3.18363e-09 &     17 &    0.03 \\ \hline
+    HS91 &      5 &      0 &      1 & Infactível & 1.30087e-06 &        1.22188 & 0.000435633 &      4 &    0.01 \\ \hline
+     HS9 &      2 &      1 &      0 & Convergiu  &        -0.5 &    4.65661e-10 &  1.9449e-07 &      5 &    0.00 \\ \hline
+    HS92 &      6 &      0 &      1 & Infactível & 5.88953e+06 &       0.133233 &      930.26 &      9 &    0.05 \\ \hline
+    HS93 &      6 &      0 &      2 & Convergiu  &     135.076 &    3.15278e-08 & 1.59154e-08 &     43 &    0.00 \\ \hline
+    HS95 &      6 &      0 &      4 & Convergiu  &   0.0157324 &    3.86552e-08 & 7.33458e-07 &     30 &    0.00 \\ \hline
+    HS96 &      6 &      0 &      4 & Convergiu  &   0.0156913 &    5.32528e-08 & 6.41398e-07 &     40 &    0.00 \\ \hline
+    HS97 &      6 &      0 &      4 & Convergiu  &     3.13588 &    1.92214e-07 &  5.1033e-07 &     13 &    0.00 \\ \hline
+    HS98 &      6 &      0 &      4 & Convergiu  &      4.0713 &    6.24647e-07 & 3.62847e-07 &     34 &    0.00 \\ \hline
+    HS99 &      7 &      2 &      0 & Convergiu  & -8.3108e+08 &    2.95405e-09 & 8.35887e-09 &      4 &    0.00 \\ \hline
+  HUBFIT &      2 &      0 &      1 & Convergiu  &   0.0168936 &    4.96003e-13 &  2.4992e-08 &      4 &    0.00 \\ \hline
+HUES-MOD &   5000 &      2 &      0 & Convergiu  & 3.48245e+07 &    1.18702e-07 & 9.68128e-08 &     37 &   85.92 \\ \hline
+ HUESTIS &   5000 &      2 &      0 & Convergiu  & 1.74122e+11 &    9.93789e-08 & 5.05378e-05 &     36 &   67.63 \\ \hline
+   HUMPS &      2 &      0 &      0 & Convergiu  &  0.00626638 &              0 & 9.05938e-07 &    771 &    0.01 \\ \hline
+HYDC20LS &     99 &      0 &      0 & Convergiu  &    0.976221 &              0 & 5.60176e-07 &    251 &    4.05 \\ \hline
+HYDCAR20 &     99 &     99 &      0 & Convergiu  &           0 &    1.16558e-09 &           0 &      1 &    0.00 \\ \hline
+ HYDCAR6 &     29 &     29 &      0 & Convergiu  &           0 &    3.04199e-08 &           0 &      1 &    0.00 \\ \hline
+  HYPCIR &      2 &      2 &      0 & Convergiu  &           0 &    1.19776e-11 &           0 &      1 &    0.00 \\ \hline
+   INDEF &   5000 &      0 &      0 & MaxIter    & -9.42056e+10 &              0 &  0.00592425 & 200001 & 1263.55 \\ \hline
+JANNSON3 &  20000 &      1 &      2 & MaxRest    &     19998.9 &    0.000792889 & 9.99825e-05 &      1 & 2606.20 \\ \hline
+JANNSON4 &  10000 &      0 &      2 & Convergiu  &     9801.97 &    1.43949e-12 & 1.50368e-08 &     14 &    0.19 \\ \hline
+  JENSMP &      2 &      0 &      0 & Convergiu  &     124.362 &              0 & 3.60627e-07 &      9 &    0.00 \\ \hline
+JIMACK & - & - & - & Falha & - & - & - & - & - \\ \hline
+ KISSING &    127 &     42 &    861 & Convergiu  &    0.892127 &    2.60761e-07 & 9.88267e-07 &   1526 &  363.22 \\ \hline
+KIWCRESC &      3 &      0 &      2 & Convergiu  & -1.28554e-09 &    3.65347e-09 & 1.67423e-12 &     34 &    0.00 \\ \hline
+KOEBHELB &      3 &      0 &      0 & Convergiu  &     77.5163 &              0 & 1.30487e-07 &    117 &    0.02 \\ \hline
+  KOWOSB &      4 &      0 &      0 & Convergiu  & 0.000307801 &              0 & 2.87267e-09 &     13 &    0.00 \\ \hline
+    KSIP &     20 &      0 &   1001 & Convergiu  &    0.712986 &    5.11245e-07 & 2.64551e-07 &     28 &   19.27 \\ \hline
+   LAKES &     90 &     78 &      0 & Convergiu  &      350525 &    6.19156e-11 & 1.78854e-07 &      3 &    0.00 \\ \hline
+  LAUNCH &     25 &      9 &     19 & Convergiu  &     9.00532 &    1.88191e-08 & 9.61995e-07 &     84 &    0.03 \\ \hline
+     LCH &   3000 &      1 &      0 & Convergiu  &    -4.34179 &    1.21295e-11 & 2.14619e-07 &    958 &   29.76 \\ \hline
+ LEAKNET &    156 &    153 &      0 & Convergiu  &     8.05194 &     4.5856e-07 & 9.26738e-07 &      8 &    0.01 \\ \hline
+LEWISPOL &      6 &      9 &      0 & Infactível &     2.92611 &        26.3249 & 2.44259e-06 &      1 &    0.01 \\ \hline
+ LIARWHD &   5000 &      0 &      0 & Convergiu  & 0.000577787 &              0 &  4.8154e-08 &     12 &    0.04 \\ \hline
+     LIN &      4 &      2 &      0 & Convergiu  &  -0.0175775 &    1.41406e-12 & 2.03653e-08 &      4 &    0.00 \\ \hline
+LINVERSE &   1999 &      0 &      0 & Convergiu  &     681.002 &              0 & 8.67372e-08 &     36 &    0.16 \\ \hline
+LIPPERT1 &  20201 &  10000 &  40000 & MaxTempo   &       -0.01 &          33659 & 1.82301e-08 &      1 & 7553.71 \\ \hline
+LIPPERT2 & - & - & - & Falha & - & - & - & - & - \\ \hline
+LISWET10 &   2002 &      0 &   2000 & Convergiu  &     10.1546 &    2.26212e-07 &  6.5305e-07 &     25 &    0.59 \\ \hline
+LISWET11 &   2002 &      0 &   2000 & Convergiu  &     10.0043 &    6.44843e-08 & 6.50303e-07 &     15 &    0.24 \\ \hline
+ LISWET1 &   2002 &      0 &   2000 & Convergiu  &     7.26621 &    3.39561e-07 & 1.17188e-07 &     15 &    0.24 \\ \hline
+LISWET12 &   2002 &      0 &   2000 & Convergiu  &      347.58 &    6.83371e-08 & 8.65246e-08 &     27 &    0.33 \\ \hline
+ LISWET2 &   2002 &      0 &   2000 & Convergiu  &     5.01484 &    1.42822e-07 & 4.72275e-07 &     13 &    0.26 \\ \hline
+ LISWET3 &   2002 &      0 &   2000 & Convergiu  &     5.00384 &    1.82946e-08 & 9.25351e-07 &     13 &    0.23 \\ \hline
+ LISWET4 &   2002 &      0 &   2000 & Convergiu  &     5.01287 &    1.49446e-08 & 5.99226e-07 &     35 &    0.62 \\ \hline
+ LISWET5 &   2002 &      0 &   2000 & Convergiu  &     5.00525 &    1.91424e-08 & 1.84924e-07 &     13 &    0.23 \\ \hline
+ LISWET6 &   2002 &      0 &   2000 & Convergiu  &     5.02359 &    1.85302e-08 & 2.53323e-07 &     12 &    0.22 \\ \hline
+ LISWET7 &   2002 &      0 &   2000 & Convergiu  &     100.482 &    9.84063e-07 & 2.58318e-07 &     15 &    0.23 \\ \hline
+ LISWET8 &   2002 &      0 &   2000 & Convergiu  &     143.325 &    4.16601e-07 & 3.33081e-07 &     20 &    0.28 \\ \hline
+ LISWET9 &   2002 &      0 &   2000 & Convergiu  &     392.996 &    3.70125e-07 & 1.32095e-07 &     24 &    0.31 \\ \hline
+ LOADBAL &     31 &     11 &     20 & Convergiu  &    0.452854 &    1.54044e-11 & 6.55407e-07 &    161 &    0.01 \\ \hline
+LOGHAIRY &      2 &      0 &      0 & Convergiu  &    0.182322 &              0 & 3.20969e-12 &   2340 &    0.03 \\ \hline
+  LOGROS &      2 &      0 &      0 & Convergiu  & 3.58602e-12 &              0 & 1.83978e-07 &     69 &    0.00 \\ \hline
+ LOOTSMA &      3 &      0 &      2 & Convergiu  &     1.41422 &    6.56995e-13 & 5.00244e-07 &      8 &    0.00 \\ \hline
+ LOTSCHD &     12 &      7 &      0 & Convergiu  &     2398.42 &    1.03838e-10 & 3.27168e-08 &      6 &    0.00 \\ \hline
+LSNNODOC &      5 &      4 &      0 & Convergiu  &     123.113 &    1.27505e-07 & 1.40095e-08 &      4 &    0.00 \\ \hline
+  LSQFIT &      2 &      0 &      1 & Convergiu  &   0.0337872 &    1.80971e-12 &  4.7699e-08 &      4 &    0.00 \\ \hline
+LUKVLE10 &  10000 &   9998 &      0 & Convergiu  &      3535.1 &    5.79865e-13 & 1.75436e-07 &      6 &    0.23 \\ \hline
+ LUKVLE1 &  10000 &   9998 &      0 & Convergiu  &     6.23246 &    8.90436e-10 & 2.67185e-08 &      4 &    0.34 \\ \hline
+LUKVLE11 &   9998 &   6664 &      0 & MaxRest    &       1e+20 &    1.00003e+20 & 2.19468e+33 &      1 & 2675.99 \\ \hline
+LUKVLE12 &   9997 &   7497 &      0 & Convergiu  &      171495 &    2.62796e-07 &  5.4274e-07 &     44 & 6023.11 \\ \hline
+LUKVLE13 &   9998 &   6664 &      0 & Convergiu  &       91372 &    2.90929e-08 &  3.3851e-07 &      9 &    0.27 \\ \hline
+LUKVLE14 &   9998 &   6664 &      0 & Convergiu  & 3.13811e+08 &    2.99016e-08 & 7.14781e-07 &     14 &  562.41 \\ \hline
+LUKVLE15 &   9997 &   7497 &      0 & MaxRest    & 7.03543e+06 &        69.4984 &    0.573876 &     36 & 1164.34 \\ \hline
+LUKVLE16 &   9997 &   7497 &      0 & Convergiu  &     16615.1 &    1.16256e-09 & 7.74771e-08 &     29 &   28.95 \\ \hline
+LUKVLE17 &   9997 &   7497 &      0 & Rhomax     &     33562.6 &    8.70215e-07 &  0.00755517 &     46 &   10.71 \\ \hline
+LUKVLE18 &   9997 &   7497 &      0 & Rhomax     &     11202.9 &    8.48168e-07 &   0.0031668 &     44 &    7.11 \\ \hline
+ LUKVLE2 &  10000 &   4999 &      0 & Rhomax     &      -1e+20 &    2.41308e-07 & 2.43431e+09 &     60 &   12.01 \\ \hline
+ LUKVLE3 &  10000 &      2 &      0 & Convergiu  &     27.5866 &    1.32528e-10 & 7.79348e-08 &      9 &    0.13 \\ \hline
+ LUKVLE4 &  10000 &   4999 &      0 & Rhomax     & 6.39713e+09 &    1.29647e-11 & 5.78738e+13 &     91 &    3.49 \\ \hline
+ LUKVLE6 &   9999 &   4999 &      0 & Convergiu  &      628644 &    6.63636e-08 & 9.52918e-08 &     13 &    0.40 \\ \hline
+ LUKVLE7 &  10000 &      4 &      0 & Convergiu  &    -2165.07 &    1.45792e-07 & 6.27449e-08 &     36 &   63.23 \\ \hline
+ LUKVLE8 &  10000 &   9998 &      0 & Rhomax     & 1.06096e+06 &    1.22916e-08 &  0.00129202 &   8731 &  147.68 \\ \hline
+ LUKVLE9 &  10000 &      6 &      0 & Convergiu  &     1000.26 &    3.38902e-09 & 9.23478e-07 &    834 &   18.68 \\ \hline
+LUKVLI10 &  10000 &      0 &   9998 & Convergiu  &     3535.15 &    3.09982e-07 & 4.55739e-08 &   3542 &  194.38 \\ \hline
+ LUKVLI1 &  10000 &      0 &   9998 & Convergiu  &     9898.53 &    2.20046e-08 & 9.22583e-07 &   3400 &  463.51 \\ \hline
+LUKVLI11 &   9998 &      0 &   6664 & Convergiu  &      3.4338 &    2.28057e-08 & 9.88254e-07 &   4889 &  244.29 \\ \hline
+LUKVLI12 &   9997 &      0 &   7497 & MaxTempo   &     18548.7 &    7.68605e-07 &  0.00357201 &    423 & 7207.07 \\ \hline
+LUKVLI13 &   9998 &      0 &   6664 & Convergiu  &     165.219 &     1.4146e-08 & 8.35399e-07 &     36 &    4.29 \\ \hline
+LUKVLI14 &   9998 &      0 &   6664 & MaxTempo   &  1.1213e+08 &    9.52924e-08 &    0.766917 &    289 & 7208.25 \\ \hline
+LUKVLI15 &   9997 &      0 &   7497 & Convergiu  &     12.5481 &     1.1139e-07 & 9.70278e-07 &     46 &    4.02 \\ \hline
+LUKVLI16 &   9997 &      0 &   7497 & Convergiu  &     2972.14 &    1.04855e-07 & 9.97475e-07 &   4294 &  126.95 \\ \hline
+LUKVLI17 &   9997 &      0 &   7497 & Convergiu  &     788.306 &    1.21103e-09 & 9.64002e-07 &   5332 &  157.94 \\ \hline
+LUKVLI18 &   9997 &      0 &   7497 & Convergiu  &    0.495892 &     2.9425e-13 & 9.99322e-07 &   2716 &   80.16 \\ \hline
+ LUKVLI2 &  10000 &      0 &   4999 & Rhomax     &      -1e+20 &    6.96067e-13 & 2.08705e+09 &     56 &   11.07 \\ \hline
+ LUKVLI3 &  10000 &      0 &      2 & Convergiu  &     11.9398 &    1.32644e-08 & 6.17177e-07 &    298 &    4.77 \\ \hline
+ LUKVLI4 &  10000 &      0 &   4999 & Rhomax     & 1.02867e+10 &    2.04678e-10 & 1.49646e+14 &    114 &    4.86 \\ \hline
+ LUKVLI6 &   9999 &      0 &   4999 & Convergiu  &      628644 &    1.67644e-09 & 4.39378e-08 &    335 &   26.00 \\ \hline
+ LUKVLI7 &  10000 &      0 &      4 & Convergiu  &    -2167.88 &    1.40905e-10 & 7.33542e-07 &    137 &   95.15 \\ \hline
+ LUKVLI8 &  10000 &      0 &   9998 & Convergiu  &      827403 &    2.06039e-07 & 3.26992e-07 &    366 &   16.03 \\ \hline
+ LUKVLI9 &  10000 &      0 &      6 & Convergiu  &     998.941 &    2.01821e-10 & 9.67986e-07 &   3870 &   75.01 \\ \hline
+  MADSEN &      3 &      0 &      6 & Convergiu  &    0.616432 &    1.10051e-09 & 2.80174e-08 &     67 &    0.00 \\ \hline
+MADSSCHJ &    201 &      0 &    398 & Convergiu  &    -4992.13 &    2.43907e-07 & 4.28328e-07 &     33 &   13.09 \\ \hline
+ MAKELA1 &      3 &      0 &      2 & Convergiu  &    -1.41421 &    6.03973e-09 & 1.37972e-10 &     22 &    0.00 \\ \hline
+ MAKELA2 &      3 &      0 &      3 & Convergiu  &         7.2 &      3.415e-09 & 9.38597e-11 &      8 &    0.00 \\ \hline
+ MAKELA3 &     21 &      0 &     20 & Convergiu  & 1.22432e-05 &    2.00237e-10 & 6.37439e-07 &     15 &    0.01 \\ \hline
+ MAKELA4 &     21 &      0 &     40 & Convergiu  & 0.000100084 &    5.69908e-11 & 3.94077e-07 &     10 &    0.00 \\ \hline
+ MANCINO &    100 &      0 &      0 & Convergiu  & 5.66214e-10 &              0 & 6.52816e-08 &      7 &    0.32 \\ \hline
+ MARATOS &      2 &      1 &      0 & Convergiu  &          -1 &    1.67684e-09 & 1.25025e-17 &      2 &    0.00 \\ \hline
+MARATOSB &      2 &      0 &      0 & Convergiu  &    0.995893 &              0 & 7.94809e-07 &      4 &    0.00 \\ \hline
+  MARINE &  11215 &  11192 &      0 & Convergiu  & 1.97466e+07 &    6.09192e-08 & 1.07811e-07 &     29 &  393.90 \\ \hline
+ MATRIX2 &      6 &      0 &      2 & Convergiu  & 3.08331e-06 &    2.56626e-07 & 2.90647e-07 &     42 &    0.00 \\ \hline
+ MAXLIKA &      8 &      0 &      0 & Convergiu  &     1149.35 &              0 & 5.16144e-08 &     21 &    0.02 \\ \hline
+MCCORMCK &   5000 &      0 &      0 & Convergiu  &    -4566.58 &              0 & 4.49597e-08 &     15 &    0.34 \\ \hline
+ MCONCON &     15 &     11 &      0 & Convergiu  &     -6230.8 &    3.27104e-08 &   7.807e-08 &      2 &    0.00 \\ \hline
+  MDHOLE &      2 &      0 &      0 & Convergiu  & 1.00001e-05 &              0 & 2.47678e-08 &      3 &    0.00 \\ \hline
+METHANB8 &     31 &     31 &      0 & Convergiu  &           0 &    1.27662e-07 &           0 &      1 &    0.00 \\ \hline
+METHANL8 &     31 &     31 &      0 & Convergiu  &           0 &    5.26527e-11 &           0 &      1 &    0.00 \\ \hline
+  MEXHAT &      2 &      0 &      0 & Convergiu  &  -0.0400092 &              0 &  5.0837e-07 &     24 &    0.00 \\ \hline
+  MEYER3 &      3 &      0 &      0 & Convergiu  &     97.4967 &              0 & 8.06822e-07 &    566 &    0.01 \\ \hline
+MIFFLIN1 &      3 &      0 &      2 & Convergiu  &          -1 &              0 & 1.16476e-10 &     23 &    0.00 \\ \hline
+MIFFLIN2 &      3 &      0 &      2 & Convergiu  &          -1 &    1.59789e-13 & 4.08589e-07 &      4 &    0.00 \\ \hline
+MINMAXBD &      5 &      0 &     20 & Convergiu  &     115.706 &    5.31097e-08 & 9.16748e-09 &    619 &    0.07 \\ \hline
+MINMAXRB &      3 &      0 &      4 & Convergiu  & 4.56788e-06 &    7.84282e-07 & 4.36056e-07 &     39 &    0.00 \\ \hline
+ MINPERM &   1113 &   1033 &      0 & Convergiu  &  0.00036288 &    2.54141e-13 & 3.31647e-09 &      1 &    0.24 \\ \hline
+ MISTAKE &      9 &      0 &     13 & Convergiu  &   -0.999988 &    7.55139e-10 & 5.62411e-07 &     43 &    0.00 \\ \hline
+MODBEALE &  20000 &      0 &      0 & Convergiu  &     3.03361 &              0 & 1.81678e-07 &     21 &    2.51 \\ \hline
+  MOREBV &   5000 &      0 &      0 & Convergiu  & 2.36802e-11 &              0 &  7.9672e-07 &      2 &    0.41 \\ \hline
+MOSARQP1 &   2500 &      0 &    700 & Convergiu  &    -3821.06 &    3.23809e-11 & 9.48759e-08 &     62 &    2.16 \\ \hline
+MOSARQP2 &   2500 &      0 &    700 & Convergiu  &    -5052.59 &     2.9278e-11 & 9.53452e-08 &     27 &    1.09 \\ \hline
+  MSQRTA &   1024 &   1024 &      0 & Convergiu  &           0 &    1.99439e-09 &           0 &      1 &    3.36 \\ \hline
+MSQRTALS &   1024 &      0 &      0 & Convergiu  & 6.44866e-06 &              0 & 9.95005e-08 &     23 &    5.81 \\ \hline
+  MSQRTB &   1024 &   1024 &      0 & Convergiu  &           0 &    3.38949e-09 &           0 &      1 &    3.34 \\ \hline
+MSQRTBLS &   1024 &      0 &      0 & Convergiu  & 9.88797e-07 &              0 & 1.53049e-07 &     19 &    3.90 \\ \hline
+    MSS3 &   2070 &   1981 &      0 & Convergiu  &    -335.999 &    3.07916e-10 & 4.57177e-07 &     66 &    6.89 \\ \hline
+ MWRIGHT &      5 &      3 &      0 & Convergiu  &     24.9788 &    8.76692e-08 & 2.81476e-08 &      7 &    0.00 \\ \hline
+NCB20B & - & - & - & Falha & - & - & - & - & - \\ \hline
+NCB20 & - & - & - & Falha & - & - & - & - & - \\ \hline
+NCVXBQP1 &  10000 &      0 &      0 & Convergiu  & -1.98554e+10 &              0 & 2.73743e-07 &     72 &    0.44 \\ \hline
+NCVXBQP2 &  10000 &      0 &      0 & Convergiu  & -1.33402e+10 &              0 & 5.51471e-07 &    151 &    1.81 \\ \hline
+NCVXBQP3 &  10000 &      0 &      0 & Convergiu  & -6.45927e+09 &              0 &  9.1205e-08 &    475 &    7.05 \\ \hline
+ NCVXQP1 &  10000 &   5000 &      0 & Convergiu  & -7.51351e+09 &    9.47091e-07 & 9.68558e-07 &     37 &    2.98 \\ \hline
+ NCVXQP2 &  10000 &   5000 &      0 & Rhomax     & -5.83741e+09 &    9.23632e-07 & 0.000241488 &     76 &    4.89 \\ \hline
+ NCVXQP3 &  10000 &   5000 &      0 & Rhomax     & -3.07912e+09 &    9.91921e-07 &  3.7122e-05 &    560 &   40.96 \\ \hline
+ NCVXQP4 &  10000 &   2500 &      0 & Convergiu  & -9.38499e+09 &    7.23317e-08 & 6.49683e-07 &     42 &    0.35 \\ \hline
+ NCVXQP5 &  10000 &   2500 &      0 & Convergiu  & -6.63491e+09 &    9.00319e-07 & 4.46881e-08 &     88 &    0.93 \\ \hline
+NCVXQP6 & - & - & - & Falha & - & - & - & - & - \\ \hline
+ NCVXQP7 &  10000 &   7500 &      0 & Rhomax     & -5.21974e+09 &    5.89052e-07 &  2.7024e-06 &     70 &   33.84 \\ \hline
+ NCVXQP8 &  10000 &   7500 &      0 & Rhomax     & -3.57685e+09 &    9.95384e-07 &     24.2168 &     94 &  110.82 \\ \hline
+ NCVXQP9 &  10000 &   7500 &      0 & Rhomax     & -2.12084e+09 &    9.76165e-07 & 2.39446e-05 &    323 &  313.77 \\ \hline
+NONCVXU2 &   5000 &      0 &      0 & Convergiu  &     11586.1 &              0 & 2.51027e-07 &   1287 &   25.20 \\ \hline
+NONCVXUN &   5000 &      0 &      0 & Convergiu  &       11618 &              0 & 4.27412e-07 &   1376 &   29.91 \\ \hline
+  NONDIA &   5000 &      0 &      0 & Convergiu  &  0.00025697 &              0 & 1.30842e-08 &      3 &    0.01 \\ \hline
+NONDQUAR &   5000 &      0 &      0 & Convergiu  & 0.000527068 &              0 &  4.5547e-07 &     13 &    0.09 \\ \hline
+NONMSQRT &   4900 &      0 &      0 & Convergiu  &     710.455 &              0 & 5.77262e-07 &    207 & 3101.45 \\ \hline
+NONSCOMP &   5000 &      0 &      0 & Convergiu  &    0.272073 &              0 & 4.64889e-08 &     18 &    0.13 \\ \hline
+  ODFITS &     10 &      6 &      0 & Convergiu  &    -2380.03 &    6.03585e-13 & 3.74276e-08 &     20 &    0.00 \\ \hline
+    OET1 &      3 &      0 &   1002 & Convergiu  &     3.10302 &    4.32275e-08 & 2.98605e-09 &     11 &    2.33 \\ \hline
+    OET2 &      3 &      0 &   1002 & Convergiu  &     2.00339 &    3.56821e-07 & 9.95408e-07 &   2339 &  681.77 \\ \hline
+    OET3 &      4 &      0 &   1002 & Convergiu  &   0.0258559 &    1.43495e-09 & 2.80988e-08 &     10 &    2.56 \\ \hline
+    OET4 &      4 &      0 &   1002 & Convergiu  &    0.062836 &    3.97923e-07 & 9.72519e-07 &   9820 & 2407.56 \\ \hline
+    OET5 &      5 &      0 &   1002 & Convergiu  &   0.0476189 &     6.3613e-14 & 9.84379e-07 &   3615 &  972.26 \\ \hline
+    OET6 &      5 &      0 &   1002 & Convergiu  &     2.00401 &    3.93446e-07 & 9.88436e-07 &   2539 &  760.52 \\ \hline
+    OET7 &      7 &      0 &   1002 & Convergiu  &       2.005 &    2.01541e-14 & 9.99954e-07 &   2676 &  829.69 \\ \hline
+OPTPRLOC &     30 &      0 &     30 & Convergiu  &    -16.3444 &    4.74789e-07 & 4.30404e-07 &     58 &    0.01 \\ \hline
+ORTHRDM2 &   8003 &   4000 &      0 & Convergiu  &     311.015 &    8.71134e-09 & 1.52733e-08 &      5 &  275.61 \\ \hline
+ORTHRDS2 &   5003 &   2500 &      0 & Convergiu  &     39237.4 &    2.78667e-07 & 4.40887e-08 &     35 &  355.95 \\ \hline
+ORTHREGA &   8197 &   4096 &      0 & Convergiu  &     22647.8 &     3.7499e-10 & 1.13603e-07 &     40 & 1034.66 \\ \hline
+ORTHREGB &     27 &      6 &      0 & Convergiu  & 7.33039e-15 &    1.69357e-12 & 1.71219e-07 &      3 &    0.00 \\ \hline
+ORTHREGC &   5005 &   2500 &      0 & Convergiu  &     331.567 &    8.72331e-08 & 6.99715e-07 &     33 &  311.81 \\ \hline
+ORTHREGD &   5003 &   2500 &      0 & Rhomax     &     39238.1 &    2.96418e-07 &     1.18152 &     92 &  785.01 \\ \hline
+ORTHREGE &   7506 &   5000 &      0 & MaxTempo   &     1276.07 &    4.78794e-11 & 4.81734e-05 &    150 & 7208.91 \\ \hline
+ORTHREGF &   4805 &   1600 &      0 & Convergiu  &     62.7687 &    4.21955e-07 & 7.34177e-08 &     18 &   51.80 \\ \hline
+ORTHRGDM &  10003 &   5000 &      0 & Convergiu  &     77264.9 &      9.772e-07 & 5.97201e-08 &     39 & 2761.82 \\ \hline
+ORTHRGDS &   5003 &   2500 &      0 & Convergiu  &     762.064 &    4.95845e-10 & 9.83159e-07 &      6 &   77.69 \\ \hline
+OSBORNEA &      5 &      0 &      0 & Convergiu  & 6.09772e-05 &              0 & 3.54439e-07 &     19 &    0.00 \\ \hline
+OSBORNEB &     11 &      0 &      0 & Convergiu  &   0.0401377 &              0 & 5.98327e-08 &     20 &    0.01 \\ \hline
+OSCIGRAD & 100000 &      0 &      0 & Convergiu  &  4.4799e-11 &              0 & 9.44826e-08 &     13 &    3.03 \\ \hline
+OSCIGRNE & 100000 & 100000 &      0 & Convergiu  &           0 &    1.42804e-07 &           0 &      1 &    0.80 \\ \hline
+OSCIPANE &     10 &     10 &      0 & MaxRest    &           0 &    1.05896e+08 &           0 &      1 &    2.93 \\ \hline
+OSCIPATH &     10 &      0 &      0 & MaxIter    & 2.60841e-05 &              0 &  0.00225935 & 200001 &    4.95 \\ \hline
+  OSLBQP &      8 &      0 &      0 & Convergiu  &        6.25 &              0 & 3.68588e-09 &     15 &    0.00 \\ \hline
+ PALMER1 &      4 &      0 &      0 & Convergiu  &     28191.6 &              0 & 2.96712e-07 &     28 &    0.00 \\ \hline
+PALMER1A &      6 &      0 &      0 & Convergiu  &   0.0935137 &              0 & 1.19189e-07 &     53 &    0.00 \\ \hline
+PALMER1B &      4 &      0 &      0 & Convergiu  &     3.44735 &              0 & 4.03468e-08 &     30 &    0.00 \\ \hline
+PALMER1C &      8 &      0 &      0 & Convergiu  &      5.1998 &              0 & 5.58963e-08 &      4 &    0.00 \\ \hline
+PALMER1D &      7 &      0 &      0 & Convergiu  &     11.6072 &              0 & 2.88972e-07 &      7 &    0.00 \\ \hline
+PALMER1E &      8 &      0 &      0 & Convergiu  &      1.1421 &              0 & 5.69172e-08 &     23 &    0.00 \\ \hline
+ PALMER2 &      4 &      0 &      0 & Convergiu  &     4581.17 &              0 & 5.57076e-07 &      4 &    0.00 \\ \hline
+PALMER2A &      6 &      0 &      0 & Convergiu  &   0.0250571 &              0 & 8.35225e-07 &     37 &    0.00 \\ \hline
+PALMER2B &      4 &      0 &      0 & Convergiu  &    0.623267 &              0 & 5.86758e-08 &     23 &    0.00 \\ \hline
+PALMER2C &      8 &      0 &      0 & Convergiu  &     15.8465 &              0 & 3.30177e-07 &      5 &    0.00 \\ \hline
+PALMER2E &      8 &      0 &      0 & Convergiu  &   0.0611336 &              0 & 7.79942e-12 &      5 &    0.00 \\ \hline
+ PALMER3 &      4 &      0 &      0 & Convergiu  &     2416.98 &              0 & 9.14134e-11 &      6 &    0.00 \\ \hline
+PALMER3A &      6 &      0 &      0 & Convergiu  &   0.0295676 &              0 & 6.04624e-07 &     69 &    0.00 \\ \hline
+PALMER3B &      4 &      0 &      0 & Convergiu  &     4.22765 &              0 & 4.35694e-09 &     30 &    0.00 \\ \hline
+PALMER3C &      8 &      0 &      0 & Convergiu  &    0.289058 &              0 & 2.73857e-08 &      6 &    0.00 \\ \hline
+PALMER3E &      8 &      0 &      0 & Convergiu  &    0.100888 &              0 & 5.44017e-08 &     26 &    0.00 \\ \hline
+ PALMER4 &      4 &      0 &      0 & Convergiu  &     2424.02 &              0 & 6.45282e-11 &      6 &    0.00 \\ \hline
+PALMER4A &      6 &      0 &      0 & Convergiu  &   0.0417998 &              0 & 7.50763e-07 &     60 &    0.00 \\ \hline
+PALMER4B &      4 &      0 &      0 & Convergiu  &     6.83514 &              0 & 8.81055e-09 &     20 &    0.00 \\ \hline
+PALMER4C &      8 &      0 &      0 & Convergiu  &    0.566018 &              0 & 3.35906e-08 &      6 &    0.00 \\ \hline
+PALMER4E &      8 &      0 &      0 & Convergiu  &    0.370867 &              0 & 1.92413e-10 &      6 &    0.00 \\ \hline
+PALMER5A &      8 &      0 &      0 & Convergiu  &     2.12809 &              0 & 9.79462e-08 &     12 &    0.00 \\ \hline
+PALMER5B &      9 &      0 &      0 & Convergiu  &    0.120004 &              0 & 8.17556e-08 &     23 &    0.00 \\ \hline
+PALMER5C &      6 &      0 &      0 & Convergiu  &     2.12809 &              0 & 4.68326e-08 &      3 &    0.00 \\ \hline
+PALMER5D &      4 &      0 &      0 & Convergiu  &     87.3394 &              0 & 2.24087e-10 &      2 &    0.00 \\ \hline
+PALMER5E &      8 &      0 &      0 & Convergiu  &     1.63051 &              0 & 3.03944e-17 &      3 &    0.00 \\ \hline
+PALMER6A &      6 &      0 &      0 & Convergiu  &   0.0602001 &              0 & 8.13705e-07 &    119 &    0.00 \\ \hline
+PALMER6C &      8 &      0 &      0 & Convergiu  &    0.973536 &              0 & 2.52168e-08 &      3 &    0.00 \\ \hline
+PALMER6E &      8 &      0 &      0 & Convergiu  &    0.112953 &              0 & 9.29456e-08 &     22 &    0.00 \\ \hline
+PALMER7A &      6 &      0 &      0 & Convergiu  &     11.5036 &              0 & 9.73491e-07 &    119 &    0.00 \\ \hline
+PALMER7C &      8 &      0 &      0 & Convergiu  &     5.38725 &              0 & 5.84476e-08 &      3 &    0.00 \\ \hline
+PALMER7E &      8 &      0 &      0 & Convergiu  &     10.1926 &              0 & 1.95831e-07 &     38 &    0.00 \\ \hline
+PALMER8A &      6 &      0 &      0 & Convergiu  &     6.96971 &              0 & 2.62299e-11 &      5 &    0.00 \\ \hline
+PALMER8C &      8 &      0 &      0 & Convergiu  &     3.12533 &              0 & 6.07074e-08 &      3 &    0.00 \\ \hline
+PALMER8E &      8 &      0 &      0 & Convergiu  &   0.0597575 &              0 & 5.59291e-07 &     12 &    0.00 \\ \hline
+PENALTY1 &   1000 &      0 &      0 & Convergiu  &   0.0284478 &              0 &  3.4054e-07 &     27 &    0.01 \\ \hline
+PENALTY2 &    200 &      0 &      0 & Convergiu  & 4.71163e+13 &              0 & 1.01484e-07 &     10 &    0.03 \\ \hline
+PENALTY3 &    200 &      0 &      0 & Convergiu  &  0.00099909 &              0 & 5.21724e-08 &     17 &    0.60 \\ \hline
+PENTAGON &      6 &      0 &     15 & Convergiu  &  0.00013699 &    2.74576e-14 & 1.16032e-07 &     27 &    0.00 \\ \hline
+  PENTDI &   5000 &      0 &      0 & Convergiu  &  -0.0348019 &              0 & 5.92341e-07 &     14 &    0.18 \\ \hline
+   PFIT1 &      3 &      3 &      0 & MaxRest    &           0 &    1.73205e+20 &           0 &      2 &    2.79 \\ \hline
+ PFIT1LS &      3 &      0 &      0 & Convergiu  & 4.90942e-05 &              0 & 4.73348e-07 &     26 &    0.00 \\ \hline
+   PFIT2 &      3 &      3 &      0 & MaxRest    &           0 &    1.73205e+20 &           0 &      2 &    2.91 \\ \hline
+ PFIT2LS &      3 &      0 &      0 & Convergiu  & 0.000287239 &              0 & 9.32442e-08 &     46 &    0.00 \\ \hline
+   PFIT3 &      3 &      3 &      0 & MaxRest    &           0 &    1.73205e+20 &           0 &      2 &    2.49 \\ \hline
+ PFIT3LS &      3 &      0 &      0 & Convergiu  &  0.00723357 &              0 & 2.22559e-07 &    106 &    0.00 \\ \hline
+   PFIT4 &      3 &      3 &      0 & MaxRest    &           0 &     1.5064e+20 &           0 &      2 &    2.57 \\ \hline
+ PFIT4LS &      3 &      0 &      0 & Convergiu  &   0.0294351 &              0 & 2.85093e-07 &    110 &    0.00 \\ \hline
+  POLAK1 &      3 &      0 &      2 & Convergiu  &     2.71829 &    2.44285e-08 & 5.00426e-07 &      3 &    0.00 \\ \hline
+  POLAK2 &     11 &      0 &      2 & MaxRest    &      -35.38 &    1.00012e+20 &    0.107407 &      2 &    3.44 \\ \hline
+  POLAK3 &     12 &      0 &     10 & MaxRest    &    -121.261 &    3.16228e+20 & 4.31795e+12 &      3 &   29.33 \\ \hline
+  POLAK4 &      3 &      0 &      3 & MaxRest    &   -0.999983 &        1.41454 &   0.0546864 &     20 &    2.22 \\ \hline
+  POLAK5 &      3 &      0 &      2 & Convergiu  &          50 &    1.41213e-12 & 4.25405e-09 &      2 &    0.00 \\ \hline
+  POLAK6 &      5 &      0 &      4 & Convergiu  &         -44 &    1.47263e-09 & 2.09146e-10 &     52 &    0.00 \\ \hline
+ PORTFL1 &     12 &      1 &      0 & Convergiu  &   0.0204931 &    3.99876e-10 & 7.37892e-07 &      5 &    0.00 \\ \hline
+ PORTFL2 &     12 &      1 &      0 & Convergiu  &   0.0297135 &    3.99998e-10 & 8.71238e-07 &      5 &    0.00 \\ \hline
+ PORTFL3 &     12 &      1 &      0 & Convergiu  &   0.0327506 &    3.99963e-10 & 3.02227e-07 &      6 &    0.00 \\ \hline
+ PORTFL4 &     12 &      1 &      0 & Convergiu  &   0.0263077 &    3.99859e-10 & 1.69608e-07 &      6 &    0.00 \\ \hline
+ PORTFL6 &     12 &      1 &      0 & Convergiu  &   0.0257924 &    3.99945e-10 & 1.89457e-08 &      7 &    0.00 \\ \hline
+PORTSNQP & 100000 &      2 &      0 & Convergiu  &     33332.3 &    8.21258e-16 & 5.50432e-13 &      1 &    0.36 \\ \hline
+ PORTSQP & 100000 &      1 &      0 & Convergiu  &     33333.3 &    3.77559e-12 & 6.25979e-08 &      1 &    0.10 \\ \hline
+POWELL20 &   5000 &      0 &   5000 & Convergiu  & 6.51198e+09 &    2.99945e-07 & 1.82463e-07 &     10 &   24.89 \\ \hline
+POWELLBC &   1000 &      0 &      0 & Convergiu  &      310243 &              0 & 7.87653e-07 &    360 &  100.28 \\ \hline
+POWELLBS &      2 &      2 &      0 & Convergiu  &           0 &    7.83462e-07 &           0 &      1 &    0.00 \\ \hline
+POWELLSG &   5000 &      0 &      0 & Convergiu  &   0.0207813 &              0 & 3.22704e-07 &     11 &    0.04 \\ \hline
+POWELLSQ &      2 &      2 &      0 & Convergiu  &           0 &    5.18332e-08 &           0 &      1 &    0.00 \\ \hline
+   POWER &  10000 &      0 &      0 & Convergiu  & 0.000286233 &              0 &  6.5441e-07 &     28 &    1.43 \\ \hline
+PRIMALC1 &    230 &      0 &      9 & Convergiu  &    -6155.25 &    7.11344e-10 & 4.39984e-07 &    203 &    0.10 \\ \hline
+PRIMALC2 &    231 &      0 &      7 & Convergiu  &    -3519.85 &    5.87239e-11 & 3.60688e-07 &     31 &    0.01 \\ \hline
+PRIMALC5 &    287 &      0 &      8 & Convergiu  &    -426.184 &    1.24055e-07 & 9.47536e-07 &     22 &    0.01 \\ \hline
+PROBPENL &    500 &      0 &      0 & Convergiu  & 3.99198e-07 &              0 & 6.79485e-12 &      3 &    0.00 \\ \hline
+ PRODPL0 &     60 &     20 &      9 & Convergiu  &     63.3643 &    5.76768e-08 & 3.97363e-07 &     20 &    0.06 \\ \hline
+ PRODPL1 &     60 &     20 &      9 & Convergiu  &     35.7398 &    4.43954e-08 & 6.56592e-07 &     26 &    0.01 \\ \hline
+  PSPDOC &      4 &      0 &      0 & Convergiu  &     2.41421 &              0 & 9.49472e-09 &      8 &    0.00 \\ \hline
+      PT &      2 &      0 &    501 & Convergiu  &    0.186912 &     5.9531e-11 & 9.45267e-08 &      4 &    0.15 \\ \hline
+  QPBAND &  50000 &      0 &  25000 & Convergiu  &    -49996.5 &              0 & 8.57868e-09 &      2 &    0.21 \\ \hline
+QPCBLEND &     83 &     43 &     31 & Convergiu  &  -0.0054823 &     2.0349e-12 & 6.54674e-07 &     46 &    0.01 \\ \hline
+QPCBOEI2 &    143 &      4 &    162 & Convergiu  & 8.26069e+06 &    7.16865e-07 & 1.79242e-06 &    107 &    0.32 \\ \hline
+ QPNBAND &  50000 &      0 &  25000 & Convergiu  &     -249985 &              0 & 2.24275e-07 &      2 &    0.20 \\ \hline
+QPNBLEND &     83 &     43 &     31 & Convergiu  & -0.00663249 &    1.76736e-12 & 7.84936e-07 &     47 &    0.02 \\ \hline
+QPNBOEI2 &    143 &      4 &    162 & Convergiu  & 1.38425e+06 &    7.90696e-07 & 1.42748e-07 &     96 &    0.95 \\ \hline
+    QR3D &    610 &    610 &      0 & Convergiu  &           0 &    6.27818e-08 &           0 &      1 &    0.31 \\ \hline
+  QR3DBD &    457 &    610 &      0 & Convergiu  &           0 &    4.38813e-07 &           0 &      1 &    0.31 \\ \hline
+  QR3DLS &    610 &      0 &      0 & Convergiu  & 2.77779e-10 &              0 &  5.1086e-07 &    444 &   22.68 \\ \hline
+ QRTQUAD &   5000 &      0 &      0 & Convergiu  & -2.64855e+11 &              0 & 6.71089e-07 &   2011 &   13.45 \\ \hline
+  QUARTC &   5000 &      0 &      0 & Convergiu  &     1.55456 &              0 & 8.30609e-07 &     26 &    0.23 \\ \hline
+  QUDLIN &   5000 &      0 &      0 & Convergiu  &   -1.25e+09 &              0 & 6.62216e-07 &      8 &    0.02 \\ \hline
+READING3 &   4002 &   2001 &      0 & Convergiu  & -0.00122336 &     3.5738e-08 & 2.95298e-09 &      2 &    0.11 \\ \hline
+  RECIPE &      3 &      3 &      0 & Convergiu  &           0 &    3.72529e-07 &           0 &      1 &    0.00 \\ \hline
+     RES &     20 &     12 &      2 & Convergiu  &           0 &     3.6558e-12 &           0 &      2 &    0.00 \\ \hline
+    RK23 &     17 &     11 &      0 & Convergiu  &   0.0833558 &    7.94618e-07 & 8.10872e-07 &     15 &    0.00 \\ \hline
+ ROSENBR &      2 &      0 &      0 & Convergiu  &  7.1079e-12 &              0 & 2.65952e-07 &     23 &    0.00 \\ \hline
+ROSENMMX &      5 &      0 &      4 & Convergiu  &         -44 &    6.24481e-07 & 2.43282e-08 &     35 &    0.00 \\ \hline
+ RSNBRNE &      2 &      2 &      0 & Convergiu  &           0 &    4.49057e-15 &           0 &      1 &    0.00 \\ \hline
+    S268 &      5 &      0 &      5 & Convergiu  & 6.14818e-10 &    3.28146e-14 & 1.99183e-07 &     11 &    0.00 \\ \hline
+S277-280 &      4 &      0 &      4 & Convergiu  &      5.0762 &     2.6941e-13 & 1.62466e-07 &      7 &    0.00 \\ \hline
+    S308 &      2 &      0 &      0 & Convergiu  &    0.773199 &              0 & 2.03278e-07 &      9 &    0.00 \\ \hline
+S316-322 &      2 &      1 &      0 & Infactível &         800 &              1 &   0.0707107 &      1 &    0.00 \\ \hline
+S365 & - & - & - & Falha & - & - & - & - & - \\ \hline
+S365MOD & - & - & - & Falha & - & - & - & - & - \\ \hline
+    S368 &      8 &      0 &      0 & Convergiu  &       -0.75 &              0 & 8.68398e-07 &     11 &    0.00 \\ \hline
+ SBRYBND &   5000 &      0 &      0 & MaxTempo   &     14518.4 &              0 &    0.239306 &  34239 & 7200.00 \\ \hline
+SCHMVETT &   5000 &      0 &      0 & Convergiu  &      -14994 &              0 & 8.52433e-07 &      3 &    0.14 \\ \hline
+ SCOSINE &   5000 &      0 &      0 & Rhomax     &     546.034 &              0 & 7.46866e+06 &    154 &    5.21 \\ \hline
+SCURLY10 &  10000 &      0 &      0 & MaxTempo   & -1.00316e+06 &              0 &    0.054233 &    414 & 7200.00 \\ \hline
+SCURLY20 &  10000 &      0 &      0 & MaxTempo   & -1.00315e+06 &              0 &   0.0888847 &    387 & 7200.00 \\ \hline
+SCURLY30 &  10000 &      0 &      0 & MaxTempo   & -1.00314e+06 &              0 &    0.285173 &    376 & 7200.00 \\ \hline
+ SENSORS &    100 &      0 &      0 & Convergiu  &    -2095.88 &              0 & 5.42116e-09 &     23 &    1.65 \\ \hline
+  SIMBQP &      2 &      0 &      0 & Convergiu  & 4.95001e-07 &              0 & 9.68909e-10 &      3 &    0.00 \\ \hline
+SIMPLLPA &      2 &      0 &      2 & Convergiu  &           1 &    1.71451e-12 & 1.76026e-08 &     12 &    0.00 \\ \hline
+SIMPLLPB &      2 &      0 &      3 & Convergiu  &         1.1 &    6.43061e-15 & 1.73163e-09 &     13 &    0.00 \\ \hline
+ SINEALI &   1000 &      0 &      0 & Convergiu  &      -99899 &              0 & 3.41573e-08 &     17 &    0.09 \\ \hline
+ SINEVAL &      2 &      0 &      0 & Convergiu  & 1.12684e-28 &              0 & 1.37974e-14 &     49 &    0.00 \\ \hline
+ SINQUAD &   5000 &      0 &      0 & Convergiu  & -6.75701e+06 &              0 & 4.94452e-09 &     14 &    0.17 \\ \hline
+SINROSNB &   1000 &      0 &    999 & Convergiu  &     201.994 &     8.9615e-08 & 4.54611e-08 &     24 &    0.24 \\ \hline
+SINVALNE &      2 &      2 &      0 & Convergiu  &           0 &    2.22045e-15 &           0 &      1 &    0.00 \\ \hline
+  SIPOW1 &      2 &      0 &   2000 & Convergiu  &   -0.173599 &    1.85095e-09 & 1.49443e-07 &      4 &    7.12 \\ \hline
+ SIPOW1M &      2 &      0 &   2000 & Convergiu  &   -0.171628 &    2.20674e-11 & 4.96971e-07 &      3 &    5.31 \\ \hline
+  SIPOW2 &      2 &      0 &   2000 & Convergiu  &   -0.184336 &    4.88522e-10 &  1.5211e-07 &      4 &    7.06 \\ \hline
+ SIPOW2M &      2 &      0 &   2000 & Convergiu  &   -0.181251 &    1.74199e-09 &  1.6479e-07 &      4 &    7.07 \\ \hline
+  SIPOW3 &      4 &      0 &   2000 & Convergiu  &    0.538348 &    1.65402e-10 & 3.61878e-07 &      5 &   10.66 \\ \hline
+  SIPOW4 &      4 &      0 &   2000 & Convergiu  &    0.278965 &    3.87822e-10 &  4.5273e-07 &      4 &    7.16 \\ \hline
+  SISSER &      2 &      0 &      0 & Convergiu  & 1.07131e-08 &              0 & 4.58412e-07 &     13 &    0.00 \\ \hline
+  SMBANK &    117 &     64 &      0 & Rhomax     & -6.93226e+06 &    8.27643e-10 & 0.000193078 &  23879 &    4.40 \\ \hline
+  SMMPSF &    720 &    240 &     23 & Convergiu  & 1.10128e+06 &    1.16615e-08 & 8.12054e-07 &    541 &    0.96 \\ \hline
+   SNAIL &      2 &      0 &      0 & Convergiu  & 1.24766e-17 &              0 & 4.11865e-10 &     79 &    0.03 \\ \hline
+   SNAKE &      2 &      0 &      2 & Convergiu  & -0.000254797 &    9.21267e-07 & 1.86637e-08 &    125 &    0.01 \\ \hline
+  SOSQP1 &   5000 &   2501 &      0 & Convergiu  & 1.30158e-10 &    2.88267e-11 & 1.11214e-13 &      2 &    0.02 \\ \hline
+  SOSQP2 &   5000 &   2501 &      0 & Convergiu  &     -1248.7 &    6.81068e-08 & 3.29225e-07 &     15 &    0.11 \\ \hline
+SPARSINE &   5000 &      0 &      0 & Convergiu  &    0.163011 &              0 & 8.01222e-07 &    109 &   53.51 \\ \hline
+SPARSQUR &  10000 &      0 &      0 & Convergiu  &   0.0504766 &              0 & 5.71475e-07 &     13 &    0.48 \\ \hline
+  SPECAN &      9 &      0 &      0 & Convergiu  &     1721.98 &              0 &  8.3504e-08 &      9 &    0.20 \\ \hline
+    SPIN &   1327 &   1325 &      0 & Convergiu  &           0 &    8.48936e-07 &           0 &      1 &    2.15 \\ \hline
+   SPIN2 &    102 &    100 &      0 & Convergiu  &           0 &    3.83641e-14 &           0 &      1 &    0.02 \\ \hline
+ SPIN2OP &    102 &    100 &      0 & Convergiu  & 1.46138e-18 &    1.99896e-09 &  1.5077e-10 &      6 &    0.11 \\ \hline
+  SPINOP &   1327 &   1325 &      0 & Convergiu  &      8.6359 &    5.18101e-11 &  9.9397e-07 &    261 &  121.98 \\ \hline
+  SPIRAL &      3 &      0 &      2 & Rhomax     &   0.0278004 &    8.53587e-07 &  0.00355405 &    125 &    0.00 \\ \hline
+ SPMSQRT &   4999 &   8329 &      0 & Convergiu  &           0 &    4.31003e-08 &           0 &      1 &    0.07 \\ \hline
+SPMSRTLS &   4999 &      0 &      0 & Convergiu  & 6.19655e-08 &              0 & 9.17113e-08 &     17 &    0.51 \\ \hline
+SREADIN3 &   4002 &   2001 &      0 & Convergiu  &  -0.0302369 &    6.25728e-08 & 1.17632e-07 &      2 &    0.11 \\ \hline
+SROSENBR &   5000 &      0 &      0 & Convergiu  & 8.81182e-05 &              0 & 9.69185e-07 &      7 &    0.02 \\ \hline
+STANCMIN &      3 &      0 &      2 & Convergiu  &        4.25 &    2.60725e-14 & 4.96964e-08 &      4 &    0.00 \\ \hline
+  STCQP1 &   8193 &   4095 &      0 & Convergiu  &      367557 &    4.34171e-08 & 8.64272e-08 &     23 &   41.68 \\ \hline
+  STCQP2 &   8193 &   4095 &      0 & Convergiu  &     37189.3 &     2.3979e-12 & 8.55761e-07 &     12 &    3.66 \\ \hline
+STEENBRA &    432 &    108 &      0 & Convergiu  &     16959.6 &    9.96246e-10 & 6.42498e-08 &     36 &    0.03 \\ \hline
+STEENBRB &    468 &    108 &      0 & Convergiu  &     9476.09 &    4.79488e-08 & 9.75259e-07 &    350 &    0.20 \\ \hline
+STEENBRC &    540 &    126 &      0 & Convergiu  &     32367.9 &    2.39294e-07 & 9.94142e-07 &    853 &    0.47 \\ \hline
+STEENBRD &    468 &    108 &      0 & Convergiu  &     11073.4 &    3.74637e-07 & 9.62409e-07 &    318 &    0.18 \\ \hline
+STEENBRE &    540 &    126 &      0 & Convergiu  &     31255.4 &    6.93913e-07 & 9.90116e-07 &    667 &    0.38 \\ \hline
+STEENBRF &    468 &    108 &      0 & Convergiu  &     9397.39 &    1.46796e-08 & 9.93648e-07 &    321 &    0.18 \\ \hline
+STEENBRG &    540 &    126 &      0 & Convergiu  &     31257.6 &    3.86002e-07 & 9.99358e-07 &    854 &    0.49 \\ \hline
+  STNQP1 &   8193 &   4095 &      0 & Convergiu  &     -311704 &    3.02614e-07 & 1.02396e-07 &     23 &   42.23 \\ \hline
+  STNQP2 &   8193 &   4095 &      0 & Convergiu  &     -564409 &    5.46507e-09 & 4.56999e-07 &    315 &    3.63 \\ \hline
+SUPERSIM &      2 &      2 &      0 & Convergiu  &    0.666667 &              0 & 1.57009e-16 &      1 &    0.00 \\ \hline
+SVANBERG &   5000 &      0 &   5000 & Convergiu  &     8362.16 &    2.07869e-07 & 9.43106e-07 &    451 &   19.13 \\ \hline
+   SWOPF &     83 &     78 &     14 & Convergiu  &   0.0678615 &    3.58315e-14 & 8.54157e-07 &    179 &    0.06 \\ \hline
+SYNTHES1 &      6 &      0 &      6 & Convergiu  &     0.75929 &     5.6135e-07 & 1.39725e-07 &     44 &    0.00 \\ \hline
+SYNTHES2 &     11 &      1 &     13 & Convergiu  &   -0.554337 &    6.38234e-08 & 2.44706e-07 &    103 &    0.01 \\ \hline
+SYNTHES3 &     17 &      2 &     21 & Convergiu  &     15.0822 &    1.16997e-07 & 1.58754e-07 &     52 &    0.01 \\ \hline
+    TAME &      2 &      1 &      0 & Convergiu  &           0 &              0 &           0 &      1 &    0.00 \\ \hline
+TENBARS1 & - & - & - & Falha & - & - & - & - & - \\ \hline
+TENBARS2 & - & - & - & Falha & - & - & - & - & - \\ \hline
+TENBARS3 &     18 &      8 &      0 & MaxRest    &     19.0302 &        3318.18 & 1.48893e-13 &      2 &    4.63 \\ \hline
+TENBARS4 &     18 &      8 &      1 & Convergiu  &     368.493 &    6.34286e-07 & 6.22576e-08 &     83 &    0.02 \\ \hline
+TESTQUAD &   5000 &      0 &      0 & Convergiu  & 4.99982e-05 &              0 & 7.57265e-08 &      4 &    0.47 \\ \hline
+    TFI1 &      3 &      0 &    101 & Convergiu  &     5.33471 &    5.20456e-12 & 8.01136e-07 &     37 &    0.04 \\ \hline
+    TFI2 &      3 &      0 &    101 & Convergiu  &    0.921936 &    2.28917e-10 & 9.24903e-07 &      5 &    0.00 \\ \hline
+    TFI3 &      3 &      0 &    101 & Convergiu  &     4.32284 &    4.39852e-12 & 6.68138e-08 &     14 &    0.01 \\ \hline
+TOINTGOR &     50 &      0 &      0 & Convergiu  &     1373.91 &              0 & 6.48553e-07 &      6 &    0.00 \\ \hline
+TOINTGSS &   5000 &      0 &      0 & Convergiu  &          10 &              0 & 5.85612e-08 &      3 &    0.02 \\ \hline
+TOINTPSP &     50 &      0 &      0 & Convergiu  &      225.56 &              0 &  6.2736e-08 &     38 &    0.00 \\ \hline
+TOINTQOR &     50 &      0 &      0 & Convergiu  &     1175.47 &              0 & 5.09303e-08 &      3 &    0.00 \\ \hline
+TQUARTIC &   5000 &      0 &      0 & Convergiu  & 1.90889e-22 &              0 & 2.17105e-09 &      2 &    0.01 \\ \hline
+  TRIDIA &   5000 &      0 &      0 & Convergiu  &   5.417e-05 &              0 & 4.05522e-07 &      3 &    0.29 \\ \hline
+TRIMLOSS &    142 &     20 &     55 & Convergiu  &     9.23745 &    6.83602e-12 & 7.84091e-07 &     26 &    0.03 \\ \hline
+ TRO11X3 &    150 &     60 &      1 & Rhomax     &     1273.05 &    3.64545e-07 & 0.000534448 &  14894 &   19.60 \\ \hline
+ TRO21X5 &    540 &    200 &      1 & Rhomax     &     1916.25 &    1.09347e-07 & 0.000101918 &  32382 &  177.21 \\ \hline
+  TRO3X3 &     30 &     12 &      1 & Rhomax     &     9.00005 &    7.18429e-07 & 5.46158e-05 &    689 &    0.17 \\ \hline
+  TRO4X4 &     63 &     24 &      1 & Convergiu  &     9.00034 &    7.03518e-07 & 8.74492e-07 &    126 &    0.09 \\ \hline
+  TRO5X5 &    108 &     40 &      1 & Convergiu  &     9.00087 &    1.14582e-10 & 8.16772e-07 &    361 &    0.44 \\ \hline
+  TRO6X2 &     45 &     20 &      1 & Convergiu  &        1225 &    1.57262e-07 & 8.35324e-08 &    139 &    0.06 \\ \hline
+TRUSPYR1 &     11 &      3 &      1 & Convergiu  &     11.2287 &    9.16565e-08 & 3.05471e-08 &     19 &    0.00 \\ \hline
+TRUSPYR2 &     11 &      3 &      8 & Convergiu  &     11.2288 &    5.77083e-07 & 3.07166e-07 &     56 &    0.00 \\ \hline
+   TRY-B &      2 &      1 &      0 & Convergiu  & 2.31641e-15 &    2.90209e-11 & 1.18837e-09 &      4 &    0.00 \\ \hline
+TWIRIMD1 &   1247 &    521 &    191 & Convergiu  &   -0.898845 &    3.06019e-08 & 4.36131e-07 &     35 &    1.13 \\ \hline
+TWIRISM1 &    343 &    224 &     89 & Convergiu  &     99.0063 &    2.41251e-11 & 8.67033e-07 &     45 &    0.62 \\ \hline
+ TWOBARS &      2 &      0 &      2 & Convergiu  &     1.50865 &    1.11778e-10 &   4.915e-07 &     13 &    0.00 \\ \hline
+VANDERM1 &    100 &    100 &     99 & Convergiu  &           0 &     6.8735e-07 &  1.3028e-10 &     37 &    0.77 \\ \hline
+VANDERM2 &    100 &    100 &     99 & Convergiu  &           0 &     6.8735e-07 &  1.3028e-10 &     37 &    0.78 \\ \hline
+VANDERM3 &    100 &    100 &     99 & Convergiu  &           0 &    4.06109e-07 & 1.58171e-10 &     41 &    0.88 \\ \hline
+VANDERM4 &    100 &    100 &     99 & MaxRest    &           0 &    8.55666e+20 &    0.063335 &      1 & 2108.94 \\ \hline
+  VARDIM &    200 &      0 &      0 & Convergiu  & 8.46509e-17 &              0 & 3.01617e-11 &     29 &    0.00 \\ \hline
+VAREIGVL &     50 &      0 &      0 & Convergiu  & 1.12739e-12 &              0 & 9.40035e-08 &     14 &    0.01 \\ \hline
+VIBRBEAM &      8 &      0 &      0 & Convergiu  &    0.162871 &              0 & 7.28711e-08 &     42 &    0.02 \\ \hline
+WACHBIEG &      3 &      2 &      0 & Convergiu  &           1 &    5.40012e-13 & 1.84452e-07 &      3 &    0.00 \\ \hline
+   WATER &     31 &     10 &      0 & Convergiu  &     10549.4 &     8.7964e-09 &  2.3238e-07 &     37 &    0.00 \\ \hline
+  WATSON &     12 &      0 &      0 & Convergiu  & 8.51252e-06 &              0 & 4.55368e-07 &     19 &    0.00 \\ \hline
+   WEEDS &      3 &      0 &      0 & Convergiu  &     2639.27 &              0 & 9.77325e-07 &   1287 &    0.01 \\ \hline
+ WOMFLET &      3 &      0 &      3 & Convergiu  & 1.08278e-06 &    1.88657e-13 & 1.02625e-07 &     32 &    0.00 \\ \hline
+   WOODS &   4000 &      0 &      0 & Convergiu  & 0.000150655 &              0 & 5.21022e-07 &     51 &    0.20 \\ \hline
+ WOODSNE &   4000 &   3001 &      0 & Infactível &    -8925.25 &        28.8625 &  7.1477e-06 &      2 &    0.02 \\ \hline
+    YFIT &      3 &      0 &      0 & Convergiu  & 2.67087e-11 &              0 & 1.77232e-09 &     38 &    0.00 \\ \hline
+  YFITNE &      3 &     17 &      0 & Convergiu  &           0 &    9.05869e-07 &           0 &      1 &    0.01 \\ \hline
+   YFITU &      3 &      0 &      0 & Convergiu  &   0.0253216 &              0 &  6.5624e-07 &     42 &    0.00 \\ \hline
+ YORKNET &    312 &    256 &      0 & Rhomax     &     14391.6 &    6.04548e-07 & 3.34929e-06 &     70 &    0.20 \\ \hline
+ZANGWIL2 &      2 &      0 &      0 & Convergiu  &       -18.2 &              0 &           0 &      2 &    0.00 \\ \hline
+ZANGWIL3 &      3 &      3 &      0 & Convergiu  &           0 &              0 &           0 &      1 &    0.00 \\ \hline
+ZECEVIC2 &      2 &      0 &      2 & Convergiu  &      -4.125 &     7.6596e-14 & 7.33912e-07 &      4 &    0.00 \\ \hline
+ZECEVIC3 &      2 &      0 &      2 & Convergiu  &     97.3095 &    2.94106e-09 & 1.23398e-10 &     33 &    0.00 \\ \hline
+ZECEVIC4 &      2 &      0 &      2 & Convergiu  &     7.55751 &    1.34663e-08 & 2.10017e-07 &     12 &    0.00 \\ \hline
+     ZY2 &      3 &      0 &      2 & Convergiu  &      5.6151 &    1.47663e-07 & 2.33819e-07 &    181 &    0.00 \\ \hline
+\caption{Tabela de Resultados do DCICPP aplicado aos problemas do CUTEr}
+\end{longtable}
+\end{center}

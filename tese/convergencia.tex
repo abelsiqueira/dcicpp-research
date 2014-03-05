@@ -1,0 +1,19 @@
+\chapter{Convergência}\label{chap:teoria}
+
+Apresentaremos agora os resultados de convergência do método. Inicialmente
+mostraremos que, com condições pouco restritivas, a sequência gerada pelo método
+converge para um ponto estacionário. A seguir, mostraremos que, numa vizinhança
+do ponto estacionário, se este for um minimizador sob condições satisfatórias, o
+método converge superlinearmente em dois passos. Não obstante, mostraremos ainda
+que o método converge para pontos estacionários do problema de infactibilidade, de
+modo que, se o problema for infactível, não ficará iterando infinitamente.
+Foi possível aproveitar todas as propriedades de convergência do método
+original \cite{bib:chico-dci}, sendo necessário apenas alguns ajustes para o caso geral com
+desigualdades. Para a convergência global, precisamos apenas de algumas
+modificações para incluir o parâmetro de barreira. Para a convergência local,
+precisamos modificar um pouco os teoremas para tratar apenas das restrições
+ativas na solução. 
+
+\input{convergencia-global}
+\input{convergencia-local}
+\input{convergencia-infactivel}

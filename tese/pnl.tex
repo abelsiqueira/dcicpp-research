@@ -1,0 +1,368 @@
+\chapter{Conceitos e Métodos de Programação Não Linear}
+\visiblelbl{chap:pnl}
+
+Neste capítulo vamos apresentar alguns conceitos básicos de programação não
+linear e analisar alguns métodos tradicionais para o problema geral de
+otimização não linear.
+
+\section{Condições de Otimalidade}
+
+Na maior parte deste trabalho, iremos considerar o problema de programação não
+linear na forma
+\begin{equation}\visiblelbl{prob:geral}
+ \begin{array}{rl}
+  \min & f(x) \\
+   \mbox{suj. a} & c_E(x) =  0, \\
+               & c_I(x) \geq 0,
+ \end{array}
+\end{equation}
+com $f:\Rn{n}\to\R$, $c_E:\Rn{n}\to\Rn{m_E}$, $c_I:\Rn{n}\to\Rn{m_I}$
+continuamente diferenciáveis até segunda ordem. Definimos $m = m_E+m_I$ e a
+função $c:\Rn{n}\to\Rn{m}$, $$ c(x) = \vetor{c_E(x)}{c_I(x)}. $$
+A função Lagrangeana para este problema é
+\begin{equation}
+  \mathcal{L}(x,\lambda) = f(x) + c_E(x)^T\lambda_E + c_I(x)^T\lambda_I = f(x)
+    + c(x)^T\lambda,
+  \visiblelbl{def:lagrgeral}
+\end{equation}
+onde $\lambda \in\Rn{m}$ são ditos multiplicadores de Lagrange.
+O problema de otimização não linear contínua consiste em encontrar um
+minimizador local do problema \eqref{prob:geral}, isto é, um ponto $x^*$ tal que
+$f(x^*) \leq f(x)$ para todo $x$ numa vizinhança factível de $x^*$.
+\begin{definition}[Regularidade]
+  Um ponto viável $x$ é dito regular se os gradientes das restrições ativas em $x$ são
+  linearmente independentes, isto é, se o conjunto $\{\nabla c_i(x): c_i(x) =
+  0\}$ é linearmente independente.
+\end{definition}
+Sob a condição de regularidade, podemos mostrar que um minimizador local do
+problema dado deve satisfazer as condições abaixo.
+\begin{theorem}[KKT]\visiblelbl{teo:kkt}
+  Se $x^*$ é um minimizador local do problema \eqref{prob:geral}, então existe
+  $\lambda^* \in \Rn{m}$, separado em $\lambda_E^*$ e $\lambda_I^*$, de acordo
+  com as igualdades e desigualdades, tal que
+  \begin{subequations}\visiblelbl{kkt}
+  \begin{align}
+    \nabla_x \mathcal{L}(x^*,\lambda^*) = 
+    \nabla f(x^*) + \nabla c(x^*)^T\lambda^* & = 0,
+      \visiblelbl{kkt.dual} \\
+    c_E(x^*) & = 0,
+      \visiblelbl{kkt.primaleq} \\
+    c_I(x^*) & \geq 0,
+      \visiblelbl{kkt.primalineq} \\
+    c_{I_i}(x^*)\lambda_{I_i}^* & = 0, \qquad i = 1,\dots,m_I,
+      \visiblelbl{kkt.complementarity} \\
+    \lambda_I^* & \leq 0.
+      \visiblelbl{kkt.negative} 
+  \end{align}
+  \end{subequations}
+  As condições acima são ditas condições de KKT. 
+\end{theorem}
+A condição \eqref{kkt.dual} é dita factibilidade dual. As condições
+\eqref{kkt.primaleq} e \eqref{kkt.primalineq} são ditas factibilidade primal. A
+condição \eqref{kkt.complementarity} é dita complementaridade e
+\eqref{kkt.negative} é uma condição sobre o sinal dos multiplicadores de
+desigualdade.
+
+Vários métodos e estratégias foram criados para tentar resolver o problema
+\eqref{prob:geral}.
+Apresentaremos agora alguns dos métodos mais tradicionais ou conhecidos, e
+vamos ainda comentar sobre estratégias de globalização. Alguns dos métodos
+citados resultaram em pacotes computacionais. Quando for possível, iremos
+mencionar quais são esses pacotes.
+
+\section{Métodos de Penalização}
+
+Os métodos de penalização definem uma função de medida para infactibilidade, e
+procuram resolver o problema irrestrito proveniente da combinação linear da
+função objetivo e da penalização.  
+Por exemplo, para o problema \eqref{prob:geral}, definimos a função de
+penalidade quadrática como
+$$ P(x) = \frac{1}{2}\sum_{i=1}^{m_E}c_{E_i}(x)^2 +
+\frac{1}{2}\sum_{i=1}^{m_I}\min\{0,c_{I_i}(x)\}^2.$$
+Com essa função, definimos o problema irrestrito
+\begin{equation*}
+  \min \varphi(x,\rho) = f(x) + \rho P(x),
+\end{equation*}
+onde $\rho$ é um parâmetro real positivo.
+Os métodos de penalização tentam minimizar essa função irrestrita, e aumentar
+$\rho$ sucessivamente até obter um ponto factível. 
+Pode-se mostrar que, dada uma sequência crescente $\{\rho^k\}$ tendendo ao
+infinito, e definindo como $x^k$ o minimizador global da função
+$\varphi(x,\rho^k)$, a sequência $\{x^k\}$ converge para $x^*$,
+minimizador global do problema \eqref{prob:geral}.
+Dentre os métodos de penalização, talvez o mais famoso seja o Lagrageano
+Aumentado \cite{bib:lagraum}, que define a função de Penalidade como 
+\begin{equation*}
+  P(x,\lambda) = \frac{1}{2} \sum_{i=1}^{m_E}\bigg[
+  c_{E_i}(x)+\frac{\lambda_{E_i}}{\rho}\bigg]^2 +
+  \frac{1}{2}\sum_{i=1}^{m_I}\bigg[\min\bigg(0, c_{I_i}(x) +
+  \frac{\lambda_{I_i}}{\rho}\bigg)\bigg]^2
+\end{equation*}
+utilizando o parâmetro $\lambda$, com $\lambda_I\leq 0$, dito multiplicador.
+Esse multiplicador é atualizado, usualmente tomando
+$$ \lambda_{E_i}^{k+1} = P_{\lambda}(\lambda_{E_i}^k + \rho^k c_{E_i}(x^k)), \qquad 
+\lambda_{I_i}^{k+1} = P_{\mu}(\min\{0, \lambda_{I_i}^k + \rho^k c_{I_i}(x^k)\}), $$
+onde $P_\lambda$ e $P_\mu$ são as projetores nos intervalos
+$[\lambda_\min,\lambda_\max]$ e $[\mu_\min,\mu_\max]$, respectivamente.
+Sob certas condições, esses multiplicadores convergem para os Multiplicadores de
+Langrange.
+Esse método, com uma penalidade deslocada, tem propriedades de convergência
+melhores que a penalidade anterior, dita penalidade pura. Algumas implementações
+notáveis incluem o pacote LANCELOT, de \citet{bib:lancelot}, e o ALGENCAN, de
+\citet{bib:algencan1, bib:algencan2}.
+
+\section{Programação Quadrática Sequencial}
+
+Consideremos o problema com restrições de igualdade
+\begin{equation*}
+ \begin{array}{rl}
+  \min & f(x) \\
+   \mbox{suj. a} & c_E(x) =  0.
+ \end{array}
+\end{equation*}
+Uma estratégia para resolver esse problema consiste em fazer aproximações
+quadráticas sucessivas da função Lagrangeana, nesse caso definida como
+$$ \mathcal{L}(x,\lambda) = f(x) + c_E(x)^T\lambda_E. $$
+Uma interpretação para as aproximações quadráticas é a aplicação do Método de
+Newton para o sistema não linear
+$$ F(x,\lambda) = \nabla\mathcal{L}(x,\lambda) = \vetor{\nabla f(x) + \nabla
+c_E(x)^T\lambda}{c_E(x)} = \vetor{0}{0}. $$
+A Jacobiana de $F$ é
+$$ F'(x,\lambda) = \matriz{\nabla_{xx}^2\mathcal{L}(x,\lambda)} {\nabla
+c_E(x)^T} {\nabla c_E(x)} {0}. $$
+O Método de Newton a partir do iterando $(x^k,\lambda^k)$ será
+$$ \vetor{x^{k+1}}{\lambda^{k+1}} = \vetor{x^k}{\lambda^k} +
+\vetor{p_x}{p_{\lambda}}, $$
+onde $p_x$ e $p_\lambda$ satisfazem o sistema
+$$ \matriz{\nabla_{xx}^2 \mathcal{L}(x^k,\lambda^k)} {\nabla c_E(x^k)^T} {\nabla
+c_E(x^k)} {0} \vetor{p_x}{p_\lambda} = \vetor{-\nabla f(x^k) - \nabla
+c_E(x^k)^T\lambda^k}{-c_E(x^k)}.$$
+Este sistema está relacionado ao problema
+\begin{align*}
+  \min_p \qquad & \meio p^T\nabla_{xx}^T\mathcal{L}(x^k,\lambda^k) p + \nabla f(x^k)^Tp +
+  f(x^k) \\
+  \mbox{suj. a} \qquad & \nabla c_E(x^k)p + c_E(x^k) = 0,
+\end{align*}
+que é a minimização da aproximação quadrática da função $\mathcal{L}(x^k+p_x,\lambda_k)$
+com a aproximação linear da restrição $c_E(x^k + p_x) = 0$.
+Nesse desenvolvimento, normalmente introduzimos uma região de confiança, de modo
+que o problema é reescrito como
+\begin{equation}\visiblelbl{prob:sqp}
+  \begin{array}{rl}
+  \min_p \qquad & \meio p^T\nabla_{xx}^T\mathcal{L}(x^k,\lambda^k) p + 
+    \nabla \mathcal{L}(x^k,\lambda_k)^Tp + f(x^k) \\
+  \mbox{suj. a} \qquad & \nabla c_E(x^k)p + c_E(x^k) = 0, \\
+                    & \norma{p} \leq \Delta.
+  \end{array}
+\end{equation}
+Infelizmente, nem sempre podemos garantir que esse subproblema é factível. Uma
+alternativa usada frequentemente
+\cite{bib:lalee-implementation, bib:byrd-trust-region, bib:byrd-interior-point,
+bib:dennis-convergence-theory, bib:el-alem-1997, bib:el-alem-1999,
+bib:chico-nonlinear-programming, bib:chico-gmm99, bib:chico-dci,
+bib:curtis-matrix-free, bib:wachter-interior-point}
+é a divisão desse passo em dois, normalmente ditos tangente e normal.
+O passo tangente normalmente envolve a substituição da restrição do problema
+\eqref{prob:sqp} por alguma restrição com garantia de factibilidade.
+Uma ideia é calcular passos no espaço tangente dado pela Jacobiana no iterando
+atual, representado pelo problema
+\begin{align*}
+  \min_p \qquad & \meio p^T\nabla_{xx}^T\mathcal{L}(x^k,\lambda^k) p + 
+    \nabla \mathcal{L}(x^k,\lambda_k)^Tp + f(x^k) \\
+  \mbox{suj. a} \qquad & \nabla c_E(x^k)d = 0, \\
+                    & \norma{d} \leq \Delta.
+\end{align*}
+A partir desse passo, fazemos um passo normal que procura diminuir o valor da 
+medida de infactibilidade $\norma{c_E(x)}^2$. 
+Outra estratégia é obter primeiro um passo normal, minimizando aproximadamente 
+$\norma{c_E(x^k+d)}$, obtendo um passo $d_N$. Daí, tentamos resolver o problema
+\begin{align*}
+  \min_p \qquad & \meio p^T\nabla_{xx}^T\mathcal{L}(x^k,\lambda^k) p + 
+    \nabla \mathcal{L}(x^k,\lambda_k)^Tp + f(x^k) \\
+  \mbox{suj. a} \qquad & \nabla c_E(x^k)d = \nabla c_E(x^k)d_N, \\
+                    & \norma{d} \leq \Delta.
+\end{align*}
+Algumas implementações conhecidas são SNOPT, de \citet{bib:snopt}, FILTERSQP,
+de \citet{bib:filtersqp}, e o GMM, de
+\citet{bib:chico-nonlinear-programming, bib:chico-gmm99}.
+
+\section{Métodos de Restrições Ativas}
+
+A estratégia de Restrições Ativas consiste em separar, a cada iteração, as
+restrições que devem ser tratadas como ativas.
+Feito isso, o método considera apenas as restrições ativas para
+determinar uma direção. 
+A ideia provém das condições KKT \eqref{kkt}, que podem ser reescritas como
+\begin{align}
+  \nabla f(x^*) + \sum_{i\in A}\nabla c_i(x^*)^T\lambda_i^* & = 0, \\
+  c_i(x^*) & = 0, \qquad i \in A, \\
+  c_i(x^*) & > 0, \qquad i \not\in A, \\
+  \lambda_i^* & \leq 0, \qquad i \in A\backslash E, \\
+  \lambda_i^* & = 0, \qquad i \not\in A,
+\end{align}
+onde $A = \{i : c_i(x^*) = 0\} = E\cup\{I_i: c_{I_i} = 0\}$ é o conjunto dos
+índices das restrições ativas na solução. Se o conjunto $A$ fosse conhecido a
+priori, poderíamos resolver o problema de igualdade
+$$ \min f(x) \qquad \mbox{suj. a} \qquad c_i(x) = 0, \qquad i\in A,$$
+e a partir da solução deste, obter o valor das outras restrições e dos
+multiplicadores adicionais. Se os sinais estiverem corretos, a solução obtida
+corresponde à solução do problema original.
+
+A ideia do método consiste então de chutar um conjunto de restrições ativas $A$, e
+procurar pela solução do problema com restrições de igualdade correspondente.
+Durante o processo, que inicia de um ponto factível, as direções são feitas de
+modo a não violar a factibilidade. Caso uma outra restrição seja encontrada no
+caminho, ela é incorporada ao conjunto de restrições ativas. Ao encontrar uma
+solução, se o sinal dos multiplicadores não estiver correto, o conjunto de
+restrições ativas é atualizado retirando a restrição correspondente.
+
+Esse método é muito utilizado para problemas com restrições lineares, devido à
+facilidade de se movimentar na superfície gerada pelas restrições ativas. Para
+aplicar o método a restrições não lineares, é necessário projetar o passo na
+superfície ativa, além de se obter decréscimo suficiente da função objetivo.
+
+\section{Métodos de Pontos Interiores}
+
+Para a estratégia de Pontos Interiores, vamos considerar o problema
+\eqref{prob:geral} no formato
+\begin{equation*}
+ \begin{array}{rl}
+  \min & f(x) \\
+   \mbox{suj. a} & 
+   \begin{array}{rl}
+     c_E(x) & =  0, \\
+     c_I(x) - s & = 0, \\ 
+     s & \geq 0.
+   \end{array}
+ \end{array}
+\end{equation*}
+Daqui, definimos o problema de barreira
+\begin{equation*}
+ \begin{array}{rl}
+   \min & f(x) - \mu \displaystyle\sum_{i=1}^{m_I}\ln s_i \\
+   \mbox{suj. a} & 
+   \begin{array}{rl}
+     c_E(x) & =  0, \\
+     c_I(x) - s & = 0, \\ 
+   \end{array}
+ \end{array}
+\end{equation*}
+onde $\mu > 0$. A condição $s > 0$ fica embutida na função objetivo desse novo
+problema. A estratégia de Pontos Interiores consiste em resolver esse problema
+aproximadamente, e reduzir gradativamente o parâmetro $\mu$. Espera-se que a
+solução quando $\mu\to0$ convirja para a solução do problema original.
+Classicamente, o método de Newton é aplicado ao sistema KKT desse subproblema, e
+$\mu$ é reduzido seguindo algum esquema de atualização. 
+Outra maneira de resolver esse problema é utilizar técnicas de Programação Quadrática
+Sequencial ou até mesmo a combinação de penalização para as restrições de
+igualdade. Nessa linha destacam-se os trabalhos
+\citet{bib:wright-interior, bib:wachter-interior-point, bib:byrd-interior-point,
+bib:byrd-trust-region,  bib:ipopt}.
+Os pacotes LOQO, de \citet{bib:loqo1,bib:loqo2} e o
+IPOPT, de \citet{bib:ipopt, bib:wachter-thesis, bib:wachter-interior-point}, são
+algumas implementações tradicionais.
+
+Nosso método utilizará as estratégias de pontos interiores e programação
+quadrática sequencial, fazendo a separação dos passos tangente e normal.
+
+\section{Convergência Global}
+
+Os algoritmos de Programação Não Linear precisam de algum controle das
+iterações para garantir que o método tenha convergência global, isto é, que gere
+uma sequência convergente a um ponto estacionário, ou ao menos com pontos de
+acumulação estacionário, partindo de um ponto inicial qualquer.
+Existem várias maneiras de se obter convergência global, sendo a maioria
+delas alguma extensão ou modificação do uso de busca linear, regiões de
+confiança, funções de mérito e filtro. Recomendamos a leitura de
+\cite{bib:book-luenberger, bib:book-nocedal, bib:book-conn-trust} para um
+aprofundamento nas técnicas. Aqui apresentaremos apenas a ideia básica dessas
+estratégias.
+
+Uma maneira de avaliar o progresso do algoritmo é o uso de funções de mérito.
+Uma função de mérito é uma função que serve de medida para o progresso do
+algoritmo, levando em conta o valor da função objetivo e a infactibilidade do
+ponto atual. De um modo geral, podemos escrever uma função de mérito como
+$$ \phi(x;\mu) = f(x) + \mu P(x). $$
+As escolhas para a função $P$ são, tradicionalmente, as mesmas que as escolhas
+para penalização.
+Dado um iterando $x^k$ e uma direção de descida $d^k$, fazemos uma busca linear
+para encontrar um comprimento de passo $\alpha_k$ tal que $x^{k+1} = x^k +
+\alpha_k d^k$
+resulta em um decréscimo suficiente para a função.
+Uma maneira de fazer essa busca é o chamado \emph{backtracking}, em que se começa
+com $\alpha_k = 1$ e reduz-se $\alpha_k$ gradativamente até que alguma
+condição de decréscimo é satisfeita.
+Uma das condições mais conhecidas é a Condição de Armijo, onde $\alpha_k$ deve
+ser tal que
+$$ \phi(x^k + \alpha_kd^k;\mu) \leq \phi(x^k;\mu) +
+\eta\alpha_k D\phi(x^k;\mu;d^k), $$
+onde $\eta\in(0,1)$ e $D\phi(x;\mu;d)$ é a derivada direcional no ponto $x$, na
+direção $d$. 
+
+Outra maneira de escolher os passos é a utilização de filtros, uma ideia baseada
+em otimização multiobjetivo. Nessa estratégia, também definimos uma função de
+medida de infactibilidade, denominada por $P$, e consideramos o problema
+\begin{equation}
+  \min_x f(x) \qquad \mbox{e} \qquad \min_x P(x). \nonumber
+\end{equation}
+Esses objetivos são considerados separadamente, e nos interessam os pontos que
+conseguem obter alguma melhora em ao menos um dos dois objetivos.
+Para cada ponto $x$, definimos um par $(f, P)$, com $f = f(x)$ e $P = P(x)$.
+Dizemos que um par $(f_a,P_a)$ domina $(f_b,P_b)$ se $f_a \leq f_b$,
+$P_a \leq P_b$, e ao menos uma das desigualdades é estrita.
+
+A estratégia de filtro consiste em manter um conjunto de pontos $\mathcal{F}$,
+onde nenhum dos pontos domina outro. Os iterandos são aceitos pela estratégia se
+o ponto obtido não é dominado por nenhum dos outros. Nesse caso, ele é
+adicionado ao conjunto, e os pontos que ele domina são retirados.
+Na prática, é comum utilizar algum decréscimo suficiente para a dominância
+também, para evitar que os passos sejam muito pequenos.
+A Figura \ref{fig:filtro} representa um possível filtro. Os trabalhos
+de \citet*{bib:gonzaga-filter}, \citet*{bib:ribeiro-filter},
+\citet*{bib:karas-filter}, e \citet*{bib:pericaro-filter} apresentam métodos com
+filtros.
+\begin{figure}[!ht]
+  \centering
+  \begin{tikzpicture}[scale=2.5]
+    \draw[->] (-0.2,0) -- (3.2,0) node[right] {$f$};
+    \draw[->] (0,-0.2) -- (0,3.2) node[above] {$P$};
+    \clip (-0.3,-0.3) rectangle (3.3,3.3);
+    \draw[fill] (0.3,2.6) circle (0.02) node[below] {$(f_1,P_1)$};
+    \draw[fill] (1,1.2) circle (0.02) node[below] {$(f_0,P_0)$};
+    \draw[fill] (2.3,0.7) circle (0.02) node[below] {$(f_2,P_2)$};
+    \draw[gray] (0.3,4) -- (0.3,2.6) -- (4,2.6);
+    \draw[gray] (1,4) -- (1,1.2) -- (4,1.2);
+    \draw[gray] (2.3,4) -- (2.3,0.7) -- (4,0.7);
+    \draw[gray,pattern=north west lines, pattern color=gray] (0.3,4) -- (0.3,2.6) --
+      (1,2.6) -- (1,1.2) -- (2.3,1.2) -- (2.3,0.7) -- (4,0.7) -- (4,4);
+  \end{tikzpicture}
+  \caption{Pontos que compõem o filtro. A área hachurada representa a região dos
+    pontos dominados}
+  \visiblelbl{fig:filtro}
+\end{figure}
+
+Outra estratégia é a utilização de regiões de confiança, na qual escolhemos um raio
+$\Delta$, e definimos a região $\mathcal{B}_k=\{x:\norma{x-x^k}\leq\Delta\}$, de
+modo que a direção de descida $d^k$ satisfaça $x^k+d^k\in\mathcal{B}_k$,
+isto é, que $\norma{d^k}\leq\Delta$. 
+Em geral, o passo é obtido a partir de um modelo de $\varphi$ em torno de $x^k$,
+denotado por $q$. Esse passo é aceito se o decréscimo real da função, em
+comparação com o decréscimo previsto pelo modelo, for suficientemente pequeno.
+Definimos o decréscimo previsto, Pred, como
+$$ \mbox{Pred}(d) = q(0) - q(d), $$
+e o decréscimo real, Ared, como
+$$ \mbox{Ared}(d) = \phi(x^k;\mu) - \phi(x^k+d;\mu). $$
+Em seguida, definimos a razão
+$$ \rho^k = \frac{\mbox{Ared}(d^k)}{\mbox{Pred}(d^k)}, $$
+e aceitamos ou rejeitamos o passo $d^k$ de acordo com o valor de $\rho^k$.
+Por exemplo, se $\rho^k < \frac{1}{4}$, rejeitamos o passo $d^k$, reduzimos
+$\Delta$, e calculamos um novo passo. Senão, aceitamos o passo. Se, além disso,
+$\rho^k > \frac{3}{4}$, então aumentamos o raio da região de confiança $\Delta$.
+
+O algoritmo apresentado por \citet{bib:chico-dci} define uma nova maneira de se
+obter convergência global, chamada de Cilindros de Confiança, que utilizamos
+nesta extensão do método.
+Com esses cilindros, conseguimos limitar a distância entre os iterandos e o
+conjunto factível, e permitir longos passos tangentes.
+Os detalhes dessa estratégia serão apresentados no capítulo seguinte.
+

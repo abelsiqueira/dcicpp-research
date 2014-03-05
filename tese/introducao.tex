@@ -1,0 +1,55 @@
+\chapter{Introdução}
+
+Vários problemas práticos podem ser formulados como problemas de otimização não
+linear. Das várias áreas de engenharia às teorias físicas, muitos problemas
+requerem a obtenção de um minimizador ou maximizador. 
+Em muitos casos, é possível considerar propriedades específicas do problema e
+reduzir a complexidade do modelo, obtendo um problema de otimização com
+características especiais, como são os problemas de programação linear, inteira,
+quadrática; os problemas de quadrados mínimos, lineares e não lineares; os
+problemas convexos, irrestritos; e assim por diante.
+No entanto, quando não podemos fazer essa simplificação, é necessário enfrentar
+o problema de otimização não linear geral diretamente. Nesta tese, iremos
+apresentar um novo método para a solução desse problema.
+Nosso método é uma extensão do Método de Controle Dinâmico da
+Infactibilidade \cite{bib:chico-dci}, originalmente desenvolvido para o problema
+com restrições apenas de igualdade.
+O método CDI (do inglês ``Dynamic Control of Infeasibility'') obtém seus
+iterandos através de passos normais e tangentes, utilizando aproximações
+quadráticas, e técnicas de pontos interiores.
+Nossa estratégia de globalização é baseada no que chamamos de \emph{cilindros de
+confiança}, que são regiões ao redor do conjunto factível, com raio proporcional
+à norma do gradiente projetado.
+Esses cilindros limitam a infactibilidade dos iterandos. 
+A cada iteração definimos um cilindro pequeno de raio $\rho$ e um cilindro
+grande de raio $2\rho$.
+Definimos o passo tangente de modo a diminuir o valor da norma do gradiente
+projetado, limitando o iterando ao cilindro grande. Prosseguimos então com um ou
+mais passos normais, até que o iterando fique dentro do cilindro pequeno. 
+
+Foi preciso decidir como lidar com as desigualdades do problema com cuidado. A
+maneira mais direta, considerando o cilindro como uma penalidade das restrições,
+não herdava as propriedades do método. 
+Escolhemos a estratégia de pontos interiores, e ela se mostrou muito eficaz. A
+convergência global do método não teve muitas modificações em relação ao
+original com essa estratégia. Para a convergência local, foi preciso considerar
+apenas as restrições ativas na solução. Isso gerou algumas mudanças nas
+hipóteses e nos teoremas, mas conseguimos obter os mesmos resultados que o
+método original.
+Uma grande parte deste trabalho foi a implementação do método.
+Sempre trabalhamos para suplantar o método original na robustez e na eficiência.
+Implementamos nossas estruturas de dados e interfaces tentando aproveitar ao
+máximo as ferramentas utilizadas.
+
+Iniciaremos este trabalho com uma revisão do problema de programação não linear,
+e de estratégias clássicas no Capítulo \ref{chap:pnl}.
+Os detalhes dos
+passos tangentes e normais serão mostrados no Capítulo \ref{chap:metodo}, assim
+como o pseudo-código para o algoritmo. A teoria de convergência global é
+mostrada na seção \ref{sec:conv-global}, e a de convergência local está na seção
+\ref{sec:conv-local}. Também vamos falar sobre o comportamento do algoritmo
+com problemas infactíveis na Seção \ref{sec:conv-infactivel}. No Capítulo
+\ref{chap:implementacao} são mostrados
+detalhes da implementação do algoritmo, no Capítulo \ref{chap:resultados}
+mostramos os resultados computacionais obtidos com essa implementação, e no
+Capítulo \ref{chap:conclusoes} apresentamos nossas considerações finais.

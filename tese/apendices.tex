@@ -1,0 +1,139 @@
+\chapter{Demonstrações extras}
+
+\section{Teoremas envolvendo o posto}
+
+\begin{theorem}\visiblelbl{app:prova-posto-vizinhanca}
+Dados a função matricial $A:\Rn{n}\rightarrow\Rmn{m}{r}$ contínua, com $m < r$ e o ponto 
+$\barra{x} \in \Rn{n}$, 
+tais que o posto de $(A(\barra{x}))$ é completo, então existe uma vizinhança de $\barra{x}$
+onde $A(x)$ tem posto completo para todo ponto nessa vizinhança.
+\end{theorem}
+\begin{proof}
+Suponha que $\forall \varepsilon > 0$, $\exists x$ tal que $\norma{x - \barra{x}} < \varepsilon$
+e $\mbox{posto}(A(x)) < m$. Para $k \in \mathbb{N^*}$, defina $x^k$ como o ponto que satisfaz
+$\norma{x^k - \barra{x}} < 1/k$, $\mbox{posto}(A(x^k)) < m$. Daí, existe $y^k \in \Rn{m}$
+tal que $$A(x^k)^Ty^k = 0,$$ e $\norma{y^k} = 1$. 
+Como o conjunto $\{y \in \Rn{m} : \norma{y} = 1\}$ é compacto,
+existe um subconjunto infinito
+$\mathcal{K} \subset \mathbb{N}$ tal que $\{y^k\}_{k \in \mathcal{K}}$ é convergente.
+Defina $\barra{y}$ como o limite dessa subsequência. Trivialmente, $\norma{\barra{y}} = 1$,
+e $x^k \rightarrow \barra{x}$. Como $A$ é contínua, temos $A(x^k) \rightarrow A(\barra{x})$.
+Portanto
+$$\lim_{k \in \mathcal{K}} A(x^k)^Ty^k = A(\barra{x})^T\barra{y}.$$
+Mas $A(x^k)^Ty^k = 0$ para todo $k \in \mathcal{K}$, de modo que o limite é $0$. Como o
+limite é único, temos
+$A(\barra{x})^T\barra{y} = 0$, e $\barra{y} \neq 0$, logo o posto de
+$A(\barra{x})$ é menor que $m$. Absurdo. Portanto existe uma vizinhança de $\barra{x}$,
+onde o posto de $A$ é completo.
+\end{proof}
+
+\begin{theorem}\visiblelbl{app:teo-lim-diff}
+Seja $U \subset \Rn{n}$ um aberto, $F:U\rightarrow\Rn{m}$
+diferenciável em $\barra{x} \in U$.
+Se $A = F'(\barra{x}) \in \Rmn{m}{n}$ tem posto coluna completo,
+então existem $\delta > 0$ 
+e $c > 0$ tais que se $\norma{h} < \delta$,
+então $\barra{x} + h \in U$ e
+$$ \norma{F(\barra{x} + h) - F(\barra{x})} \geq c\norma{h}. $$
+\end{theorem}
+\begin{proof}
+Considere a decomposição em valores singulares
+$A = U\Sigma V^T$, onde $U \in \Rmn{m}{m}$ e
+$V \in \Rmn{n}{n}$ são matrizes ortogonais e
+$\Sigma \in \Rmn{m}{n}$ é dada por
+$$\Sigma = \vetor 
+  {\mbox{diag}(\sigma_1,\dots,\sigma_n)}
+  {0}, $$
+com $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_n$.
+Como $A$ tem posto coluna completo, então $\sigma_i > 0$.
+Para qualquer $x \in \Rn{n}$, existe $\alpha \in \Rn{n}$ 
+tal que $x = V\alpha$. Então
+\begin{align*}
+  \norma{Ax} & = \norma{U\Sigma V^TV\alpha}
+  = \norma{\Sigma\alpha} = 
+  \bigg[\sum_{i=1}^n(\alpha_i\sigma_i)^2\bigg]^{1/2} \\
+  & \geq \bigg[\sum_{i=1}^n(\alpha_i\sigma_n)^2\bigg]^{1/2}
+  = \sigma_n \bigg[\sum_{i=1}^n\alpha_i^2\bigg]^{1/2}
+  = \sigma_n\norma{\alpha} \\
+  & = \sigma_n\norma{V^Tx} = \sigma_n\norma{x}.
+\end{align*}
+Como $F$ é diferenciável em $\barra{x} \in U$, então
+existe $\delta > 0$ tal que se $\norma{h} \leq \delta$,
+então
+$$F(\barra{x} + h) = F(\barra{x}) + F'(\barra{x})h + r(h),$$
+com $\norma{r(h)} \leq \sigma_n\norma{h}/2$.
+Daí, usando a desigualdade $\norma{a + b} \geq \norma{a} - \norma{b}$,
+\begin{align*}
+\norma{F(\barra{x} + h) - F(\barra{x})} & =
+\norma{F'(\barra{x})h + r(h)} \\
+& \geq \norma{F'(\barra{x})h} - \norma{r(h)} \\
+& \geq \sigma_n\norma{h} - \meio\sigma_n\norma{h} \\
+& = \frac{\sigma_n}{2}\norma{h}.
+\end{align*}
+Definindo $c = \sigma_n/2$, obtemos o resultado desejado.
+\end{proof}
+
+\begin{corollary}\visiblelbl{app:teo-medida}
+Seja $f:\Rn{n}\rightarrow\R$ continuamente diferenciável até
+segunda ordem, e $\barra{x} \in \Rn{n}$ um ponto estacionário
+estrito para $f$,
+isto é, um ponto onde $\nabla f(\barra{x}) = 0$, e
+$\nabla^2 f(\barra{x})$ é não-singular.
+Então, numa vizinhança de $\barra{x}$, 
+$$\norma{x - \barra{x}} = \Theta(\norma{\nabla f(x)}),$$
+isto é, $\norma{\nabla f(x)}$ é uma medida para a distância do
+ponto à solução.
+\end{corollary}
+\begin{proof}
+  Como $f$ é continuamente diferenciável até segunda ordem,
+  então $\nabla f$ é Lipschiptz, de modo que
+  $$\norma{\nabla f(x) - \nabla f(\barra{x})} = 
+      \bigo(\norma{x - \barra{x}}).$$
+  Agora, aplicando o teorema anterior na função $\nabla f$,
+  existe uma vizinhança $V$ de $x$ e uma constante $c > 0$,
+  tal que
+  $$\norma{\nabla f(x) - \nabla f(\barra{x})} \geq
+      c\norma{x - \barra{x}}.$$
+
+  Como $\nabla f(\barra{x}) = 0$, temos
+    $$\norma{x - \barra{x}} = \Theta(\norma{\nabla f(x)}).$$
+\end{proof}
+
+\chapter{Arquivos}
+
+Apresentamos aqui os arquivos de interface para o DCICPP. Estes arquivos também
+estão em C++.
+O primeiro arquivo mostra a implementação da interface CUTEr. O usuário não
+precisa modificar este arquivo para utizar o programa.
+Os outros dois arquivos mostram exemplos de implementação de algum problema
+específico. O primeiro exemplo é de um problema irrestrito, e o segundo exemplo
+de um problema com restrições. O usuário que tiver algum problema específico
+para utilizar um dos exemplos dados como base para implementação de seus testes.
+
+\lstset{basicstyle=\footnotesize\ttfamily, breaklines=true, frame=single,
+language=C++, keepspaces=true, title=\lstname}
+
+\section{Interface do CUTEr}
+\visiblelbl{ap:interface_cuter}
+
+\lstinputlisting{sources/cuter_interface.cpp}
+
+\section{Exemplos}
+O exemplo a seguir é para o problema irrestrito
+$$ \min f(x) = \sum_{i = 1}^n (x_i - 1)^4, $$
+com $n = 5$. 
+\lstinputlisting{sources/unc_example.cpp}
+
+O exemplo a seguir é para o problema restrito 
+\begin{eqnarray*}
+  \min & & f(x) = 100(x_2 - x_1^2)^2 + (1 - x_1)^2 \\
+  \mbox{suj. a} & & x_1x_2 \geq 1, \\
+                & & x_1 + x_2^2 \geq 0. \\
+                & & x_1 \leq 0.5,
+\end{eqnarray*}
+Esse é o problema de número 15 da coleção de problemas de Hock-Schittkowski
+\cite{bib:hs}.
+\lstinputlisting{sources/con_example.cpp}
+
+\input{results.tex}
+

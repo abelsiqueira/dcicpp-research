@@ -1,0 +1,680 @@
+\section{Converg\^encia Global}\visiblelbl{sec:conv-global}
+
+Apresentamos aqui os resultados de convergência global do método. Veremos que,
+com condições relativamente fracas, podemos obter resultados satisfatórios de
+convergência. A seguir estão as nossas hipóteses para a prova de convergência do
+Algoritmo \ref{alg:outline}.
+\begin{hypoenv}\visiblelbl{hip:global.continuidade} 
+  As funções $f$, $c_E$ e $c_I$ s\~ao
+$C^2$.  
+\end{hypoenv} 
+\begin{hypoenv}\visiblelbl{hip:global.seq.limitadas} 
+  As sequ\^encias $\{\zc{k}\}$ e $\{z^k\}$, as aproxima\c{c}\~oes $B^k$ e os
+  multiplicadores $\{\lk{k}\}$ permanecem uniformemente limitados.
+\end{hypoenv} 
+\begin{hypoenv}\visiblelbl{hip:global.regularidade} A
+  restaura\c{c}\~ao n\~ao falha, no sentido de que o algoritmo normal sempre
+  encontra um ponto dentro do cilindro, e $\mathcal{Z} = \{\zc{k}\}$ permanece
+  longe do conjunto singular de $h$, no sentido que $h$ \'e regular no fecho de
+  $\mathcal{Z}$.  Al\'em disso, se a sequ\^encia gerada $\{\zc{k}\}$ \'e
+  infinita, ent\~ao 
+\begin{equation}\visiblelbl{nnormal} 
+  \norma{\zc{k+1}-z^k} = \bigo(\norma{h(z^k)}).
+\end{equation} 
+\end{hypoenv}
+\begin{hypoenv}\visiblelbl{hip:global.dsoc} 
+  $\norma{\dsoc^k} = \bigo(\norma{\delta_t^k}^2)$ 
+\end{hypoenv} 
+A Hipótese \ref{hip:global.continuidade} é natural e esperada, já que canônica,
+considerando que, no método, utilizamos essas derivadas, ou aproximações para as
+mesmas. 
+A Hipótese \ref{hip:global.seq.limitadas} é necessária pois podemos tomar alguma
+direção de descida ilimitada. 
+As aproximações podem ser definidas de modo a permanecerem
+uniformemente limitadas. 
+A Hipótese \ref{hip:global.regularidade} é importante pois a restauração pode
+falhar. Note que na Seção \ref{sec:conv-infactivel} comentamos sobre a
+convergência do método para pontos estacionários da infactibilidade.
+A Hipótese \ref{hip:global.dsoc} é tradicional para os passos de correção de
+segunda ordem.
+
+Apresentamos agora algumas propriedades provenientes do algoritmo.
+Começamos por aquelas relacionadas aos cilindros.
+Pela maneira que calculamos os raios dos cilindros no passo
+\ref{alg:normal-call} do Algoritmo \ref{alg:outline}, pelas condições dos
+iterandos nos passos \ref{alg:normal-call} e \ref{alg:tangente-call} do Algoritmo
+\ref{alg:outline}, e pela maneira que atualizamos $\rhomax$ nos passos
+\ref{alg:update-rhomax-start}-\ref{alg:update-rhomax-end} do Algoritmo
+\ref{alg:update.rhomax}, temos
+\begin{eqnarray}
+  \rho^k \quad \leq & \rhomax^{k-1}\norma{g_p^k} & \leq \quad
+    2\rhomax^k\norma{g_p^k} \visiblelbl{limrho}, \\
+  \rhomax^k \quad \leq & \rhomax^{k-1} & \leq \quad
+    10^4\rho^k\frac{\norma{g(\zc{k},\mu^k)} + 1} {\norma{\gpk{k}}},
+    \visiblelbl{limrhomax} \\
+  \norma{h(\zc{k})} \quad \leq & \norma{h(z^{k-1})} & \leq \quad 2\rho^{k-1}.
+    \visiblelbl{limhhornormal}
+\end{eqnarray}
+Como indicado previamente em \eqref{eq:slim} e visto no algoritmo, nossas
+iterações seguem uma regra de fração-para-a-fronteira, de modo que são válidas
+as inequações
+\begin{eqnarray}\visiblelbl{zbound}
+ \begin{array}{rcl}
+  s_c^{k} & \geq & \epsmu s^{k-1}, \\
+  s^{k} & \geq & \epsmu s_c^{k}, \\
+  s^+ & \geq & \epsmu s_c^k.
+ \end{array}
+\end{eqnarray}
+Alem disso, pela definição de $\mu^k$ no passo \ref{alg:mudef} do Algoritmo
+\ref{alg:etapa.normal}, temos
+\begin{equation}\visiblelbl{limmu}
+  \mu^k \leq \alpha_{\rho}\min\{\rho^k,(\rho^k)^2\}.
+\end{equation}
+Deste ponto em diante, supomos que as sequências $\{\zc{k}\}$ e $\{z^k\}$,
+geradas pelo algoritmo, satisfazem
+\ref{hip:global.continuidade}-\ref{hip:global.dsoc}. Denotando por $\delta_N^k$
+o passo normal e por $\delta_T^k$ o passo tangente na iteração $k$, temos
+\begin{equation*} \delta_N^k = z_c^k - z^{k-1} \qquad \mbox{e} \qquad \delta_T^k
+= z^k - \zc{k} = \delta_t^k + \dsoc^k.  \end{equation*} As hipóteses
+\ref{hip:global.continuidade}-\ref{hip:global.dsoc} nos permitem escolher uma
+constante $\dmax > 0$, tal que, para todo $k$,
+\begin{equation}\visiblelbl{limdmax} 
+  \norma{\delta_t^k} + \norma{\dsoc^k} + \norma{\delta_N^k} \leq \dmax.  
+\end{equation} As
+hipóteses tamb\'em nos permitem definir $\xi_0 > 0$, tal que, $\forall k$, se
+$\norma{z - \zc{k}} \leq \dmax$ e $\mu \leq \mu_{0}$, ent\~ao 
+\begin{eqnarray}
+  \norma{A_j(z)} & \leq & \xi_0, \qquad j = 1,\dots,m \visiblelbl{limjacob} \\
+  \norma{\nabla^2 h_j(z)} & \leq & \xi_0, \qquad j = 1,\dots,m
+  \visiblelbl{limhessh} \\
+  \norma{\nabla f(x)} & \leq & \xi_0, \visiblelbl{limgrad} \\
+  \norma{\nabla^2 f(x)} & \leq & \xi_0, \visiblelbl{limhess} \\
+  \norma{g(z,\mu)} & \leq & \xi_0, \visiblelbl{limgamma} \\
+  \norma{\Gamma(z,\mu)} & \leq & \xi_0, \visiblelbl{limGamma} \\
+  \norma{B^k} & \leq & \xi_0, \visiblelbl{limB} \\
+  \norma{\lk{k}} & \leq & \xi_0, \visiblelbl{limlambda} \\
+  \norma{\dsoc^k} & \leq & \xi_0\norma{\delta_t^k}^2 \visiblelbl{limsoc} \\
+  \norma{\Lac{k}} & \leq & \xi_0 \visiblelbl{limLac}, 
+\end{eqnarray}
+  \begin{eqnarray}\visiblelbl{zcompact}
+\begin{array}{rcl} s_c^{k} & \leq & \xi_0 s^{k-1}, \\
+  s^k & \leq & \xi_0 s_c^{k}. 
+\end{array} 
+\end{eqnarray} 
+Também supomos que (\ref{nnormal}) pode
+ser reescrito como 
+\begin{equation}\visiblelbl{nnormalxi} 
+  \norma{\zc{k+1} - z^k}
+\leq \xi_0\norma{h(z^k)}.  
+\end{equation} 
+Definimos as matrizes $\Lac{k} = \Lambda(\zc{k})$, $\Lak{k} = \Lambda(z^k)$ e
+$\Lambda^+ = \Lambda(\zp)$, para facilitar a notação. 
+  Nosso resultado de convergência global é dado no Teorema
+  \ref{teo:conv-global}. Esse resultado depende dos próximos cinco lemas. O
+  Lema \ref{lemma:31} a seguir dá um limitante para o aumento da infactibilidade
+  do causada pelo passo tangente em relação ao iterando obtido no passo normal.
+
+\begin{lemma}\visiblelbl{lemma:31} 
+  A tentativa de itera\c{c}\~ao $\zp$ gerada na
+  linha \ref{alg:tangente-plus} do Algoritmo \ref{alg:etapa.tangente} satisfaz
+  \begin{equation}\visiblelbl{limvarh} 
+    \norma{h(\zp) - h(\zc{k})} \leq \bxi_0\norma{\delta_t}^2,
+  \end{equation} 
+  em que $\barra{\xi}_0$ é uma constante positiva.
+\end{lemma} 
+\begin{proof} Iremos
+  omitir os \'indices $k$ nessa demonstra\c{c}\~ao. A itera\c{c}\~ao \'e
+  definida por $\zp = z_c + \dplus = z_c + \Lambda_c(\delta_t + \dsoc)$.  Usando
+  uma expansão de Taylor, o fato de que $A_j(z_c)\delta_t = 0$ e
+  (\ref{limhessh}), podemos garantir que existe $\zxi^j = \eta_j\zp +
+  (1-\eta_j)z_c$, tal que
+\begin{eqnarray} 
+  \modulo{h_j(\zp) - h_j(z_c)} & = & \modulo{\nabla h_j(z_c)^T\dplus +
+    \meio(\dplus)^T\hess h_j(\zxi^j)\dplus} \nonumber \\
+  & = & \modulo{\nabla h_j(z_c)^T\Lac{k}(\dt+\dsoc) +
+      \meio(\delta_t+\dsoc)^T\Lac{k}\hess h_j(\zxi^j)\Lac{k}(\delta_t +
+    \dsoc)} \nonumber \\
+  & \leq & \modulo{A_j(z_c)^T(\delta_t+\dsoc)} +
+    \meio\norma{\delta_t+\dsoc}^2\norma{\Lac{k}}^2\norma{\hess h_j(\zxi^j)}
+    \nonumber \\
+  & \leq & \modulo{A_j(z_c)^T\dsoc} + \meio\norma{\delta_t+\dsoc}^2\xi_0^3.
+    \label{lemma31.aux}
+\end{eqnarray}
+Agora, por \eqref{limjacob} e \eqref{limsoc}, temos
+$$ \modulo{A_j(z_c)^T\dsoc} \leq \xi_0^2\norma{\delta_t}^2, $$
+e pela desigualdade $\norma{v+w}^2 \leq 2(\norma{v}^2 + \norma{w}^2)$,
+\eqref{limsoc} e \eqref{limdmax},
+$$ \meio\norma{\delta_t + \dsoc}^2 \leq \norma{\delta_t}^2 + \norma{\dsoc}^2
+\leq \norma{\delta_t}^2 + \dmax\xi_0\norma{\delta_t}^2. $$
+Substituindo essas duas desigualdades em \eqref{lemma31.aux}, obtemos
+\begin{eqnarray*}
+ \modulo{h_j(\zp) - h_j(z_c)} 
+  & \leq & \xi_0^2\norma{\delta_t}^2 + \xi_0^3(\norma{\delta_t}^2 +
+    \xi_0\dmax\norma{\delta_t}^2) \\
+  & \leq & \xi_0^2(1 + \xi_0 + \xi_0^2\dmax)\norma{\delta_t}^2.
+\end{eqnarray*} 
+  Definindo $\bxi_0 = \sqrt{m}\xi_0^2(1 + \xi_0 + \xi_0^2\dmax)$, temos o
+  resultado desejado.
+\end{proof}
+
+O lema a seguir mostra que, se as hipóteses
+\ref{hip:global.continuidade}-\ref{hip:global.dsoc} são satisfeitas, o passo
+tangente não falha, e obtemos redução suficiente no Lagrangeano.
+\begin{lemma}\visiblelbl{lemma:32} Se $x_c^k$ não é um ponto estacionário para o
+  problema \eqref{prob:geral}, então $\zp$ \'e aceito com suficientes iterações.
+  Al\'em disso,
+  podemos definir constantes $\xi_1$, $\xi_2$ e $\xi_3$ tais que, para todo $k$,
+\begin{equation}\visiblelbl{limDLHp} \DHp \leq
+-\xi_1\norma{\gpk{k}}\min\{\xi_2\norma{\gpk{k}},\xi_3\sqrt{\rho^k},1-\epsmu\}.
+\end{equation} \end{lemma} \begin{proof} Iremos omitir os \'indices $k$ nessa
+  demonstra\c{c}\~ao. Seja $\zp = z_c + \dplus = z_c + \Lambda_c(\dt + \dsoc)$
+  um candidato obtido na linha \ref{alg:tangente-plus} da $k$-\'esima
+  itera\c{c}\~ao do Algoritmo \ref{alg:outline}.
+
+  Utilizando uma expans\~ao de Taylor e \eqref{limvarh}, existe $z_\xi = \eta
+  z^+ + (1-\eta)z_c$, para algum $\eta\in[0,1]$, tal que
+\begin{eqnarray} 
+  \DHp & = & L(\zp,\lambda,\mu) - L(z_c,\lambda,\mu) \nonumber \\
+   & = & \varphi(\zp,\mu) - \varphi(z_c,\mu) + \lambda^T[h(\zp) - h(z_c)]
+  \nonumber \\
+  & \leq & \nabla \varphi(z_c,\mu)^T\dplus + \meio(\dplus)^T\hess
+  \varphi(\zxi,\mu)\dplus + \xi_0\bxi_0\norma{\dt}^2. \visiblelbl{dlh:passo1}
+\end{eqnarray}
+Para o primeiro termo, usando \eqref{def:gradiente_escalado}, o fato de que
+$g(z_c,\mu)^T\delta_t = (g_p^k)^T\delta_t$, a definição \eqref{prob:tangente},
+e as condições \eqref{limsoc}, \eqref{limgamma} e
+\eqref{limB}, temos
+\begin{align}
+  \nabla\varphi(z_c,\mu)^T\delta^+ & = \nabla\varphi(z_c,\mu)^T\Lambda_c
+  (\delta_t+\dsoc) \nonumber \\
+  & = g(z_c,\mu)^T(\delta_t + \dsoc) \nonumber \\
+  & = q(\delta_t) - \meio\delta_t^TB\delta_t + g(z_c,\mu)^T\dsoc \nonumber \\
+  & \leq q(\delta_t) + \bigg(\meio\xi_0 + \xi_0^2\bigg)\norma{\delta_t}^2.
+  \visiblelbl{dlh:passo2}
+\end{align}
+Para o segundo termo de \eqref{dlh:passo1}, usando \eqref{def:hess_escalada},
+\eqref{limGamma}, \eqref{zbound}, a desigualdade $\norma{v+w}^2 \leq 2(\norma{v}^2
++ \norma{w}^2)$, \eqref{limdmax} e \eqref{limsoc}, temos
+\begin{align}
+  \meio(\delta^+)^T\nabla^2\varphi(z_\xi,\mu)\delta^+ & =
+    \meio(\delta_t+\dsoc)^T\Lambda_c\Lambda(z_{\xi})^{-1}\Gamma(z_{\xi},\mu)
+    \Lambda(z_{\xi})^{-1}\Lambda_c(\delta_t + \dsoc) \nonumber \\
+  & \leq \dfrac{1}{2}\norma{\Gamma(z_{\xi},\mu)} \norma{\Lambda(z_{\xi})^{-1}
+    \Lambda_c}^2 \norma{\delta_t+\dsoc}^2  \nonumber \\
+  & \leq \dfrac{1}{2} \dfrac{\xi_0}{\epsmu^2} \norma{\delta_t + \dsoc}^2
+    \nonumber \\
+  & \leq \frac{\xi_0}{\epsmu^2} (\norma{\delta_t}^2 + \norma{\dsoc}^2) \nonumber
+    \\
+  & \leq \frac{\xi_0}{\epsmu^2} (1+\xi_0\dmax)\norma{\delta_t}^2.
+    \visiblelbl{dlh:passo3}
+\end{align}
+Assim, substituindo \eqref{dlh:passo2} e \eqref{dlh:passo3} em
+\eqref{dlh:passo1}, temos
+\begin{align}
+  \DHp & \leq q(\delta_t) + \bigg(\frac{\xi_0}{2}+\xi_0^2\bigg)\norma{\delta_t}^2
+  + \frac{\xi_0}{\epsmu^2}(1+\xi_0\dmax)\norma{\delta_t}^2
+  + \xi_0\barra{\xi_0}\norma{\delta_t}^2 \nonumber \\
+  & = q(\delta_t) + \barra{\xi}_1\norma{\delta_t}^2, \visiblelbl{auxdhp}
+\end{align} 
+onde $\barra{\xi}_1 = \frac{\xi_0}{2} + \xi_0^2 + \frac{\xi_0}{\epsmu^2} (1 +
+\xi_0\dmax) + \xi_0\barra{\xi}_0$.
+
+Pela defini\c{c}\~ao de $\dcp$ na linha \ref{alg:cauchy-point} do Algoritmo
+\ref{alg:etapa.tangente}, temos $$\norma{\dcp} \geq
+\min\left\{\frac{\norma{g_p}}{\norma{B}},\Delta,1-\epsmu \right\} \geq
+\min\left\{\frac{\norma{g_p}}{\xi_0}, \Delta, 1 - \epsmu \right\}$$ e
+\begin{equation}\visiblelbl{limqdcp} q(\dcp) \leq \meio\dcp^Tg_p \leq
+-\meio\norma{g_p}\min\left\{ \frac{\norma{g_p}}{\xi_0}, \Delta, 1 - \epsmu
+\right\}.  \end{equation}
+
+Vamos mostrar que $\zp$ \'e aceito se $\Delta \leq \barra{\Delta}$, onde
+\begin{equation}\visiblelbl{bdelta} \barra{\Delta} =
+\min\left\{\frac{\norma{g_p}}{4\bxi_1}, 1-\epsmu, \sqrt{\frac{\rho}
+{\bxi_0}}\right\}.  \end{equation} Note que $\xi_0 < 4\bxi_1$, logo
+\begin{equation}\visiblelbl{limbdelta} \barra{\Delta} \leq
+\frac{\norma{g_p}}{\xi_0}.  \end{equation} Como $\Delta \leq \barra{\Delta}$,
+usando (\ref{limbdelta}), podemos simplificar (\ref{limqdcp}) para
+\begin{equation}\visiblelbl{limqdcp2} 
+  q(\dcp) \leq -\meio\norma{g_p}\Delta.
+\end{equation}
+Combinando $\norma{\dt} \leq \Delta$ e $q(\dt) \leq q(\dcp)$ da linha
+\ref{alg:delta-t} do Algoritmo \ref{alg:etapa.tangente}, com (\ref{bdelta}) e
+(\ref{limqdcp2}) obtemos 
+\begin{eqnarray} 
+  \bxi_1\norma{\dt}^2 & \leq & \bxi_1\Delta^2 \leq \bxi_1\barra{\Delta}\Delta
+  \nonumber \\ 
+  & \leq & \frac{1}{4}\norma{g_p}\Delta \leq -\meio q(\dcp) \leq -\meio q(\dt).
+\visiblelbl{limxi1} 
+\end{eqnarray} 
+Agora, de (\ref{auxdhp}) e (\ref{limxi1}),
+temos \begin{equation}\visiblelbl{negDHp} \DHp \leq \meio q(\dt) < 0,
+\end{equation} de modo que 
+\begin{equation}\visiblelbl{rgeqeta1} 
+  r = \frac{\DHp}{q(\dt)} \geq \meio \geq \eta_1.  
+\end{equation}
+Como $\Delta \leq \barra{\Delta}$ e $\norma{h(z_c)} \leq \rho$, usando
+(\ref{limvarh}) e (\ref{bdelta}), temos $$\norma{h(\zp)} \leq \rho + \bxi_0
+\norma{\dt}^2 \leq \rho + \bxi_0\barra{\Delta}^2 \leq 2 \rho.$$ Portanto, ambas
+condi\c{c}\~oes da linha \ref{alg:tangente-condicoes} do Algoritmo
+\ref{alg:etapa.tangente} s\~ao satisfeitas e $\zp$ \'e aceito.
+
+Para provar a segunda parte, vamos lembrar que cada vez que o passo \'e
+rejeitado, multiplicamos o raio $\Delta$ por $\alpha_R$. Ent\~ao podemos assumir
+que o raio aceito satisfaz $\Delta \geq \alpha_R\barra{\Delta}$, onde $0 <
+\alpha_R < 1$. Combinando isto com (\ref{negDHp}), a condição $q(\dt) \leq
+q(\dcp)$, (\ref{limqdcp}), (\ref{limbdelta}) e (\ref{bdelta}), obtemos 
+\begin{eqnarray*}
+  \DHp & \leq & \meio q(\dt) \leq \meio q(\dcp) \\ 
+   & \leq & -\frac{1}{4}\norma{g_p}\min\left\{ \frac{\norma{g_p}}{\xi_0},
+    \Delta, 1 - \epsmu\right\} \\ 
+  & \leq & - \frac{1}{4}\norma{g_p}\alpha_R\barra{\Delta} \\ 
+  & \leq & -\xi_1\norma{g_p}\min\{\xi_2\norma{g_p}, \xi_3\sqrt{\rho}, 1 -
+    \epsmu\}, 
+\end{eqnarray*} 
+com $\xi_1 = \alpha_R/4$, $\xi_2 = 1/(4\bxi_1)$ e
+$\xi_3 = 1/\sqrt{\bxi_0}$.  \end{proof}
+
+O próximo lema define um limitante superior para a variação normal do
+Lagrangeano. Note que essa variação pode ser positiva.
+\begin{lemma}\visiblelbl{lemma:33} 
+  Existe uma constante positiva $\xi_4$ tal que, para $k$ suficientemente
+  grande,
+  $$\DLV{k+1} \leq \xi_4\rhomax^k\norma{\gpk{k}}.  $$ 
+\end{lemma} 
+\begin{proof}
+    Usando o Teorema do Valor Médio, temos
+\begin{eqnarray*} 
+    \DLV{k+1} & = & L(\zc{k+1},\lk{k+1},\mu^{k+1}) - L(z^k,\lk{k},\mu^k) \\ 
+    & = & \varphi(\zc{k+1},\mu^{k+1}) - \varphi(z^k,\mu^k) + h(\zc{k+1})^T\lk{k+1} -
+      h(z^k)^T\lk{k} \\ 
+    & = & \varphi(\zc{k+1},\mu^k) - \varphi(z^k,\mu^k) + h(\zc{k+1})^T\lk{k+1} -
+      h(z^k)^T\lk{k} + (\mu^{k+1}-\mu^k)\beta(z_c^{k+1}) \\
+    & = & \nabla \varphi (\zxi,\mu^k)^T(\zc{k+1}-z^k) + h(\zc{k+1})^T\lk{k+1} -
+      h(z^k)^T\lk{k} + (\mu^{k+1}-\mu^k)\beta(z_c^{k+1}) \\
+    & =  & \nabla f(x_{\xi})^T(x_c^{k+1}-x^k) +
+      \mu^k\nabla\beta(z_{\xi})^T(z_c^{k+1}-z^k) + h(\zc{k+1})^T\lk{k+1} -
+      h(z^k)^T\lk{k} \\
+    & & + (\mu^{k+1}-\mu^k)\beta(z_c^{k+1}),
+\end{eqnarray*} 
+  com $\zxi = \eta z^k + (1-\eta)\zc{k+1}$, para algum $\eta \in [0,1]$. 
+  Pela hipótese \ref{hip:global.seq.limitadas}, existe $M >
+  0$ tal que $s_i^k,s_{c_i}^k \leq M$. Usando isso, \eqref{limgrad},
+(\ref{zbound}), (\ref{limlambda}), (\ref{nnormalxi}), (\ref{limhhornormal}), (\ref{limmu}) e
+(\ref{limrho}) temos 
+\begin{eqnarray*} 
+  \DLV{k+1} & \leq & \xi_0\norma{\xc{k+1}-x^k} + 
+  \mu^k\sum_{i=1}^{m_I} \frac{s_i^k - s_{c_i}^{k+1}}{\eta s_i^k +
+    (1-\eta)s_{c_i}^{k+1}} + 
+    \xi_0\norma{h(\zc{k+1})} + \xi_0\norma{h(z^k)} + (\mu^k - \mu^{k+1})m_IM \\ 
+  & \leq & \xi_0^2\norma{h(z^k)} + \xi_0\norma{h(z^k)} + \xi_0\norma{h(z^k)} +
+    \mu^km_I\bigg(\frac{1 - \epsmu}{\eta + (1-\eta)\epsmu}+M\bigg) \\ 
+  & \leq & (\xi_0^2 + 2\xi_0)2\rho^k + 
+    \rho^km_I\bigg(\frac{1 - \epsmu}{\eta + (1-\eta)\epsmu}+M\bigg) \\ 
+  & \leq & \xi_4\rhomax^k\norma{\gpk{k}}, 
+\end{eqnarray*}
+onde $\xi_4 = 4(\xi_0^2 + 2\xi_0) + 2m_I\dfrac{1-\epsmu}{\eta+(1-\eta)\epsmu}+2M$.  
+\end{proof}
+
+O Lema \ref{lemma:34} mostra que entre iterações sucessivas em que $\rhomax$ não
+muda, o Lagrangeano decresce proporcionalmente à variação do Lagrangeano nos
+passos tangentes.  \begin{lemma}\visiblelbl{lemma:34} Se
+  $\rhomax^{k+1}=\rhomax^{k+2}=\dots=\rhomax^{k+j}$, para $j \geq 1$, ent\~ao
+\begin{equation}\visiblelbl{difL} 
+  L_c^{k+j}-L_c^k = \sum_{i = k+1}^{k+j}\Delta
+L_c^i \leq \frac{1}{4}\sum_{i = k}^{k+j-1}\DLH{i} + r^k, 
+\end{equation} 
+onde
+$r^k = \meio[\Lref^k - L_c^k]$.  \end{lemma} \begin{proof} Suponha que $\Lref$
+  n\~ao muda entre as itera\c{c}\~oes $k+1$ e $k+j_1-1$, onde $0<j_1\leq j+1$.
+  Neste caso, por (\ref{DLC}) e pelo crit\'erio da linha \ref{alg:condicao-dlv}
+  do Algoritmo \ref{alg:update.rhomax}, temos 
+\begin{equation}\visiblelbl{limaux1}
+  L_c^{k+j_1-1} - L_c^k = \sum_{i = k+1}^{k+j_1-1}(\DLV{i}+\DLH{i-1}) \leq
+  \meio\sum_{i = k}^{k + j_1-2}\DLH{i}.  
+\end{equation} 
+Por outro lado, se $\Lref$
+muda na itera\c{c}\~ao $k+j_1$, ent\~ao a condi\c{c}\~ao da linha
+\ref{alg:condicao-dlv} \'e satisfeita. Neste caso, como $\rhomax$ n\~ao muda
+nesta itera\c{c}\~ao, de modo que a condição da linha
+\ref{alg:update-rhomax-start} não \'e satisfeita, e como $\DLH{k} \leq 0$ para
+todo $k$, temos
+\begin{eqnarray} 
+  L_c^{k+j_1}-L_c^k & \leq & \DLV{k+j_1}+L(z^{k+j_1-1}, \lk{k+j_1-1},
+    \mu^{k+j_1-1}) - \Lref^k + [\Lref^k - L_c^k] \nonumber \\ 
+  & \leq & \meio[L(z^{k+j_1-1}, \lk{k+j_1-1}, \mu^{k+j_1-1}) - \Lref^k] +
+    [\Lref^k - L_c^k] \nonumber \\ 
+  & \leq & \meio[\DLH{k+j_1-1}+L_c^{k+j_1-1} - L_c^k] + \meio[\Lref^k-L_c^k]
+    \nonumber \\ 
+  & \leq & \frac{1}{4}\sum_{i = k}^{k + j_1-1}\DLH{i} + r^k.
+    \visiblelbl{limaux2} 
+\end{eqnarray} 
+Se $j_1 \geq j$,
+ent\~ao (\ref{limaux1}) e (\ref{limaux2}) implicam (\ref{difL}).
+
+Por outro lado, se $\Lref$ \'e atualizado nas itera\c{c}\~oes
+$k+j_1,\dots,k+j_s$, onde $0<j_1<j_2<\dots<j_s\leq j$, ent\~ao $r^{k+j_1} =
+r^{k+j_2} = \dots = r^{k+j_s} = 0$. Portanto, aplicando o mesmo processo
+descrito acima v\'arias vezes, e definindo $j_0 = 0$, obtemos 
+\begin{equation*}
+  L_c^{k+j} - L_c^k = \sum_{i = 1}^s[L_c^{k+j_i} - L_c^{k+j_i-1}] + L_c^{k+j} -
+  L_c^{k+j_s} \leq \frac{1}{4}\sum_{i = k}^{k + j-1}\DLH{i} + r^k .
+\end{equation*}
+\end{proof}
+
+O próximo lema estabelece a existência de \emph{espaço normal suficiente} nos
+cilindros de confiança para garantir que o Lagrangeano possa ter decréscimo
+suficiente. A base desse lema é que a inequação \eqref{limDLHp} garante que,
+assintoticamente, $\modulo{\Delta L_H^k}$ é maior que uma fração de
+$\sqrt{\rho^k}$, enquanto que, na demonstração do Lema \ref{lemma:34}, vemos que
+$\norma{\Delta L_V^k} = \bigo(\rho^k)$. Isso significa que, no limite, a
+restauração não irá destruir o descréscimo do Lagrangeano, o que evita que sejam
+feitas alterações excessivas de $\rhomax$.  
+\begin{lemma}\visiblelbl{lemma:35} 
+  Se CDI gera uma
+  sequ\^encia infinita $\{z^k\}$, ent\~ao 
+\begin{description} 
+  \item[(i)] Existem constantes positivas $\xi_5$ e $\xi_6$ tais que, se
+\begin{equation}\visiblelbl{hip:limrhomax} 
+  \rhomax^k < \min\{\xi_5\norma{g_p(\zc{k},\mu^k)},\xi_6\}, 
+\end{equation}
+    então $\rhomax$ n\~ao muda na itera\c{c}\~ao $k + 1$.  
+  \item[(ii)] Al\'em disso, se $\lim\inf \norma{\gpk{k}} > 0$, ent\~ao existe
+    $k_0 > 0$ tal que, para todo $k \geq k_0$
+\begin{equation}\visiblelbl{rhomaxeq} 
+  \rhomax^k = \rhomax^{k_0}.
+\end{equation}
+  \item[(iii)] Se o passo tangente e o vetor de multiplicadores satisfazem
+  \begin{eqnarray} 
+    \norma{z^k - \zc{k}} & = & \bigo(\norma{g_p(\zc{k},\mu^k)})
+      \visiblelbl{hip:difz}, \\ 
+    \norma{\lk{k} - \lls(\zc{k},\mu^k)} & = & \bigo(\norma{g_p(\zc{k},\mu^k)})
+      \visiblelbl{hip:difl}, \\ 
+    (\lambda^{k+1}_I)^T(s_c^{k+1}-s^k) & = &
+      \bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k), \visiblelbl{hip:gap}
+\end{eqnarray} 
+    ent\~ao (\ref{rhomaxeq}) \'e satisfeito, independentemente do
+    valor de $\lim\inf\norma{g_p(\zc{k},\mu^k)}$. Em outras palavras,
+    $\rhomax^k$ permanece suficientemente afastado de zero.  
+  \end{description} 
+\end{lemma}
+\begin{proof} 
+  \begin{description} 
+    \item[(i)] Para provar que $\rhomax$ n\~ao muda na itera\c{c}\~ao $k+1$,
+      s\'o precisamos mostrar que $\DLV{k+1} < -\DLH{k}/2$, o que, segundo o
+      Lema \ref{lemma:32}, é obtido quando
+  \begin{equation} 
+    \DLV{k+1} \leq
+    \frac{\xi_1}{2}\norma{g_p(\zc{k},\mu^k)}\min\{\xi_2\norma{g_p(\zc{k},
+    \mu^k)},\xi_3\sqrt{\rho^k},1-\epsmu\}.\visiblelbl{eq:DLVlema2}
+\end{equation} 
+Para isso, tomamos 
+\begin{equation} \visiblelbl{xi56}
+  \xi_5\leq\min\bigg\{\frac{\xi_1\xi_2}{2\xi_4},\frac{10^{-4}\xi_1^2\xi_3^2}
+  {4\xi_4^2(\xi_0+1)}\bigg\} \qquad \mbox{ e } \qquad \xi_6 \leq
+  \frac{\xi_1(1-\epsmu)} {2\xi_4}, 
+\end{equation} 
+onde $\xi_4$ é a constante definida no Lema \ref{lemma:33}. Assim, a partir do Lema
+\ref{lemma:33}, de (\ref{hip:limrhomax}) e (\ref{xi56}), obtemos
+\begin{equation}\visiblelbl{dlvaux1} 
+  \DLV{k+1} \leq \xi_4\rhomax^k\norma{\gpk{k}} \leq
+    \xi_4\xi_5\norma{\gpk{k}}^2 \leq \meio\xi_1\xi_2\norma{\gpk{k}}^2.  
+\end{equation} 
+Além disso, usando (\ref{limrhomax}) e (\ref{limgamma}), temos
+\begin{equation}\visiblelbl{sqrtrhomax} 
+  \sqrt{\rhomax^k} \leq 10^2\sqrt{\rho^k(\xi_0+1)} \norma{\gpk{k}}^{-1/2}.  
+\end{equation}
+Extraindo a raiz quadrada dos dois lados de (\ref{hip:limrhomax}) e combinando o
+resultado com (\ref{sqrtrhomax}), obtemos
+\begin{equation}\visiblelbl{rhomax35} 
+  \rhomax^k \leq \sqrt{\xi_5}10^2\sqrt{\xi_0+1}\sqrt{\rho^k}.  
+\end{equation} 
+  Usando o Lema \ref{lemma:33}, (\ref{rhomax35}) e (\ref{xi56}), temos
+\begin{equation}\visiblelbl{dlvaux2} 
+  \DLV{k+1} \leq \xi_4\rhomax^k\norma{\gpk{k}} \leq
+  \xi_4\sqrt{\xi_5}10^2\sqrt{\xi_0+1}\sqrt{\rho^k}\norma{\gpk{k}} \leq
+\meio\xi_1\xi_3\norma{\gpk{k}}\sqrt{\rho^k}. 
+\end{equation} 
+Finalmente, usando o Lema \ref{lemma:33}, (\ref{hip:limrhomax}) e (\ref{xi56}),
+temos 
+\begin{equation}\visiblelbl{dlvaux3} 
+  \DLV{k+1} \leq \xi_4\rhomax^k\norma{\gpk{k}} \leq \xi_4\xi_6\norma{\gpk{k}}
+  \leq \meio\xi_1(1-\epsmu)\norma{\gpk{k}}.  
+\end{equation} 
+O resultado segue de (\ref{dlvaux1}), (\ref{dlvaux2}) e (\ref{dlvaux3}).
+\item[(ii)] Sejam $b = \lim\inf(\norma{\gpk{k}})$ e $\barra{k}_0$ um índice tal
+  que $\norma{\gpk{k}} > b/2$, $\forall k \geq  \barra{k}_0$. Tome $k \geq
+  \barra{k}_0$. Nesse caso, existem duas situações possíveis: ou existe $k$ tal
+  que $\rhomax^k < \min\{\xi_5b/2,\xi_6\}$, ou $\rhomax^k \geq
+  \min\{\xi_5b/2,\xi_6\}, \forall k$.
+  Na primeira situação, pelo item (i), $\rhomax^{k+1} = \rhomax^{k}$ e, a partir
+  deste $k$, $\rhomax$ não muda mais. Desta forma, basta definirmos este $k$
+  como $k_0$. Na segunda situação, $\rhomax$ permance limitado inferiormente.
+  Portanto, como $\rhomax^k = \rhomax^02^{-j}$, para algum $j\in\mathbb{N}$, a
+  partir de uma certa iteração $k_0$, $\rhomax$ não irá descrescer mais.
+
+\item[(iii)] Note que, pelas defini\c{c}\~oes de $\lls$ e $g_p$, e pelas
+  hip\'oteses \ref{hip:global.continuidade}-\ref{hip:global.regularidade},
+  $\lls(z,\mu)$ e $g_p(z,\mu)$ est\~ao bem definidos e são de classe $C^1$ em
+  uma vizinhan\c{c}a compacta de $\barra{\mathcal{Z}}$, o fecho de $\mathcal{Z}
+  = \{z_c^k\}$. Portanto, $\lls$ e $g_p$ s\~ao Lipschitz cont\'inuas no sentido
+  que 
+\begin{subequations} 
+  \begin{eqnarray} 
+    \norma{\lls(\zc{k+1},\mu) - \lls(\zc{k},\mu)} & = &
+      \bigo(\norma{\zc{k+1}-\zc{k}}), \visiblelbl{llslip.a} \\
+    \norma{\lls(\zc{k},\mu_1) - \lls(\zc{k},\mu_2)} & = &
+      \bigo(\modulo{\mu_1-\mu_2}), \visiblelbl{llslip.b} 
+\end{eqnarray}
+\end{subequations}
+  e
+  \begin{subequations} 
+  \begin{eqnarray}
+    \norma{g_p(\zc{k+1},\mu) - g_p(\zc{k},\mu)} & = &
+      \bigo(\norma{\zc{k+1}-\zc{k}}), \visiblelbl{gplip.a} \\
+    \norma{g_p(\zc{k},\mu_1) - g_p(\zc{k},\mu_2)} & = &
+      \bigo(\modulo{\mu_1-\mu_2}), \visiblelbl{gplip.b} 
+\end{eqnarray}
+  \end{subequations} 
+  De (\ref{nnormal}), (\ref{hip:difz}), (\ref{limhhornormal}) e (\ref{limrho}),
+  temos 
+  \begin{eqnarray} 
+    \norma{\zc{k+1}-\zc{k}} & \leq & \norma{\zc{k+1}-z^k} + \norma{z^k -
+    \zc{k}} \nonumber \\ 
+    & = & \bigo(\norma{h(z^k)}) + \bigo(\norma{g_p(\zc{k},\mu^k)}) \nonumber \\
+    & = & \bigo(\rho^k) + \bigo(\norma{g_p(\zc{k},\mu^k)}) \nonumber \\ 
+    & = & \bigo(\norma{g_p(\zc{k},\mu^k)}), \visiblelbl{difzck} 
+\end{eqnarray} 
+  e de (\ref{gplip.a}) e (\ref{difzck}), obtemos 
+  \begin{eqnarray}
+    \norma{g_p(\zc{k+1},\mu^k)} & \leq & \norma{g_p(\zc{k},\mu^k)} +
+      \bigo(\norma{\zc{k+1}-\zc{k}}) \nonumber \\ 
+    & = & \bigo (\norma{g_p(\zc{k},\mu^k)}). \visiblelbl{gpkplus} 
+\end{eqnarray} 
+  Agora, usando (\ref{gplip.b}), \eqref{limmu}, \eqref{gpkplus} e \eqref{limrho},
+  obtemos
+  \begin{eqnarray} 
+    \norma{g_p(\zc{k+1},\mu^{k+1})} & \leq & \norma{g_p(\zc{k+1},\mu^k)} +
+      \bigo(\modulo{\mu^k - \mu^{k+1}}) \nonumber \\ 
+    & = & \bigo(\norma{g_p(\zc{k+1},\mu^k)}) + \bigo(\rho^k) \nonumber \\ 
+    & = & \bigo(\norma{g_p(\zc{k},\mu^k)}). \visiblelbl{gpmukplus}
+\end{eqnarray} 
+Pelas definições \eqref{def:lagrangeano}, \eqref{def:phi}, \eqref{def:h} e
+\eqref{def:lagrgeral}, a variação do Lagrangeano no passo normal da iteração $k$
+pode ser escrita como
+\begin{eqnarray}
+  \DLV{k+1} 
+    & = & L(\zc{k+1},\lk{k+1},\mu^{k+1}) - L(z^{k}, \lk{k}, \mu^k) \nonumber \\
+    & = & f(\xc{k+1}) + \mu^{k+1}\beta(\zc{k+1}) + (\lk{k+1})^Th(\zc{k+1}) -
+      \nonumber \\
+    & & f(x^k) - \mu^k\beta(z^k) - (\lk{k})^T h(z^k) \nonumber \\
+    & = & \mathcal{L}(\xc{k+1}, \lk{k+1}) - \mathcal{L}(x^k,\lk{k+1}) +
+      \mu^{k+1}\beta(\zc{k+1}) - \mu^k\beta(z^k) + \nonumber \\
+    & & [\lambda^{k+1} - \lambda^k]^Th(z^k) - (\lk{k+1}_I)^T(s_c^{k+1} - s^k).
+      \visiblelbl{dlvaux4}
+\end{eqnarray}
+Usando uma expansão de Taylor, 
+\eqref{def:gpk}, a Hipótese \ref{hip:global.regularidade},
+\eqref{gradproj}, \eqref{hip:difl}, \eqref{gpmukplus}, 
+\eqref{limhess}, \eqref{limhessh}, \eqref{limlambda},
+\eqref{nnormal}, \eqref{limhhornormal} e \eqref{limrho},
+garantimos que existe $x_\xi$ tal que
+\begin{eqnarray}
+  \mathcal{L}(\xc{k+1},\lk{k+1}) - \mathcal{L}(x^k,\lk{k+1})
+  & = &\nabla_x \mathcal{L}(\xc{k+1},\lk{k+1})^T(\xc{k+1} - x^k) + \nonumber \\ 
+  & & \meio (\xc{k+1}-x^k)^T\nabla_{xx}^2\mathcal{L} (x_{\xi},\lk{k+1})
+    (\xc{k+1} - x^k) \nonumber \\
+  & \leq & \norma{\vetord{I}{0}g_p^{k+1}}\norma{\xc{k+1}-x^k} +
+    \meio(\xi_0+m_I\xi_0^2)\norma{\xc{k+1}-x^k}^2 \nonumber \\
+    & = & \bigo(\norma{g_p(\zc{k},\mu^k)}^2) \visiblelbl{termo1.dlvaux4}
+\end{eqnarray}
+
+Usando uma expansão de Taylor,
+\eqref{def:beta},
+\eqref{zcompact}, \eqref{zbound}, \eqref{limmu} e \eqref{limrho}, temos
+\begin{eqnarray}
+  \mu^{k+1}\beta(\zc{k+1}) - \mu^k\beta(z^k) 
+  & = & \mu^{k+1}[\beta(z^k) + \nabla \beta(z_{\xi})^T(\zc{k+1}-z^k)] 
+    - \mu^k\beta(z^k) \nonumber \\
+  & = & (\mu^{k}-\mu^{k+1})\sum_{i=1}^{m_I}\log(s_i^k) - \nonumber \\
+  & & \mu^{k+1} e^T [\eta S^k + (1-\eta) S_c^{k+1}]^{-1}(s_c^{k+1}-s^k) \nonumber \\
+  & = & \bigo(\mu^k) + \mu^{k+1}\sum_{i=1}^{m_I} \frac{s_i^k - s_{c_i}^{k+1}}
+    {\eta s_i^k + (1-\eta)s_{c_i}^{k+1}} \nonumber \\
+  & \leq & \bigo(\mu^k) + \mu^{k+1}m_I\frac{1-\epsmu}{\eta + (1-\eta)\epsmu}
+    \nonumber \\
+    & = & \bigo(\mu^k) = \bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k).
+    \visiblelbl{termo2.dlvaux4}
+\end{eqnarray}
+
+Usamos \eqref{hip:difl}, \eqref{gpmukplus},
+\eqref{llslip.b}, \eqref{limmu}, \eqref{limrho},
+\eqref{llslip.a},
+\eqref{difzck} e \eqref{limhhornormal},
+obtendo 
+\begin{eqnarray}
+  [\lk{k+1} - \lk{k}]^Th(z^k) & \leq & 
+  \norma{\lk{k+1} - \lls(\zc{k+1},\mu^{k+1})}\norma{h(z^k)} + \nonumber \\
+  & & \norma{\lls(\zc{k+1},\mu^{k+1}) - \lls(\zc{k+1},\mu^k)}\norma{h(z^k)} +
+    \nonumber \\
+  & & \norma{\lls(\zc{k+1},\mu^k) - \lls(\zc{k},\mu^k)}\norma{h(z^k)} + \nonumber \\
+  & & \norma{\lls(\zc{k},\mu^k) - \lk{k}} \norma{h(z^k)} \nonumber \\
+  & = & \bigo(\norma{g_p(\zc{k+1},\mu^{k+1})}\rho^k) +
+    \bigo(\mu^k\rho^k) + 
+    \bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k) \nonumber \\
+    & = & \bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k). \visiblelbl{termo3.dlvaux4}
+\end{eqnarray}
+
+Assim, substituindo \eqref{termo1.dlvaux4}, \eqref{termo2.dlvaux4} e 
+\eqref{termo3.dlvaux4} em \eqref{dlvaux4}, obtemos 
+\begin{eqnarray*} \DLV{k+1} & = &
+\bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k) + \bigo(\rho^{k^2}) \\
+& = & \bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k) + \bigo(\rhomax^k\norma{g_p(\zc{k},
+\mu^k)}\rho^k) \\
+& = & \bigo(\norma{g_p(\zc{k},\mu^k)}\rho^k) =
+\bigo(\norma{g_p(\zc{k},\mu^k)}^2\rhomax^k). 
+\end{eqnarray*} 
+Portanto, existe $\xi_7 > 0$ tal que 
+\begin{eqnarray} \DLV{k+1} \leq
+\xi_7\rhomax^k\norma{g_p(\zc{k},\mu^k)}^2.\visiblelbl{limdlvp} \end{eqnarray}
+Vamos, agora, mostrar que, também no caso (iii), \eqref{eq:DLVlema2} é
+satisfeito. Para tanto,
+definimos $\bxi_7 = \xi_0 + \mu_{\max}m_I + (n+m_I)\xi_0^2$ e
+\begin{eqnarray} \brm =
+  \min\bigg\{\frac{\xi_1\xi_2}{2\xi_7},\frac{10^{-4}}{4\bxi_7(\xi_0 + 1)}
+  \bigg(\frac{\xi_1\xi_3} {\xi_7}\bigg)^2,
+  \frac{\xi_1(1-\epsmu)}{2\xi_7\bxi_7}\bigg\}.\visiblelbl{def:brm} 
+\end{eqnarray}
+Assim, tomando $k \geq k_0$ tal que $\rhomax^{k_0} \leq \brm$, e usando
+\eqref{limdlvp} e \eqref{def:brm}, temos 
+\begin{eqnarray*} 
+  \DLV{k+1} & < &
+  \xi_7\bigg(\frac{\xi_1\xi_2}{2\xi_7}\bigg)\norma{g_p(\zc{k},\mu^k)}^2 \\
+  & = & \frac{\xi_1\xi_2}{2}\norma{g_p(\zc{k},\mu^k)}^2.  
+\end{eqnarray*} 
+Além disso, note que, por \eqref{limgamma}, \eqref{limjacob} e
+\eqref{limlambda}, temos
+\begin{eqnarray*} 
+  \norma{g_p(\zc{k},\mu^k)} & = & \norma{g(\zc{k}) +
+    A(\zc{k})^T\lls(\zc{k},\mu^k)} \\
+  & \leq & \norma{g(\zc{k})} +
+    \sum_{i=1}^{n+m_I}\norma{\lambda_{LS_i}(\zc{k},\mu^k) A_i(\zc{k})} \\
+  & \leq & \xi_0 + \mu m_I + (n + m_I) \xi_0^2  \\
+  & \leq & \xi_0 + \mu_{\max}m_I +
+    (n+m_I)\xi_0^2 = \barra{\xi}_7.
+\end{eqnarray*} 
+Assim, usando \eqref{limdlvp}, \eqref{def:brm},
+\eqref{limrhomax} e \eqref{limgamma}, temos 
+\begin{eqnarray*} 
+  \DLV{k+1} & = & \xi_7\sqrt{\rhomax^k}
+    \sqrt{\rhomax^k}\norma{g_p(\zc{k},\mu^k)}^2 \\ 
+  & \leq & \xi_7\bigg(\frac{\xi_1\xi_3}{\xi_7}
+    \frac{10^{-2}\norma{g_p(\zc{k},\mu^k)}^2} {2\sqrt{\barra{\xi}_7(\xi_0+1)} } \bigg)
+    \bigg(10^2\sqrt{\rho^k}\frac{\sqrt{\norma{g(\zc{k},\mu^k)} + 1}}
+    {\sqrt{\norma{\gpk{k}}}}\bigg) \\ 
+  & \leq & \frac{\xi_1\xi_3}{2} \sqrt{\rho^k}
+    \frac{\norma{g_p(\zc{k},\mu^k)}^{3/2}} { \sqrt{\barra{\xi}_7} } \\ 
+  & \leq & \frac{\xi_1\xi_3}{2}\sqrt{\rho^k}\norma{g_p(\zc{k},\mu^k)}. 
+\end{eqnarray*}
+    Finalmente, usando \eqref{limdlvp} e \eqref{def:brm}, temos
+\begin{eqnarray*} 
+  \DLV{k+1} & < & \xi_7\frac{\xi_1(1 - \epsmu)}
+    {2\xi_7\bxi_7}\norma{g_p(\zc{k},\mu^k)}^2 \\ 
+  & \leq & \frac{\xi_1(1 - \epsmu)}{2}\norma{g_p(\zc{k},\mu^k)}. 
+\end{eqnarray*} 
+Desse modo, temos
+  $\DLV{k+1} < -\meio\DLH{k}$. Logo $\rhomax^k$ não muda depois de $k_0$.
+  \end{description} \end{proof}
+
+Apresentamos agora o teorema de convergência global de nosso algoritmo.
+\begin{theorem}\label{teo:conv-global} 
+  Sob as Hipóteses \ref{hip:global.continuidade}-\ref{hip:global.dsoc}, se o
+  método CDI gera uma sequência infinita então existe uma subsequência
+  convergente a um ponto estacionário para \eqref{prob:geral}.
+  Se as condições (\ref{hip:difz}), (\ref{hip:difl}) e (\ref{hip:gap})
+  também são satisfeitas, então toda subsequência convergente de $\{\xc{k}\}$ tem
+  ponto limite estacionário para (\ref{prob:geral}).  
+\end{theorem} 
+\begin{proof} Suponha, por
+  contradição, que $\lim\inf(\norma{g_p(\zc{k},\mu^k)}) = 2b > 0$. Seja
+  $\barra{k}_0 \in \mathbb{N}$ tal que $\norma{g_p(\zc{k},\mu^k)} > b$ para
+  qualquer $k > \barra{k}_0$. Assim, pelo item (ii) do Lema \ref{lemma:35},
+  existe $k_0 \geq \barra{k}_0$ tal que, para todo $k \geq k_0$, $\rhomax^k =
+  \rhomax^{k_0}$. Junto com \eqref{limrhomax} e \eqref{limgamma}, isto implica
+  que $$\rho^k \geq 10^{-4}\frac{\rhomax^{k_0}b}{\xi_0 + 1},$$ e, portanto, para
+  qualquer $i \geq k_0$, usando \eqref{limDLHp}, temos $\DLH{i} \leq -\theta$,
+  onde \begin{eqnarray} \theta =
+    \xi_1b\min\bigg\{\xi_2b,10^{-2}\xi_3\sqrt{\frac{\rhomax^{k_0}b}
+  {\xi_0+1}},1-\epsmu\bigg\} > 0. \visiblelbl{def:theta} \end{eqnarray} Agora,
+  usando \eqref{difL} e \eqref{def:theta}, podemos garantir que, para $k > k_0$,
+  \begin{eqnarray*} L(\zc{k},\lk{k},\mu^k) - L(\zc{k_0},\lk{k_0},\mu^{k_0}) &
+  = & \sum_{i = k_0+1}^k\Delta L_c^i \\ & \leq &
+  \frac{1}{4}\sum_{i=k_0}^{k-1}\DLH{i} + r^{k_0} \\ & \leq & -\frac{1}{4}(k -
+  k_0)\theta + r^{k_0} \longrightarrow -\infty.  \end{eqnarray*} Isso implica
+  que $f$ é descontínua, ou $h$ é descontínua, ou uma das sequências,
+  $\{\zc{k}\}$ ou $\{\lk{k}\}$, não é limitada, contrariando
+  \ref{hip:global.continuidade}-\ref{hip:global.seq.limitadas}. Portanto,
+  $\lim\inf(\norma{g_p(\zc{k}, \mu^k)}) = 0$.
+
+Para a segunda parte do teorema, suponhamos válidas (\ref{hip:difz}),
+(\ref{hip:difl}) e (\ref{hip:gap}). Então, pelo Lema \ref{lemma:35}, existe
+$k_0$ tal que $\rhomax^k = \rhomax^{k_0}$, para todo $k \geq k_0$.
+
+Suponha, por absurdo, que $\norma{g_p(\zc{k_l},\mu^{k_l})} \geq b > 0$ para uma
+subsequência infinita $\{k_l\}$. Neste caso, usando \eqref{difL} e
+\eqref{def:theta} novamente, e fazendo $n_k \longrightarrow \infty$, temos
+$$L(\zc{k},\lk{k},\mu^k)-L(\zc{k_0},\lk{k_0},\mu^{k_0}) \leq
+-\frac{1}{4}n_k\theta + r^{k_0} \longrightarrow -\infty,$$ onde $\theta$ é dado
+por (\ref{def:theta}). Isso também contradiz
+\ref{hip:global.continuidade}-\ref{hip:global.seq.limitadas}, implicando que
+$\norma{g_p(\zc{k_l},\mu^{k_l})} \longrightarrow 0$ para toda subsequência de
+$\{\zc{k}\}$.
+
+Seja $\{k_l\}$ uma subsequência convergente tal que
+$\norma{g_p(\zc{k_l},\mu^{k_l})} \longrightarrow 0$. Pelas propriedades do
+algoritmo descritas em \eqref{limrho}-\eqref{limhhornormal} e \eqref{limmu}, temos
+$\rho^{k_l} \longrightarrow 0$, $\norma{h(\zc{k_l})} \longrightarrow 0$ e
+$\mu^{k_l} \longrightarrow 0$. Pela definição de $g_p(\zc{k_l},\mu^{k_l})$ temos
+$-\mu^{k_l}e - S_c^{k_l}\lambda_I^{k_l} \longrightarrow 0$, de modo que
+$S_c^{k_l}\lambda_I^{k_l} \longrightarrow 0$, e $\nabla f(\xc{k_l}) + \nabla
+c(\xc{k_l})^T\lk{k_l} \longrightarrow 0$. Além disso, $\lambda_I^{k_l} \leq
+\alpha(\mu^{k_l})^n$, de modo que $\lim \lambda_I^{k_l} \leq 0$. Portanto, o ponto
+limite dessa subsequência é estacionário.  \end{proof}

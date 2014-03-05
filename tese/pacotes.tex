@@ -1,0 +1,100 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: básicos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage[T1]{fontenc}
+\usepackage[english,brazilian]{babel}
+\usepackage{indentfirst}
+\usepackage[top=3cm,bottom=3cm,right=2cm,left=2cm]{geometry}
+%\usepackage[style=ieee,backend=biber,sorting=none]{biblatex}
+%\addbibresource{tese.bib}
+\usepackage[numbers,sort&compress]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: links %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{url}
+\usepackage{breakurl}
+\usepackage{hyperref}
+% FIXME Comente o pacote abaixo quando for concluir sua defesa e for entregar a
+% versão final.
+% \usepackage{showkeys}
+%\newcommand{\visiblelbl}[1]{\label{#1}{\color{red}{#1}}}
+\newcommand{\visiblelbl}[1]{\label{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: ams %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{breqn}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: tabelas %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{booktabs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: cores %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: figuras %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usetikzlibrary{fit,shapes,arrows}
+\usepackage{wrapfig}
+\tikzstyle{decision} = [diamond,draw,aspect=3,text width=12em,text badly centered, node
+  distance=3cm, inner sep=0pt,minimum height=2em]
+\tikzstyle{block} = [rectangle,draw,text width=10em, text centered, minimum
+  height=3em]
+\tikzstyle{start} = [rectangle, draw, rounded corners]
+\tikzstyle{line} = [draw,-latex']
+\newcommand{\algstart}[2][Início]{
+\node[start,above of=#2,node distance=4em] (start) { #1 };
+\path[line] (start) -- (#2);}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: algoritmos %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{algpseudocode}
+%\usepackage{algorithmic}
+\usepackage[chapter]{algorithm}
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\listalgorithmname}{Lista de Algoritmos}
+\algrenewcommand\algorithmicwhile{\textbf{Enquanto}}
+\algrenewcommand\algorithmicdo{\textbf{Faça}}
+\algrenewcommand\algorithmicend{\textbf{Fim do}}
+\algrenewcommand\algorithmicif{\textbf{Se}}
+\algrenewcommand\algorithmicelse{\textbf{Senão}}
+\algrenewcommand\algorithmicthen{\textbf{Então}}
+\algrenewtext{ElseIf}{\algorithmicelse, \algorithmicif}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: códigos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{textcomp}
+\usepackage{listings}
+\renewcommand\lstlistingname{Código}
+\renewcommand\lstlistlistingname{Lista de Códigos}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: index %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{makeidx}
+\makeindex
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pacotes: fontes %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\usepackage{lmodern} \normalfont
+\DeclareFontShape{T1}{lmr}{bx}{sc} { <-> ssub * cmr/bx/sc }{}
+\usepackage{mathrsfs}
+
+
+% TODO Inserir pacotes adicionais aqui.
+\usepackage[Lenny]{fncychap}
+\usepackage{float}
+\usepackage{sidecap}
+\usepackage{caption}
+\usetikzlibrary{patterns}
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/]
+\usepackage{longtable}
+
+\usepackage{etoolbox}

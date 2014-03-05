@@ -1,0 +1,162 @@
+\chapter{O Método de Controle Dinâmico da Infactibilidade}\visiblelbl{chap:metodo}
+
+O método de Controle Dinâmico da Infactibilidade (CDI) foi desenvolvido originalmente 
+para problemas com restrições de igualdade em \cite{bib:chico-dci}. Nosso trabalho estende o algoritmo 
+para lidar com inequações e limitantes nas variáveis.
+Para desenvolver o algoritmo, nós consideramos o problema no formato
+\begin{equation}\visiblelbl{prob:geral_cuter}
+\begin{array}{rrrcll}
+ \min & f(x) \\
+ \mbox{suj. a} & & & c_E(x) & = & 0, \\
+& c_L & \leq & c_I(x) & \leq & c_U, \\
+& b_L & \leq &     x  & \leq & b_U,
+\end{array}
+\end{equation}
+onde $f:\RnemR{n}$, $c_E:\RnemRn{n}{m_E}$, $c_I:\RnemRn{n}{m_I}$ são continuamente
+diferenciáveis até segunda ordem, 
+$c_{L_i} \in \R\cup\{-\infty\}, c_{U_i} \in \R\cup\{\infty\}, i = 1,\dots,m_I$, e
+$b_{L_i} \in \R\cup\{-\infty\}, b_{U_i} \in \R\cup\{\infty\}, i = 1,\dots,n$.
+No entanto, para facilitar o desenvolvimento da teoria do método, 
+vamos considerar o problema na forma mais simples, e tradicional, que
+apresentamos na seção anterior:
+\begin{equation}\tag{\ref{prob:geral}}
+ \begin{array}{rl}
+  \min & f(x) \\
+   \mbox{suj. a} & c_E(x) =  0, \\
+               & c_I(x) \geq 0.
+ \end{array}
+\end{equation}
+Introduzindo uma variável de folga $s$ nesse problema, obtemos
+\begin{equation}
+\begin{array}{rrcl}
+ \min & f(x) \\
+ \mbox{suj. a} & c_E(x) & = & 0, \\
+               & c_I(x) - s & = & 0, \\
+               & s & \geq & 0.
+\end{array}
+\end{equation}
+Definindo a vari\'avel
+\begin{eqnarray*}
+ z = \vetor{x}{s},
+\end{eqnarray*}
+e a fun\c{c}\~ao
+\begin{equation}\visiblelbl{def:h}
+h(z) = \vetor{c_E(x)}{c_I(x) - s}, 
+\end{equation}
+temos o problema com restrições de igualdade e limitantes
+\begin{eqnarray*}
+  \min & & f(x) \\
+  \mbox{suj. a} & & h(z) = 0 \\
+       & & s \geq 0.
+\end{eqnarray*}
+
+Agora, definimos uma função de barreira $\beta(z)$ que tende ao infinito quando
+a variável $z$ se aproxima dos limitantes. No caso, como temos apenas $s\geq 0$,
+definimos
+\begin{equation}\visiblelbl{def:beta}
+\beta(z) = -\sum_{i=1}^{m_I}\ln s_i.
+\end{equation}
+Discutiremos o caso mais geral para a função de barreira na Seção
+\ref{sec:generalizacao}.
+Finalmente, definimos a função
+\begin{equation}\visiblelbl{def:phi}
+  \varphi(z,\mu) = f(x) + \mu\beta(z),
+\end{equation}
+e obtemos o problema
+\begin{equation}\visiblelbl{prob:pto_int}
+ \begin{array}{rrcl}
+  \min & \varphi(z,\mu) \\
+  \mbox{suj. a} & h(z) & = & 0.
+ \end{array}
+\end{equation}
+O Lagrangeano do problema \eqref{prob:pto_int} é dado por
+\begin{equation}
+ \visiblelbl{def:lagrangeano}
+L(z,\lambda,\mu) = \varphi(z,\mu) + \lambda^Th(z).
+\end{equation}
+Como mencionamos no capítulo anterior, nosso método separa o progresso do
+algoritmo em passos tangentes e normais, utilizando aproximações quadráticas da
+função Lagrangeana e lineares das restrições.
+A ideia por trás de nosso passo tangente é tentar resolver aproximadamente o
+problema
+\begin{equation}
+  \begin{array}{rl}
+    \displaystyle\min_{d} & L(z_c + d,\lambda,\mu) \\
+    \mbox{suj. a} & h(z_c+d) = h(z_c),
+  \end{array}
+\end{equation}
+onde $z_c$ é o ponto obtido na iteração anterior.
+Infelizmente, o problema acima pode ser mal condicionado devido às derivadas da
+função objetivo. Isso se deve à presença da inversa da matriz diagonal 
+$S = \mbox{diag}(s_1,\dots,s_{m_I})$ nas derivadas de $\varphi$, como mostrado a
+seguir:
+$$ \nabla_z\varphi(z,\mu) = \nabla_zf(x) + \mu\nabla\beta(z) = 
+\vetor{\nabla f(x)}{-\mu S^{-1}e}, $$
+$$ \nabla^2_{zz} \varphi(z,\mu) = \nabla_{zz}^2f(x) + \mu\nabla^2\beta(z) = 
+\matriz{\nabla^2 f(x)}{0}{0}{\mu S^{-2}}. $$ 
+Para facilitar a visualização, vamos omitir o índice $z$
+das derivadas quando não houver confusão. Desse modo
+$\nabla \varphi(z,\mu) = \nabla_z\varphi(z,\mu)$ 
+e $\nabla^2 \varphi(z,\mu) = \nabla^2_{zz}\varphi(z,\mu)$.
+Para evitar esse mal condicionamento, vamos
+introduzir uma matriz de escalamento $\Lambda(z)$, definida como
+$$\Lambda(z) = \matriz{I}{0}{0}{S}.$$
+Assim, em nosso passo tangente, fazemos a substituição $d=\Lambda(z_c)\delta$,
+melhorando o condicionamento do problema.
+Definimos o gradiente, a Hessiana de $\varphi$ e a 
+Hessiana do Lagrangeano escalados, respectivamente, como
+\begin{eqnarray}
+g(z,\mu) & = & \Lambda(z) \nabla\varphi(z,\mu) = \vetor{\nabla f(x)}{-\mu e},
+  \visiblelbl{def:gradiente_escalado} \\ 
+\Gamma(z,\mu) & = & \Lambda(z) \nabla^2\varphi(z,\mu)\Lambda(z) = 
+  \matriz{\nabla^2 f(x)}{0}{0}{\mu I}, \visiblelbl{def:hess_escalada}\\
+W(z,\lambda,\mu) & = & \Lambda(z)\nabla_{zz}^2
+  L(z,\lambda,\mu)\Lambda(z),\visiblelbl{def:hess_lagr_escalada} \\
+& = & \Gamma(z,\mu) + \Lambda(z)\bigg[\sum_{i = 1}^m \lambda_i \nabla^2
+ h_i(z)\bigg]\Lambda(z)\nonumber \\
+& = & \Gamma(z,\mu) + \sum_{i = 1}^m\lambda_i\matriz{\nabla^2 c_i(x)}{0}{0}{0},
+ \nonumber \\
+ & = & \matriz{\nabla^2f(x)+\displaystyle\sum_{i=1}^m\lambda_i\nabla^2
+   c_i(x)}{0}{0}{\mu I} \nonumber
+\end{eqnarray}
+onde $m = m_E+m_I$.
+Também definimos a Jacobiana escalada como
+\begin{eqnarray}
+A(z) & = & \nabla h(z) \Lambda(z) = 
+\matriz{\nabla  c_E(x)}{0}{\nabla c_I(x)}{-I}\Lambda(z) \nonumber \\
+& = & \matriz{\nabla c_E(x)}{0}{\nabla c_I(x)}{-S},
+\visiblelbl{def:jacobiana_escalada}
+\end{eqnarray}
+Nosso método utiliza aproximações para os multiplicadores de Lagrange.
+Essas aproximações são feitas a partir da estimativa por quadrados mínimos da
+solução da equação de factibilidade dual escalada
+$$\Lambda(z) \nabla L(z,\lambda,\mu) = g(z,\mu) + A(z)^T\lambda = 0.$$
+Sendo assim, as estimativas são definidas como
+\begin{equation}\visiblelbl{lagr:argmin}
+\lambda_{LS}(z,\mu) = \arg\min_{\lambda}\bigg\{\meio\norma{A(z)^T\lambda + g(z,\mu)}^2\bigg\}.
+\end{equation}
+Note que, se $A(z)$ tem posto completo, ent\~ao
+$$\lambda_{LS}(z,\mu) = -[A(z)A(z)^T]^{-1}A(z)g(z,\mu).$$
+A fatoração da matriz $A(z)A(z)^T$ é feita para calcular os passos internos, de
+modo que o custo para encontrar esses multiplicadores não aumenta
+consideravelmente o custo total da iteração.
+
+Separando $\lls(z,\mu)$ em 
+$$\lls(z,\mu) = \vetor{\lambda_E(z,\mu)}{\lambda_I(z,\mu)},$$ 
+$\lambda_E(z,\mu) \in \Rn{m_E}$ e $\lambda_I(z,\mu) \in \Rn{m_I}$,
+definimos o gradiente no ponto $z$ projetado no espaço nulo de $A(z)$ escalado
+por $\Lambda(z)$ como
+\begin{eqnarray}\visiblelbl{gradproj}
+ g_p(z,\mu) 
+& = & g(z,\mu) + A(z)^T\lambda_{LS}(z,\mu) \\
+& = & \Lambda(z) \nabla_zL(z,\lambda_{LS}(z,\mu),\mu) \nonumber \\
+& = & \vetor{\nabla f(x) + \nabla c(x)^T \lls(z,\mu)}
+ {-\mu e - S\lambda_I(z,\mu)} \visiblelbl{gradproj.vetor}.
+\end{eqnarray}
+Vamos denotar esta função vetorial como o gradiente projetado.
+Na iteração $k$ do algoritmo, calculamos aproximações $\lambda_k$ e $g_p^k$ para
+os valores acima. Os detalhes de como são calculadas essas aproximações serão
+apresentados na próxima seção.
+
+\input{algoritmo}
+

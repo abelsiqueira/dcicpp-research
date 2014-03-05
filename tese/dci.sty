@@ -1,0 +1,101 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% dci.sty
+% DCI style. Specific commands for DCI
+% last update: August, 01, 2011.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{abel}
+
+\newcommand{\bxi}{\barra{\xi}}
+\newcommand{\brm}{\barra{\rho}_{\max}}
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calAe}{\calA^*}
+\newcommand{\dcp}{\delta_{CP}}
+\newcommand{\dhk}{\delta_T^k}
+\newcommand{\dhn}{\delta_{TN}}
+\newcommand{\dhns}{\delta_{TN_s}}
+\newcommand{\DHp}{\Delta L_T^{+}}
+\newcommand{\DLH}[1]{\Delta L_T^{#1}}
+\newcommand{\DLV}[1]{\Delta L_N^{#1}}
+\newcommand{\dmax}{\delta_{\max}}
+\newcommand{\dplus}{d^{+}}
+\newcommand{\dsoc}{\delta_{soc}}
+\newcommand{\DVm}{\Delta L_N^{k+1}}
+\newcommand{\dt}{\delta_t}
+\newcommand{\epsmu}{\varepsilon_{\mu}}
+\newcommand{\gAk}[1]{g_A(\xc{#1})}
+\newcommand{\gpk}[1]{g_p^{#1}}
+\newcommand{\HA}{H_A}
+\newcommand{\jacact}{\nabla c_{\calA}}
+\newcommand{\lA}{\lambda_A}
+\newcommand{\lAi}{\lambda_{A_i}}
+\newcommand{\Lac}[1]{\Lambda_c^{#1}}
+\newcommand{\Lak}[1]{\Lambda^{#1}}
+\newcommand{\lc}[1]{L(\xc{#1},\lambda^{#1})}
+\newcommand{\Lc}[1]{L_c^{#1}}
+\newcommand{\lk}[1]{\lambda^{#1}}
+\newcommand{\lp}{\lambda_{+}}
+\newcommand{\lls}{\lambda_{LS}}
+\newcommand{\lmuc}[1]{\lambda_\mu^{#1}}
+\newcommand{\lmuci}[1]{\lambda_{\mu_i}^{#1}}
+\newcommand{\Lref}{L_{ref}}
+\newcommand{\muc}[1]{\mu^{#1}}
+\newcommand{\mumin}{\mu_{\min}}
+\newcommand{\ngp}{\norma{g_p(\zc{k})}}
+\newcommand{\rhomax}{\rho_{\max}}
+\newcommand{\scikp}{s_{c_i}^{k+1}}
+\newcommand{\sik}{s_i^k}
+\newcommand{\smin}{s_{\min}}
+\newcommand{\smu}{s_\mu}
+\newcommand{\smuc}[1]{s_\mu^{#1}}
+\newcommand{\xc}[1]{x_c^{#1}}
+\newcommand{\xckxk}{\xc{k+1}-x^k}
+\newcommand{\xmu}{x_\mu}
+\newcommand{\xmuc}[1]{x_\mu^{#1}}
+\newcommand{\xp}{x_{+}}
+\newcommand{\zc}[1]{z_c^{#1}}
+\newcommand{\zmu}{z_\mu}
+\newcommand{\zmuc}[1]{z_\mu^{#1}}
+\newcommand{\zp}{z^{+}}
+\newcommand{\zxi}{z_{\xi}}
+\newcommand{\znj}{z_N^j}
+\newcommand{\xnj}{x_N^j}
+\newcommand{\snj}{s_N^j}
+
+\newtheorem{theorem}{\iflanguage{portuguese}{Teorema}
+  {Theorem}}[\@ifundefined{chapter}
+  {section}{chapter}]
+\newtheorem{lemma}[theorem]{\iflanguage{portuguese}{Lema}
+  {Lemma}}
+\newtheorem{corollary}[theorem]{\iflanguage{portuguese}{Corolário}
+  {Corollary}}
+  \newtheorem{definition}{\iflanguage{portuguese}{Definição}{Definition}}
+    [\@ifundefined{chapter}{section}{chapter}]
+
+\renewenvironment{proof}[1][\iflanguage{portuguese}{Demonstração}
+{Proof}:]{\begin{trivlist}
+  \item[\hskip \labelsep {\bfseries #1}]}{\begin{flushright}$\blacksquare$\end{flushright}\end{trivlist}}
+
+%\renewenvironment{algorithm}{
+%\begin{enumerate}
+%\setlength{\itemsep}{-1 pt}
+%\setlength{\parskip}{0 pt}
+%\setlength{\leftmargin}{0 pt}
+%\setlength{\labelwidth}{10 pt}
+%\setlength{\itemindent}{0 pt}
+%\setlength{\labelsep}{10 pt}
+%\setlength{\parsep}{0 pt}
+%}{\end{enumerate}}
+\renewcommand{\labelenumi}{\textbf{\arabic{enumi}.}}
+\renewcommand{\labelenumii}{\textbf{\arabic{enumii}.}}
+\renewcommand{\labelenumiii}{\textbf{\arabic{enumiii}.}}
+\renewcommand{\labelenumiv}{\textbf{\arabic{enumiv}.}}
+\newcommand{\RemR}{\R\tende\R}
+\newcommand{\RnemR}[1]{\Rn{#1}\tende\R}
+\newcommand{\RemRn}[1]{\R\tende\Rn{#1}}
+\newcommand{\RnemRn}[2]{\Rn{#1}\tende\Rn{#2}}
+
+\newtheorem{hypothesis}{Hipótese}
+\renewcommand\thehypothesis{H.\arabic{hypothesis}}
+
+\newenvironment{hypoenv}{\begin{hypothesis}}{\end{hypothesis}}

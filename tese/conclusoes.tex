@@ -1,0 +1,31 @@
+\chapter{Conclusões}
+\visiblelbl{chap:conclusoes}
+
+Apresentamos nesta tese o método DCICPP, um método para o problema
+de otimização não linear contínua. 
+Mostramos uma teoria satisfatória de convergência global e local e dentro das
+expectativas dos métodos usuais. Além disso, o algoritmo se mostrou competitivo
+em comparação ao IPOPT e ao ALGENCAN, dois dos melhores algoritmos gratuitos
+para programação não linear.
+
+Ainda existe bastante espaço para trabalho tanto na teoria, quanto no algoritmo.
+Consideramos a extensão da teoria para condições mais gerais de passos tangentes
+e normais, possibilitando a implementação de algoritmos diferentes e mais
+robustos para os subproblemas. Uma possibilidade é utilizar algum pacote pronto
+para o subproblema.
+Também consideramos a possibilidade de implementar a resolução dos sistemas
+lineares utilizando métodos iterativos e/ou aproximados. Esperamos estudar os
+problemas com Jacobianas singulares e quase singulares.
+Também vale mencionar que o tratamento de variáveis fixas está sendo
+implementado, e esperamos obter uma versão estável para próximos trabalhos.
+
+Para finalizar, vale mencionar que a escolha dos parâmetros também pode fazer
+muita diferença nos resultados, e que escolhemos apenas parâmetros canônicos ou
+sugeridos na literatura, de modo que é possível obter alguma melhoria no
+desempenho através da seleção criteriosa desses parâmetros.
+
+Em trabalhos futuros, esperamos fazer novas comparações com outros algoritmos
+notáveis e implementar as mudanças sugeridas acima. 
+Também gostaríamos de obter hipóteses mais fracas para a teoria de convergência
+do método, e estudar a estratégia de cilindros de confiança com outras
+aplicações.

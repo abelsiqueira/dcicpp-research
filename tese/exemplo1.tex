@@ -1,0 +1,89 @@
+Para deixar mais claro o funcionamento do método, vamos aplicar o algoritmo à
+dois exemplos. O primeiro é o problema
+\begin{eqnarray}
+  \min & f(x) = \meio(x_1^2 + x_2^2) \nonumber \\
+  \mbox{s.t} & x_2 = x_1^2 + 1, \nonumber
+\end{eqnarray}
+cuja solução é o ponto $(1,0)$.
+
+\newcommand{\addexum}[1]{
+  \includegraphics[scale=1.0]{ex1_plots/ex1_img#1.pdf}
+}
+
+\begin{center}
+  \addexum{1}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  Começamos pelo ponto $x_0 = \vetor{2}{3}$, denotado pelo círculo sólido na imagem.
+  A curva sólida representa a região factível, as curvas tracejadas 
+  denotam o cilindro menor e as curvas pontilhadas denotam o cilindro
+  maior. As circunferências concêntricas denotam as curvas de nível da função objetivo, cujo
+  menor valor ocorre na origem.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexum{2}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  Iniciamos notando que o ponto não está dentro do cilindro menor. Então
+  fazemos um passo normal. O ponto obtido, denotado $x_c$, é a tentativa de
+  iterando. Como o ponto já está dentro do cilindro
+  menor, o passo é interrompido.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexum{3}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  Agora, atualizamos o raio dos cilindros. Como o $x_c$ obtido continuou
+  dentro do cilindro menor após o raio deste ter sido atualizado, definimos
+  $x_c^0$ como este iterando normal.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexum{4}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  A partir deste ponto, tentamos realizar um passo tangente. O raio da região de
+  confiança, não ilustrado na imagem, é grande o suficiente para permitir que o
+  passo seja tomado completamente. O passo aqui é o minimizador da aproximação
+  quadrática do Lagrangeano. $x^+$. Nesse caso, como esse ponto está fora do
+  cilindro maior, rejeitamos o passo e reduzimos a
+  região de confiança.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexum{5}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  Calculamos um novo passo tangente, desta vez limitado pela região de
+  confiança, indicada pelo segmento tracejado. Note que, na verdade, este
+  segmento faz parte da caixa que é a região de confiança.
+  O iterando $x^+$ obtido está dentro do cilindro maior e fornece decréscimo
+  suficiente, sendo portanto aceito como o próximo iterando.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexum{6}
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  $x^1$ obtido pelo passo tangente.
+\end{minipage}
+\end{center}

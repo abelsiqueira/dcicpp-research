@@ -1,0 +1,236 @@
+\newpage
+Para verificar a aplicação do método no caso com inequações, vamos apresentar
+outro exemplo. Note, no entanto, que um problema de duas variáveis e uma
+inequação precisaria ser analisado em 3 dimensões. Decidimos, para facilitar a
+visualização, mostrar apenas as variáveis originais do problema, e utilizar a
+definição da variável de folga para mostrar a restrição deslocada.
+Pelo mesmo motivo, vamos mostrar apenas uma parte dos cilindros de confiança.
+
+O problema que consideramos é
+\begin{eqnarray}
+  \min & f(x) = \meio[x_1^2 + (x_2+1)^2] \nonumber \\
+  \mbox{suj. a} & x_2 \geq x_1^2, \nonumber \\
+               & x_1 + x_2 = 1, \nonumber
+\end{eqnarray}
+cuja solução é o ponto $(\frac{-1+\sqrt{5}}{2},\frac{3-\sqrt{5}}{2}) \approx
+(0.618,0.382)$.
+Ao adicionarmos a variável de folga $s$, obtemos o problema
+\begin{eqnarray}
+  \min & f(x) = \meio[x_1^2 + (x_2+1)^2] \nonumber \\
+  \mbox{suj. a} & x_2 - x_1^2 = s, \nonumber \\
+               & x_1 + x_2 = 1, \nonumber \\
+               & s \geq 0. \nonumber
+\end{eqnarray}
+Na solução, o valor de $s$ é $0$.
+
+Os cilindros de confiança para esse problema serão os conjuntos da forma
+$$ \mathcal{C}(\rho) = \{(x,s) \in \mathbb{R}^3: (x_2 - x_1^2 - s)^2 +
+  (x_1+x_2-1)^2 \leq \rho^2\}. $$
+Para mostrar alguma informação dessa região no plano original do problema,
+decidimos tomar o caso com $s$ fixo. Dessa maneira, podemos ter alguma
+informação do cilindro para as variáveis $x$. Note que essa visualização do
+cilindro pode mudar de uma iteração para outra mesmo que o raio do cilindro
+permaneça o mesmo.
+
+\newcommand{\addexdois}[1]{
+  \includegraphics[scale=1.0]{ex2_plots/ex2_img#1.pdf}
+}
+
+\begin{center}
+  \addexdois{1}
+
+  $s^0 = 0.01$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Começamos este exemplo pelo ponto $x^0 = (1,-1)$, e $s^0 = 0.01$, um valor
+    pequeno e positivo.
+    No gráfico, a reta corresponde à segunda equação; a região hachurada
+    correspondente ao conjunto factível da desigualdade; e a parábola sólida
+    corresponde à equação $x_2 - x_1^2 = s^0$.
+    A curva tracejada denota o corte do cilindro pequeno em $s = s^0$, e a
+    pontilhada o corte do cilindro grande pelo mesmo plano.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{2}
+
+  $s_c^0 = 0.01$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    O ponto inicial já está dentro do cilindro pequeno, então o ponto é aceito
+    sem necessidade de calcular nenhum passo normal.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{3}
+
+  $s^+ = 14.15$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Tentamos agora fazer um passo tangente. O ponto encontrado fica fora do cilindro
+    maior e não obtém decréscimo suficiente. Note que o cilindro não é
+    visualizado, pois o corte é feito com o valor de $s$ encontrado resulta no
+    conjunto vazio. Note que a parábola sólida também não é visualizada por
+    causa do valor de $s$.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{4}
+
+  $s^+ = 3.54$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+  O segundo passo tangente obtém decréscimo suficiente e está dentro do cilindro
+  maior, que agora pode ser visualizado. Note que a parábola sólida também já
+  pode ser visualizada.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{5}
+
+  $s^1 = 3.54$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    O ponto é aceito como iteração tangente.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{6}
+
+  $s_c = 1.29$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Atualizamos o raio do cilindro e fazemos um passo normal, levando o ponto
+    para dentro do cilindro menor.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{7}
+
+  $s_c^2 = 1.29$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Atualizamos novamente o raio do cilindro e o ponto encontrado permance dentro do
+    cilindro menor. Portanto encerramos o passo normal.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{8}
+
+  $s^+ = 1.03$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Fazemos um passo tangente, que fica dentro do cilindro e também tem
+    decréscimo suficiente.
+\end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{9}
+
+  $s^2 = 1.03$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Aceitamos o ponto.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{10}
+
+  $s_c = 0.67$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Fazemos um passo normal.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{11}
+
+  $s_c^3 = 0.67$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Aceitamos a iteração normal.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{12}
+
+  $s^+ = 0.16$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Fazemos um passo tangente.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{13}
+
+  $s^3 = 0.16$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Aceitamos a iteração tangente.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{14}
+
+  $s_c = 0.06$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Fazemos um passo normal.
+  \end{minipage}
+\end{center}
+
+\begin{center}
+  \addexdois{15}
+
+  $s_c^4 = 0.06$
+\end{center}
+
+\begin{center}
+  \begin{minipage}{0.9\textwidth}
+    Aceitamos a iteração normal. O algoritmo oscila mais algumas iterações ao
+    redor da solução até chegar à precisão necessária para declarar
+    convergência.
+  \end{minipage}
+\end{center}
+

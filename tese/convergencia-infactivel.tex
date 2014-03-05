@@ -1,0 +1,71 @@
+\section{Convergência para Pontos Estacionários da Infactibilidade}
+\visiblelbl{sec:conv-infactivel}
+
+Algumas vezes, em nosso algoritmo, não é possível encontrar um ponto dentro do cilindro
+de confiança. Quando isso acontece, supomos que o problema é infactível, e 
+desejamos que nosso método não faça iterações desnecessárias.
+Os teoremas de convergência anteriores consideram que a restauração não falha,
+isto é, que o passo normal consegue encontrar um ponto $z_c^k$ tal que
+$\norma{h(z_c^k)} \leq \rho^k$. Nesta seção, vamos mostrar que, se isso não é
+possível, então pelo menos o algoritmo deve convergir para um ponto estacionário
+da infactibilidade do problema \eqref{prob:geral}.
+
+Como apresentamos anteriormente, o problema normal é dado por
+\begin{equation}\tag{\ref{prob:normal}}
+\begin{array}{rl}
+  \min & \meio\norma{h(z)}^2 \\
+  \mbox{suj. a} & s \geq 0.
+\end{array}
+\end{equation}
+Já o problema da infactibilidade é
+\begin{eqnarray}
+ \min & & \norma{c_E(x)}^2 + \norma{c_I^-(x)}^2, \visiblelbl{prob:infac}
+\end{eqnarray}
+onde $v^- = (\min\{0,v_1\}, \min\{0,v_2\}, \dots, \min\{0,v_n\})^T$.
+\begin{theorem}\visiblelbl{teo:infac}
+  Seja $\{\znj\}$ uma sequência gerada pela algoritmo normal com pontos de
+  acumulação estacionários para o problema \eqref{prob:normal}, com
+  $$\znj = \vetor{\xnj}{\snj}.$$
+  Nesse caso, as componentes $\xnj$ de cada elemento dessa sequência formam uma
+  sequência com pontos de acumulação estacionários para o problema da
+  infactibilidade \eqref{prob:infac}.
+\end{theorem}
+\begin{proof}
+  Seja $z^*$ um ponto de acumulação de $\{\znj\}$ estacionário para o problema
+  \eqref{prob:normal}. Então, pelas condições KKT, existe $w^*\in\Rn{m_I}$ tal que
+\begin{align*}
+  \nabla h(z^*)^Th(z^*) - \vetor{0}{w^*} & = \vetor{0}{0}, \\
+  w_i^*s_i^* & = 0, \\
+  w^*, s^* & \geq 0.
+\end{align*}
+Como
+\begin{eqnarray*}
+  \nabla h(z)^T h(z) & = & \matriz{\nabla c_E(x)^T}{\nabla
+    c_I(x)^T}{0}{-I}\vetor{c_E(x)}{c_I(x) - s} \\
+  & = & \vetor{ \nabla c_E(x)^Tc_E(x) + \nabla c_I(x)^T[c_I(x) - s]}{s - c_I(x)},
+\end{eqnarray*}
+temos
+\begin{align}
+  \nabla c_E(x^*)c_E(x^*) + \nabla c_I(x^*)[c_I(x^*) - s^*] & = 0,
+  \visiblelbl{eq:infac.kkt} \\
+  s_i^* - c_{I_i}(x^*) & = w_i^*. \nonumber
+\end{align}
+Para mostrar que $x^*$ é um ponto estacionário do problema de
+infactibilidade \eqref{prob:infac}, basta mostrar que 
+$$c_{I_i}(x^*) - s_i^* = c_{I_i}^-(x^*), \qquad i = 1,\dots,m_I. $$
+Para cada $s_i^*$, temos duas opções:
+\begin{itemize}
+ \item Se $s_i^* > 0$, então $w_i^* = 0$. Daí, $ c_{I_i}(x^*) = s_i^* > 0$, e
+   portanto
+   $$c_{I_i}(x^*) - s_i^* = 0 = \min\{ c_{I_i}(x^*), 0\}.$$
+ \item Se $s_i^* = 0$, então $w_i^* \geq 0$. Daí, $c_{I_i}^* = -w_i^* \leq 0$, e
+   portanto
+   $$c_{I_i}(x^*) - s_i^* = c_{I_i}(x^*) = \min\{c_{I_i}(x^*),0\}.$$
+\end{itemize}
+De uma maneira ou de outra, temos
+$$ \nabla c_I(x^*)^T[c_I(x^*) - s^*] = \nabla c_I(x^*)^Tc_I^-(x^*). $$
+Substituindo essa expressão em \eqref{eq:infac.kkt}, obtemos
+$$ \nabla c_E(x^*)^T c_E(x^*) + \nabla c_I(x^*)^T[c_I(x^*) - s_i^*] =
+\nabla c_E(x^*)^T c_E(x^*) + \nabla c_I(x^*)^T c_I^-(x^*) = 0, $$
+de modo que $x^*$ é ponto estacionário do problema \eqref{prob:infac}.
+\end{proof}

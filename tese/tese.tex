@@ -1,0 +1,68 @@
+\documentclass[letterpaper,12pt,twoside]{book}
+%\documentclass[draft,letterpaper,12pt,twoside]{book}
+\input{pacotes}
+\usepackage{tese}
+\newif\ifdraft
+%\drafttrue
+
+\newcommand{\warning}[1]{ {\color{red}\hrule Warning: #1 \hrule} }
+\hyphenation{es-co-lher in-fac-ti-bi-li-da-de ge-ne-ra-li-za}
+
+\newcommand{\No}{N$^\circ$}
+
+\newcommand{\titulo}{Controle Din\^amico de Infactibilidade para Programação Não
+Linear}
+\newcommand{\autor}{Abel Soares Siqueira}
+\def\aplicada{}
+\newcommand{\orientador}{Francisco de Assis Magalh\~aes Gomes Neto}
+\newcommand{\ano}{2013}
+\input{configuracao}
+
+%\includeonly{implementacao}
+
+\begin{document}
+
+\frontmatter
+\include{capa}
+\newpage\mbox{}\thispagestyle{plain}\newpage
+\def\final{}
+%\input{folha-de-rosto}
+\includepdf[fitpaper=true]{pdfimgs/folha-de-rosto}
+\includepdf[fitpaper=true]{pdfimgs/ficha-catalografica}
+\includepdf{pdfimgs/folha-de-aprovacao}
+\chapter*{}
+\input{abstract}
+\vspace{.1\textheight}
+\input{resumo}
+\tableofcontents
+\include{agradecimentos}
+
+\mainmatter
+\include{introducao}
+\include{pnl}
+\include{teoria}
+\include{convergencia}
+\include{implementacao}
+\include{resultados}
+\include{conclusoes}
+
+\cleardoublepage
+\phantomsection
+\bibliographystyle{abel}
+\addcontentsline{toc}{chapter}{Referência Bibliográfica}
+\bibliography{tese}
+
+\appendix
+\include{apendices}
+
+\annex
+\input{cc-by-sa}
+
+\clearpage
+\backmatter
+%\printbibliography
+\clearpage
+\addcontentsline{toc}{chapter}{Índice Remissivo}
+\printindex
+
+\end{document}

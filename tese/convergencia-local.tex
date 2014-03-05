@@ -1,0 +1,544 @@
+\section{Convergência Local}\visiblelbl{sec:conv-local}
+
+Agora vamos analisar as propriedades do métodos quando obtemos uma sequência
+convergente, com algumas condições adicionais. Mostraremos que o método tem
+convergência superlinear em dois passos. Para isso, vamos analisar o método em
+função das restrições ativas na solução. Pediremos que as condições de segunda
+ordem tradicionais sejam satisfeitas e algumas condições extras, em geral
+específicas para o método.
+
+Sejam $\{z^k\}$ e $\{\zc{k}\}$ sequências geradas pelo algoritmo, convergentes
+a $z^*$. Seja $\{\lk{k}\}$ convergente a $\lambda^* = \lls(z^*,0)$. Pelo
+algoritmo, temos
+
+\begin{eqnarray*}
+ \left\{
+\begin{array}{rcl}
+ \nabla f(x^*) + \nabla c(x^*)^T\lambda^* & = & 0, \\
+ c_E(x^*) & = & 0, \\
+ c_I(x^*) & \geq & 0, \\
+ c_I(x^*)^T\lambda_I^* & = & 0, \\
+ \lambda_I^* & \leq & 0.
+\end{array}
+\right.
+\end{eqnarray*}
+Defina $\calA(x) = \{i \in E\cup I : c_i(x) = 0\}$, e $\calA^* = \calA(x^*)$.
+Defina $\lA^k$ e $\lA^*$ como as componentes de $\lambda^k$ e $\lambda^*$,
+respectivamente, correspondentes às restrições ativas.
+Suponha que $x^*$ é um ``bom minimizador'' para \eqref{prob:geral}, no sentido
+de que $V = \{\nabla c_i(x^*) : i \in \calA^*\}$ é L.I., e
+\begin{eqnarray}
+ y^T\bigg[\nabla^2 f(x^*) + \sum_{i \in \calA^*}\nabla^2c_i(x^*)\lk{*}_i\bigg]y =
+ y^T\bigg[\nabla^2 f(x^*) + \sum_{i = 1}^m\nabla^2 c_i(x^*)\lambda_i^*\bigg]y \geq
+ \theta_1\norma{y}^2, \visiblelbl{eq:defpos}
+\end{eqnarray}
+com $\theta_1 > 0$ e $y \in T = \{w : w^T\nabla c_i(x^*) = 0 : i \in E \cup J\}$, onde $J = \{i \in I:
+ \lambda_i^* < 0\}$.
+Defina a matriz $\nabla c_A(x^*)$, cujas linhas são os vetores de $V$, e a matriz $\nabla
+ c_B(x^*)$, cujas linhas são os vetores que faltam para completar $\nabla c(x^*)$.
+Como $\nabla c_A(x)$ é contínua, numa vizinhança de $x^*$, $\nabla c_A(x)$ tem posto linha
+completo (ver \ref{app:prova-posto-vizinhanca}). Assim, podemos definir
+$$\lA(x) = -[\nabla c_A(x)\nabla c_A(x)^T]^{-1}\nabla c_A(x) \nabla f(x),$$
+$$g_A(x) = \nabla f(x) + \nabla c_A(x)^T\lA(x),$$
+e 
+$$H_A(x,\lambda) = \nabla^2 f(x) + \sum_{i \in \calAe}\nabla^2 c_i(x)\lambda_i.$$
+
+Note que $\lambda_A(\xc{k})\tende\lambda_A^*$.
+ Numa vizinhança $V^*$ de $x^*$, podemos definir o projetor ortogonal no núcleo de $\nabla
+ c_A(x)$ como $$P(x) = I - \nabla c_A(x)^T[\nabla c_A(x)\nabla c_A(x)^T]^{-1}\nabla c_A(x),$$ e
+ afirmamos que ele é Lipschitz contínuo, pois $c \in C^2$. Também definimos o passo completo
+ $\delta_c^k = \zc{k+1}-\zc{k} = \delta_T^k + \delta_N^{k+1}$.
+
+Além de considerar as hipóteses \ref{hip:global.continuidade}-\ref{hip:global.dsoc}, nossa
+ análise da convergência local de $\xc{k}$ e $x^k$
+ será baseada em cinco hipóteses locais. Quatro delas estão descritas a seguir.
+ A quinta será descrita mais adiante.
+\begin{hypoenv}\visiblelbl{hip:local.lls}
+\begin{eqnarray*}
+\norma{\lk{k} - \lls(\zc{k},\muc{k})} & = & \bigo(\norma{g_p(\zc{k},\muc{k})}), \\
+  (\lk{k+1}_I)^T(s_c^{k+1} - s^k) & = & \bigo(\norma{g_p(\zc{k},\muc{k})}\rho^k)
+\end{eqnarray*}
+\end{hypoenv}
+\begin{hypoenv}\visiblelbl{hip:local.bkdefpos}
+ $B^k$ é assintoticamente uniformemente definida positiva em $\Nu(A(\zc{k}))$, isto é, em
+alguma vizinhança de $z^*$, podemos redefinir $\theta_1$ de modo que
+\begin{eqnarray}
+ \theta_1\norma{y}^2 \leq y^TB^k y \leq \theta_2\norma{y}^2, \visiblelbl{eq:rayleigh}
+\end{eqnarray}
+para $y \in \Nu(A(\zc{k}))$, onde $\theta_2 = \xi_0$.
+\end{hypoenv}
+\begin{hypoenv}\visiblelbl{hip:local.horz.step}
+ Seja $Z_A^k$ uma matriz cujas colunas formam uma base ortonormal para o núcleo de
+ $\nabla c_A(\xc{k})$. Defina
+\begin{eqnarray}
+\delta_x^k = -Z_A^k[(Z_A^k)^T B_x^k Z_A^k]^{-1}(Z_A^k)^Tg_A(\xc{k}), \visiblelbl{eq:dhndefx} \\
+\delta_{s_i}^k = \frac{1}{s_{c_i}^k}\nabla c_{I_i}(\xc{k})^T\delta_x^k, \visiblelbl{eq:dhndefs}
+\end{eqnarray}
+e
+$$\delta_A^k = \vetor{\delta_x^k}{\delta_{s}^k}.$$
+Assumimos que $\delta_A^k$ é o primeiro passo tentado pelo algoritmo se $\norma{\delta_A^k}
+ \leq \Delta$ e $s_c^k + S_c^k\delta_s^k \geq \epsmu s_c^k$. Além disso, supomos que
+\begin{eqnarray}
+ P(\xc{k})[B_x^k - H_A(x^*,\lambda^*)]\delta_x^k = o(\norma{\delta_x^k}).
+ \label{eq:proj_tangente}
+\end{eqnarray}
+\end{hypoenv}
+Note que se $s_{c_i}^k \tende 0$, então $i \in \mathcal{A}^*$. Daí, $\nabla
+c_{I_i}(\xc{k})^T$ é
+uma das linhas de $\nabla c_A(\xc{k})$, de modo que $\nabla c_{I_i}(\xc{k})^T Z_A^k = 0$.
+Logo, $\delta_{s_i}^k$ é zero. Caso contrário, $s_{c_i}^k$ permanece afastado de
+zero. Portanto $\delta_s^k$ é limitado. Assim, definimos
+ $\smin > 0$ tal que se $i \not\in \mathcal{A}^*$, então $s_{c_i}^k \geq \smin$.
+\begin{hypoenv}\visiblelbl{hip:local.active-relations}
+ Existem constantes positivas $\theta_A$ e $\theta_p$, tais que para $k$
+ suficientemente grande, 
+$$\norma{\gAk{k}} \leq \theta_A\norma{\gpk{k}},$$ 
+$$\norma{\gpk{k}} \leq \theta_p\norma{\gAk{k}},$$ 
+$$\norma{c_A(\xc{k})} = \Theta(\norma{h(\zc{k})}),$$
+$$\norma{c_A(x^{k})} = \Theta(\norma{h(z^{k})}),$$
+$$\norma{\xc{k+1} - x^k} = \bigo(\norma{c_A(x^k)}).$$
+\end{hypoenv}
+
+Como $\nabla c_A(x)$ e $H_A(x,\lambda)$ são contínuas e $\nabla c_A(x^*)$ tem
+posto completo, nossas hipóteses implicam que existe $\theta_3 > 0$ e uma
+vizinhança $V^*$ de $x^*$, tal que, para $x$, $\xc{k} \in V^*$,
+\begin{eqnarray}
+\norma{\nabla h(z)^T\lambda} & \geq & \theta_3\norma{\lambda}, \qquad \lambda \in \Rn{n+m_I},
+\ s \in \Rn{m_I}_+. \visiblelbl{eq:svd}
+\end{eqnarray}
+Usando \eqref{eq:proj_tangente} e a continuidade de $H_A$, obtemos
+\begin{eqnarray}
+P(\xc{k})[B_x^k - H_A(\xc{k},\lA(\xc{k}))]\delta_x^k & = &
+ P(\xc{k})[B_x^k - H_A(\xc{k},\lA(\xc{k})) + H_A(x^*,\lk{*}) - H_A(x^*,\lk{*})] 
+\delta_x^k \nonumber \\
+& = & o(\norma{\delta_x^k}) + P(\xc{k})[H_A(x^*,\lk{*}) - H_A(\xc{k},\lA(\xc{k}))]\delta_x^k
+\nonumber \\
+& = & o(\norma{\delta_x^k}) + P(\xc{k})[o(1)]\delta_x^k \nonumber \\
+& = & o(\norma{\delta_x^k}). \visiblelbl{eq:PBWlls}
+\end{eqnarray}
+e
+\begin{eqnarray}
+P(\xc{k})[B_x^k - \nabla_{xx}^2 \mathcal{L}(\xc{k},\lk{k})]\delta_x^k & = &
+P(\xc{k})[B_x^k - \nabla_{xx}^2 \mathcal{L}(\xc{k},\lk{k}) + H_A(x^*,\lk{*}) - H_A(x^*,\lk{*})]
+\delta_x^k \nonumber \\
+& = & o(\norma{\delta_x^k}) + P(\xc{k})[H_A(x^*,\lk{*}) - \nabla_{xx}^2 
+\mathcal{L}(\xc{k},\lk{k})]\delta_x^k \nonumber \\
+& = & o(\norma{\delta_x^k}) + P(\xc{k})[o(1)]\delta_x^k \nonumber \\
+& = & o(\norma{\delta_x^k}). \visiblelbl{eq:PBWlk}
+\end{eqnarray}
+
+Podemos escrever $\delta_x^k = Z_A^k\nu^k \in \Nu(\nabla c_A(\xc{k}))$. Note que $\nu^k$ é
+ minimizador do problema
+$$\min \barra{q}_x^k(\nu) = q_x^k(Z_A^k\nu) = \meio\nu^T(Z_A^k)^TB_x^kZ_A^k\nu +
+ \nu^T(Z_A^k)^T\nabla f(\xc{k}),$$
+onde $q_x(\delta)$ é definido como
+$$q_x^k(\delta) = \meio\delta^TB_x^k\delta + \delta^T \nabla f(x_c^k),$$
+isto é, a parte de $q^k(\delta)$ que não envolve $s$ ou $\mu$.
+Então, como $(Z_A^k)^T\nabla f(\xc{k}) = (Z_A^k)^Tg_A(\xc{k})$, temos
+\begin{eqnarray}
+ (Z_A^k)^T(B_x^k Z_A^k\nu^k + g_A(\xc{k})) = 0.\visiblelbl{eq:solnu}
+\end{eqnarray}
+
+Por \eqref{eq:rayleigh} e o fato de que $(Z_A^k)^TZ_A^k = I$, a matriz $[(Z_A^k)^T B_x^k
+ Z_A^k]^{-1}$ satisfaz, na vizinhança $V^*$, para todo $u \in \Rn{\barra{n}-m_A}$,
+ \begin{eqnarray}
+ \frac{1}{\mu_2}\norma{u}^2 \leq u^T[(Z_A^k)^T B_x^k Z_A^k]^{-1}u \leq \frac{1}
+{\mu_1}\norma{u}^2.\visiblelbl{eq:rayinversa}
+\end{eqnarray}
+
+No próximo lema, mostraremos que o passo $\delta_A^k$ é aceito pelo algoritmo.
+
+\begin{lemma}\visiblelbl{lemma:horz.step.accepted}
+ O passo $\delta_A^k$ é aceito pelo algoritmo \ref{alg:outline}, para $k$
+ suficientemente grande.
+\end{lemma}
+\begin{proof}
+ Como $\gAk{k} \in \Nu(\nabla c_A(\xc{k}))$, existe $\nu_p^k$ tal que $\gAk{k} =
+ Z_A^k\nu_p^k$ com $\norma{\gAk{k}}=\norma{\nu_p^k}$. Combinando
+ \eqref{eq:dhndefx} e \eqref{eq:rayinversa} temos
+\begin{eqnarray}
+ \norma{\delta_x^k} & = & \norma{Z_A^k[(Z_A^k)^TB_x^kZ_A^k]^{-1}(Z_A^k)^T\gAk{k}} =
+ \norma{[(Z_A^k)^T B_x^k Z_A^k]^{-1}(Z_A^k)^T\gAk{k}} \nonumber \\
+& \leq & \frac{1}{\mu_1}\norma{(Z_A^k)^T\gAk{k}} = \frac{1}{\mu_1}\norma{\nu_p^k} \nonumber \\ 
+& = & \frac{1}{\mu_1}\norma{\gAk{k}},\visiblelbl{dxgAk}
+\end{eqnarray}
+Além disso, para $i \not\in \calAe$,
+\begin{eqnarray*}
+ \modulo{\delta_{A_i}^k} & = & \bigg|\frac{\nabla c_i (\xc{k})^T\delta_x^k}{s_i}\bigg| \leq
+ \frac{\xi_0}{\smin}\norma{\delta_x^k} \leq \frac{\xi_0}{\mu_1\smin}\norma{\gAk{k}},
+\end{eqnarray*}
+de modo que
+\begin{eqnarray}
+ \norma{\delta_s^k} \leq \frac{m_A\xi_0}{\mu_1\smin}\norma{\gAk{k}}. \visiblelbl{dsgAk}
+\end{eqnarray}
+Portanto,
+\begin{eqnarray}
+ \norma{\delta_A^k} \leq \theta_4\norma{\gAk{k}}, \visiblelbl{eq:dhnlim}
+\end{eqnarray}
+onde $\theta_4 = \sqrt{1 + (m_A\xi_0/\smin)^2}/\mu_1$, para $k$ suficientemente grande. Como
+ $\gAk{k}\tende 0$, para $k$ suficientemente grande, temos $\norma{\delta_A^k} < \Delta_{\min}$
+ e $\delta_s^k \geq (\epsmu - 1)e$, de modo que, pela Hipótese
+ \ref{hip:local.horz.step}, $\delta_A^k$ será o primeiro passo tentado pelo
+ algoritmo, em alguma vizinhança $V^*$.
+
+Para $k$ suficientemente grande, $\barra{q}_x(\nu)$ será uma quadrática definida positiva.
+ Portanto, seu mínimo, $\barra{q}_x(\nu^k)$, satisfaz
+\begin{eqnarray}
+ q_x(\delta_x^k) & = & \barra{q}_x(\nu^k) \nonumber \\
+& = & -\meio(\gAk{k})^TZ_A^k[(Z_A^k)^T B_x^k Z_A^k]^{-1}(Z_A^k)^T\gAk{k} \nonumber \\
+& \leq & - \frac{1}{2\mu_2}\norma{\gAk{k}}^2, \visiblelbl{eq:qdhnx}
+\end{eqnarray}
+onde a última desigualdade vem de \eqref{eq:rayinversa}.
+Além disso, temos
+\begin{eqnarray}
+ q_s(\delta_s^k) & = & \meio\delta_s^TB_s\delta_s + \delta_s^T(-\mu e) \nonumber \\
+& = & \meio \sum_{i \not\in\mathcal{A}^*}B_{s_i}\delta_{s_i}^2 - 
+\mu\sum_{i \not\in\mathcal{A}^*}\delta_{s_i} \nonumber \\
+& = & \meio\sum_{i \not\in\mathcal{A}^*}\frac{B_{s_i}}{s_i^2} \nabla c_i(\xc{k})^T\delta_x -
+\mu \sum_{i \not\in\mathcal{A}^*}\frac{ \nabla c_i(\xc{k})^T\delta_x }{s_i} \nonumber \\
+& \leq & \meio m \frac{\xi_0^2}{s_{\min}^2}\norma{\delta_x}^2 + 
+\alpha_{\mu}\rho^k m \frac{\xi_0}{s_{\min}} \norma{\delta_x} \nonumber \\
+& \leq & \frac{m \xi_0^2}{2 s_{\min}}\norma{\delta_x}^2 + \frac { \alpha_{\mu}
+\rhomax^{k-1} m} {s_{\min}} \norma{g_p^k}\norma{\delta_x} \nonumber \\
+& \leq & \frac{m \xi_0^2}{2 s_{\min} \mu_1^2}\norma{ g_A(\xc{k}) }^2
++ \frac{\alpha_{\mu}\rhomax^0 m \theta_p}{s_{\min}\mu_1} \norma{g_A(\xc{k})}^2.
+\visiblelbl{eq:qdhns}
+\end{eqnarray}
+Assim, juntando \eqref{eq:qdhnx} com \eqref{eq:qdhns}, temos
+\begin{eqnarray}
+ q(\delta_A) & = & q_x(\delta_x) + q_s(\delta_s) \nonumber \\
+& \leq & \bigg[-\frac{1}{2\mu_2} + \frac{m\xi_0^2}{2s_{\min}\mu_1^2} +
+\frac{\alpha_{\mu}\rhomax^0 m \theta_p}{s_{\min}\mu_1}\bigg]\norma{g_A(\xc{k})}^2 \nonumber \\
+& = & \mu_3\norma{g_A(\xc{k})}^2, \visiblelbl{eq:qdhn}
+\end{eqnarray}
+onde $\mu_3$ é o termo entre colchetes na segunda linha.
+
+Agora, usando uma expansão de Taylor, temos
+\begin{eqnarray}
+ \DLH{+} & = & L(\zc{k}+\Lac{k}\delta_A^k,\lk{k},\muc{k}) -
+  L(\zc{k},\lk{k},\muc{k}) \nonumber \\
+ & = & \nabla_z L(\zc{k},\lk{k},\muc{k})^T\Lac{k}\delta_A^k + \meio
+  (\delta_A^k)^T \Lac{k}\nabla_{zz}^2 L(\zc{k},\lk{k},\muc{k})\Lac{k}\delta_A^k
+  + o(\norma{\Lac{k}\delta_A^k}^2) \nonumber \\
+ & = & (\gpk{k})^T\delta_A^k + \meio (\delta_A^k)^T
+  W(\zc{k},\lk{k},\muc{k})\delta_A^k + o(\norma{\delta_A^k}^2).
+  \visiblelbl{lemma.horz.aux1}
+\end{eqnarray}
+Lembrando que $A(z_c^k)\delta_A^k=0$, o primeiro termo de
+\eqref{lemma.horz.aux1} se expande em
+\begin{eqnarray}
+  (g_p^k)^T\delta_A^k & = & [g(z_c^k,\mu^k) + A(z_c^k)^T\lambda^k]^T
+  \delta_A^k \nonumber \\
+  & = & g(z_c^k,\mu^k)^T\delta_A^k + (\lambda^k)^TA(z_c^k)\delta_A^k \nonumber
+  \\
+  & = & q(\delta_A^k) - \meio (\delta_A^k)^TB^k\delta_A^k. 
+  \nonumber
+\end{eqnarray}
+Substituindo isso em \eqref{lemma.horz.aux1}, temos
+\begin{eqnarray}
+\DLH{+} 
+& = & q(\delta_A^k) + \meio (\delta_A^k)^T[W(\zc{k}, \lk{k}, \muc{k}) -
+  B^k]\delta_A^k + o(\norma{\delta_A^k}^2).
+  \visiblelbl{lemma.horz.aux2}
+\end{eqnarray}
+Usando o fato de que $\delta_x^k = P(\xc{k})\delta_x^k$, \eqref{eq:PBWlk},
+\eqref{dxgAk} e \eqref{dsgAk}, o segundo termo de \eqref{lemma.horz.aux2} vira
+\begin{eqnarray}
+  (\delta_A^k)^T [W(z_c^k,\lambda^k,\mu^k) - B^k] \delta_A^k 
+  & = & (\delta_x^k)^T [\nabla_{xx}^2\mathcal{L}(x_c^k,\lambda^k) - B_x^k]
+    \delta_x^k + (\delta_s^k)^T (\mu I - B_s^k) \delta_s^k \nonumber \\
+  & = & (\delta_x^k)^TP(x_c^k) [\nabla_{xx}^2 \mathcal{L}(x_c^k,\lambda^k) -
+  B_x^k] \delta_x^k + (\delta_s^k)^T(\mu I - B_s^k) \delta_s^k \nonumber \\
+  & = & o(\norma{\delta_x^k}^2) + o(\norma{\delta_s^k}^2) \nonumber \\
+  & = & o(\norma{\delta_A^k}^2).
+  \visiblelbl{lemma.horz.aux3}
+\end{eqnarray}
+Agora, substituindo \eqref{lemma.horz.aux3} em \eqref{lemma.horz.aux2}, e usando
+\eqref{eq:dhnlim} obtemos
+\begin{eqnarray}
+\DLH{+} 
+& = & q(\delta_A^k) + o(\norma{\delta_A^k}^2) \nonumber \\
+& = & q(\delta_A^k) + o(\norma{g_A(\xc{k})}^2). \visiblelbl{eq:DLHp}
+\end{eqnarray}
+Segue de \eqref{eq:qdhn} e \eqref{eq:DLHp} que
+\begin{eqnarray*}
+ r & = & \frac{ \DLH{+} }{ q(\delta_A^k) } = 1 + \frac{ o(\norma{g_A(\xc{k})}^2) }
+{q(\delta_A^k)} \\
+& \geq & 1 + \frac{1}{\mu_3}\frac{ o(\norma{g_A(\xc{k})}^2) }{ \norma{g_A(\xc{k})}^2 }.
+\end{eqnarray*}
+Lembrando que $\eta_1 \in(0,1)$, para $k$ suficientemente
+grande, temos
+$$ \bigg|\frac{ o(\norma{g_A(\xc{k})}^2) }{ \norma{g_A(\xc{k})}^2 }\bigg| \leq 
+\mu_3(1 - \eta_1), $$
+logo,
+\begin{eqnarray*}
+ r & \geq & 1 - \frac{1}{\mu_3}\mu_3(1 - \eta_1) = \eta_1,
+\end{eqnarray*}
+de modo que uma das condições da linha \ref{alg:tangente-condicoes} do Algoritmo \ref{alg:outline}
+ é satisfeita para $k$ suficientemente grande.
+
+Por \eqref{limLac}, \eqref{eq:dhnlim}, e a Hipótese \ref{hip:local.active-relations}, temos
+\begin{eqnarray}
+ \norma{\Lambda_c^k\delta_A^k} & \leq & \norma{\Lambda_c^k} \norma{\delta_A^k} \nonumber \\
+& \leq & \xi_0\theta_4\norma{g_A(\xc{k})} \nonumber \\
+& \leq & \xi_0\theta_4\theta_A\norma{g_p^k}. \visiblelbl{eq:aux.difz}
+\end{eqnarray}
+Então, de \eqref{eq:aux.difz} e a Hipótese \ref{hip:local.lls}, concluímos que
+as hipóteses da terceira parte do Lema \ref{lemma:35} são satisfeitas, de modo
+que existe $k_0$ suficientemente grande tal que $\rhomax^k = \rhomax^{k_0}$, $k
+\geq k_0$. 
+Assim, usando \eqref{limrhomax} e \eqref{limgamma}, para $k \geq k_0$, obtemos
+\begin{eqnarray*}
+ \norma{g_p^k} \leq 10^4\rho^k\frac{\norma{g(\zc{k},\muc{k})} + 1}{\rhomax^k}
+\leq 10^4\rho^k\frac{\xi_0 + 1}{\rhomax^{k_0}} = \beta \rho^k,
+\end{eqnarray*}
+onde  $\beta = 10^4(1+\xi_0)/\rhomax^{k_0}$. 
+Junto com \eqref{limvarh}, \eqref{eq:dhnlim}, a 
+Hipótese \ref{hip:local.active-relations}, 
+\eqref{limhhornormal}, isto implica que, para $k$ suficientemente grande,
+\begin{eqnarray}
+ \norma{h(\zc{k} + \Lac{k}\delta_A^k)} & \leq & \norma{h(\zc{k})} + 
+\norma{h(\zc{k}+\Lac{k}\delta_A^k) - h(\zc{k})} \nonumber \\
+& \leq & \norma{h(\zc{k})} + \bxi_0\norma{\delta_A^k}^2 \nonumber \\
+& \leq & \norma{h(\zc{k})} + \bxi_0\theta_4^2\norma{\gAk{k}}^2 \nonumber \\
+& \leq & \norma{h(\zc{k})} + \bxi_0\theta_4^2\theta_A^2\norma{\gpk{k}}^2 \nonumber \\
+& \leq & \rho^k + \beta\bxi_0\theta_4^2\theta_A^2\norma{\gpk{k}}\rho^k \nonumber \\
+& = & \rho^k (1 + \beta\bxi_0\theta_4^2\theta_A^2\norma{\gpk{k}} ). \nonumber
+\end{eqnarray}
+
+Assim para $k$ suficientemente grande, $\beta\bxi_0 \theta_4^2
+\theta_A^2\norma{\gpk{k}} < 1$, de modo que o passo $\delta_A^k$ será aceito.
+\end{proof}
+
+Até agora, pudemos trabalhar com um passo normal genérico que satisfizesse
+poucas condições. Doravante, vamos considerar um formato para o passo normal que
+nos ajudará na demonstração da convergência local.
+
+\begin{hypoenv}\visiblelbl{hip:local.normal.step}
+Para $k$ suficientemente grande, cada passo normal $\delta_N^{k+1} =
+\zc{k+1}-z^k$ é calculado tomando um ou mais passos da forma
+\begin{eqnarray}
+ \delta_N^+ = -J^+h(z_c) = -J^T(JJ^T)^{-1}h(z_c),\visiblelbl{def:normalstep}
+\end{eqnarray}
+onde $J$ satisfaz
+\begin{eqnarray}
+ \norma{J - \nabla h(z_c)} = \bigo(\norma{\gpk{k}}). \visiblelbl{eq:Abarra}
+\end{eqnarray}
+\end{hypoenv}
+Note que, para $k$ suficientemente grande, usando \eqref{eq:svd}, podemos
+redefinir $\theta_3$ de modo que 
+$\norma{J^T\lambda} \geq \theta_3\norma{\lambda}$.
+
+Usando uma expansão de Taylor, \eqref{eq:svd}, \eqref{def:normalstep}, \eqref{eq:Abarra},
+\eqref{nnormalxi} e a 
+continuidade de $A(z)$, é fácil mostrar que, se $\zc{k+1} \neq z^k$, para $k$
+suficientemente grande, então o primeiro passo 
+normal da iteração $k+1$, digamos $\delta_N^+$, satisfaz
+\begin{eqnarray}
+ \norma{\delta_N^+} & = & \norma{J^+ h(z_c)} \leq
+  \frac{1}{\theta_3}\norma{h(z_c)} = \bigo(\norma{h(z_c)})
+\end{eqnarray}
+e
+\begin{eqnarray}
+ \norma{h(\zc{k+1})} & \leq & \norma{h(z^k + \delta_N^+)} \nonumber \\
+& = & \norma{h(z^k) + \nabla h(z^k)\delta_N^+ + o(\norma{\delta_N^+})} \nonumber \\
+& = & \norma{h(z^k) + J\delta_N^+ + [\nabla h(z^k)-J]\delta_N^+ + 
+o(\norma{\delta_N^+})} \nonumber \\
+& = &  \norma{ h(z^k) - JJ^+h(z^k) + [ \nabla h(z^k) - J] \delta_N^+ + o(\norma{\delta_N^+})} \nonumber \\
+& \leq & \norma{\nabla h(z^k) - J}\norma{\delta_N^+} + o(\norma{\delta_N^+}) \nonumber \\
+& = & \bigo (\norma{\gpk{k}}\norma{\delta_N^+}) + o(\norma{\delta_N^+}) \nonumber \\
+& = & o(\norma{\delta_N^+}) \nonumber \\
+& = & o(\norma{h(z^k)}). \visiblelbl{eq:hzckp}
+\end{eqnarray}
+
+No próximo lema, iremos mostrar que os valores de $\norma{g_A(x)}$ e $\norma{c_A(x)}$ definem 
+uma medida de distância ao ponto $x^*$.
+\begin{lemma}
+ Numa vizinhança $V^*$ de $x^*$, temos
+\begin{eqnarray}
+ \norma{x - x^*} = \Theta(\norma{c_A(x)} + \norma{g_A(x)}). \visiblelbl{eq:difxTheta}
+\visiblelbl{eq:difzTheta}
+\end{eqnarray}
+\end{lemma}
+\begin{proof}
+Como $g_A(x)$ e $c_A(x)$ são Lipschitz contínuas, temos
+$$ \norma{g_A(x)} = \norma{g_A(x) - g_A(x^*)} = \bigo(\norma{x-x^*}),$$
+e
+$$ \norma{c_A(x)} = \norma{c_A(x) - c_A(x^*)} = \bigo(\norma{x-x^*}).$$
+Então
+  $$\norma{c_A(x)} + \norma{g_A(x)} = \bigo(\norma{x-x^*}).$$
+
+Agora consideremos o Lagrangeano do problema de igualdade associado às
+restrições ativas,
+$$L_A(x,\lambda) = f(x) + c_A(x)^T\lambda,$$
+cujas derivadas são
+$$ \nabla L_A(x,\lambda) = 
+\vetor{\nabla f(x) + \nabla c_A(x)^T\lambda}{c_A(x)}$$
+e
+$$\nabla^2 L_A(x,\lambda) = 
+\matriz{H_A(x,\lambda)}{\nabla c_A(x)^T}{\nabla c_A(x)}{0}.$$
+Nesse caso, $\nabla L_A(x^*,\lk{*}) = 0$ e $\nabla^2 L_A(x^*, \lk{*})$ é
+não-singular.
+Definamos $e_x = x^* - x, e_\lambda = \lambda^* - \lambda$ e
+$e = \vetor{e_x}{e_\lambda}$.
+Pelo Corolário \ref{app:teo-medida}, temos
+$$ \norma{e} = 
+\bigo(\norma{\nabla L_A(x,\lambda)}). $$
+Daí,
+\begin{align*}
+\norma{x - x^*} 
+  & \leq \bigg\Vert \vetor{x - x^*}
+    {\lambda_A(x) - \lambda^*}\bigg\Vert \\
+  & = \bigo(\norma{\nabla L_A(x,\lambda_A(x))}) \\
+  & = \bigo(\norma{g_A(x)} + \norma{c_A(x)}).
+\end{align*}
+\end{proof}
+
+Apresentamos agora o teorema de convergência local de nosso algoritmo. Obtivemos
+os mesmos resultados que o artigo original.
+\begin{theorem}
+ Com as hipóteses \ref{hip:global.continuidade}-\ref{hip:local.normal.step}, $x^k$ e $\xc{k}$ são superlinearmente convergentes em dois 
+passos para $x^*$. Se uma restauração é calculada a cada iteração, então $x^k$ converge 
+superlinearmente para $x^*$.
+\end{theorem}
+\begin{proof}
+ As expressões \eqref{dxgAk} e \eqref{eq:difzTheta} implicam que
+\begin{eqnarray}
+ \norma{x^{k+1}-x^*} & \leq & \norma{x^{k+1} - \xc{k+1}} + \norma{\xc{k+1}-x^*} \nonumber \\
+ & = & \norma{\delta_x^{k+1}} + \norma{\xc{k+1} - x^*} \nonumber \\
+ & = & \bigo(\norma{\gAk{k+1}}) + \norma{\xc{k+1}-x^*} \nonumber \\
+ & = & \bigo(\norma{\xc{k+1} - x^*}). \visiblelbl{eq:limdifxkxe}
+\end{eqnarray}
+Além disso, pela Hipótese \ref{hip:local.active-relations} e \eqref{eq:difzTheta}, temos
+\begin{eqnarray}
+ \norma{\xc{k+1} - x^*} & \leq & \norma{x^k - \xc{k+1}} + \norma{x^k - x^*} \nonumber \\
+ & = & \bigo(\norma{c_A(x^k)}) + \norma{x^k - x^*} \nonumber \\
+ & = & \bigo(\norma{x^k - x^*}). \visiblelbl{eq:limdifxckxe}
+\end{eqnarray}
+Para mostrar a convergência local, precisamos das relações a seguir:
+\begin{eqnarray}
+ g_A(x^k) & = & o(\norma{\xc{k} - x^*}), \visiblelbl{eq:limgAxk} \\
+ g_A(\xc{k+1}) & = & o(\norma{\xc{k-1} - x^*}), \visiblelbl{eq:limgAxck} \\
+ c_A(x^k) & = & o(\norma{\xc{k-1} - x^*}), \visiblelbl{eq:limcxk} \\
+ c_A(\xc{k+1}) & = & o(\norma{\xc{k} - x^*}). \visiblelbl{eq:limcxck}
+\end{eqnarray}
+
+Vamos prová-las, começando por \eqref{eq:limgAxk}. Para uma vizinhança $V^*$ de $x^*$, usando a 
+expansão de Taylor, temos
+\begin{eqnarray}
+ \norma{g_A(x^k)} & = & \norma{P(x^k)g_A(x^k)} \nonumber \\
+                  & = & \norma{P(x^k)[g_A(\xc{k}) + \nabla g_A(\xc{k})\delta_x^k]} + o(\norma{\delta_x^k}) 
+\nonumber \\
+& = & \norma{P(x^k)\zeta_k} + o(\norma{\delta_x^k}) \nonumber \\
+& \leq & \norma{[P(x^k) - P(\xc{k})]\zeta_k} + \norma{P(\xc{k})\zeta_k} +
+o(\norma{\delta_x}),
+\visiblelbl{eq:gAxk.aux1}
+\end{eqnarray}
+onde $\zeta_k = g_A(\xc{k}) + \nabla g_A(\xc{k})\delta_x^k$.
+Pela continuidade de $P(x)$ em $V^*$, \eqref{limjacob} e \eqref{dxgAk}, temos
+\begin{eqnarray}
+ \norma{[P(x^k) - P(\xc{k})]\zeta_k} & = & \bigo(\norma{\xc{k} - x^k}\norma{\zeta_k}) = 
+o(\norma{\zeta_k}) \nonumber \\
+ & = & o(\norma{g_A(\xc{k})}) + o(\norma{\nabla g_A(\xc{k})}\norma{\delta_x^k}) \nonumber \\
+ & = & o(\norma{g_A(\xc{k})}) + o(\norma{\delta_x^k}) \nonumber \\
+ & = & o(\norma{g_A(\xc{k})}).\visiblelbl{eq:gAxk.aux2}
+\end{eqnarray}
+Além disso, usando o fato de que $P(\xc{k})\nabla c_A(\xc{k})^T = 0$, \eqref{eq:solnu}, 
+\eqref{eq:PBWlls} e \eqref{dxgAk}, temos
+\begin{eqnarray}
+ \norma{P(\xc{k})\zeta_k} & \leq & \norma{P(\xc{k})[g_A(\xc{k}) + B_x^k\delta_x^k]} + \nonumber 
+\\
+& & \norma{P(\xc{k})[H_A(\xc{k},\lambda_A(\xc{k})) - B_x^k]\delta_x^k} + \nonumber \\
+& & \norma{P(\xc{k})[H_A(\xc{k},\lambda_A(\xc{k})) - \nabla g_A(\xc{k})]\delta_x^k} \nonumber 
+\\
+& = & o(\norma{\delta_x^k}) + \norma{P(\xc{k})\nabla c_A(\xc{k})^T\nabla 
+\lambda_A(\xc{k})\delta_x^k} \nonumber \\
+& = & o(\norma{\delta_x^k}) = o(\norma{g_A(\xc{k})}). \visiblelbl{eq:gAxk.aux3}
+\end{eqnarray}
+Assim, substituindo \eqref{eq:gAxk.aux2} e \eqref{eq:gAxk.aux3} em \eqref{eq:gAxk.aux1}, e 
+usando \eqref{eq:difzTheta}, obtemos
+\begin{eqnarray*}
+ \norma{g_A(x^k)} = o(\norma{g_A(\xc{k})}) = o(\norma{\xc{k} - x^*}).
+\end{eqnarray*}
+Para provar \eqref{eq:limcxck}, precisamos considerar duas situações separadamente. Primeiro, 
+suporemos que $\{k_i\}$ seja uma subsequência infinita em que nenhum passo normal é feito, i.e. 
+$\zc{k_i+1} = z^{k_i}$. 
+Nesse caso, a dinâmica do controle da factibilidade, \eqref{limrho}, a Hipótese 
+\ref{hip:local.active-relations} e \eqref{eq:limgAxk} implicam que
+\begin{eqnarray}
+ \norma{c_A(\xc{k_i+1})} & = & \bigo(\rho^{k_i+1}) = \bigo(\norma{\gpk{k_i+1}}) \nonumber \\
+ & = & \bigo(\norma{g_A(\xc{k_i+1})}) = \bigo(\norma{g_A(x^{k_i})}) = o(\norma{\xc{k_i}-
+x^*}). \visiblelbl{eq:cxck.aux1}
+\end{eqnarray}
+Agora, vamos considerar uma subsequência infinita $\{k_j\}$, onde pelo menos um
+passo normal $\delta_N^+$ satisfaz a Hipótese \ref{hip:local.normal.step}.
+Nesse caso, as hipóteses \ref{hip:local.active-relations} e
+\ref{hip:local.normal.step}, \eqref{eq:difzTheta} e \eqref{eq:limdifxkxe}
+implicam que
+\begin{eqnarray}
+ \norma{c_A(\xc{k_j + 1})} & = & \bigo(h(\zc{k_j+1})) = \bigo(\norma{h(z^{k_j} +
+\delta_N^+)}) 
+\nonumber \\
+& = & o(\norma{h(z^{k_j})}) = o(\norma{c_A(x^{k_j})}) \nonumber \\
+& = & o(\norma{x^{k_j} - x^*}) = o(\norma{\xc{k_j} - x^*}). \visiblelbl{eq:cxck.aux2}
+\end{eqnarray}
+A expressão \eqref{eq:limcxck} segue de \eqref{eq:cxck.aux1} e \eqref{eq:cxck.aux2}.
+
+Combinando a Hipótese \ref{hip:local.active-relations}, o Lema
+\ref{lemma:horz.step.accepted}, \eqref{limvarh}, \eqref{eq:hzckp},
+\eqref{eq:limdifxkxe}, \eqref{eq:difzTheta}, \eqref{eq:dhnlim} e
+\eqref{gpmukplus}, podemos escrever
+\begin{eqnarray*}
+ \norma{c_A(x^k)} & = & \bigo(\norma{h(z^k)}) = \bigo(\norma{h(\zc{k})}) + \bigo(\norma{h(z^k) 
+- h(\zc{k})}) \nonumber \\
+& = & o(\norma{h(z^{k-1})}) + \bigo(\norma{\delta_A^k}^2) \nonumber \\
+& = & o(\norma{c_A(x^{k-1})}) + \bigo(\norma{\delta_A^k}^2) \nonumber \\
+& = & o(\norma{x^{k-1} - x^*}) + \bigo(\norma{\delta_A^k}^2) \nonumber \\
+& = & o(\norma{\xc{k-1} - x^*}) + \bigo(\norma{\delta_A^k}^2) \nonumber \\
+& = & o(\norma{\xc{k-1} - x^*}) + \bigo(\norma{\gAk{k}}^2) \nonumber \\
+& = & o(\norma{\xc{k-1} - x^*}) + \bigo(\norma{\gAk{k-1}}^2) \nonumber \\
+& = & o(\norma{\xc{k-1} - x^*}) + \bigo(\norma{\xc{k-1} - x^*}^2) \nonumber \\
+& = & o(\norma{\xc{k-1} - x^*}).
+\end{eqnarray*}
+Finalmente, para obter \eqref{eq:limgAxck}, usamos uma expansão de Taylor, a Hipótese 
+\ref{hip:local.active-relations}, \eqref{eq:difxTheta}, 
+\eqref{eq:limgAxk}, \eqref{eq:limcxk}, \eqref{eq:limdifxckxe} e \eqref{eq:limdifxkxe},
+de modo que
+\begin{eqnarray*}
+ \norma{g_A(\xc{k+1})} & = & \norma{g_A(x^k)} + \bigo(\norma{\xc{k+1} - x^k}) \\
+ & = & \norma{g_A(x^k)} + \bigo(\norma{c_A(x^k)}) \\
+ & = & o(\norma{\xc{k-1} - x^*}).
+\end{eqnarray*}
+A convergência em dois passos segue utilizando \eqref{eq:difzTheta}, \eqref{eq:limgAxk}, 
+\eqref{eq:limcxk}, \eqref{eq:limdifxckxe}, \eqref{eq:limdifxkxe}, \eqref{eq:limgAxck} e 
+\eqref{eq:limcxck}, pois
+\begin{eqnarray}
+ \norma{x^{k+1} - x^*} & = & \bigo(\norma{g_A(x^{k+1})} + \norma{c_A(x^{k+1})}) \nonumber \\
+ & = & o(\norma{\xc{k+1} - x^*}) + o(\norma{\xc{k} - x^*}) \nonumber \\
+ & = & o(\norma{x^{k-1} - x^*}),\visiblelbl{eq:2stepxk}
+\end{eqnarray}
+e
+\begin{eqnarray}
+ \norma{\xc{k+1} - x^*} & = & \bigo(\norma{g_A(\xc{k+1})} + \norma{c_A(\xc{k+1})}) \nonumber \\
+ & = & o(\norma{\xc{k-1} - x^*}) + o(\norma{\xc{k} - x^*}) \nonumber \\
+ & = & o(\norma{\xc{k-1} - x^*}).\visiblelbl{eq:2stepxck}
+\end{eqnarray}
+
+Para concluir a prova, vamos supor que uma restauração não-nula é feita em cada
+iteração. Nesse caso, 
+a Hipótese \ref{hip:local.active-relations}, \eqref{limvarh}, \eqref{eq:hzckp},
+ \eqref{eq:difzTheta}, \eqref{eq:dhnlim} e 
+\eqref{eq:limdifxckxe} nos permitem melhorar \eqref{eq:limcxk}, obtendo
+\begin{eqnarray}
+ \norma{c_A(x^k)} & \leq & \norma{c_A(\xc{k})} + \norma{c_A(x^k) - c_A(\xc{k})} \nonumber \\
+ & = & o(\norma{c_A(x^{k-1})} + \bigo(\norma{\delta_A^k}^2) \nonumber \\
+ & = & o(\norma{x^{k-1} - x^*}) + \bigo(\norma{g_A(\xc{k})}^2) \nonumber \\
+ & = & o(\norma{x^{k-1} - x^*}) + \bigo(\norma{\xc{k} - x^*}^2) \nonumber \\
+ & = & o(\norma{x^{k-1} - x^*}). \visiblelbl{eq:cA1step}
+\end{eqnarray}
+Substituindo \eqref{eq:limgAxk} e \eqref{eq:cA1step} em \eqref{eq:2stepxk}, temos
+\begin{eqnarray*}
+ \norma{x^{k+1} - x^*} & = & \bigo(\norma{g_A(x^{k+1})} + \norma{c_A(x^{k+1})}) \nonumber \\
+ & = & o(\norma{\xc{k+1} - x^*}) + o(\norma{x^k - x^*}) = o(\norma{x^k - x^*}).
+\end{eqnarray*}
+\end{proof}
