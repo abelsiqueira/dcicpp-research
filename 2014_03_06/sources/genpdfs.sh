@@ -35,9 +35,9 @@ do
     echo "Copying empty.pdf => $outname"
     cp -f /tmp/empty.pdf ../$outname
   fi
-  for list in $(ls $dir/lists/*.list)
+  for list in $(ls $dir/special_lists/*.list)
   do
-    name=${list/$dir\/lists\//}
+    name=${list/$dir\/special_lists\//}
     name=${name/.list/}
     outname=$(echo $name.$date | tr . _).pdf
 

@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 03 - 06}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+Na reunião anterior, vimos o problema com os problemas muito pequenos. Neste
+relatório vamos considerar apenas os problemas grandes o suficiente para que o
+ALGENCAN leve ao menos 0.01 segundos.
+É importante notar que a quantidade de problemas onde isso acontece é
+relativamente alta: 359 problemas.
+Sendo assim, a quantidade de problemas considerados é 514.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{nozero_time_2014_02_20.pdf}
+  \caption{Todos os problemas utilizados (Sem variáveis fixas e sem aqueles
+  com tempo 0.00 para o ALGENCAN) - 514 problemas}
+  \label{fig:nozero_time}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{nozero_cholok_nofix_2014_02_20.pdf}
+  \caption{Sem as falhas de Cholesky - 364 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{nozero_notunc_2014_02_20.pdf}
+  \caption{Restritos - 364 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{nozero_cholok_nofix_notunc_2014_02_20.pdf}
+  \caption{Restritos sem as falhas de Cholesky - 214 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{nozero_small_medium_2014_02_20.pdf}
+  \caption{Pequenos e médios - 304 problemas}
+\end{figure}
+
+\newpage
+\subsection{Slack true}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e0-1e2_con1e0-1e2_slacktrue_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e0-1e2_con1e2-1e4_slacktrue_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e0-1e2_con1e4-1e6_slacktrue_2014_02_20.pdf}
+  \caption{ nvar pequeno }
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e2-1e4_con1e0-1e2_slacktrue_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e2-1e4_con1e2-1e4_slacktrue_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e2-1e4_con1e4-1e6_slacktrue_2014_02_20.pdf}
+  \caption{ nvar médio }
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e4-1e6_con1e0-1e2_slacktrue_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e4-1e6_con1e2-1e4_slacktrue_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e4-1e6_con1e4-1e6_slacktrue_2014_02_20.pdf}
+  \caption{ nvar grande }
+\end{figure}
+
+\newpage
+\subsection{Slack false}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e0-1e2_con1e0-1e2_slackfalse_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e0-1e2_con1e2-1e4_slackfalse_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e0-1e2_con1e4-1e6_slackfalse_2014_02_20.pdf}
+  \caption{ nvar pequeno }
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e2-1e4_con1e0-1e2_slackfalse_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e2-1e4_con1e2-1e4_slackfalse_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e2-1e4_con1e4-1e6_slackfalse_2014_02_20.pdf}
+  \caption{ nvar médio }
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e4-1e6_con1e0-1e2_slackfalse_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e4-1e6_con1e2-1e4_slackfalse_2014_02_20.pdf}
+  \includegraphics[width=0.3\textwidth]{nozero_cholok_nofix_var1e4-1e6_con1e4-1e6_slackfalse_2014_02_20.pdf}
+  \caption{ nvar grande }
+\end{figure}
+
+\end{document}
