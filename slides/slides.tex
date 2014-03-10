@@ -22,7 +22,7 @@
     Controle Dinâmico de Inviabilidade para Programação Não Linear
   }{
     Dynamic Control of Infeasibility for Nonlinear Programming
-  } 
+  }
 }
 \newcommand{\myshorttitle}{
   \iflanguage{portuguese}{
@@ -63,7 +63,7 @@
 
   \vspace{0.5cm}
   \begin{center}
-    {\color{mydarkcolor} \small 
+    {\color{mydarkcolor} \small
 \iflanguage{portuguese}{
   Universidade Estadual de Campinas \\
     Campinas - São Paulo - Brasil
@@ -77,8 +77,8 @@
   \vspace{0.3cm}
 
   \begin{center}
-    {\color{mydarkcolor} 
-    {\scriptsize 
+    {\color{mydarkcolor}
+    {\scriptsize
       \iflanguage{portuguese}{
         Apoio financeiro \\
         CNPq (desde 12/2013) \\
@@ -156,7 +156,7 @@
   $$ z = \vetor{x}{s} \qquad h(z) = \vetor{c_E(x)}{c_I(x) - s} $$
 
   \vspace{0.5 cm}
-  $$ \beta(z) \mbox{ 
+  $$ \beta(z) \mbox{
   \iflanguage{portuguese}{barreira da fronteira}{boundary barrier}} $$
   \pause
   $$ \beta(z) = -\sum_{i=1}^{m_I} \ln(s_i) $$
@@ -202,10 +202,11 @@
 }
 }
 
-\myframe{
-  \begin{center}
-    \includegraphics[height=\textheight]{plots/contour.pdf}
-  \end{center}
+\myframetop{
+  \ctr{ \pten{ Escoço }{ Outline } }
+  \vfill
+  \includegraphics[width=\textwidth]{plots/cilindro3d.pdf}
+  \vfill
 }
 
 \makesubsection{ Passo Normal }{Normal Step}
@@ -231,10 +232,10 @@
     \ctr{ \onslide<2>{Scaled} Tangent Step }
   }
   \begin{eqnarray*}
-    \min_d & & L(z_c + 
+    \min_d & & L(z_c +
     \only<2>{ {\color{red} \Lambda_c } }
     d, \lambda, \mu) \\
-    \mbox{\suja} & & h(z_c + 
+    \mbox{\suja} & & h(z_c +
     \only<2>{ {\color{red} \Lambda_c } }
     d) = h(z_c)
   \end{eqnarray*}
@@ -244,9 +245,9 @@
 \makesubsection{Definições}{Definitions}
 
 \myframe{
-  \ctr{ 
+  \ctr{
     \iflanguage{portuguese}{
-      Matriz de escalamento 
+      Matriz de escalamento
     }{
       Scaling Matrix
     }
@@ -299,7 +300,7 @@
   $$\rho^k = \bigo(\norma{g_p^k})$$
   \begin{center}
   \begin{tikzpicture}[domain=0:9,scale=0.8]
-    %\draw[fill,gray] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1}) -- 
+    %\draw[fill,gray] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1}) --
     %plot (9-\x,{0.5*(9-\x)*(-\x-1)*sin(9-\x)-1}) -- cycle;
     \draw[black] plot (\x,{0.5*\x*(\x-10)*sin(\x)}) node[right] {$h(z) = 0$};
     \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1});
@@ -393,10 +394,10 @@
   \begin{equation}\visiblelbl{prob:tangent}
     \tag{TS}
     \begin{array}{rl}
-    \min & q_k(\delta) = \meio \delta^TB^k\delta + 
+    \min & q_k(\delta) = \meio \delta^TB^k\delta +
     \delta^Tg_p(z_c^k,\mu^k), \\
     \mbox{\suja} & A(z_c^k)\delta = 0 \\
-     & \tilde{l} \leq \delta \leq \tilde{u}, 
+     & \tilde{l} \leq \delta \leq \tilde{u},
     \end{array}
   \end{equation}
   \pause
@@ -439,9 +440,9 @@
 
 \myframe{
   \iflanguage{portuguese}{
-    \ctr{Exemplo}
+    \ctr{Exemplo de Igualdade}
   }{
-    \ctr{Example}
+    \ctr{Equality Example}
   }
 \begin{eqnarray*}
  \min & f(x) = \meio(x_1^2 + x_2^2) \\
@@ -452,85 +453,54 @@
 }
 
 \myframe{
+  \ctr{\pten{Exemplo de Igualdade}{Equality Example}}
   \begin{center}
-    \begin{tikzpicture}[yscale=1.1]
-    \begin{axis}[colormap={bw}{gray(0cm)=(0.8);gray(1cm)=(1)}, domain=-1:3,
-        domain y=-0.5:3.5, view={0}{90}, mark=none]
-    \addplot3[contour gnuplot={number=40,labels=false}] {0.5*(x^2+y^2)};
-    \end{axis}
-    \begin{axis}[domain=-1:3, xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot+[color=black, thick, mark=none] {x^2 + 1};
-      \only<1-2>{
-      \addplot+[color=red, dashed, mark=none] {x^2 + 1 + 1.13};
-      \addplot+[color=red, dashed, mark=none] {x^2 + 1 - 1.13};
-      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 + 2*1.13};
-      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 - 2*1.13};
-      }
-      \only<3-6>{
-      \addplot+[color=red, dashed, mark=none] {x^2 + 1 + 0.57};
-      \addplot+[color=red, dashed, mark=none] {x^2 + 1 - 0.57};
-      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 + 2*0.57};
-      \addplot+[color=red, dotted, thick, mark=none] {x^2 + 1 - 2*0.57};
-      }
-    \end{axis}
-    \only<1>{
-    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot[blue,mark=*,only marks] plot coordinates {
-      (2,3) }
-      node[pos=0, pin=300: {$x^0$}] {};
-    \end{axis}
-    }
-    \only<2>{
-    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot[blue,mark=*,only marks] plot coordinates {
-      (2,3) (1.53,3.12) }
-      node[pos=0, pin=300: {$x^0$}] {}
-      node[pos=1, pin=300: {$x_c$}] {};
-      \node (a) at (axis cs:2,3) {};
-      \node (b) at (axis cs:1.53,3.12) {};
-      \draw[blue,->] (a) -- (b);
-    \end{axis}
-    }
-    \only<3>{
-    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot[blue,mark=*,only marks] plot coordinates {
-      (1.53,3.12) }
-      node[pos=0, pin=300: {$x_c^1$}] {};
-    \end{axis}
-    }
-    \only<4>{
-    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot[blue,mark=*,only marks] plot coordinates {
-      (1.53,3.12) (0.43,-0.25) }
-      node[pos=0, pin=300: {$x_c^1$}] {}
-      node[pos=1, pin=30: {$x^+$}] {};
-      \node (a) at (axis cs:1.53,3.12) {};
-      \node (b) at (axis cs:0.43,-0.25) {};
-      \draw[blue,->] (a) -- (b);
-    \end{axis}
-    }
-    \only<5>{
-    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot[blue,mark=*,only marks] plot coordinates {
-      (1.53,3.12) (0.70,0.59) }
-      node[pos=0, pin=300: {$x_c^1$}] {}
-      node[pos=1, pin=30: {$x^+$}] {};
-      \node (a) at (axis cs:1.53,3.12) {};
-      \node (b) at (axis cs:0.70,0.59) {};
-      \draw[blue,->] (a) -- (b);
-      \addplot[green,dashed] plot coordinates {
-        (-2,0.59) (4,0.59)
-      };
-    \end{axis}
-    }
-    \only<6>{
-    \begin{axis}[xmin=-1, xmax=3, ymin=-0.5, ymax=3.5]
-      \addplot[blue,mark=*,only marks] plot coordinates {
-      (0.70,0.59) }
-      node[pos=0, pin=30: {$x^1$}] {};
-    \end{axis}
-    }
-  \end{tikzpicture}
+  \begin{overlayarea}{0.7\textwidth}{0.7\textheight}
+    \only<1>{\includegraphics[height=0.7\textheight]{plots/ex1_img1.pdf}}
+    \only<2>{\includegraphics[height=0.7\textheight]{plots/ex1_img2.pdf}}
+    \only<3>{\includegraphics[height=0.7\textheight]{plots/ex1_img3.pdf}}
+    \only<4>{\includegraphics[height=0.7\textheight]{plots/ex1_img4.pdf}}
+    \only<5>{\includegraphics[height=0.7\textheight]{plots/ex1_img5.pdf}}
+    \only<6>{\includegraphics[height=0.7\textheight]{plots/ex1_img6.pdf}}
+  \end{overlayarea}
+  \end{center}
+}
+
+\myframe{
+  \iflanguage{portuguese}{
+    \ctr{Exemplo de Desigualdade}
+  }{
+    \ctr{Inequality Example}
+  }
+\begin{eqnarray*}
+  \min & f(x) = \meio[x_1^2 + (x_2+1)^2] \\
+ \mbox{\suja} & x_2 \geq x_1^2, \\
+              & x_1+x_2 = 1.
+\end{eqnarray*}
+ \vspace{1 cm}
+ $$x^0 = \vetor{1}{-1}$$
+}
+
+\myframe{
+  \ctr{\pten{Exemplo de Desigualdade}{Inequality Example}}
+  \begin{center}
+  \begin{overlayarea}{0.7\textwidth}{0.7\textheight}
+    \only<1>{\includegraphics[height=0.7\textheight]{plots/ex2_img1.pdf}}
+    \only<2>{\includegraphics[height=0.7\textheight]{plots/ex2_img2.pdf}}
+    \only<3>{\includegraphics[height=0.7\textheight]{plots/ex2_img3.pdf}}
+    \only<4>{\includegraphics[height=0.7\textheight]{plots/ex2_img4.pdf}}
+    \only<5>{\includegraphics[height=0.7\textheight]{plots/ex2_img5.pdf}}
+    \only<6>{\includegraphics[height=0.7\textheight]{plots/ex2_img6.pdf}}
+    \only<7>{\includegraphics[height=0.7\textheight]{plots/ex2_img7.pdf}}
+    \only<8>{\includegraphics[height=0.7\textheight]{plots/ex2_img8.pdf}}
+    \only<9>{\includegraphics[height=0.7\textheight]{plots/ex2_img9.pdf}}
+    \only<10>{\includegraphics[height=0.7\textheight]{plots/ex2_img10.pdf}}
+    \only<11>{\includegraphics[height=0.7\textheight]{plots/ex2_img11.pdf}}
+    \only<12>{\includegraphics[height=0.7\textheight]{plots/ex2_img12.pdf}}
+    \only<13>{\includegraphics[height=0.7\textheight]{plots/ex2_img13.pdf}}
+    \only<14>{\includegraphics[height=0.7\textheight]{plots/ex2_img14.pdf}}
+    \only<15>{\includegraphics[height=0.7\textheight]{plots/ex2_img15.pdf}}
+  \end{overlayarea}
   \end{center}
 }
 
@@ -543,15 +513,15 @@
     \ctr{ Hipóteses para Convergência Global }
     \begin{enumerate}
       \item[H1] $f$, $c_E$ e $c_I$ são $C^2$.
-      \item[H2] As sequências $\{z_c^{k}\}$ e $\{z^k\}$, 
+      \item[H2] As sequências $\{z_c^{k}\}$ e $\{z^k\}$,
         as aproximações $B^k$ e os multiplicadores $\{\lambda^k\}$ permanecem
         uniformemente limitados.
       \item[H3] A restauração nunca falha e $\mathcal{Z} =\{z_c^k\}$ permanece
         longe do conjunto singular de $h$, i.e., $h$ é regular no fecho da
-        $\mathcal{Z}$. Além disso, se a sequência gerada 
+        $\mathcal{Z}$. Além disso, se a sequência gerada
         $\{z_c^k\}$ é infinita, então
       \begin{equation}\visiblelbl{nvert}
-      \norma{z_c^{k+1}-z^k} = \bigo(\norma{h(z^k)})  
+      \norma{z_c^{k+1}-z^k} = \bigo(\norma{h(z^k)})
       \end{equation}
       \item[H4] $\norma{\delta_{soc}^k} = \bigo(\norma{\delta_t^k}^2)$
     \end{enumerate}
@@ -559,15 +529,15 @@
     \ctr{ Hypothesis for Global Convergence }
     \begin{enumerate}
       \item[H1] $f$, $c_E$ and $c_I$ are $C^2$.
-      \item[H2] The sequences $\{z_c^{k}\}$ and $\{z^k\}$, 
+      \item[H2] The sequences $\{z_c^{k}\}$ and $\{z^k\}$,
         the approximations $B^k$ and the multipliers $\{\lambda^k\}$ remain
         uniformly bounded.
       \item[H3] The restoration never fails and $\mathcal{Z} =\{z_c^k\}$ remains
         away from the singular set of $h$, i.e., $h$ is regular in the closure
-        of $\mathcal{Z}$. Furthermore, if the sequence 
+        of $\mathcal{Z}$. Furthermore, if the sequence
         $\{z_c^k\}$ is infinite, then
       \begin{equation}\visiblelbl{nvert}
-      \norma{z_c^{k+1}-z^k} = \bigo(\norma{h(z^k)})  
+      \norma{z_c^{k+1}-z^k} = \bigo(\norma{h(z^k)})
       \end{equation}
       \item[H4] $\norma{\delta_{soc}^k} = \bigo(\norma{\delta_t^k}^2)$
     \end{enumerate}
@@ -584,7 +554,7 @@
     \begin{enumerate}
       \item[C1] $\norma{z^k - z_c^k} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
       \item[C2] $\norma{\lambda^k - \lls(z_c^k, \mu_c^k)} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
-      \item[C3] $(\lambda_I^{k+1})^T(s_c^{k+1} - s^k) = 
+      \item[C3] $(\lambda_I^{k+1})^T(s_c^{k+1} - s^k) =
         \bigo(\norma{g_p(z_c^k,\mu_c^k)}\rho^k)$
     \end{enumerate}
     são satisfeitas, então todo ponto de acumulação de $z_c^k$ é estacionário
@@ -599,7 +569,7 @@
     \begin{enumerate}
       \item[C1] $\norma{z^k - z_c^k} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
       \item[C2] $\norma{\lambda^k - \lls(z_c^k, \mu_c^k)} = \bigo(\norma{g_p(z_c^k,\mu_c^k)})$
-      \item[C3] $(\lambda_I^{k+1})^T(s_c^{k+1} - s^k) = 
+      \item[C3] $(\lambda_I^{k+1})^T(s_c^{k+1} - s^k) =
         \bigo(\norma{g_p(z_c^k,\mu_c^k)}\rho^k)$
     \end{enumerate}
     are satisfied, then every accumulation point of $\{z_c^k\}$ is stationary
@@ -695,6 +665,8 @@
 
 \makesection{ Experimentos Numéricos }{Numerical Experiments}
 
+\makesubsection{Implementação do Algoritmo}{Algorithm Implementation}
+
 \myframe{
   \iflanguage{portuguese}{
     \ctr{ Implementação do Algoritmo }
@@ -722,7 +694,7 @@
           \item CHOLMOD \cite{bib:cholmod5} (Cholesky);
           \item METIS \cite{bib:metis} (permutation library used by CHOLMOD);
           \item OpenBLAS \cite{bib:openblas};
-          \item base\_matries (C++ wrapper for Cholesky);
+          \item base\_matrices (C++ wrapper for Cholesky);
           \item CUTEst \cite{bib:cutest} (testing);
           \item perprof-py \cite{bib:perprof} (a performance profile tool).
         \end{itemize}
@@ -731,44 +703,12 @@
 }
 
 \myframe {
-  \ctr{ Experimentos Numéricos }
+  \ctr{ \pten{Experimentos Numéricos}{Numerical Experiments} }
   \begin{itemize}
-    \item 767 problemas do CUTEr (variáveis $\leq 100001$ e
-      restrições $\leq 125025$).
-    \item Problemas com variáveis fixas foram removidos.
+    \item \pten{514 problemas do CUTEst}{514 CUTEst problems}.
+    \item \pten{Problemas com variáveis fixas ou ``muito pequenos'' foram
+      removidos.} {Problems with fixed variables or ``too small'' were removed.}
   \end{itemize}
-}
-
-\myframe {
-  \begin{table}[!ht]
-  \centering
-  \begin{tabular}{|c||c|c|} \hline
-    \multirow{2}{*}{\bf ExitFlag} &
-    \multicolumn{2}{|c|}{\bf Total} \\ \cline{2-3}
-    & {\bf N$^\circ$} & {\bf \%}
-    \\ \hline
-    {\bf  Convergiu  } 
-    & 689  &  89.60   \\ \hline
-    {\bf  Máximo de Iterações  } 
-    &   3  &   0.39   \\ \hline
-    {\bf  Máximo de Restaurações } 
-    &  16  &   2.08   \\ \hline
-    {\bf  $\rho_{\max}$ pequeno  } 
-    &  23  &   2.99   \\ \hline
-    {\bf  Limite de Tempo  } 
-    &  14  &   1.82   \\ \hline
-    {\bf  Estacionário da Inviabilidade  } 
-    &   9  &   1.17   \\ \hline
-    {\bf  Ilimitado  } 
-    &   3  &   0.39   \\ \hline
-    {\bf  Falha  } 
-    &  12  &   1.56   \\ \hline
-    {\bf  Total  } 
-    & 767  & 100.00   \\ \hline
-  \end{tabular}
-  \caption{Resumo dos resultados} 
-  \label{tab:summary}
-  \end{table}
 }
 
 \subsection{ Perfil de Desempenho }
@@ -776,7 +716,27 @@
 \myframe {
   \begin{center}
     \ctr{ \pten{Perfil de Desempenho}{Performance Profile} }
-    \includegraphics{cuter_all.pdf}
+    \includegraphics[height=0.7\textheight]{profs/nozero.pdf}
+  \end{center}
+}
+\myframe {
+  \begin{center}
+    \ctr{ \pten{Jacobianas não singulares}{Non-singular Jacobians} }
+    \includegraphics[height=0.7\textheight]{profs/nozero_cholok_nofix.pdf}
+  \end{center}
+}
+\myframe {
+  \begin{center}
+    \ctr{ \pten{Problemas pequenos e médios}
+      {Small and medium problems} }
+    \includegraphics[height=0.7\textheight]{profs/nozero_small_medium_slacktrue.pdf}
+  \end{center}
+}
+\myframe {
+  \begin{center}
+    \ctr{ \pten{Problemas pequenos e médios com Jacobianas não singulares}
+      {Small and medium problems with non-singular Jacobians} }
+    \includegraphics[height=0.7\textheight]{profs/nozero_cholok_small_medium_slacktrue.pdf}
   \end{center}
 }
 
@@ -787,10 +747,13 @@
   \begin{itemize}
     \item \pten{Implementar suporte para variáveis fixas;}{Implement support for
       fixed variables;}
-    \item \pten{Investigar cada problema com falha procurando por um possível solução
-      geral;}{Investigate each failing problem for a possible general solution;}
     \item \pten{Melhorar estratégia para Jacobianas singulares;}{Improve
       strategies for singular Jacobians;}
+    \item \pten{Implementar uma versão com o Método dos Gradientes Conjugados
+      ao menos para problemas muito grandes;}{Implement a version with the
+      Conjugate Gradient method at least for large problems;}
+    \item \pten{Investigar cada problema com falha procurando por um possível solução
+      geral;}{Investigate each failing problem for a possible general solution;}
     \item \pten{Investigar como torná-lo mais eficiente.}{Improve efficiency
       overall.}
   \end{itemize}
@@ -805,7 +768,7 @@
  \end{frame}
 
 \myframe {
-  %\fcolorbox{mydarkestcolor}{mydarkcolor} 
+  %\fcolorbox{mydarkestcolor}{mydarkcolor}
   \begin{center}
   \begin{beamercolorbox}[center,rounded=true,shadow=true]{mybox}
     \bf \Huge \pten{Obrigado}{Thank you}

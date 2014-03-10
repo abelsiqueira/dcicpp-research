@@ -1,0 +1,34 @@
+#NewPlot
+\exemploum{1.13}
+\itat{(2,3)}{$x^0$}
+#NewPlot
+\exemploum{1.13}
+\itat{(2,3) }{$x^0$}
+\itat{(1.53,3.12) }{$x_c$}
+\seta{2,3}{1.53,3.12}
+#NewPlot
+\exemploum{0.57}
+\itat{(1.53,3.12) }{$x_c^0$}
+#NewPlot
+\exemploum{0.57}
+\itat{(1.53,3.12) }{$x_c^0$}
+\itat{(0.43,-0.25) }{$x^+$}
+\seta{1.53,3.12}{0.43,-0.25};
+#NewPlot
+\exemploum{0.57}
+\begin{axis}[domain=-1:3, xmin=-1,xmax=3,ymin=-0.9,ymax=4,y post scale=2.0,
+  x post scale=2.0]
+  \addplot+[mark=none,green,dashed] coordinates {
+    (1.53+2.53,3.12+2.53)
+    (1.53-2.53,3.12+2.53)
+    (1.53-2.53,3.12-2.53)
+    (1.53+2.53,3.12-2.53)
+    (1.53+2.53,3.12+2.53)
+  };
+\end{axis}
+  \itat{(1.53,3.12) }{$x_c^0$}
+  \itat{(0.70,0.59) }{$x^+$}
+  \seta{1.53,3.12}{0.70,0.59};
+#NewPlot
+\exemploum{0.57}
+\itat{(0.70,0.59) }{$x^1$}

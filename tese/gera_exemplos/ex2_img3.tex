@@ -1,0 +1,70 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+\usetikzlibrary{patterns}
+
+\tikzstyle{feasible} = [very thick,black]
+\tikzstyle{smallc} = [dashed,red]
+\tikzstyle{bigc} = [thick,dotted,red]
+\tikzstyle{iterate} = [blue,circle]
+
+\newcommand{\itatdois}[2]{ 
+\begin{axis}[domain=-2.5:2.5, xmin=-2.5,xmax=2.5,ymin=-2,ymax=4,view={0}{90},
+  x post scale=2.0, y post scale=2.8]
+  \addplot[blue,mark=*] plot coordinates { #1 }
+    node[pos=0, below left] { #2 };
+\end{axis} }
+
+\newcommand{\caixa}[3]{
+\begin{axis}[domain=-2.5:2.5, xmin=-2.5,xmax=2.5,ymin=-2,ymax=4,y post scale=2.8,
+  x post scale=2.0]
+  \addplot+[mark=none,green,dashed] coordinates {
+    (#1+#3,#2+#3)
+    (#1-#3,#2+#3)
+    (#1-#3,#2-#3)
+    (#1+#3,#2-#3)
+    (#1+#3,#2+#3)
+  };
+\end{axis} }
+
+\newcommand{\exemplodois}[2]{
+  \begin{axis}[colormap={bw}{gray(0cm)=(0.8); gray(1cm)=(1)},domain=-2.5:2.5,
+    domain y=-2:4, view={0}{90}, mark=none, y post scale=2.8, x post scale=2.0, 
+    xmin=-2.5,xmax=2.5,ymin=-2,ymax=4]
+    \addplot3[contour gnuplot={number=40,labels=false}] { 0.5*(x^2 + (y+1)^2) };
+    \addplot3[dashed,samples=50,samples y=50,contour gnuplot={draw
+        color=red,levels={#1*#1},labels=false}] { (y-x^2-#2)^2 + (x+y-1)^2 };
+    \addplot3[dotted,thick,samples=50,samples y=50,contour gnuplot={draw
+        color=red,levels={4*#1*#1},labels=false}] { (y-x^2-#2)^2 + (x+y-1)^2 };
+  \end{axis}
+  \begin{axis}[domain=-2.5:2.5, view={0}{90}, mark=none,
+      y post scale=2.8, x post scale=2.0,
+      xmin=-2.5, xmax=2.5, ymin=-2, ymax=4]
+    \addplot+[color=gray,thick,mark=none,pattern=dots] { x^2 };
+    \addplot+[color=black,thick,mark=none] { x^2 + #2 };
+    \addplot+[color=gray,mark=none] {1-x};
+  \end{axis}
+}
+
+\newcommand{\setadois}[2]{
+  \begin{axis}[domain=-2.5:2.5, xmin=-2.5, xmax=2.5, ymin=-2, ymax=4,
+      y post scale=2.8, x post scale=2.0]
+    \node (source) at (axis cs:#1) {};
+    \node (dest) at (axis cs:#2) {};
+    \draw[blue,->] (source) -- (dest);
+  \end{axis}
+}
+
+\begin{document}
+\begin{tikzpicture}
+\exemplodois{2.83}{14.15}
+\itatdois{(1,-1)}{$x_c^0$}
+%sc = 0.01
+\itatdois{(-3.71,3.71) }{$x^+$}
+%s = 14.15
+\setadois{1,-1}{-3.71,3.71};
+\caixa{1}{-1}{4.43}
+\end{tikzpicture}
+\end{document}

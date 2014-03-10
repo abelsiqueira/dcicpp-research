@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.8}
+
+\tikzstyle{feasible} = [very thick,black]
+\tikzstyle{smallc} = [dashed,red]
+\tikzstyle{bigc} = [thick,dotted,red]
+\tikzstyle{iterate} = [blue,circle]
+
+\newcommand{\itat}[2]{
+\begin{axis}[domain=-1:3, xmin=-1,xmax=3,ymin=-0.9,ymax=4,view={0}{90},
+  x post scale=2.0, y post scale=2.0]
+  \addplot[blue,mark=*] plot coordinates { #1 }
+    node[pos=0, below left] { #2 };
+\end{axis} }
+
+\newcommand{\exemploum}[1]{
+  \begin{axis}[
+      colormap={bw}{rgb255(0cm)=(0,150,150); rgb255(1cm)=(255,255,255)},
+      domain=-1:3, domain y=-1:4, view={0}{90}, mark=none, y post scale=2.0, x
+      post scale=2.0, xmin=-1, xmax=3, ymin=-0.9, ymax=4]
+    \addplot3[contour gnuplot={number=30,labels=false}] { 0.5*(x^2 + y^2) };
+  \end{axis}
+  \begin{axis}[domain=-1:3, xmin=-1,xmax=3,ymin=-0.9,ymax=4, y post scale=2.0,
+    x post scale=2.0]
+    \addplot+[color=black,thick,mark=none] { x^2 + 1 };
+    \addplot+[color=red,dashed,mark=none] { x^2 + 1+#1 };
+    \addplot+[color=red,dashed,mark=none] { x^2 + 1-#1 };
+    \addplot+[color=red,thick,dotted,mark=none] { x^2 + 1+2*#1 };
+    \addplot+[color=red,thick,dotted,mark=none] { x^2 + 1-2*#1 };
+  \end{axis}
+}
+
+\newcommand{\seta}[2]{
+  \begin{axis}[domain=-1:3, xmin=-1,xmax=3,ymin=-0.9,ymax=4,y post scale=2.0,
+    x post scale=2.0]
+    \node (source) at (axis cs:#1) {};
+    \node (dest) at (axis cs:#2) {};
+    \draw[blue,->] (source) -- (dest);
+  \end{axis}
+}
