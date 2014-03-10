@@ -28,7 +28,7 @@ do
   outname=$(echo $name.$date | tr . _).pdf
 
   perprof @perprof.args $dir/cute* -o /tmp/$dir/$name $* \
-    --success "Optimal,Converged" --mintime 0.005 
+    --success "Optimal,Converged" --mintime 0.005
   if [ -f /tmp/$dir/$name.pdf ]; then
     cp -f /tmp/$dir/$name.pdf ../$outname
   else
