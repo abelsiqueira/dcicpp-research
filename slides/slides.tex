@@ -692,7 +692,8 @@
       \item We used
         \begin{itemize}
           \item CHOLMOD
-            \cite{bib:cholmod1,bib:cholmod2,bib:cholmod3,bib:cholmod4,bib:cholmod5} (Cholesky);
+            \cite{bib:cholmod1,bib:cholmod2,bib:cholmod3,bib:cholmod4,bib:cholmod5}
+            (Cholesky);
           \item METIS \cite{bib:metis} (permutation library used by CHOLMOD);
           \item OpenBLAS \cite{bib:openblas};
           \item base\_matrices (C++ wrapper for Cholesky);
@@ -709,6 +710,8 @@
     \item \pten{514 problemas do CUTEst}{514 CUTEst problems}.
     \item \pten{Problemas com variáveis fixas ou ``muito pequenos'' foram
       removidos.} {Problems with fixed variables or ``too small'' were removed.}
+    \item \pten{XXX}{Subset of problems where the Jacobian has full rank, and
+      small and medium problems}
   \end{itemize}
 }
 
@@ -716,28 +719,31 @@
 
 \myframe {
   \begin{center}
-    \ctr{ \pten{Perfil de Desempenho}{Performance Profile} }
-    \includegraphics[height=0.7\textheight]{profs/nozero.pdf}
-  \end{center}
-}
-\myframe {
-  \begin{center}
-    \ctr{ \pten{Jacobianas não singulares}{Non-singular Jacobians} }
+    \ctr{ \pten{Jacobianas não singulares}{Full rank Jacobians} }
     \includegraphics[height=0.7\textheight]{profs/nozero_cholok_nofix.pdf}
   \end{center}
 }
 \myframe {
   \begin{center}
-    \ctr{ \pten{Problemas pequenos e médios}
-      {Small and medium problems} }
-    \includegraphics[height=0.7\textheight]{profs/nozero_small_medium_slacktrue.pdf}
+    \ctr{ \pten{Problemas pequenos e médios com Jacobianas não singulares}
+      {Small and medium problems with full rank Jacobians} }
+    \includegraphics[height=0.7\textheight]{profs/nozero_cholok_small_medium_slacktrue.pdf}
   \end{center}
 }
-\myframe {
+\myframetop {
   \begin{center}
-    \ctr{ \pten{Problemas pequenos e médios com Jacobianas não singulares}
-      {Small and medium problems with non-singular Jacobians} }
-    \includegraphics[height=0.7\textheight]{profs/nozero_cholok_small_medium_slacktrue.pdf}
+    \ctr{ \pten{Impacto das Jacobianas singulares}
+      {Comparison of small and medium problems regarding singular Jacobians} }
+    \includegraphics[width=0.45\textwidth]{profs/nozero_cholok_small_medium_slacktrue.pdf}
+    \includegraphics[width=0.45\textwidth]{profs/nozero_small_medium_slacktrue.pdf}
+  \end{center}
+}
+\myframetop {
+  \begin{center}
+    \ctr{ \pten{Impacto das Jacobianas singulares}
+      {Comparison of all problems regarding singular Jacobians} }
+    \includegraphics[width=0.45\textwidth]{profs/nozero_cholok_nofix.pdf}
+    \includegraphics[width=0.45\textwidth]{profs/nozero.pdf}
   \end{center}
 }
 
