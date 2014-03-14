@@ -13,6 +13,7 @@
 \newcommand{\epsmu}{\varepsilon_{\mu}}
 \newcommand{\lls}{\lambda_{LS}}
 \newcommand{\suja}{\iflanguage{portuguese}{suj. a}{s. t.}}
+\usepackage[numbers,sort&compress]{natbib}
 \usepackage{slidesdef}
 
 \newcommand{\pten}[2]{\iflanguage{portuguese}{#1}{#2}}
@@ -337,7 +338,7 @@
     Método proposto por \citet{bib:francisco}.
   }{
     \ctr{ Internal Normal Step }
-    $$ \mbox{How do we find} z_c \in \mathcal{C}(\rho)? $$
+    $$ \mbox{How do we find } z_c \in \mathcal{C}(\rho)? $$
     \pause
     \begin{center}
     Method proposed by \citet{bib:francisco}.
@@ -696,7 +697,7 @@
             (Cholesky);
           \item METIS \cite{bib:metis} (permutation library used by CHOLMOD);
           \item OpenBLAS \cite{bib:openblas};
-          \item base\_matrices (C++ wrapper for Cholesky);
+          \item base\_matrices \cite{bib:base_matrices}(C++ wrapper for Cholesky);
           \item CUTEst \cite{bib:cute,bib:cuter} (testing);
           \item perprof-py \cite{bib:perprof} (a performance profile tool).
         \end{itemize}
@@ -772,7 +773,7 @@
  \small
  \bibliographystyle{plainnat}
  \bibliography{relbib}
- \end{frame}
+\end{frame}
 
 \myframe {
   %\fcolorbox{mydarkestcolor}{mydarkcolor}
