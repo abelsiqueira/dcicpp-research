@@ -1,0 +1,219 @@
+Greetings
+
+My name is Abel, and today I will present the work on my thesis.
+My work is an extension of
+the method Dynamic Control of Infeasibility for equality constrained problems.
+What I did was extend the method to handle inequalities and
+bounds.
+
+2
+My work focused on extending the method's theory to the general optimization
+problem and implementing the method with an interface based on the
+CUTEst testing environment.
+
+3
+I consider a simple version of the nonlinear problem to develop the
+theory.
+From here, we introduce a
+
+4
+slack variable, obtaining an equality constrained problem. Finally,
+we introduce
+a logarithmic barrier function to handle the bounds and end with
+
+5
+an equality constrained problem with logarithmic bounding function.
+The Lagrangian function for this problem is defined as such.
+
+6
+The method consists of composite steps, that is, it alternates between normal
+and tangent steps, that reduces the primal and dual feasibility, respectively.
+
+7
+The flow of the algorithm is to make a normal step, verify optimality, proceed
+to the tangent step, and restart the procedure.
+
+9
+To control these steps, we use what we call trust cylinders.
+The cylinders are regions around the feasible set, and the iterates are
+constrained to these cylinders.
+
+9
+We use two cylinders. An iteration consists of using the normal steps to find a
+point inside the small cylinder, and then make a tangent step constrained to the
+larger cylinder.
+
+10
+The normal step is obtained trying to minimize the infeasibility subject to the
+bounds on the slack variables.
+
+11
+The tangent step is obtained trying to minimize the Lagrangian function without
+changing the feasibility. This is chosen because it always has a feasible
+solution.
+However, this approximation, due to the logarithmic barrier, can be very
+ill-conditioned. So we introduce a scaling matrix.
+
+12
+In this case, the scaling matrix is a diagonal with ones and the slack
+variables.
+With this scaling, we define the scaled gradient, Jacobian, and Hessian.
+
+13
+We also define the Lagrange multiplier obtained by least squares, and the
+approximation of the multiplier on iteration k. Note that we enforce the signal
+of the mulitipliers close to the solution.
+
+14
+And the projected gradient using the least squares multipliers, and the
+approximation on iteration k.
+
+15
+The normal step starts by updating the lagrange multiplier and the projected
+gradient.
+We then update the radius and the barrier parameter.
+We check if the point is inside the trust cylinder. If it is, we leave the
+normal step. Otherwise, find a point inside the small cylinder through a
+internal normal step, and repeat the procedure.
+Note that there can be more than one internal normal steps, but there can also
+be none.
+
+16
+The internal normal step is obtained through a modification of a method proposed
+by Francisco, Krejić and Martínez.
+We start with a Cauchy direction, scale it to the bounds. Then we do the same
+with a Newton direction. The internal normal step is a convex combination of
+these directions that provides sufficient decrease to a quadratic model
+function.
+
+17
+The tangent step problem is a quadratic approximation of the Lagrangian function
+with linear constraints, and bounds which include a trust region.
+It is solved with a modification of Steihaug's method.
+
+18
+We start the tangent step obtaining a direction from this problem.
+If this direction provides sufficient decrease and the iterate remains inside
+the larger cylinder, the direction is accepted. Otherwise, we reduce the trust
+region and repeat the process.
+After accepting a direction, we can optionally compute a second order
+correction.
+
+19
+As a simple example, let's consider this equality problem of finding the point
+in this parabola that minimizes the distance to the origin, starting from the
+point (2,3).
+
+20
+In this figure, we can see the feasible set is this solid black curve.
+The small cylinder is limited by the dashed red curves, and the big cylinder is
+limited by the dotted red curves.
+The blue circle is the starting point, and the ellipses are the function level
+sets.
+We make a normal step placing the point inside the cylinder.
+We update the radius and accept the new point, because it
+is still inside the small cylinder.
+We make a tangent step which is too big, so we reject it.
+We reduce the tangent problem radius, and make a new step. This step is limited
+by the trust region - the dashed green line.
+This step is inside the big cylinder and we have sufficient decrease.
+We accept the point, and end the first iteration.
+
+21
+Now I will present another example, with an inequality.
+This problem is to find the minimum distance of the point (0,-1) to the region
+above this parabola and on this line.
+Since this problem has two variables plus a slack variable, the cylinder would
+have to be in three dimensions.
+We will prevent that by using only a slice parallel to the x plane.
+The cut will be made at the value of the slack variable.
+
+22
+We use the same colors and line styles as before, with the addition of this
+thicker solid black line that denotes the value of the slack variable.
+We start at this point. Since we are already inside the small cylinder, no
+internal normal step is made.
+A horizontal step is tried, that is very large, and does not provide sufficient
+decrease.
+Note that the cylinders and the thicker parabola disappear because the value of
+the slack variable is too large.
+We reduce the trust region and obtain a direction providing sufficient decrease
+and inside the big cylinder.
+We accept this point and proceed to the next iteration.
+We make another normal step,
+update the cylinder radius,
+make a tangent step,
+accept it,
+and repeat this process until the optimality conditions are satisfied.
+
+23
+Now I present the convergence properties of the method.
+We consider this four hypothesis at first.
+Nothing very strict here, and most are enforced by the algorithm.
+
+24
+With those assumptions, the method either stops in a stationary point,
+or is has stationary points in its accumulation set.
+If we also include these conditions,
+every accumulation point is stationary.
+
+25
+For the local convergence, we have to separate the active constraints
+at the solution.
+We assume another 5 conditions.
+The first are bounds.
+The second is regarding the
+positivity of the hessian approximations.
+The third is about the equivalence of the general and the
+active optimality.
+The fourth is about the tangent step close to the solution.
+And the last is about the form of the normal step.
+
+26
+With the 9 hypothesis shown, the method is 2-step superlinearly
+convergent. If a restoration is made every iteration, then
+the method is superlinearly convergent.
+
+27
+Now, regarding infeasible problems, we consider these hypothesis
+about the normal step algorithm, which are very canon.
+
+28
+With the global and these last two assumptions, the sequence generated
+by the normal step algorithm will have stationary points for the
+infeasibility problem in its accumulation set.
+
+29
+The method was implemented in C++. We called the algorithm DCICPP.
+A large part of our effort was to make a fast, open source,
+easily available algorithm.
+We decided to build it atop the Cholesky library CHOLMOD, using
+a wrapper for its data structures.
+The algorithm is online on Github, and is under the
+GNU Public License.
+
+30
+To test our algorithm we considerer 767 problems from CUTEr,
+in the set of small size. We note that the set contains large
+problems, but CUTEr classified this regarding the size of
+file needed to declare the problem.
+We removed the problems with fixed constraints from this set.
+
+39
+Out latest result showed 91 percent of convergence using 2 hours
+of maximum execution time.
+
+40
+This performance profile figure show the comparison between our algorithm
+and the ipopt algorithm.
+
+41
+Out next steps are to implement support to fixed variables;
+investigate individual problems to try and find a possible pitfalls;
+experiment with singular jacobians, since we are only using a naive
+approach of adding a small diagonal when Cholesky fails;
+and try to make it more efficient, reducing factorizations, for instance.
+
+42
+Our references
+and thank you.
