@@ -188,20 +188,42 @@
 \makesubsection{ Passos Compostos }{Composite Steps}
 
 \myframe{
-\iflanguage{portuguese}{
-  \ctr{Passos Compostos}
-  \begin{itemize}
-    \item Passo Normal $\longrightarrow$ Factibilidade Primal
-    \item Passo Tangente $\longrightarrow$ Factibilidade Dual
-  \end{itemize}
-}{
-  \ctr{Composite Steps}
-  \begin{itemize}
-    \item Normal Step $\longrightarrow$ Primal Feasibility
-    \item Tangent Step $\longrightarrow$ Dual Feasibility
-  \end{itemize}
+  \iflanguage{portuguese}{
+    \ctr{Passos Compostos}
+    \begin{itemize}
+      \item Passo Normal $\longrightarrow$ Factibilidade Primal
+      \item Passo Tangente $\longrightarrow$ Factibilidade Dual
+    \end{itemize}
+  }{
+    \ctr{Composite Steps}
+    \begin{itemize}
+      \item Normal Step $\longrightarrow$ Primal Feasibility
+      \item Tangent Step $\longrightarrow$ Dual Feasibility
+    \end{itemize}
+  }
 }
+
+\myframe {
+  \iflanguage{portuguese}{
+    \ctr{ Cilindro de Confiança }
+  }{
+    \ctr{ Trust Cylinder }
+  }
+  $$\mathcal{C}(\rho) = \{z \in \Rn{N}:\norma{h(z)}\leq\rho\}$$
+  $$\rho^k = \bigo(\norma{g_p^k})$$
+  \begin{center}
+  \begin{tikzpicture}[domain=0:9,scale=0.8]
+    %\draw[fill,gray] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1}) --
+    %plot (9-\x,{0.5*(9-\x)*(-\x-1)*sin(9-\x)-1}) -- cycle;
+    \draw[black] plot (\x,{0.5*\x*(\x-10)*sin(\x)}) node[right] {$h(z) = 0$};
+    \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1});
+    \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)-1});
+    \draw[<->] (4,-12*0.07) -- node[right] {$\rho$} (4,-12*0.07+1);
+    \draw[<->] (5,-12.5*0.087) -- node[right] {$\rho$} (5,-12.5*0.087-1);
+  \end{tikzpicture}
+  \end{center}
 }
+
 
 \myframetop{
   \ctr{ \pten{ Escoço }{ Outline } }
@@ -252,12 +274,12 @@
     }{
       Scaling Matrix
     }
-  $\Lambda(z) = \matriz{I}{0}{0}{S} $ }
+  }
+  $$\Lambda(z) = \matriz{I}{0}{0}{S} $$
 \pause
 \begin{align*}
-  g(z,\mu) & = \Lambda(z)\nabla\varphi(z,\mu) \\
+  g(z,\mu) & = \Lambda(z)\nabla\varphi(z,\mu), \\
   A(z) & = \nabla h(z) \Lambda(z),\\
-  \Gamma(z,\mu) & = \Lambda(z)\nabla^2\varphi(z,\mu)\Lambda(z) \\
   W(z,\lambda,\mu) & = \Lambda(z)\nabla_{zz}^2 L(z,\lambda,\mu)\Lambda(z)
 \end{align*}
 }
@@ -289,27 +311,6 @@
    g_p(z,\mu) & = g(z,\mu) + A(z)^T\lls(z,\mu). \\
    g_p^k & = g(z_c^k,\mu^k) + A(z_c^k)^T\lambda^k
  \end{align*}
-}
-
-\myframe {
-  \iflanguage{portuguese}{
-    \ctr{ Cilindro de Confiança }
-  }{
-    \ctr{ Trust Cylinder }
-  }
-  $$\mathcal{C}(\rho) = \{z \in \Rn{N}:\norma{h(z)}\leq\rho\}$$
-  $$\rho^k = \bigo(\norma{g_p^k})$$
-  \begin{center}
-  \begin{tikzpicture}[domain=0:9,scale=0.8]
-    %\draw[fill,gray] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1}) --
-    %plot (9-\x,{0.5*(9-\x)*(-\x-1)*sin(9-\x)-1}) -- cycle;
-    \draw[black] plot (\x,{0.5*\x*(\x-10)*sin(\x)}) node[right] {$h(z) = 0$};
-    \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)+1});
-    \draw[red] plot (\x,{0.5*\x*(\x-10)*sin(\x)-1});
-    \draw[<->] (4,-12*0.07) -- node[right] {$\rho$} (4,-12*0.07+1);
-    \draw[<->] (5,-12.5*0.087) -- node[right] {$\rho$} (5,-12.5*0.087-1);
-  \end{tikzpicture}
-  \end{center}
 }
 
 \makesection{Método}{Method}
