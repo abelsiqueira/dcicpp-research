@@ -205,6 +205,21 @@
 
 \myframe {
   \iflanguage{portuguese}{
+    \ctr{Esboço}
+    \begin{center}
+      \includegraphics{plots/flux-outline-pt.pdf}
+    \end{center}
+  }{
+    \ctr{Outline}
+    \begin{center}
+      \includegraphics{plots/flux-outline-en.pdf}
+    \end{center}
+  }
+}
+
+
+\myframe {
+  \iflanguage{portuguese}{
     \ctr{ Cilindro de Confiança }
   }{
     \ctr{ Trust Cylinder }
@@ -334,44 +349,45 @@
   \iflanguage{portuguese}{
     \ctr{ Passo Normal Interno }
     \begin{center}
-    Método proposto por \citet{bib:francisco}.
+    Método proposto por \citet*{bib:francisco}.
   }{
     \ctr{ Internal Normal Step }
     \begin{center}
-    Method proposed by \citet{bib:francisco}.
+    Method proposed by \citet*{bib:francisco}.
   }
 
+  \pause
   \begin{tikzpicture}
     \begin{axis}[view={0}{90}, axis lines=none, xmin=-2, xmax=5, ymin=-4,
       ymax=3, height=6cm, width=10cm]
       \addplot[mark=none,green,dashed] plot coordinates {
         (-2,-2) (-2,2) (2,2) (2,-2) (-2,-2)
       };
-      \only<1>{
+      \only<2>{
         \addplot[->] plot coordinates { (0,0) (3,-1) }
         node[pos=1, pin=30: $d_{cp}$] {};
       }
-      \only<2->{
+      \only<3->{
         \addplot[dashed,->] plot coordinates { (0,0) (3,-1) }
         node[pos=1, pin=30: $d_{cp}$] {};
         \addplot[->] plot coordinates { (0,0) (3*0.63, -1*0.63) }
         node[pos=1, pin=30: $P(d_{cp})$] {};
       }
-      \only<3>{
+      \only<4>{
         \addplot[->] plot coordinates { (0,0) (-0.2,-3) }
         node[pos=1, pin=150: $d_N$] {};
       }
-      \only<4->{
+      \only<5->{
         \addplot[->,dashed] plot coordinates { (0,0) (-0.2,-3) }
         node[pos=1, pin=150: $d_N$] {};
         \addplot[->] plot coordinates { (0,0) (-0.2*0.63,-3*0.63) }
         node[pos=1, pin=150: $P(d_N)$] {};
       }
-      \only<5->{
+      \only<6->{
         \addplot[->,blue] plot coordinates { (1.89, -0.63) (-0.126,-1.89) }
         node[pos=1, pin=-30: $v$] {};
       }
-      \only<6->{
+      \only<7->{
         \addplot[->,red] plot coordinates { (0,0) (0.882,-1.26) };
         \addplot[->,blue] plot coordinates { (1.89, -0.63) (0.882,-1.26) }
         node[pos=1, pin=-30: $tv$] {};
@@ -379,7 +395,7 @@
     \end{axis}
   \end{tikzpicture}
   \end{center}
-  \uncover<7->{
+  \uncover<8->{
   $$ \psi(t) = \frac{ m(P(d_{cp}) + tv) - m(0) }{ m(P(d_{cp})) - m(0) } $$}
 }
 
@@ -416,22 +432,6 @@
   }{
     \ctr{ Tangent Step }
     \includegraphics{plots/flux-tangent-en.pdf}
-  }
-}
-
-\makesubsection{Esboço}{Outline}
-
-\myframe {
-  \iflanguage{portuguese}{
-    \ctr{Esboço}
-    \begin{center}
-      \includegraphics{plots/flux-outline-pt.pdf}
-    \end{center}
-  }{
-    \ctr{Outline}
-    \begin{center}
-      \includegraphics{plots/flux-outline-en.pdf}
-    \end{center}
   }
 }
 

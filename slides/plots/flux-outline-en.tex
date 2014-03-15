@@ -7,13 +7,12 @@
 
 \begin{document}
   \begin{tikzpicture}
-    \node[block] (normal) {Obtains $z_c^k$ from {\bf Normal Step}};
-    \node[decision,right of=normal,text width=5.5em,node distance=10em] (opt) 
-      {$\norma{h(z_c^k)}\leq\varepsilon$
-      \& $\norma{g_p^k}<\varepsilon$};
+    \node[block] (normal) {{\bf Normal Step}};
+    \node[decision,right of=normal,text width=5.5em,node distance=10em] (opt)
+      { Optimality conditions };
     \node[block,below of=opt,text width=6.5em,node distance=8em] (tangent)
-    {Obtains $z^k$ from {\bf Tangent Step }};
-    \node[block,right of=opt,node distance=10em] (end) {END with $z^*=z_c^k$};
+      {{\bf Tangent Step }};
+    \node[block,right of=opt,node distance=10em] (end) {END};
     \node[block,left of=tangent,node distance=10em] (upk) {$k=k+1$};
     \algstart{normal}
 
