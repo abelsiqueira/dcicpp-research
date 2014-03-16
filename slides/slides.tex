@@ -707,10 +707,12 @@
   \ctr{ \pten{Experimentos Numéricos}{Numerical Experiments} }
   \begin{itemize}
     \item \pten{514 problemas do CUTEst}{514 CUTEst problems}.
+    \item \pten{}{Comparison with ALGENCAN-3.0.0}.
     \item \pten{Problemas com variáveis fixas ou ``muito pequenos'' foram
-      removidos.} {Problems with fixed variables or ``too small'' were removed.}
+      removidos.} {Problems with fixed variables or ``too small'' were removed.
+      (0.00 time on ALGENCAN)}
     \item \pten{XXX}{Subset of problems where the Jacobian has full rank, and
-      small and medium problems}
+      small and medium problems (number of variables less than 10000)}
   \end{itemize}
 }
 
@@ -718,14 +720,14 @@
 
 \myframe {
   \begin{center}
-    \ctr{ \pten{Jacobianas não singulares}{Full rank Jacobians} }
+    \ctr{ \pten{Jacobianas não singulares}{Full rank Jacobians - 364 problems} }
     \includegraphics[height=0.7\textheight]{profs/nozero_cholok_nofix.pdf}
   \end{center}
 }
 \myframe {
   \begin{center}
     \ctr{ \pten{Problemas pequenos e médios com Jacobianas não singulares}
-      {Small and medium problems with full rank Jacobians} }
+      {Small and medium problems with full rank Jacobians - 304 problems} }
     \includegraphics[height=0.7\textheight]{profs/nozero_cholok_small_medium_slacktrue.pdf}
   \end{center}
 }
@@ -735,6 +737,7 @@
       {Comparison of small and medium problems regarding singular Jacobians} }
     \includegraphics[width=0.45\textwidth]{profs/nozero_cholok_small_medium_slacktrue.pdf}
     \includegraphics[width=0.45\textwidth]{profs/nozero_small_medium_slacktrue.pdf}
+    %444 problems
   \end{center}
 }
 \myframetop {

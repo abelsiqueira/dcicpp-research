@@ -185,35 +185,51 @@ infeasibility problem in its accumulation set.
 
 29
 The method was implemented in C++. We called the algorithm DCICPP.
-A large part of our effort was to make a fast, open source,
-easily available algorithm.
 We decided to build it atop the Cholesky library CHOLMOD, using
 a wrapper for its data structures.
 The algorithm is online on Github, and is under the
 GNU Public License.
+We used ...
 
 30
-To test our algorithm we considerer 767 problems from CUTEr,
-in the set of small size. We note that the set contains large
-problems, but CUTEr classified this regarding the size of
-file needed to declare the problem.
-We removed the problems with fixed constraints from this set.
+To test our algorithm we considerered 514 problems from CUTEst.
+We compare our algorithm with ALGENCAN. We used to compare with IPOPT too, but
+they don't have a interface for CUTEst yet.
+We removed the problems with fixed variables, because we don't deal with that
+yet.
+We also removed the problems that were too small, in the sense that, our
+competitor, ALGENCAN, returned time 0.00 for these problems.
+We consider two subset of problems: the ones where the Jacobians are always full
+rank, which means that Cholesky does not fail, and also the problems that are
+small or medium.
+
+31
+This performance profile compares the subset of problems where the Jacobian
+always has full rank. The red curve is our method. It shows a competitive
+method.
+
+32
+This figure shows the smaller subset removing the large problems.
+Our method has a visible advantage. This was already suspected since Cholesky
+can have very bad performance for very large matrices.
+
+33
+These figures show the the impact of considering the problems with singular
+Jacobians. We can see that the overall performance of the method diminishes.
+In this case we still have a competitive method.
+
+34
+Here we include the large problems again. In this case, our method does not
+performs well.
+
+35
+Out next steps are to implement support to fixed variables;
+improve the strategies for singular Jacobians;
+implement a version of the method with conjugate gradient;
+investigate individual problems.
+
+36-38
+Our references.
 
 39
-Out latest result showed 91 percent of convergence using 2 hours
-of maximum execution time.
-
-40
-This performance profile figure show the comparison between our algorithm
-and the ipopt algorithm.
-
-41
-Out next steps are to implement support to fixed variables;
-investigate individual problems to try and find a possible pitfalls;
-experiment with singular jacobians, since we are only using a naive
-approach of adding a small diagonal when Cholesky fails;
-and try to make it more efficient, reducing factorizations, for instance.
-
-42
-Our references
 and thank you.
