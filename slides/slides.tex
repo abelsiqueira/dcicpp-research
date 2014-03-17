@@ -60,9 +60,11 @@
   \begin{beamercolorbox}[center,rounded=true,shadow=true]{mybox}
     \bf \myauthor
   \end{beamercolorbox}
-  \mydate
-
-  \vspace{0.5cm}
+  \begin{center}
+    {\color{mydarkcolor} \small
+      \mydate
+    }
+  \end{center}
   \begin{center}
     {\color{mydarkcolor} \small
 \iflanguage{portuguese}{
@@ -70,8 +72,10 @@
     Campinas - São Paulo - Brasil
   }
   {
-    State University of Campinas \\
-    Campinas - São Paulo - Brazil
+%    State University of Campinas \\
+%    Campinas - São Paulo - Brazil
+    X BrazOpt \\
+    Florianópolis - Santa Catarina - Brazil
   }
   }
   \end{center}
@@ -593,7 +597,7 @@
     \end{itemize}
   }{
     \ctr{ Hypothesis for Local Convergence }
-    For the local convergence we consider only the active constraints in the
+    For the local convergence we consider only the active constraints at the
     solution, and hypothesis about
     \begin{itemize}
       \item the stationary point being a ``good minimizer'';
@@ -781,9 +785,16 @@
 \myframe {
   %\fcolorbox{mydarkestcolor}{mydarkcolor}
   \begin{center}
+    \vfill
+    \vspace{1cm}
   \begin{beamercolorbox}[center,rounded=true,shadow=true]{mybox}
     \bf \Huge \pten{Obrigado}{Thank you}
   \end{beamercolorbox}
+
+  \vspace{2 cm} \scriptsize
+  \includegraphics[scale=0.5]{cc-by.png}
+
+    This work is licensed under a Creative Commons Attribution 3.0 Unported License.
   \end{center}
 }
 
