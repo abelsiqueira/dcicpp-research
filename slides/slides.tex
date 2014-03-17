@@ -404,10 +404,10 @@
   \iflanguage{portuguese}{
     \ctr{ Passo Tangente }
   }{
-    \ctr{ Tangent Step }
+    \ctr{ Internal Tangent Step }
   }
   \begin{equation}\visiblelbl{prob:tangent}
-    \tag{TS}
+    \tag{ITS}
     \begin{array}{rl}
     \min & q_k(\delta) = \meio \delta^TB^k\delta +
     \delta^Tg_p(z_c^k,\mu^k), \\
@@ -516,7 +516,7 @@
         as aproximações $B^k$ e os multiplicadores $\{\lambda^k\}$ permanecem
         uniformemente limitados.
       \item[H3] A restauração nunca falha e $\mathcal{Z} =\{z_c^k\}$ permanece
-        longe do conjunto singular de $h$, i.e., $h$ é regular no fecho da
+        longe do conjunto de $h$, i.e., $h$ é regular no fecho da
         $\mathcal{Z}$. Além disso, se a sequência gerada
         $\{z_c^k\}$ é infinita, então
       \begin{equation}\visiblelbl{nvert}
@@ -532,7 +532,8 @@
         the approximations $B^k$ and the multipliers $\{\lambda^k\}$ remain
         uniformly bounded.
       \item[H3] The restoration never fails and $\mathcal{Z} =\{z_c^k\}$ remains
-        away from the singular set of $h$, i.e., $h$ is regular in the closure
+        away from the singular set of $h$, i.e., the Jacobian of $h$ has full
+        rank in the closure
         of $\mathcal{Z}$. Furthermore, if the sequence
         $\{z_c^k\}$ is infinite, then
       \begin{equation}\visiblelbl{nvert}
@@ -596,8 +597,9 @@
     solution, and hypothesis about
     \begin{itemize}
       \item the stationary point being a ``good minimizer'';
-      \item bounds on the approximations to the Lagrangian multipliers;
-      \item positivity of the approximations for the Hessian of the Lagrangian;
+      \item bounds on the approximations of the Lagrange multipliers;
+      \item positivity of the approximations of the Hessian of the Lagrangian
+        function;
       \item equivalence between the optimality conditions at the active
         constraints;
       \item form of the normal and tangent steps near the solution.
@@ -720,21 +722,21 @@
 
 \myframe {
   \begin{center}
-    \ctr{ \pten{Jacobianas não singulares}{Full rank Jacobians - 364 problems} }
+    \ctr{ \pten{Jacobianas não }{Full rank Jacobians - 364 problems} }
     \includegraphics[height=0.7\textheight]{profs/nozero_cholok_nofix.pdf}
   \end{center}
 }
 \myframe {
   \begin{center}
-    \ctr{ \pten{Problemas pequenos e médios com Jacobianas não singulares}
+    \ctr{ \pten{Problemas pequenos e médios com Jacobianas não }
       {Small and medium problems with full rank Jacobians - 304 problems} }
     \includegraphics[height=0.7\textheight]{profs/nozero_cholok_small_medium_slacktrue.pdf}
   \end{center}
 }
 \myframetop {
   \begin{center}
-    \ctr{ \pten{Impacto das Jacobianas singulares}
-      {Comparison of small and medium problems regarding singular Jacobians} }
+    \ctr{ \pten{Impacto das Jacobianas }
+      {Comparison of small and medium problems regarding rank deficient Jacobians} }
     \includegraphics[width=0.45\textwidth]{profs/nozero_cholok_small_medium_slacktrue.pdf}
     \includegraphics[width=0.45\textwidth]{profs/nozero_small_medium_slacktrue.pdf}
     %444 problems
@@ -743,7 +745,7 @@
 \myframetop {
   \begin{center}
     \ctr{ \pten{Impacto das Jacobianas singulares}
-      {Comparison of all problems regarding singular Jacobians} }
+      {Comparison of all problems regarding rank deficient Jacobians} }
     \includegraphics[width=0.45\textwidth]{profs/nozero_cholok_nofix.pdf}
     \includegraphics[width=0.45\textwidth]{profs/nozero.pdf}
   \end{center}
@@ -757,7 +759,7 @@
     \item \pten{Implementar suporte para variáveis fixas;}{Implement support for
       fixed variables;}
     \item \pten{Melhorar estratégia para Jacobianas singulares;}{Improve
-      strategies for singular Jacobians;}
+      strategies for rank deficient Jacobians;}
     \item \pten{Implementar uma versão com o Método dos Gradientes Conjugados
       ao menos para problemas muito grandes;}{Implement a version with the
       Conjugate Gradient method at least for large problems;}

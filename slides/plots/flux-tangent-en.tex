@@ -7,7 +7,7 @@
 
 \begin{document}
   \begin{tikzpicture}
-    \node[block] (delta) {Find $\delta_t$ from (TS)};
+    \node[block] (delta) {Find $\delta_t$ from (ITS)};
     \node[decision,right of=delta,aspect=2,text width=11em, node distance=12em] (feasible) {$z^k_c +
       \delta_t\in\mathcal{C}(2\rho)$ and is there sufficient decrease?};
     \node[block,right of=feasible,node distance=13em,text width=7em] (soc)

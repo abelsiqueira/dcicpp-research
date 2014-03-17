@@ -33,7 +33,7 @@ and tangent steps, that reduces the primal and dual feasibility, respectively.
 The flow of the algorithm is to make a normal step, verify optimality, proceed
 to the tangent step, and restart the procedure.
 
-9
+8
 To control these steps, we use what we call trust cylinders.
 The cylinders are regions around the feasible set, and the iterates are
 constrained to these cylinders.
