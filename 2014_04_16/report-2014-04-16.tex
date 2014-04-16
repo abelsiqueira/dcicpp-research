@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 03 - 06}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+Apresentamos bons resultados no brazopt, e reapresentamos eles aqui, com a
+adição de algumas dicas obtidas no congresso.
+
+Durante o congresso conversamos com algumas pessoas que aparentemente usaram o
+CUTEst com o IPOPT. Na verdade, a comparação foi feita com a versão para CUTEr
+do IPOPT. Eu não concordo muito com essa abordagem, mas também a fiz.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/all_2014_04_16.pdf}
+  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
+    que 0.005 foram considerados como 0.005. - 874 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/set_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN - 514 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/fullrank_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
+    problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/nolarge_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/fullrank_nolarge_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
+    posto completo - 304 problemas}
+\end{figure}
+
+\end{document}
