@@ -4,6 +4,7 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage[numbers,sort&compress]{natbib}
 
 \usepackage{graphicx}
 \usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
@@ -27,35 +28,92 @@ do IPOPT. Eu não concordo muito com essa abordagem, mas também a fiz.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{plots/all_2014_04_16.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/all_xf_2014_04_16.pdf}
   \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
     que 0.005 foram considerados como 0.005. - 874 problemas}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{plots/set_2014_04_16.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/set_xf_2014_04_16.pdf}
   \caption{Sem variáveis fixas, nem problemas
     que tiveram 0.00 no ALGENCAN - 514 problemas}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{plots/fullrank_2014_04_16.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/fullrank_xf_2014_04_16.pdf}
   \caption{Sem variáveis fixas, nem problemas
     que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
     problemas}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{plots/nolarge_2014_04_16.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/nolarge_xf_2014_04_16.pdf}
   \caption{Sem variáveis fixas, nem problemas
     que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
 \end{figure}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textwidth]{plots/fullrank_nolarge_2014_04_16.pdf}
+  \includegraphics[width=0.9\textwidth]{plots/fullrank_nolarge_xf_2014_04_16.pdf}
   \caption{Sem variáveis fixas, nem problemas
     que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
     posto completo - 304 problemas}
 \end{figure}
+
+\subsection{Usando os valores ótimos de função e factibilidade}
+
+Segundo recomendação em \cite{bib:compare-optimal-values}, vamos reavaliar os
+problemas segundo um critério diferente.
+Ao invés de considerarmos a saída do algoritmo segundo o critério adotado, vamos
+considerar apenas os valores da função objetivo e das inviabilidades primal e
+dual para determinar se um problema convergiu, em relação aos outros, e assim
+determinar o tempo que levou para convergir.
+
+Dado um conjunto $S$ de algoritmos, e um conjunto $P$ de problemas, determinamos
+que um algoritmo $s \in S$ é factível para o problema $p \in P$ se o máximo
+entre as inviabilidades primal e dual é menor que uma tolerância $\varepsilon$.
+Neste caso, escolhemos $\varepsilon = 10^{-4}$.
+Sendo $f_{s,p}$ o valor da função objetivo obtido na solução, definimos
+\newcommand{\fbest}{f_{\mbox{best},p}}
+$$ \fbest = \min_s\{f_{s,p} | s \mbox{é factível para } p\}. $$
+Dizemos que $s$ encontrou uma solução para $p$ se, $s$ é factível para $p$, e
+$$ f_{s,p} \leq \fbest + 10^{-3}\vert \fbest \vert + 10^{-6}. $$
+O perfil de desempenho é feito como antes, mas agora considerando a definição de
+convergência acima.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/all_ov_2014_04_16.pdf}
+  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
+    que 0.005 foram considerados como 0.005. - 874 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/set_ov_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN - 514 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/fullrank_ov_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
+    problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/nolarge_ov_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/fullrank_nolarge_ov_2014_04_16.pdf}
+  \caption{Sem variáveis fixas, nem problemas
+    que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
+    posto completo - 304 problemas}
+\end{figure}
+
+\bibliographystyle{siam}
+\bibliography{bib}
 
 \end{document}
