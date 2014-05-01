@@ -74,4 +74,4 @@ problems.each do |problem|
   end
 end
 
-puts chosen.length
+puts chosen

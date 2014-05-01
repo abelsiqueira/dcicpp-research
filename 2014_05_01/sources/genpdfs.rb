@@ -1,5 +1,18 @@
 #!/usr/bin/env ruby
 
+def create_samef_list(dir, ftol, f0)
+  cmd = "./find-equal-fval.rb #{dir}/cute* --ftol #{ftol} --f0 #{f0}"
+  sameflist = "#{dir}/lists/samef.list"
+  `#{cmd} > #{sameflist}`
+  lists = `ls #{dir}/lists/*.list`.split
+  lists.each do |list|
+    listname = list[/#{dir}.lists.(.*).list/,1]
+    unless list.include?("samef")
+      `sif-intersect-lists.sh #{list} #{sameflist} > #{dir}/lists/samef_#{listname}.list`
+    end
+  end
+end
+
 open('perprof.args','w') do |file|
   file.puts('--tikz')
   file.puts('--semilog')
@@ -23,7 +36,12 @@ dirs=`find . -name "comp*"`.split
 suffixes=['xf', 'ov']
 options=['', '--compare optimalvalues --infeasibility-tolerance 1e-4']
 
+ftol = 1e-3
+f0 = 1e-6
+
 dirs.each do |dir|
+  create_samef_list(dir, ftol, f0)
+
   date = dir[/\.\/compare.(.*)/,1]
 
   lists = [''] + `ls #{dir}/lists/*.list`.split
