@@ -2,13 +2,14 @@
 
 def create_samef_list(dir, ftol, f0)
   cmd = "./find-equal-fval.rb #{dir}/cute* --ftol #{ftol} --f0 #{f0}"
-  sameflist = "#{dir}/lists/samef.list"
+  samef = sprintf("samef_%1.0e_%1.0e", ftol, f0)
+  sameflist = "#{dir}/lists/#{samef}.list"
   `#{cmd} > #{sameflist}`
   lists = `ls #{dir}/lists/*.list`.split
   lists.each do |list|
     listname = list[/#{dir}.lists.(.*).list/,1]
     unless list.include?("samef")
-      `sif-intersect-lists.sh #{list} #{sameflist} > #{dir}/lists/samef_#{listname}.list`
+      `sif-intersect-lists.sh #{list} #{sameflist} > #{dir}/lists/#{samef}_#{listname}.list`
     end
   end
 end
@@ -30,17 +31,22 @@ end
 
 `pdflatex -interaction batchmode -output-directory /tmp/ empty.tex`
 
-dirs=`find . -name "comp*"`.split
+dirs=`find . -name "comp*"`.split.sort
 `mkdir -p ../plots`
 
 suffixes=['xf', 'ov']
 options=['', '--compare optimalvalues --infeasibility-tolerance 1e-4']
 
-ftol = 1e-3
-f0 = 1e-6
+ftols = [1e-3, 5e-3, 1e-2, 5e-2, 5e-1]
+f0s = [1e-6, 1e-5, 1e-4]
 
 dirs.each do |dir|
-  create_samef_list(dir, ftol, f0)
+  `rm -f #{dir}/lists/samef_*`
+  ftols.each do |ftol|
+    f0s.each do |f0|
+      create_samef_list(dir, ftol, f0)
+    end
+  end
 
   date = dir[/\.\/compare.(.*)/,1]
 
@@ -52,7 +58,7 @@ dirs.each do |dir|
     cmd = "perprof @perprof.args #{dir}/cute* --success Optimal,Converged" +
       " --mintime 0.005 --maxtime 900 #{options[i]}"
 
-    lists.each_with_index do |list|
+    lists.each do |list|
       if list == ''
         name = 'all'
         s = ''
@@ -74,3 +80,5 @@ dirs.each do |dir|
     end
   end
 end
+
+`./gen.results.rb`

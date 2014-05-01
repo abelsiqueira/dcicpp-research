@@ -15,12 +15,13 @@
 \author{}
 \date{}
 
+\newcommand{\ftol}{f_{\mbox{tol}}}
+
 \begin{document}
 \maketitle
 \section{Atualização do trabalho}
 
-Para fins de comparação, apresentamos novamente os resultados anteriores. Neste
-momento, utilizando a comparação adotada inicialmente.
+Aqui são apenas os resultados anteriores.
 
 \subsection{Normal}
 
@@ -58,243 +59,25 @@ momento, utilizando a comparação adotada inicialmente.
 
 \subsection{Aceitando apenas aqueles que o mesmo $f$. }
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/samef_xf_2014_04_16.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_set_xf_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 137 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_xf_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 117
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_nolarge_xf_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 122 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_nolarge_xf_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 102 problemas}
-  \end{subfigure}
-\end{figure}
+Agora vamos separar os problemas que, quando convergem, convergem para o mesmo
+valor de função.
 
-\subsection{Modo ``ALGENCAN''}
+Definindo $S$ como o conjunto de algoritmos e $P$ como o conjunto de problemas,
+definimos como $f_{s,p}$ o valor da função objetivo do algoritmo $s \in S$ para
+o problema $p \in P$ na solução obtida.
+Definimos
+$$ \overline{f}_{p} = \min\{f_{s,p} : s \mbox{ converge para } p\}. $$
+Aceitamos um problema $p$ para comparação se, para cada algoritmo $s$ que
+converge para $p$, temos
+$$ f_{s,p} < \overline{f} + \ftol\vert\overline{f}\vert + f_0, $$
+onde $\ftol$ é o erro percentual aceito, e $f_0$ é uma tolerância para quando o
+valor ótimo deveria ser $0$.
+Os valores sugeridos em \cite{bib:compare-optimal-values} são $\ftol=10^{-3}$ e
+$f_0 = 10^{-6}$.
 
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/all_ov_2014_04_16.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/set_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 514 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/fullrank_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/nolarge_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 304 problemas}
-  \end{subfigure}
-\end{figure}
+Segue abaixo os resultados específicos.
 
-\subsection{Aceitando apenas aqueles que o mesmo $f$. }
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/samef_ov_2014_04_16.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_set_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 137 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 117
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_nolarge_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 122 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_nolarge_ov_2014_04_16.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 102 problemas}
-  \end{subfigure}
-\end{figure}
-
-\section{Agora, removendo o IPOPT}
-
-\subsection{Normal}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/all_xf_2014_04_24.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/set_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 514 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/fullrank_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/nolarge_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 304 problemas}
-  \end{subfigure}
-\end{figure}
-
-\subsection{Aceitando apenas aqueles que o mesmo $f$. }
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/samef_xf_2014_04_24.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_set_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 137 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 117
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_nolarge_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 122 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_nolarge_xf_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 102 problemas}
-  \end{subfigure}
-\end{figure}
-
-\subsection{Modo ``ALGENCAN''}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/all_ov_2014_04_24.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/set_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 514 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/fullrank_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/nolarge_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 304 problemas}
-  \end{subfigure}
-\end{figure}
-
-\subsection{Aceitando apenas aqueles que o mesmo $f$. }
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.9\textwidth]{plots/samef_ov_2014_04_24.pdf}
-  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos menores
-    que 0.005 foram considerados como 0.005. - 874 problemas}
-\end{figure}
-\begin{figure}[H]
-  \centering
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_set_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 137 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 117
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_nolarge_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 122 problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/samef_fullrank_nolarge_ov_2014_04_24.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 102 problemas}
-  \end{subfigure}
-\end{figure}
+\input{resultados.tex}
 
 \bibliographystyle{siam}
 \bibliography{bib}
