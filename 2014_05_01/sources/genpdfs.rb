@@ -4,7 +4,16 @@ def create_samef_list(dir, ftol, f0)
   cmd = "./find-equal-fval.rb #{dir}/cute* --ftol #{ftol} --f0 #{f0}"
   samef = sprintf("samef_%1.0e_%1.0e", ftol, f0)
   sameflist = "#{dir}/lists/#{samef}.list"
-  `#{cmd} > #{sameflist}`
+  if File.exist?(sameflist)
+    `mkdir $(dirname /tmp/#{sameflist}`
+    `#{cmd} > /tmp/#{sameflist}`
+    if `diff /tmp/#{sameflist} #{sameflist}`
+      return
+    end
+    `mv -f /tmp/#{sameflist} #{sameflist}`
+  else
+    `#{cmd} > #{sameflist}`
+  end
   lists = `ls #{dir}/lists/*.list`.split
   lists.each do |list|
     listname = list[/#{dir}.lists.(.*).list/,1]
@@ -34,8 +43,10 @@ end
 dirs=`find . -name "comp*"`.split.sort
 `mkdir -p ../plots`
 
-suffixes=['xf', 'ov']
-options=['', '--compare optimalvalues --infeasibility-tolerance 1e-4']
+#suffixes=['xf', 'ov']
+#options=['', '--compare optimalvalues --infeasibility-tolerance 1e-4']
+suffixes=['xf']
+options=['']
 
 ftols = [1e-3, 5e-3, 1e-2, 5e-2, 5e-1]
 f0s = [1e-6, 1e-5, 1e-4]
