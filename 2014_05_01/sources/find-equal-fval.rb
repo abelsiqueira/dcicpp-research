@@ -4,8 +4,8 @@ if ARGV.length == 0
   raise "ERROR: Need files"
 end
 
-ftol = 1e-3
-f0 = 1e-6
+ftol = 5e-3
+f0 = 1e-5
 
 success = ['Converged', 'Optimal']
 next_is_ftol = false
