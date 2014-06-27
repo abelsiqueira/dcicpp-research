@@ -4,7 +4,7 @@ slack="false"
 
 for dir in $(ls | grep compare)
 do
-  awk '{if ($3 <= 5.000000e-03) print $1}' $dir/cutest.algencan > /tmp/toosmall.list
+  awk '{if ($3 <= 0.005) print $1}' $dir/cutest.algencan > /tmp/toosmall.list
   #echo "" > /tmp/toosmall.list
   sif-invert-list.sh /tmp/toosmall.list > $dir/lists/set.list
   grep cholok $dir/cutest.dcicpp | awk '{print $1}' > /tmp/fullrank.list
