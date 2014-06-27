@@ -50,40 +50,41 @@ subconjunto.
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_xf_2014_06_25.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
-      problemas}
+    \caption{Full rank - 580 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/nolarge_xf_2014_06_25.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
+    \caption{No large - 688 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_nolarge_xf_2014_06_25.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 304 problemas}
+    \caption{Full rank, No large - 384 problemas}
   \end{subfigure}
 \end{figure}
+
+\subsection{Só variáveis fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/onlyfix_xf_2014_06_25.pdf}
+    \caption{Conjunto - 260 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_onlyfix_xf_2014_06_25.pdf}
+    \caption{Full rank - 196 problemas}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Sem variáveis fixas}
 \begin{figure}[H]
   \centering
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/nofix_xf_2014_06_25.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN - 514 problemas}
+    \caption{Conjunto - 543 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/nofix_fullrank_xf_2014_06_25.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
-      problemas}
-  \end{subfigure}
-  \begin{subfigure}{0.48\textwidth}
-    \includegraphics[width=\textwidth]{plots/nofix_fullrank_nolarge_xf_2014_06_25.pdf}
-    \caption{Sem variáveis fixas, nem problemas
-      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
-      posto completo - 304 problemas}
+    \includegraphics[width=\textwidth]{plots/fullrank_nofix_xf_2014_06_25.pdf}
+    \caption{Full rank - 384 problemas}
   \end{subfigure}
 \end{figure}
 
@@ -107,7 +108,54 @@ $f_0 = 10^{-6}$.
 
 Segue abaixo os resultados específicos.
 
-\input{resultados.tex}
+%resultados.tex
+\subsection{Para $\ftol = 5e-03$ e $f_0 = 1e-05$}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_set_xf_2014_06_25.pdf}
+    \caption{Conjunto - 622}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_xf_2014_06_25.pdf}
+    \caption{Full rank - 435}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_xf_2014_06_25.pdf}
+    \caption{No large - 516}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_xf_2014_06_25.pdf}
+    \caption{Full rank, no large - 342}
+  \end{subfigure}
+\end{figure}
+
+\subsubsection{Só fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_onlyfix_xf_2014_06_25.pdf}
+    \caption{Conjunto - 207}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_onlyfix_xf_2014_06_25.pdf}
+    \caption{Full rank - 152}
+  \end{subfigure}
+\end{figure}
+
+\subsubsection{Sem fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nofix_xf_2014_06_25.pdf}
+    \caption{Conjunto - 415}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nofix_xf_2014_06_25.pdf}
+    \caption{Full rank - 283}
+  \end{subfigure}
+\end{figure}
 
 \bibliographystyle{siam}
 \bibliography{bib}

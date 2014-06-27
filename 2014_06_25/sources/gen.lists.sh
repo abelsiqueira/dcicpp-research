@@ -18,7 +18,7 @@ do
   done
   for list in nolarge nofix onlyfix
   do
-    sif-intersect-lists.sh $dir/lists{$list,fullrank}.list > \
+    sif-intersect-lists.sh $dir/lists/{$list,fullrank}.list > \
       $dir/lists/fullrank_${list}.list
   done
 done
