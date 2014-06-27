@@ -1,0 +1,115 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 06 - 25}
+\author{}
+\date{}
+
+\newcommand{\ftol}{f_{\mbox{tol}}}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+Com os resultados do último relatório, nos dedicamos a escrever o
+artigo. Depois de acabar a primeira versão, voltamos a trabalhar nas
+variáveis fixas. A maior parte das complicações já havia sido
+resolvida, então bastou encontrar alguns bugs para deixar o algoritmo
+pronto.
+
+Com isso, fizemos novos testes, incluindo os problemas com variáveis
+fixas (em outras palavras, com todos os 1148 problemas).
+
+\subsection{Normal}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/all_xf_2014_06_25.pdf}
+  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos
+    menores que 0.005 foram considerados como 0.005. - 1148 problemas}
+\end{figure}
+Agora removemos os problemas muito pequenos, isto é, aqueles onde o
+ALGENCAN teve tempo 0.00. Todos os problemas daqui em diante são desse
+subconjunto.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/set_xf_2014_06_25.pdf}
+    \caption{Conjunto - 803 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_xf_2014_06_25.pdf}
+    \caption{Sem variáveis fixas, nem problemas
+      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
+      problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nolarge_xf_2014_06_25.pdf}
+    \caption{Sem variáveis fixas, nem problemas
+      que tiveram 0.00 no ALGENCAN, e sem problemas grandes - 444 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_xf_2014_06_25.pdf}
+    \caption{Sem variáveis fixas, nem problemas
+      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
+      posto completo - 304 problemas}
+  \end{subfigure}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nofix_xf_2014_06_25.pdf}
+    \caption{Sem variáveis fixas, nem problemas
+      que tiveram 0.00 no ALGENCAN - 514 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nofix_fullrank_xf_2014_06_25.pdf}
+    \caption{Sem variáveis fixas, nem problemas
+      que tiveram 0.00 no ALGENCAN, e com Jacobiana de posto completo - 364
+      problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nofix_fullrank_nolarge_xf_2014_06_25.pdf}
+    \caption{Sem variáveis fixas, nem problemas
+      que tiveram 0.00 no ALGENCAN, e sem problemas grandes e com Jacobiana de
+      posto completo - 304 problemas}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Aceitando apenas aqueles que o mesmo $f$. }
+
+Agora vamos separar os problemas que, quando convergem, convergem para o mesmo
+valor de função.
+
+Definindo $S$ como o conjunto de algoritmos e $P$ como o conjunto de problemas,
+definimos como $f_{s,p}$ o valor da função objetivo do algoritmo $s \in S$ para
+o problema $p \in P$ na solução obtida.
+Definimos
+$$ \overline{f}_{p} = \min\{f_{s,p} : s \mbox{ converge para } p\}. $$
+Aceitamos um problema $p$ para comparação se, para cada algoritmo $s$ que
+converge para $p$, temos
+$$ f_{s,p} < \overline{f} + \ftol\vert\overline{f}\vert + f_0, $$
+onde $\ftol$ é o erro percentual aceito, e $f_0$ é uma tolerância para quando o
+valor ótimo deveria ser $0$.
+Os valores sugeridos em \cite{bib:compare-optimal-values} são $\ftol=10^{-3}$ e
+$f_0 = 10^{-6}$.
+
+Segue abaixo os resultados específicos.
+
+\input{resultados.tex}
+
+\bibliographystyle{siam}
+\bibliography{bib}
+
+\end{document}

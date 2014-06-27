@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-def create_samef_list(dir, ftol, f0)
-  cmd = "./find-equal-fval.rb #{dir}/cute* --ftol #{ftol} --f0 #{f0}"
+def create_samef_list(dir, ftol, f0, files)
+  cmd = "./find-equal-fval.rb #{files} --ftol #{ftol} --f0 #{f0}"
   samef = sprintf("samef_%1.0e_%1.0e", ftol, f0)
   sameflist = "#{dir}/lists/#{samef}.list"
   if File.exist?(sameflist)
@@ -48,21 +48,18 @@ dirs=`find . -name "comp*"`.split.sort
 suffixes=['xf']
 options=['']
 
-ftols = [1e-3, 5e-3, 1e-2, 5e-2, 5e-1]
-f0s = [1e-6, 1e-5, 1e-4]
+ftols = [5e-3]
+f0s = [1e-5]
 
 dirs.each do |dir|
   `rm -f #{dir}/lists/samef_*`
+  files = (ARGV.empty? ? `ls #{dir}/cute*`.split : ARGV).join(' ')
+
   ftols.each do |ftol|
     f0s.each do |f0|
-      create_samef_list(dir, ftol, f0)
+      create_samef_list(dir, ftol, f0, files)
     end
   end
-  files = if ARGV.length > 0
-    ARGV
-  else
-    `ls #{dir}/cute*`.split
-  end.join(' ')
 
   date = dir[/\.\/compare.(.*)/,1]
 
@@ -71,7 +68,7 @@ dirs.each do |dir|
   `mkdir -pv /tmp/#{dir}/`
 
   suffixes.each_with_index do |suffix,i|
-    cmd = "perprof @perprof.args #{files} --success Optimal,Converged" +
+    cmd = "perprof @perprof.args #{files} --success Converged,convergence" +
       " --mintime 0.005 --maxtime 900 #{options[i]}"
 
     lists.each do |list|
