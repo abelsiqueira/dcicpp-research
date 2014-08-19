@@ -77,6 +77,13 @@ dirs.each do |dir|
         s = ''
       else
         name = list[/#{dir}\/lists\/(.*).list/,1]
+        if File.zero?(list)
+          name = name + '_' + suffix + '_' + date
+          name.gsub!('.','_')
+          puts "Copying empty.pdf => #{name}"
+          `cp -f /tmp/empty.pdf ../plots/#{name}.pdf`
+          next
+        end
         s = "--subset #{list}"
       end
       name = name + '_' + suffix + '_' + date
