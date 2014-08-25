@@ -21,14 +21,10 @@
 \maketitle
 \section{Atualização do trabalho}
 
-Com os resultados do último relatório, nos dedicamos a escrever o
-artigo. Depois de acabar a primeira versão, voltamos a trabalhar nas
-variáveis fixas. A maior parte das complicações já havia sido
-resolvida, então bastou encontrar alguns bugs para deixar o algoritmo
-pronto.
-
-Com isso, fizemos novos testes, incluindo os problemas com variáveis
-fixas (em outras palavras, com todos os 1148 problemas).
+Depois dos resultados do último relatório, melhoramos nossa biblioteca de
+pré-processamento. Conseguimos aumentar a robustez do método e torná-lo
+comparável ao ALGENCAN também para problemas com variáveis fixas, apesar de
+ainda não obtermos resultados tão bons quanto os anteriores.
 
 \subsection{Normal}
 
@@ -50,7 +46,7 @@ subconjunto.
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank - 580 problemas}
+    \caption{Full rank - 573 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/nolarge_xf_2014_07_14_dcicpp.pdf}
@@ -58,7 +54,7 @@ subconjunto.
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_nolarge_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank, No large - 384 problemas}
+    \caption{Full rank, No large - 479 problemas}
   \end{subfigure}
 \end{figure}
 
@@ -71,15 +67,15 @@ subconjunto.
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank - 196 problemas}
+    \caption{Full rank - 187 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/nolarge_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{No large - problemas}
+    \caption{No large - 197 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_nolarge_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank, no large - 196 problemas}
+    \caption{Full rank, no large - 132 problemas}
   \end{subfigure}
 \end{figure}
 
@@ -92,15 +88,15 @@ subconjunto.
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank - x problemas}
+    \caption{Full rank - 386 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/nolarge_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{No large - x problemas}
+    \caption{No large - 491 problemas}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/fullrank_nolarge_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank, no large - x problemas}
+    \caption{Full rank, no large - 347 problemas}
   \end{subfigure}
 \end{figure}
 
@@ -131,19 +127,19 @@ Segue abaixo os resultados específicos.
   \centering
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_set_xf_2014_07_14_dcicpp.pdf}
-    \caption{Conjunto - 622}
+    \caption{Conjunto - 614}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank - 435}
+    \caption{Full rank - 416}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_xf_2014_07_14_dcicpp.pdf}
-    \caption{No large - 516}
+    \caption{No large - 508}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank, no large - 342}
+    \caption{Full rank, no large - 330}
   \end{subfigure}
 \end{figure}
 
@@ -152,19 +148,19 @@ Segue abaixo os resultados específicos.
   \centering
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Conjunto - 207}
+    \caption{Conjunto - 205}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank - x}
+    \caption{Full rank - 143}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{No large - x}
+    \caption{No large - 145}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_onlyfix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank, no large - x}
+    \caption{Full rank, no large - 90}
   \end{subfigure}
 \end{figure}
 
@@ -173,19 +169,19 @@ Segue abaixo os resultados específicos.
   \centering
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Conjunto - 415}
+    \caption{Conjunto - 409}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank - x}
+    \caption{Full rank - 273}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{No large - x}
+    \caption{No large - 363}
   \end{subfigure}
   \begin{subfigure}{0.48\textwidth}
     \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_nofix_xf_2014_07_14_dcicpp.pdf}
-    \caption{Full rank, no large - x}
+    \caption{Full rank, no large - 240}
   \end{subfigure}
 \end{figure}
 
