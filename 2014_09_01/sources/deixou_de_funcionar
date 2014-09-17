@@ -1,0 +1,34 @@
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:BLOCKQP4 timelimit 6.262032e+02 -2.495703e+03 2.206835e-06 1.473902e-12 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:BLOCKQP4 convergence 4.116416e+02 -2.495502e+03 6.329693e-07 1.460936e-12 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:BRIDGEND timelimit 6.000890e+02 5.218597e+01 2.923508e-05 5.113229e-05 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:BRIDGEND convergence 4.926046e+00 5.785039e+01 1.873248e-07 1.086076e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:CHNRSBNE infeasible 6.787777e-04 0.000000e+00 0.000000e+00 8.999111e+01 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:CHNRSBNE convergence 8.960009e-03 0.000000e+00 0.000000e+00 8.925867e-08 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:CVXQP3   rhomax 3.103692e+02 1.157111e+08 2.090665e-06 9.999178e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:CVXQP3   convergence 5.896706e+01 1.157111e+08 4.366534e-07 9.970064e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:DALLASL  maxrest 4.312910e+02 2.771059e+08 1.277537e+00 7.064966e-03 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:DALLASL  convergence 2.136700e+01 9.540577e+05 1.319418e-07 8.139422e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:DALLASM  maxrest 5.653711e+01 2.498725e+07 4.267809e+00 4.401105e-01 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:DALLASM  convergence 1.901824e-01 2.744108e+06 7.690314e-08 3.480517e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HELSBY   rhomax 4.633837e+01 2.912072e+01 2.525953e-06 1.650291e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HELSBY   convergence 1.252131e-01 5.765185e+01 1.394895e-08 2.117541e-13 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HIER13   rhomax 1.031166e+02 1.033347e+03 6.301914e-06 1.259865e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HIER13   convergence 5.334929e+01 1.033340e+03 6.200606e-07 6.162213e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HS90     infeasible 8.288622e-03 1.301931e-01 1.781458e-01 1.987397e-01 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HS90     convergence 4.434752e-02 1.362615e+00 9.804335e-10 3.942576e-08 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HS92     infeasible 1.524544e-02 3.157684e-02 4.458876e-02 1.886011e-01 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HS92     convergence 9.169364e-02 1.361973e+00 4.469882e-07 6.468566e-07 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:LISWET7  rhomax 8.355622e-01 1.000228e+02 1.012060e-05 1.443294e-15 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:LISWET7  convergence 1.026292e-01 1.001808e+02 5.901871e-07 4.613517e-07 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:MINSURFO timelimit 6.000050e+02 3.257596e+06 5.921776e+01 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:MINSURFO convergence 6.035563e+00 2.509025e+00 3.984801e-07 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:RDW2D52B timelimit 6.168202e+02 1.196315e-02 9.758220e-13 8.251250e-06 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:RDW2D52B convergence 4.851145e+01 1.200125e-02 1.579597e-13 1.567284e-11 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:ROTDISC  timelimit 6.000099e+02 7.346346e+19 0.000000e+00 1.461452e+21 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:ROTDISC  convergence 5.148802e-01 9.345968e+00 8.419516e-07 7.864013e-09 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:VANDERM1 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:VANDERM1 convergence 5.972149e-01 0.000000e+00 5.364680e-13 2.609511e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:VANDERM2 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:VANDERM2 convergence 6.062260e-01 0.000000e+00 5.364680e-13 2.609511e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:YAO      rhomax 1.199171e+00 1.979106e+02 3.271167e-05 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:YAO      convergence 3.082840e-01 1.981503e+02 1.564331e-07 8.877562e-07 cholok

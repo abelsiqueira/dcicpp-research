@@ -1,0 +1,488 @@
+sifdecoder -A pc64.lnx.gfo  HS90
+
+ Problem name: HS90
+
+ Double precision version will be formed
+
+ The objective function uses 1 nonlinear group
+ 
+ There is 1 nonlinear inequality constraint
+ 
+ There are 4 free variables
+ 
+ 
+ File successfully decoded
+/home/abel/documentos/dcicpp-research/2014_09_01/sources/analysis
+No tools
+----------------------
+  DCI-C++ First Iter
+  Iter   = 0
+  f(x)   = 2.80259
+  |c(x)| = 0.167113
+  |gp|   = 1.10866
+  rho    = 13.6994
+----------------------
+x = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+xc = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+lambda = 
+0.171567 
+
+----------------------
+Normal Step
+  Iter   = 1
+  f(x)   = 0.356813
+  |c(x)| = 0.167113
+  |gp|   = 1.10866
+  |g|    = 1
+  ngp    = 0.523439
+  f_scale= 2.80259
+  rho    = 13.6994
+  rhomax = 26.172
+  mu     = 0
+  DLH    = 1e+20
+  DLV    = -2.44577
+  DeltaH = 1e+06
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 0
+  tRej   = 0
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 1
+  stepsize = 0
+----------------------
+x = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+xc = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+lambda = 
+0.171567 
+A = 
+0.278041 0.391075 0.414028 0.55427 -0.01 
+DeltaH = 1e+06
+SteihFlag = 0, nSteih = 4
+DeltaH*Diag^-1 = 
+1e+06
+1e+06
+1e+06
+1e+06
+1e+08
+x+ = 
+34.3777 
+63.1432 
+55.4408 
+90.8041 
+107.673 
+Passo rejeitado
+-> Fora do cilindro
+-> Decrescimo insuficiente
+DeltaH = 80.7471
+SteihFlag = 2, nSteih = 4
+DeltaH*Diag^-1 = 
+80.7471
+80.7471
+80.7471
+80.7471
+8074.71
+x+ = 
+28.0959 
+43.3566 
+38.4364 
+72.0573 
+80.7571 
+Passo rejeitado
+-> Fora do cilindro
+-> Decrescimo insuficiente
+DeltaH = 5.04669
+SteihFlag = 2, nSteih = 3
+DeltaH*Diag^-1 = 
+5.04669
+5.04669
+5.04669
+5.04669
+504.669
+x+ = 
+-1.99269 
+-3.30861 
+0.303732 
+4.54669 
+0.934523 
+Passo rejeitado
+-> Decrescimo insuficiente
+DeltaH = 0.315418
+SteihFlag = 2, nSteih = 1
+DeltaH*Diag^-1 = 
+0.315418
+0.315418
+0.315418
+0.315418
+31.5418
+x+ = 
+0.197469 
+-0.260879 
+0.184582 
+-0.276345 
+0.0127713 
+
+----------------------
+Horizontal Step
+  Iter   = 1
+  f(x)   = 0.077603
+  |c(x)| = 0.174202
+  |gp|   = 1.10866
+  |g|    = 1
+  ngp    = 0.523439
+  f_scale= 2.80259
+  rho    = 13.6994
+  rhomax = 26.172
+  mu     = 0
+  DLH    = -0.280427
+  DLV    = -2.44577
+  DeltaH = 0.788546
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 1
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 0
+  stepsize = 0.546097
+----------------------
+x = 
+0.197469 
+-0.260879 
+0.184582 
+-0.276345 
+0.0127713 
+xc = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+lambda = 
+0.171567 
+
+----------------------
+Normal Step
+  Iter   = 2
+  f(x)   = 0.077603
+  |c(x)| = 0.174202
+  |gp|   = 0.313418
+  |g|    = 0.332805
+  ngp    = 0.235156
+  f_scale= 2.80259
+  rho    = 6.1545
+  rhomax = 26.172
+  mu     = 0
+  DLH    = -0.280427
+  DLV    = 0.0298874
+  DeltaH = 0.788546
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 1
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 0
+  stepsize = 0
+----------------------
+x = 
+0.197469 
+-0.260879 
+0.184582 
+-0.276345 
+0.0127713 
+xc = 
+0.197469 
+-0.260879 
+0.184582 
+-0.276345 
+0.0127713 
+lambda = 
+  0 
+A = 
+0.194535 0.26746 0.19007 0.283233 -0.0127713 
+DeltaH = 0.788546
+SteihFlag = 0, nSteih = 2
+DeltaH*Diag^-1 = 
+0.788546
+0.788546
+0.788546
+0.788546
+61.7436
+x+ = 
+-1.24567e-10 
+-1.71306e-10 
+-1.21718e-10 
+-1.81411e-10 
+0.0873178 
+
+----------------------
+Horizontal Step
+  Iter   = 2
+  f(x)   = 3.30366e-20
+  |c(x)| = 0.220551
+  |gp|   = 0.313418
+  |g|    = 0.332805
+  ngp    = 0.235156
+  f_scale= 2.80259
+  rho    = 6.1545
+  rhomax = 26.172
+  mu     = 0
+  DLH    = -0.077603
+  DLV    = 0.0298874
+  DeltaH = 0.788546
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 0
+  stepsize = 0.472278
+----------------------
+x = 
+-1.24567e-10 
+-1.71306e-10 
+-1.21718e-10 
+-1.81411e-10 
+0.0873178 
+xc = 
+0.197469 
+-0.260879 
+0.184582 
+-0.276345 
+0.0127713 
+lambda = 
+  0 
+Going to innerNormalStep: nRest 0
+
+|c| = 0.220551
+rho = 0.0220551
+
+A = 
+-3.42172e-12 4.7056e-12 -3.34348e-12 4.98316e-12 -0.0873178 
+xc = 
+-1.24567e-10 
+-1.71306e-10 
+-1.21718e-10 
+-1.81411e-10 
+0.0873178 
+After innerNormalStep
+|c| = 0.133238
+rho = 0.0220551
+xc = 
+-1.24866e-10 
+-1.70895e-10 
+-1.2201e-10 
+-1.80976e-10 
+4.4532e-06 
+Going to innerNormalStep: nRest 1
+
+|c| = 0.133238
+rho = 0.0220551
+
+A = 
+-3.42172e-12 4.7056e-12 -3.34348e-12 4.98316e-12  -1 
+xc = 
+-1.24866e-10 
+-1.70895e-10 
+-1.2201e-10 
+-1.80976e-10 
+4.4532e-06 
+After innerNormalStep
+|c| = 0.133233
+rho = 0.0220551
+xc = 
+-1.24866e-10 
+-1.70895e-10 
+-1.2201e-10 
+-1.80975e-10 
+2.27113e-10 
+Going to innerNormalStep: nRest 2
+
+|c| = 0.133233
+rho = 0.0220551
+
+A = 
+-3.42993e-12 4.69432e-12 -3.3515e-12 4.97121e-12  -1 
+xc = 
+-1.24866e-10 
+-1.70895e-10 
+-1.2201e-10 
+-1.80975e-10 
+2.27113e-10 
+After innerNormalStep
+|c| = 0.133233
+rho = 0.0220551
+xc = 
+-1.24866e-10 
+-1.70895e-10 
+-1.2201e-10 
+-1.80975e-10 
+1.15828e-14 
+Going to Safe Guard 
+
+A = 
+-3.42993e-12 4.69432e-12 -3.3515e-12 4.97121e-12  -1 
+After last update
+|c| = 0.220551
+rho = 10.6469
+
+----------------------
+Normal Step
+  Iter   = 3
+  f(x)   = 0.441763
+  |c(x)| = 0.377837
+  |gp|   = 0.729826
+  |g|    = 0.794045
+  ngp    = 0.406805
+  f_scale= 2.80259
+  rho    = 10.6469
+  rhomax = 13.086
+  mu     = 0
+  DLH    = -0.077603
+  DLV    = 0.441763
+  DeltaH = 0.788546
+  DeltaV = 8e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 3
+  itssmll= 0
+  gap  = 0
+  stepsize = 1.11611
+----------------------
+x = 
+-1.24567e-10 
+-1.71306e-10 
+-1.21718e-10 
+-1.81411e-10 
+0.0873178 
+xc = 
+-0.456981 
+0.62544 
+-0.446531 
+0.662331 
+1.15649e-14 
+lambda = 
+  0 
+NormalFlag = 2
+
+----------------------
+Horizontal Step
+  Iter   = 3
+  f(x)   = 0.441763
+  |c(x)| = 0.377837
+  |gp|   = 0.729826
+  |g|    = 0.794045
+  ngp    = 0.406805
+  f_scale= 2.80259
+  rho    = 10.6469
+  rhomax = 13.086
+  mu     = 0
+  DLH    = -0.077603
+  DLV    = 0.441763
+  DeltaH = 0.788546
+  DeltaV = 8e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 3
+  itssmll= 0
+  gap  = 0
+  stepsize = 0
+----------------------
+x = 
+-0.456981 
+0.62544 
+-0.446531 
+0.662331 
+1.15649e-14 
+xc = 
+-0.456981 
+0.62544 
+-0.446531 
+0.662331 
+1.15649e-14 
+lambda = 
+  0 
+**********************************************************
+Problem name: HS90    
+
+Number of Variables: 4
+Number of Constraints: 1
+             Equality: 0
+           has_inequality: 1
+
+EXIT: Stopped at a stationary for the infeasibility
+Cholesky failed
+f(x) = 1.23808
+|c(x)| = 0.220551
+|g(x) + J(x)'*y| = 0.729826
+y offset = 0
+Number of Iterations = 3
+Elapsed Time = 0.00692606 s
+
+----------------------
+  Iter   = 3
+  f(x)   = 1.23808
+  |c(x)| = 0.377837
+  |gp|   = 0.729826
+  |g|    = 0.794045
+  ngp    = 0.406805
+  rho    = 10.6469
+  rhomax = 13.086
+  mu     = 0
+  DLH    = -0.077603
+  DLV    = 0.441763
+  DeltaH = 0.788546
+  DeltaV = 8e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 3
+  itssmll= 0
+  gap  = 0
+----------------------
+lambda = 
+  0 
+x: 
+-0.456981 
+0.62544 
+-0.446531 
+0.662331 
+1.15649e-14 
+c: 
+-0.377837 
+y: 
+  0 
+**********************************************************
+Setup time: 0
+Execution time: 0.023332

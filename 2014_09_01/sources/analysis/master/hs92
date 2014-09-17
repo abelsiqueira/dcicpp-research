@@ -1,0 +1,470 @@
+sifdecoder -A pc64.lnx.gfo  HS92
+
+ Problem name: HS92
+
+ Double precision version will be formed
+
+ The objective function uses 1 nonlinear group
+ 
+ There is 1 nonlinear inequality constraint
+ 
+ There are 6 free variables
+ 
+ 
+ File successfully decoded
+/home/abel/documentos/dcicpp-research/2014_09_01/sources/analysis
+No tools
+----------------------
+  DCI-C++ First Iter
+  Iter   = 0
+  f(x)   = 2.49243
+  |c(x)| = 0.178016
+  |gp|   = 1.07214
+  rho    = 13.2829
+----------------------
+x = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+xc = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+lambda = 
+0.140443 
+
+----------------------
+Normal Step
+  Iter   = 1
+  f(x)   = 0.601823
+  |c(x)| = 0.178016
+  |gp|   = 1.07214
+  |g|    = 1
+  ngp    = 0.515419
+  f_scale= 2.49243
+  rho    = 13.2829
+  rhomax = 25.771
+  mu     = 0
+  DLH    = 1e+20
+  DLV    = -1.8906
+  DeltaH = 1e+06
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 0
+  tRej   = 0
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 1
+  stepsize = 0
+----------------------
+x = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+xc = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+lambda = 
+0.140443 
+A = 
+0.198583 0.279315 0.295726 0.396203 0.43635 0.564978 -0.01 
+DeltaH = 1e+06
+SteihFlag = 0, nSteih = 6
+Passo rejeitado
+-> Fora do cilindro
+-> Decrescimo insuficiente
+DeltaH = 58.8963
+SteihFlag = 2, nSteih = 4
+Passo rejeitado
+-> Fora do cilindro
+-> Decrescimo insuficiente
+DeltaH = 3.68102
+SteihFlag = 2, nSteih = 3
+Passo rejeitado
+-> Decrescimo insuficiente
+DeltaH = 0.230064
+SteihFlag = 2, nSteih = 1
+
+----------------------
+Horizontal Step
+  Iter   = 1
+  f(x)   = 0.223392
+  |c(x)| = 0.185916
+  |gp|   = 1.07214
+  |g|    = 1
+  ngp    = 0.515419
+  f_scale= 2.49243
+  rho    = 13.2829
+  rhomax = 25.771
+  mu     = 0
+  DLH    = -0.379541
+  DLV    = -1.8906
+  DeltaH = 0.575159
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 1
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 0
+  stepsize = 0.485477
+----------------------
+x = 
+0.286298 
+-0.319185 
+0.279613 
+-0.327229 
+0.269936 
+-0.338843 
+0.0120072 
+xc = 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.5 
+-0.5 
+0.01 
+lambda = 
+0.140443 
+
+----------------------
+Normal Step
+  Iter   = 2
+  f(x)   = 0.223392
+  |c(x)| = 0.185916
+  |gp|   = 0.58708
+  |g|    = 0.59876
+  ngp    = 0.36721
+  f_scale= 2.49243
+  rho    = 9.46335
+  rhomax = 25.771
+  mu     = 0
+  DLH    = -0.379541
+  DLV    = 0.0261107
+  DeltaH = 0.575159
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 1
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 0
+  stepsize = 0
+----------------------
+x = 
+0.286298 
+-0.319185 
+0.279613 
+-0.327229 
+0.269936 
+-0.338843 
+0.0120072 
+xc = 
+0.286298 
+-0.319185 
+0.279613 
+-0.327229 
+0.269936 
+-0.338843 
+0.0120072 
+lambda = 
+  0 
+A = 
+0.231915 0.290683 0.263475 0.332352 0.291757 0.368958 -0.0120072 
+DeltaH = 0.575159
+SteihFlag = 0, nSteih = 2
+
+----------------------
+Horizontal Step
+  Iter   = 2
+  f(x)   = 1.87669e-19
+  |c(x)| = 0.252972
+  |gp|   = 0.58708
+  |g|    = 0.59876
+  ngp    = 0.36721
+  f_scale= 2.49243
+  rho    = 9.46335
+  rhomax = 25.771
+  mu     = 0
+  DLH    = -0.223392
+  DLV    = 0.0261107
+  DeltaH = 0.847108
+  DeltaV = 1e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 0
+  itssmll= 0
+  gap  = 0
+  stepsize = 0.753919
+----------------------
+x = 
+-2.15841e-10 
+-2.7083e-10 
+-2.4524e-10 
+-3.09603e-10 
+-2.7152e-10 
+-3.43651e-10 
+0.119739 
+xc = 
+0.286298 
+-0.319185 
+0.279613 
+-0.327229 
+0.269936 
+-0.338843 
+0.0120072 
+lambda = 
+  0 
+Going to innerNormalStep: nRest 0
+
+|c| = 0.252972
+rho = 0.0252972
+
+A = 
+-5.92894e-12 7.43942e-12 -6.7365e-12 8.50447e-12 -7.45836e-12 9.43975e-12 -0.119739 
+xc = 
+-2.15841e-10 
+-2.7083e-10 
+-2.4524e-10 
+-3.09603e-10 
+-2.7152e-10 
+-3.43651e-10 
+0.119739 
+After innerNormalStep
+|c| = 0.133239
+rho = 0.0252972
+xc = 
+-2.16551e-10 
+-2.69939e-10 
+-2.46047e-10 
+-3.08585e-10 
+-2.72413e-10 
+-3.42521e-10 
+6.10667e-06 
+Going to innerNormalStep: nRest 1
+
+|c| = 0.133239
+rho = 0.0252972
+
+A = 
+-5.92894e-12 7.43942e-12 -6.7365e-12 8.50447e-12 -7.45836e-12 9.43975e-12  -1 
+xc = 
+-2.16551e-10 
+-2.69939e-10 
+-2.46047e-10 
+-3.08585e-10 
+-2.72413e-10 
+-3.42521e-10 
+6.10667e-06 
+After innerNormalStep
+|c| = 0.133233
+rho = 0.0252972
+xc = 
+-2.16551e-10 
+-2.69939e-10 
+-2.46047e-10 
+-3.08585e-10 
+-2.72413e-10 
+-3.42521e-10 
+3.1144e-10 
+Going to innerNormalStep: nRest 2
+
+|c| = 0.133233
+rho = 0.0252972
+
+A = 
+-5.94844e-12 7.41495e-12 -6.75866e-12 8.4765e-12 -7.48289e-12 9.4087e-12  -1 
+xc = 
+-2.16551e-10 
+-2.69939e-10 
+-2.46047e-10 
+-3.08585e-10 
+-2.72413e-10 
+-3.42521e-10 
+3.1144e-10 
+After innerNormalStep
+|c| = 0.133233
+rho = 0.0252972
+xc = 
+-2.16551e-10 
+-2.69939e-10 
+-2.46047e-10 
+-3.08585e-10 
+-2.72413e-10 
+-3.42521e-10 
+1.58834e-14 
+Going to Safe Guard 
+
+A = 
+-5.94844e-12 7.41495e-12 -6.75866e-12 8.4765e-12 -7.48289e-12 9.4087e-12  -1 
+After last update
+|c| = 0.252972
+rho = 16.1578
+
+----------------------
+Normal Step
+  Iter   = 3
+  f(x)   = 2.5099
+  |c(x)| = 0.892983
+  |gp|   = 1.88531
+  |g|    = 2.007
+  ngp    = 0.626975
+  f_scale= 2.49243
+  rho    = 16.1578
+  rhomax = 12.8855
+  mu     = 0
+  DLH    = -0.223392
+  DLV    = 2.5099
+  DeltaH = 0.847108
+  DeltaV = 8e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 3
+  itssmll= 0
+  gap  = 0
+  stepsize = 2.50401
+----------------------
+x = 
+-2.15841e-10 
+-2.7083e-10 
+-2.4524e-10 
+-3.09603e-10 
+-2.7152e-10 
+-3.43651e-10 
+0.119739 
+xc = 
+-0.79253 
+0.987918 
+-0.900478 
+1.12935 
+-0.996971 
+1.25355 
+1.58498e-14 
+lambda = 
+  0 
+NormalFlag = 2
+
+----------------------
+Horizontal Step
+  Iter   = 3
+  f(x)   = 2.5099
+  |c(x)| = 0.892983
+  |gp|   = 1.88531
+  |g|    = 2.007
+  ngp    = 0.626975
+  f_scale= 2.49243
+  rho    = 16.1578
+  rhomax = 12.8855
+  mu     = 0
+  DLH    = -0.223392
+  DLV    = 2.5099
+  DeltaH = 0.847108
+  DeltaV = 8e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 3
+  itssmll= 0
+  gap  = 0
+  stepsize = 0
+----------------------
+x = 
+-0.79253 
+0.987918 
+-0.900478 
+1.12935 
+-0.996971 
+1.25355 
+1.58498e-14 
+xc = 
+-0.79253 
+0.987918 
+-0.900478 
+1.12935 
+-0.996971 
+1.25355 
+1.58498e-14 
+lambda = 
+  0 
+**********************************************************
+Problem name: HS92    
+
+Number of Variables: 6
+Number of Constraints: 1
+             Equality: 0
+           has_inequality: 1
+
+EXIT: Stopped at a stationary for the infeasibility
+Cholesky failed
+f(x) = 6.25573
+|c(x)| = 0.252972
+|g(x) + J(x)'*y| = 1.88531
+y offset = 0
+Number of Iterations = 3
+Elapsed Time = 0.0125339 s
+
+----------------------
+  Iter   = 3
+  f(x)   = 6.25573
+  |c(x)| = 0.892983
+  |gp|   = 1.88531
+  |g|    = 2.007
+  ngp    = 0.626975
+  rho    = 16.1578
+  rhomax = 12.8855
+  mu     = 0
+  DLH    = -0.223392
+  DLV    = 2.5099
+  DeltaH = 0.847108
+  DeltaV = 8e+06
+  tSoc   = 0
+  tSteih = 3
+  tRej   = 3
+  tbfgs  = 0
+  tRest  = 3
+  itssmll= 0
+  gap  = 0
+----------------------
+lambda = 
+  0 
+x: 
+-0.79253 
+0.987918 
+-0.900478 
+1.12935 
+-0.996971 
+1.25355 
+1.58498e-14 
+c: 
+-0.892983 
+y: 
+  0 
+**********************************************************
+Setup time: 0
+Execution time: 0.039999

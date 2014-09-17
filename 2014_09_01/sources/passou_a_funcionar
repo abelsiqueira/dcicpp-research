@@ -1,0 +1,64 @@
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:10FOLDTR fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:10FOLDTR convergence 5.142345e-01 0.000000e+00 0.000000e+00 6.366265e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:AGG      rhomax 2.045731e+00 -3.558706e+07 3.312642e-05 5.780700e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:AGG      convergence 1.368516e+00 -3.288181e+07 2.608316e-06 9.888690e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:CUBENE fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:CUBENE   convergence 2.510548e-04 0.000000e+00 0.000000e+00 6.661338e-15 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:GMNCASE2 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:GMNCASE2 convergence 5.966670e-01 4.196796e+42 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:GMNCASE3 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:GMNCASE3 convergence 5.900000e-01 5.666402e+42 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:GMNCASE4 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:GMNCASE4 convergence 8.633330e-01 6.097159e+42 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:GROUPING fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:GROUPING convergence 1.592398e-03 1.385040e+01 1.098844e-09 5.629443e-08 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HIMMELBA fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HIMMELBA convergence 1.358032e-09 0.000000e+00 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HS91     infeasible 1.204991e-02 6.239225e-04 6.412361e-03 6.586887e-01 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HS91     convergence 7.427883e-02 1.362638e+00 1.615170e-08 1.742913e-08 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HYDROELL fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HYDROELL convergence 8.866670e-01 -3.427548e+06 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HYDROELM fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HYDROELM convergence 2.466670e-01 -3.428848e+06 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:HYDROELS fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:HYDROELS convergence 1.999900e-02 -3.423852e+06 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:LUKVLI1  timelimit 6.000176e+02 1.003610e+06 1.976299e-02 3.800472e-06 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:LUKVLI1  convergence 1.873192e+01 9.898676e+03 7.045505e-09 1.151211e-14 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:LUKVLI17 timelimit 6.000038e+02 8.724691e+02 1.350971e-05 2.657792e-06 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:LUKVLI17 convergence 1.923990e+02 7.879035e+02 9.919353e-07 1.135220e-13 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:NASH fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:NASH     convergence 7.054806e-04 0.000000e+00 0.000000e+00 8.332321e-11 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:OET2     timelimit 6.002900e+02 4.609303e+00 8.144523e-05 1.576949e-06 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:OET2     convergence 4.033027e+02 2.004464e+00 9.945184e-07 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:OET4     timelimit 6.000711e+02 6.070786e+00 1.088202e-04 5.682374e-14 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:OET4     convergence 5.878176e+01 6.194071e-02 9.539980e-07 2.317739e-09 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:OET6     timelimit 6.002634e+02 4.265720e+00 7.517192e-05 4.159976e-06 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:OET6     convergence 4.028462e+02 2.005129e+00 9.972007e-07 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:OET7     timelimit 6.002019e+02 4.131140e+00 7.292420e-05 3.340845e-06 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:OET7     convergence 4.171103e+02 2.005692e+00 9.988344e-07 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:OSCIPANE fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:OSCIPANE convergence 4.591942e-04 0.000000e+00 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:POLAK4   maxrest 2.434096e+00 -9.999840e-01 5.468644e-02 1.414203e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:POLAK4   convergence 2.418756e-03 1.126814e-09 7.671918e-11 3.081138e-07 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:POLYGON fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:POLYGON  convergence 6.978703e+01 0.000000e+00 2.694883e-12 4.354252e-14 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:PRIMALC1 rhomax 2.919500e+00 -6.151283e+03 1.226092e-06 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:PRIMALC1 convergence 1.279737e+00 -6.155241e+03 9.954929e-07 4.737984e-08 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:PRIMALC8 rhomax 2.425272e+00 -1.830932e+04 3.002665e-06 1.436744e-10 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:PRIMALC8 convergence 3.243713e+00 -1.804261e+04 9.746514e-07 1.485615e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:QCNEW    maxiter 2.793847e+01 -8.558972e+02 1.135243e+07 2.872106e-10 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:QCNEW    convergence 6.115437e-04 -8.065206e+02 1.566016e-07 8.326673e-17 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:QPNSTAIR rhomax 6.339889e+00 5.443660e+06 2.451323e-06 3.554642e-08 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:QPNSTAIR convergence 5.338898e+00 5.464178e+06 8.792251e-07 5.365944e-08 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:RECIPE fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:RECIPE   convergence 5.595684e-04 0.000000e+00 0.000000e+00 3.725290e-07 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:SIPOW2 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:SIPOW2   convergence 9.060190e-01 -1.719898e-01 1.474562e-07 1.892109e-09 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:SIPOW2M fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:SIPOW2M  convergence 8.548315e-01 -1.750759e-01 1.279700e-07 4.732630e-09 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:SYNPOP24 fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:SYNPOP24 convergence 8.600010e-01 0.000000e+00 0.000000e+00 0.000000e+00 cholok
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:TRO11X3  rhomax 1.001244e+01 1.229422e+03 2.875538e-04 7.721123e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:TRO11X3  convergence 4.339522e+00 1.225000e+03 3.155850e-07 9.881998e-07 cholfail
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.07.30:WOODSNE fail 1e20 1e20 1e20 1e20            0.000000e+00 +0.000000e+00 +0.000000e+00 +0.000000e+00
+compare.2014.09.01.dcicpp/cutest.dcicpp.2014.08.13:WOODSNE  convergence 2.750025e-01 7.194545e+04 2.750644e-08 5.916943e-08 cholok

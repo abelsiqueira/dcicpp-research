@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 08 - 25}
+\author{}
+\date{}
+
+\newcommand{\ftol}{f_{\mbox{tol}}}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+Depois dos resultados do último relatório, melhoramos nossa biblioteca de
+pré-processamento. Conseguimos aumentar a robustez do método e torná-lo
+comparável ao ALGENCAN também para problemas com variáveis fixas, apesar de
+ainda não obtermos resultados tão bons quanto os anteriores.
+
+\subsection{Normal}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{plots/all_xf_2014_07_14.pdf}
+  \caption{Todos os problemas utilizados (Sem variáveis fixas). Tempos
+    menores que 0.005 foram considerados como 0.005. - 1148 problemas}
+\end{figure}
+Agora removemos os problemas muito pequenos, isto é, aqueles onde o
+ALGENCAN teve tempo 0.00. Todos os problemas daqui em diante são desse
+subconjunto.
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/set_xf_2014_07_14.pdf}
+    \caption{Conjunto - 803 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_xf_2014_07_14.pdf}
+    \caption{Full rank - 573 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nolarge_xf_2014_07_14.pdf}
+    \caption{No large - 688 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_xf_2014_07_14.pdf}
+    \caption{Full rank, No large - 479 problemas}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Só variáveis fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/onlyfix_xf_2014_07_14.pdf}
+    \caption{Conjunto - 260 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_onlyfix_xf_2014_07_14.pdf}
+    \caption{Full rank - 187 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nolarge_onlyfix_xf_2014_07_14.pdf}
+    \caption{No large - 197 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_onlyfix_xf_2014_07_14.pdf}
+    \caption{Full rank, no large - 132 problemas}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Sem variáveis fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nofix_xf_2014_07_14.pdf}
+    \caption{Conjunto - 543 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nofix_xf_2014_07_14.pdf}
+    \caption{Full rank - 386 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nolarge_nofix_xf_2014_07_14.pdf}
+    \caption{No large - 491 problemas}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_nofix_xf_2014_07_14.pdf}
+    \caption{Full rank, no large - 347 problemas}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Aceitando apenas aqueles que o mesmo $f$. }
+
+Agora vamos separar os problemas que, quando convergem, convergem para o mesmo
+valor de função.
+
+Definindo $S$ como o conjunto de algoritmos e $P$ como o conjunto de problemas,
+definimos como $f_{s,p}$ o valor da função objetivo do algoritmo $s \in S$ para
+o problema $p \in P$ na solução obtida.
+Definimos
+$$ \overline{f}_{p} = \min\{f_{s,p} : s \mbox{ converge para } p\}. $$
+Aceitamos um problema $p$ para comparação se, para cada algoritmo $s$ que
+converge para $p$, temos
+$$ f_{s,p} < \overline{f} + \ftol\vert\overline{f}\vert + f_0, $$
+onde $\ftol$ é o erro percentual aceito, e $f_0$ é uma tolerância para quando o
+valor ótimo deveria ser $0$.
+Os valores sugeridos em \cite{bib:compare-optimal-values} são $\ftol=10^{-3}$ e
+$f_0 = 10^{-6}$.
+
+Segue abaixo os resultados específicos.
+
+%resultados.tex
+\subsection{Para $\ftol = 5e-03$ e $f_0 = 1e-05$}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_set_xf_2014_07_14.pdf}
+    \caption{Conjunto - 614}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_xf_2014_07_14.pdf}
+    \caption{Full rank - 416}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_xf_2014_07_14.pdf}
+    \caption{No large - 508}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_xf_2014_07_14.pdf}
+    \caption{Full rank, no large - 330}
+  \end{subfigure}
+\end{figure}
+
+\subsubsection{Só fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_onlyfix_xf_2014_07_14.pdf}
+    \caption{Conjunto - 205}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_onlyfix_xf_2014_07_14.pdf}
+    \caption{Full rank - 143}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_onlyfix_xf_2014_07_14.pdf}
+    \caption{No large - 145}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_onlyfix_xf_2014_07_14.pdf}
+    \caption{Full rank, no large - 90}
+  \end{subfigure}
+\end{figure}
+
+\subsubsection{Sem fixas}
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nofix_xf_2014_07_14.pdf}
+    \caption{Conjunto - 409}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nofix_xf_2014_07_14.pdf}
+    \caption{Full rank - 273}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_nolarge_nofix_xf_2014_07_14.pdf}
+    \caption{No large - 363}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/samef_5e-03_1e-05_fullrank_nolarge_nofix_xf_2014_07_14.pdf}
+    \caption{Full rank, no large - 240}
+  \end{subfigure}
+\end{figure}
+
+\bibliographystyle{siam}
+\bibliography{bib}
+
+\end{document}
