@@ -7,7 +7,7 @@
       INTEGER ITYPEG(LTYPEG), ISTGPA(LSTGPA), ICALCG(LCALCG)
       DOUBLE PRECISION GVALUE(LGVALU,3), FVALUE(LFVALU), GPVALU(LGPVLU)
 C
-C  Problem name : HS90      
+C  Problem name : SPIRAL    
 C
 C  -- produced by SIFdecode 1.0
 C
