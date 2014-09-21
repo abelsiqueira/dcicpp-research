@@ -14,3 +14,5 @@
 *.toc
 *.bst
 *.ilg
+*.f
+OUTSDIF.d

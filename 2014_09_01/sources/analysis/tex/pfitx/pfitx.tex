@@ -1,0 +1,36 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[top=1cm,bottom=1cm,left=2cm,right=2cm]{geometry}
+
+\newcommand{\dpart}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\meio}{\frac{1}{2}}
+
+\begin{document}
+
+\begin{eqnarray*}
+  \min & & 0 \\
+  \mbox{s.t} & &\\
+             & & \begin{array}{rcl}
+  c_1(a,r,h) &=& -\meio(a^2+a)rh^2+arh-r(1-(1+h)^{-a}) - c_f \\
+  c_2(a,r,h) &=& -(a^2+a)rh^2+arh(1-(1+h)^{-(a+1)}) - c_g \\
+  c_3(a,r,h) &=& -(a^2+a)rh^2(1-(1+h)^{-(a+2)}) - c_h
+  \end{array}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+  \dpart{c_1}{a} &=& -\meio(2a+1)rh^2 + rh - (1+h)^{-a}\ln (1+h) \\
+  \dpart{c_1}{r} &=& -\meio(a^2+a)h^2 + ah - (1 - (1+h)^{-a}) \\
+  \dpart{c_1}{h} &=& -(a^2+a)rh + ar - a(1+h)^{-(a+1)} \\
+  \dpart{c_2}{a} &=& -(2a+1)rh^2+rh(1-(1+h)^{-(a+1)}) +
+    arh(1+h)^{-(a+1)}\ln(1+h) \\
+  \dpart{c_2}{r} &=& -(a^2+a)h^2+ah(1-(1+h)^{-(a+1)}) \\
+  \dpart{c_2}{h} &=& -2(a^2+a)rh+ar(1-(1+h)^{-(a+1)}) + arh(a+1)(1+h)^{-(a+2)}
+    \\
+  \dpart{c_3}{a} &=& -(2a+1)rh^2(1-(1+h)^{-(a+2)}) -
+    (a^2+a)rh^2(1+h)^{-(a+2)}\ln(1+h) \\
+  \dpart{c_3}{r} &=& -(a^2+a)h^2(1-(1+h)^{-(a+2)}) \\
+  \dpart{c_3}{h} &=& -(a^2+a)r[2h(1-(1+h)^{-(a+2)}) + (a+2)h^2(1+h)^{-(a+3)}] \\
+\end{eqnarray*}
+
+\end{document}
