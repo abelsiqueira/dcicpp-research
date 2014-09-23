@@ -8,6 +8,7 @@ maxcon=10
 
 tmpdir=$(mktemp -d)
 cp $list $tmpdir/
+list=$(basename $list)
 cd $tmpdir
 for problem in $(cat $list)
 do
