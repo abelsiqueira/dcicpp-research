@@ -1,6 +1,8 @@
 alphaI 2.5
 alphaR 0.75
 alphaS 6.25e-2
+beta1 0.1
+beta2 0.25
 bfgsupd 5
 c1 0.5
 c2 5e-1
@@ -22,6 +24,7 @@ epsmu 1e-6
 eta1 1e-3
 eta2 0.2
 eta3 0.9
+infeasibility_tol 1e-6
 kappa1 1e-4
 kappa2 0.25
 kappa3 0.7
@@ -41,16 +44,16 @@ MinDiag 0
 minitSteih 100
 minstep 1e-3
 nconshowmax 10
-nfailv 3
+nfailv 5
 normal_fail_reboot 1
 nvarshowmax 10
-objfun_count 0
+objfun_count 10
 partial_penalization 1
 penal_bfgs 0
 penal_trust 0
 phi1 1.0
-phi2 0.1
-print_A_at_end false
+phi2 0.99
+print_A_at_end 0
 project_bfgs 1
 project_dcp 0
 relitSteih 10
@@ -62,7 +65,7 @@ trustConvexBox 0
 trustWorstdn 0
 use_conjugate_gradient 0
 use_constraint_scaling 0
-use_normal_safe_guard 0
+use_normal_safe_guard 1
 use_objective_scaling 1
 use_soc 1
 use_variable_scaling 1

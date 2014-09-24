@@ -4,7 +4,7 @@ tmpdir=$(mktemp -d)
 cp dcicpp.spc $tmpdir
 
 # Ensure that print_A_at_end is 1
-[ -z "$(grep print_A_at_end dcicpp.spc)" ] &&\
+[ -z "$(grep "print_A_at_end 1" dcicpp.spc)" ] &&\
   echo "Add 'print_A_at_end 1' to dcicpp.spc" && exit 1
 
 # Ensure that verbositiy_level is 0

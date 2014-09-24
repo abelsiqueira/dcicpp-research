@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 09 - 23}
+\author{}
+\date{}
+
+\newcommand{\ftol}{f_{\mbox{tol}}}
+\newcommand{\norma}[1]{\Vert{#1}\Vert}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+O nosso passo normal interno é uma combinação da direção de Cauchy com a
+direção de Gauss-Newton para o problema
+$$ \min \norma{Jd + h}^2, $$
+onde $J$ é a Jacobiana (não escalada) das restrições e $h$ é o valor da
+restrições no ponto atual.
+Esse passo é aceito se o decréscimo real for até uma certa fração do decréscimo
+previsto.
+
+Além disso, se o decréscimo do passo não for suficiente, no sentido de que a
+norma do vetor de restrições no ponto encontrado não é suficientemente menor que
+a norma anterior, consideramos a iteração uma falha. Se houverem \texttt{nfailv}
+falhas consecutivas, verificamos se o ponto atual satisfaz o critério de
+ponto estacionário da medida de infactibilidade. Se o ponto não for
+estacionário, fazemos um passo diferente na tentativa de salvar a iteração.
+
+Se o parâmetro \verb+use_normal_safe_guard+ for 1, fazemos um passo do tipo
+$$ \delta = -\alpha AA^Th, $$
+onde $A$ é a matriz Jacobiana escalada.
+
+Se o parâmetro \verb+normal_fail_reboot+ for 1, e o ponto continuar fora do
+cilindro após o \emph{safe guard} anterior, fazemos um reinicío das variáveis de
+folga. Para cada restrição de desigualdade $c_i$ com limitantes $\ell_i$ e
+$u_i$, e dado o ponto atual $x_c$, se $\ell_i < c_i(x) < u_i$, então a variável
+de folga $s$ associada é definida como $s = c_i(x)$, de modo que $h_i(z) = 0$.
+
+Mudando alguns dos parâmetros, usando 5 falhas como limite, obtivemos
+convergência em 118 dos 126 problemas HS* da coleção CUTEst.
+Os outros problemas foram
+\begin{description}
+  \item[HS54] Falha com número máximo de iterações. Não obtém factibilidade
+    dual. Deixando mais iterações piora o algoritmo. Resolve se usa o
+    escalamento das restrições.
+  \item[HS87] Falha com número máximo de iterações. Não obtém factibilidade
+    dual. Mais iterações não ajudam.
+  \item[HS88] Ponto estacionário para a infactibilidade. Se não utilizar a
+    salvaguarda normal, converge. Condicionamento péssimo.
+  \item[HS89] Mesmo caso do HS88, sem problema no condicionamento, mas a matriz
+    é da ordem de $10^{-16}$.
+  \item[HS90] Ponto estacionário para a infactibilidade. Se usar \verb+eta3+
+    menor ou igual a 0.2, converge. Matriz da ordem de $10^{-12}$.
+  \item[HS92] Ponto estacionário para a infactibilidade. Matriz da ordem de
+    $10^{-12}$.
+  \item[HS99EXP] Número máximo de iterações. Condicionamento $10^6$.
+  \item[HS109] Rhomax muito pequeno. Condicionamento péssimo.
+\end{description}
+
+\subsection{O escalamento das restrições}
+
+O escalamento das restrições deveria ser feito de maneira a ajudar aqueles
+problemas que precisam de escalamento sem danificar os problemas que já
+funcionam bem. No entanto não é isso que está acontecendo. Para os problemas HS*
+do repositório CUTEst, 110 de 126 problemas convergem. Em comparação ao caso sem
+escalamento, 10 problemas deixam de convergir e 4 passam a convergir.
+Um desses problemas é o HS32.
+
+\bibliographystyle{siam}
+\bibliography{bib}
+
+\end{document}
