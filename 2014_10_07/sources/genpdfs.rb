@@ -48,8 +48,8 @@ dirs=`find . -name "comp*"`.split.sort
 suffixes=['xf']
 options=['']
 
-ftols = [5e-3]
-f0s = [1e-5]
+ftols = []
+f0s = []
 
 dirs.each do |dir|
   `rm -f #{dir}/lists/samef_*`
@@ -68,7 +68,7 @@ dirs.each do |dir|
   `mkdir -pv /tmp/#{dir}/`
 
   suffixes.each_with_index do |suffix,i|
-    cmd = "perprof @perprof.args #{files} --success Converged,convergence" +
+    cmd = "perprof @perprof.args #{files} --success Converged,convergence,infeasible" +
       " --mintime 0.005 --maxtime 300 #{options[i]}"
 
     lists.each do |list|
