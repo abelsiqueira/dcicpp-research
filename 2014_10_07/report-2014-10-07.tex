@@ -1,0 +1,111 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{graphicx}
+\usepackage[top=1cm,bottom=2cm,right=1cm,left=1cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 10 - 07}
+\author{}
+\date{}
+
+\newcommand{\ftol}{f_{\mbox{tol}}}
+\newcommand{\norma}[1]{\Vert{#1}\Vert}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/all_xf_2014_10_07.pdf}
+    \caption{all - 1149}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_all_xf_2014_10_07.pdf}
+    \caption{fullrank - 899}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nolarge_all_xf_2014_10_07.pdf}
+    \caption{nolarge - 1033}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_all_xf_2014_10_07.pdf}
+    \caption{fullrank nolarge - 804}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Removendo os muito pequenos}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/set_xf_2014_10_07.pdf}
+    \caption{set - 871}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_xf_2014_10_07.pdf}
+    \caption{fullrank - 638}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/nolarge_xf_2014_10_07.pdf}
+    \caption{nolarge - 756}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=\textwidth]{plots/fullrank_nolarge_xf_2014_10_07.pdf}
+    \caption{fullrank nolarge - 544}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Sem variáveis fixas}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/nofix_xf_2014_10_07.pdf}
+    \caption{nofix - 612}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/fullrank_nofix_xf_2014_10_07.pdf}
+    \caption{fullrank nofix - 452}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/nolarge_nofix_xf_2014_10_07.pdf}
+    \caption{nolarge nofix - 560}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/fullrank_nolarge_nofix_xf_2014_10_07.pdf}
+    \caption{fullrank nolarge nofix - 413}
+  \end{subfigure}
+\end{figure}
+
+\subsection{Só variáveis fixas}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/onlyfix_xf_2014_10_07.pdf}
+    \caption{onlyfix - 259}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/fullrank_onlyfix_xf_2014_10_07.pdf}
+    \caption{fullrank onlyfix - 186}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/nolarge_onlyfix_xf_2014_10_07.pdf}
+    \caption{nolarge onlyfix - 196}
+  \end{subfigure}
+  \begin{subfigure}{0.48\textwidth}
+    \includegraphics[width=0.9\textwidth]{plots/fullrank_nolarge_onlyfix_xf_2014_10_07.pdf}
+    \caption{fullrank nolarge onlyfix - 131}
+  \end{subfigure}
+\end{figure}
+
+\end{document}
