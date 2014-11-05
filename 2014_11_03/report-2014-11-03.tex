@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{float}
+\usepackage{amsmath,amsfonts}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[numbers,sort&compress]{natbib}
+
+\usepackage{graphicx}
+\usepackage[top=2cm,bottom=3cm,right=2cm,left=2cm]{geometry}
+
+\renewcommand{\emph}[1]{\textbf{#1}}
+
+\title{2014 - 11 - 03}
+\author{}
+\date{}
+
+\newcommand{\norma}[1]{\Vert{#1}\Vert}
+
+\begin{document}
+\maketitle
+\section{Atualização do trabalho}
+
+No último mês de trabalho, investigamos o uso do LSMR como uma alternativa para
+a solução dos sistemas lineares.
+
+\subsection{LSMR}
+
+O objetivo do LSMR é encontrar a solução de
+\begin{align*}
+  & Ax = b, \\
+  \mbox{ou } \min \quad & \norma{Ax - b}^2, \\
+  \mbox{ou } \min \quad & \norma{Ax - b}^2 + \lambda^2\norma{x}^2, \\
+\end{align*}
+onde $A$ pode ser quadrada ou retangular.
+
+Considere que a Jacobiana $J \in \mathbb{R}^{m\times n}$ tem posto $m<n$.
+No DCICPP, temos que resolver sistemas lineares em duas situações:
+\begin{itemize}
+  \item Passo de restauração, $d = -J^T(JJ^T)^{-1}r$,
+  \item Projeção no espaço nulo da Jacobiana, $Pr = r - J^T(JJ^T)^{-1}Jr = r +
+    J^Ty$, sendo que o vetor $y$ é necessário.
+\end{itemize}
+No primeiro caso, a definição do passo é o que minimiza a norma $\norma{Jd +
+h}$, então a aplicação do LSMR é direta.
+No segundo caso, podemos obter $y$ com a minimização de $\norma{J^Ty + r}$.
+
+\subsection{Comparações dos resultados usando Cholesky e LSMR}
+
+Para os problemas testes do DCICPP, Cholesky e LSMR obtêm convergência para
+todos os problemas.
+
+Para os problemas HS, Cholesky obtém convergência em 121 de 126, enquanto LSMR
+obtém convergência em 119 de 126.
+
+Analisamos o problema HS106, que falha para LSMR mas funciona para Cholesky.
+A Jacobiana desse problema é relativamente mal-condicionada, com o número de
+condição $AA^T$ sendo da ordem de $10^{14}$. No entanto, Cholesky não falha.
+A estimativa para o número de condição de $A$ calculada pelo LSMR chega na ordem
+de $10^6$, e pelo valor que usávamos para o limite de número de condição de
+LSMR, ele também não falha. Se diminuimos esse limite para $10^6$, LSMR não
+passa a convergir. Comparando a saída dos dois métodos, vemos que a diferença
+entre os dois métodos acontece, inicialmente, apenas em poucas componentes de
+poucos vetores numa ordem muito pequena. Esses pequenos erros se acumulam,
+causando mudança na progressão do algoritmo, de modo que o erro aumenta e
+culmina em falha.
+
+Calculamos $Ad_N+c$, onde $d_N$ é a solução de $\min \norma{Ad+c}$, e
+verificamos que no caso de Cholesky, os valores estão muito mais próximos de 0.
+No entanto, os valores de LSMR são, no mínimo, da ordem de $10^{-12}$, em sua
+maioria.
+
+Para o caso dos cerca de 700 problemas ``rápidos'' (que falham ou convergem em
+menos de 30 segundos), Cholesky converge em 665 de 701, e LSMR em 599 de 701,
+sendo que esses números variam dependendo dos tweaks que fazemos no código.
+
+O único resultado vantajoso para LSMR foram os problemas grandes. Nesses,
+Cholesky converge em 38 de 116 problemas, e LSMR em 47 de 116. Vale notar que a
+maior parte das falhas de ambos os problemas foram em questão de tempo, que foi
+limitado em apenas 5 minutos.
+
+\end{document}

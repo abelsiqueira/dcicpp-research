@@ -1,0 +1,55 @@
+A0ENDNDL & 20002 & 15002 & 9 & 125.47 & con\\ \hline
+A0ENINDL & 20002 & 15002 & 5 & 156.823 & con\\ \hline
+A0ESDNDL & 20002 & 15002 & 9 & 126.879 & con\\ \hline
+A0ESINDL & 20002 & 15002 & 5 & 159.11 & con\\ \hline
+A2ENDNDL & 20002 & 15002 & 9 & 122.779 & con\\ \hline
+A2ENINDL & 20002 & 15002 & 5 & 155.679 & con\\ \hline
+A2ESDNDL & 20002 & 15002 & 9 & 123.937 & con\\ \hline
+A2ESINDL & 20002 & 15002 & 5 & 155.684 & con\\ \hline
+A5ENDNDL & 20002 & 15002 & 12 & 134.582 & con\\ \hline
+A5ENINDL & 20002 & 15002 & 7 & 122.861 & con\\ \hline
+A5ESDNDL & 20002 & 15002 & 12 & 135.517 & con\\ \hline
+A5ESINDL & 20002 & 15002 & 7 & 123.012 & con\\ \hline
+AUG2DC   & 20200 & 10000 & 2 & 0.885798 & con\\ \hline
+AUG2D    & 20200 & 10000 & 3 & 2.68192 & con\\ \hline
+AUG3DC   & 27543 & 8000 & 2 & 0.339038 & con\\ \hline
+AUG3D    & 27543 & 8000 & 3 & 1.0414 & con\\ \hline
+
+
+
+BLOCKQP1 & 10010 & 5001 & 3 & 0.0621092 & con\\ \hline
+BLOCKQP2 & 10010 & 5001 & 5 & 0.0856407 & con\\ \hline
+BLOCKQP3 & 10010 & 5001 & 3 & 0.0687597 & con\\ \hline
+BLOCKQP4 & 10010 & 5001 & 23 & 3.53377 & con\\ \hline
+BLOCKQP5 & 10010 & 5001 & 3 & 0.0646827 & con\\ \hline
+BOXPOWER & 20000 & 0 & 6 & 0.097569 & unc\\ \hline
+CYCLIC3  & 100002 & 100002 & 1 & 2.3184 & con\\ \hline
+
+
+DEGDIAG  & 100001 & 0 & 7 & 0.285194 & unc\\ \hline
+DEGENQPC & 50 & 19625 & 2 & 0.0917487 & con\\ \hline
+DEGENQP  & 50 & 122524 & 2 & 6.72682 & con\\ \hline
+DEGTRID2 & 100001 & 0 & 8 & 0.391743 & unc\\ \hline
+DEGTRIDL & 100001 & 1 & 2 & 0.267359 & con\\ \hline
+DEGTRID  & 100001 & 0 & 3 & 0.976859 & unc\\ \hline
+DTOC6    & 10000 & 5000 & 9 & 72.5767 & con\\ \hline
+EG3      & 10001 & 20000 & 3 & 12.9349 & con\\ \hline
+GOULDQP2 & 19999 & 9999 & 2 & 0.113285 & con\\ \hline
+GOULDQP3 & 19999 & 9999 & 2 & 0.118853 & con\\ \hline
+INDEFM   & 100000 & 0 & 410 & 59.1234 & unc\\ \hline
+JANNSON3 & 20000 & 3 & 36 & 4.83271 & con\\ \hline
+LHAIFAM  & 99 & 150 & 0 & 0.00841188 & con\\ \hline
+
+LUKVLE5  & 10000 & 9996 & 17 & 5.99645 & con\\ \hline
+LUKVLI5  & 10000 & 9996 & 29 & 42.216 & con\\ \hline
+MODBEALE & 20000 & 0 & 21 & 2.58491 & unc\\ \hline
+ODNAMUR  & 11130 & 0 & 119 & 29.3771 & unc\\ \hline
+OSCIGRAD & 100000 & 0 & 14 & 3.186 & unc\\ \hline
+OSCIGRNE & 100000 & 100000 & 1 & 7.72494 & con\\ \hline
+OSORIO   & 10201 & 202 & 9 & 0.227115 & con\\ \hline
+PORTSNQP & 100000 & 2 & 1 & 0.479981 & con\\ \hline
+PORTSQP  & 100000 & 1 & 1 & 0.0978634 & con\\ \hline
+
+
+READING9 & 10001 & 5000 & 2 & 60.1388 & con\\ \hline
+YATP1SQ  & 123200 & 123200 & 1 & 1.20123 & con\\ \hline
